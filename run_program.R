@@ -99,20 +99,62 @@ myDF$eCaP_minus <- myDF$eCaP_mean - myDF$eCaP_mean * myDF$eCaP_variance
 myDF$eCeP_plus <- myDF$eCeP_mean + myDF$eCeP_mean * myDF$eCeP_variance
 myDF$eCeP_minus <- myDF$eCeP_mean - myDF$eCeP_mean * myDF$eCeP_variance
 
+myDF$aCeP_by_aCaP <- as.numeric(myDF$aCeP_by_aCaP)
+myDF$eCaP_by_aCaP <- as.numeric(myDF$eCaP_by_aCaP)
+myDF$eCeP_by_aCaP <- as.numeric(myDF$eCeP_by_aCaP)
+
 write.csv(myDF, "data/test_biomass.csv")
 
 ### Plotting
 require(ggplot2)
 
+pdf("output/summary_biomass.pdf")
+### plot some basic information
+par(mfrow=c(2,2))
+hist(myDF$aCO2, xlab = "aCO2 (ppm)", main=NA)
+hist(myDF$eCO2, xlab = "eCO2 (ppm)", main=NA)
+hist(myDF$eC_by_aC, xlab = "eCO2/aCO2", main=NA)
+hist(myDF$eP_by_aP, xlab = "eP/aP", main=NA)
+legend("topright", paste0("n=", nrow(myDF)))
 
-hist(myDF$aCO2)
-hist(myDF$eCO2)
-hist(myDF$eC_by_aC)
-hist(myDF$eP_by_aP)
+### Plot treatment ratio
+par(mfrow=c(1,2))
+test <- subset(myDF, eP_by_aP <= 100 & Variable == "Total biomass")
 
-test <- subset(myDF, eP_by_aP <= 100)
+hist(test$eP_by_aP, xlab = "eP/aP", main=NA)
+legend("topright", paste0("n=", nrow(test)))
+
+hist(test$eC_by_aC, xlab = "eC/aC", main=NA)
+legend("topright", paste0("n=", nrow(test)))
+
+### Plot response ratio
+par(mfrow=c(1,1))
+
+with(test, barplot(eCaP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="eCaP/aCaP", main="Effect of CO2"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+with(test, barplot(aCeP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="aCeP/aCaP", main="Effect of P"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.6)
 
 
-with(test[test$Variable == "Total biomass",], barplot(eCaP_by_aCaP, horiz=T, names.arg = Ref))
-with(test[test$Variable == "Total biomass",], barplot(aCeP_by_aCaP, horiz=T))
-with(test[test$Variable == "Total biomass",], barplot(eCeP_by_aCaP, horiz=T))
+with(test, barplot(eCeP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="eCeP/aCaP", main="Total response"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+
+with(test, barplot(Multiplicative_interaction, horiz=T, col=as.factor(Ref), 
+                   xlab="Interaction", main="Effect of CO2 by P interaction (multiplicative)"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+with(test, barplot(Additive_interaction, horiz=T, col=as.factor(Ref), 
+                   xlab="Interaction", main="Effect of CO2 by P interaction (additive)"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+dev.off()
