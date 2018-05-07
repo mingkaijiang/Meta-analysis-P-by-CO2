@@ -42,3 +42,6 @@ vignettes/*.pdf
 
 # Rproj
 *.Rproj
+
+# output files
+*.pdf

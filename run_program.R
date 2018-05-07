@@ -55,6 +55,17 @@ myDF$leafP_conc_eCeP <- as.numeric(myDF$leafP_conc_eCeP)
 
 myDF$Experiment_duration <- as.numeric(myDF$Experiment_duration)
 
+### Redo calculations
+myDF$eC_by_aC <- myDF$eCO2/myDF$aCO2
+myDF$eP_by_aP <- myDF$eP/myDF$aP
+
+myDF$aCeP_by_aCaP <- myDF$aCeP_mean/myDF$aCaP_mean
+myDF$eCaP_by_aCaP <- myDF$eCaP_mean/myDF$aCaP_mean
+myDF$eCeP_by_aCaP <- myDF$eCeP_mean/myDF$aCaP_mean
+
+myDF$Multiplicative_interaction <- (myDF$eCeP_mean/myDF$eCaP_mean)/(myDF$aCeP_mean/myDF$aCaP_mean) - 1
+myDF$Additive_interaction <- (eCeP_by_aCaP-1) - (eCaP_by_aCaP-1) - (aCeP_by_aCaP - 1)
+
 
 ### Get variable names
 var.names <- unique(myDF$Variable)
@@ -108,7 +119,8 @@ write.csv(myDF, "data/test_biomass.csv")
 ### Plotting
 require(ggplot2)
 
-pdf("output/summary_biomass.pdf")
+#### Total biomass
+pdf("output/summary_total_biomass.pdf")
 ### plot some basic information
 par(mfrow=c(2,2))
 hist(myDF$aCO2, xlab = "aCO2 (ppm)", main=NA)
@@ -120,6 +132,163 @@ legend("topright", paste0("n=", nrow(myDF)))
 ### Plot treatment ratio
 par(mfrow=c(1,2))
 test <- subset(myDF, eP_by_aP <= 100 & Variable == "Total biomass")
+
+hist(test$eP_by_aP, xlab = "eP/aP", main=NA)
+legend("topright", paste0("n=", nrow(test)))
+
+hist(test$eC_by_aC, xlab = "eC/aC", main=NA)
+legend("topright", paste0("n=", nrow(test)))
+
+### Plot response ratio
+par(mfrow=c(1,1))
+
+with(test, barplot(eCaP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="eCaP/aCaP", main="Effect of CO2"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+with(test, barplot(aCeP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="aCeP/aCaP", main="Effect of P"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.6)
+
+
+with(test, barplot(eCeP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="eCeP/aCaP", main="Total response"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+
+with(test, barplot(Multiplicative_interaction, horiz=T, col=as.factor(Ref), 
+                   xlab="Interaction", main="Effect of CO2 by P interaction (multiplicative)"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+with(test, barplot(Additive_interaction, horiz=T, col=as.factor(Ref), 
+                   xlab="Interaction", main="Effect of CO2 by P interaction (additive)"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+dev.off()
+
+#### leaf biomass
+pdf("output/summary_leaf_biomass.pdf")
+### plot some basic information
+par(mfrow=c(2,2))
+hist(myDF$aCO2, xlab = "aCO2 (ppm)", main=NA)
+hist(myDF$eCO2, xlab = "eCO2 (ppm)", main=NA)
+hist(myDF$eC_by_aC, xlab = "eCO2/aCO2", main=NA)
+hist(myDF$eP_by_aP, xlab = "eP/aP", main=NA)
+legend("topright", paste0("n=", nrow(myDF)))
+
+### Plot treatment ratio
+par(mfrow=c(1,2))
+test <- subset(myDF, eP_by_aP <= 100 & Variable == "Leaf biomass")
+
+hist(test$eP_by_aP, xlab = "eP/aP", main=NA)
+legend("topright", paste0("n=", nrow(test)))
+
+hist(test$eC_by_aC, xlab = "eC/aC", main=NA)
+legend("topright", paste0("n=", nrow(test)))
+
+### Plot response ratio
+par(mfrow=c(1,1))
+
+with(test, barplot(eCaP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="eCaP/aCaP", main="Effect of CO2"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+with(test, barplot(aCeP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="aCeP/aCaP", main="Effect of P"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.6)
+
+
+with(test, barplot(eCeP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="eCeP/aCaP", main="Total response"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+
+with(test, barplot(Multiplicative_interaction, horiz=T, col=as.factor(Ref), 
+                   xlab="Interaction", main="Effect of CO2 by P interaction (multiplicative)"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+with(test, barplot(Additive_interaction, horiz=T, col=as.factor(Ref), 
+                   xlab="Interaction", main="Effect of CO2 by P interaction (additive)"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+dev.off()
+
+#### Root biomass
+pdf("output/summary_root_biomass.pdf")
+### plot some basic information
+par(mfrow=c(2,2))
+hist(myDF$aCO2, xlab = "aCO2 (ppm)", main=NA)
+hist(myDF$eCO2, xlab = "eCO2 (ppm)", main=NA)
+hist(myDF$eC_by_aC, xlab = "eCO2/aCO2", main=NA)
+hist(myDF$eP_by_aP, xlab = "eP/aP", main=NA)
+legend("topright", paste0("n=", nrow(myDF)))
+
+### Plot treatment ratio
+par(mfrow=c(1,2))
+test <- subset(myDF, eP_by_aP <= 100 & Variable == "Root biomass")
+
+hist(test$eP_by_aP, xlab = "eP/aP", main=NA)
+legend("topright", paste0("n=", nrow(test)))
+
+hist(test$eC_by_aC, xlab = "eC/aC", main=NA)
+legend("topright", paste0("n=", nrow(test)))
+
+### Plot response ratio
+par(mfrow=c(1,1))
+
+with(test, barplot(eCaP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="eCaP/aCaP", main="Effect of CO2"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+with(test, barplot(aCeP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="aCeP/aCaP", main="Effect of P"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.6)
+
+
+with(test, barplot(eCeP_by_aCaP, horiz=T, col=as.factor(Ref), 
+                   xlab="eCeP/aCaP", main="Total response"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+
+with(test, barplot(Multiplicative_interaction, horiz=T, col=as.factor(Ref), 
+                   xlab="Interaction", main="Effect of CO2 by P interaction (multiplicative)"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+with(test, barplot(Additive_interaction, horiz=T, col=as.factor(Ref), 
+                   xlab="Interaction", main="Effect of CO2 by P interaction (additive)"))
+legend("topright", fill=unique(as.factor(test$Ref)), 
+       legend=unique(as.factor(test$Ref)), cex=0.7)
+
+dev.off()
+
+
+#### Stem biomass
+pdf("output/summary_stem_biomass.pdf")
+### plot some basic information
+par(mfrow=c(2,2))
+hist(myDF$aCO2, xlab = "aCO2 (ppm)", main=NA)
+hist(myDF$eCO2, xlab = "eCO2 (ppm)", main=NA)
+hist(myDF$eC_by_aC, xlab = "eCO2/aCO2", main=NA)
+hist(myDF$eP_by_aP, xlab = "eP/aP", main=NA)
+legend("topright", paste0("n=", nrow(myDF)))
+
+### Plot treatment ratio
+par(mfrow=c(1,2))
+test <- subset(myDF, eP_by_aP <= 100 & Variable == "Stem biomass")
 
 hist(test$eP_by_aP, xlab = "eP/aP", main=NA)
 legend("topright", paste0("n=", nrow(test)))
