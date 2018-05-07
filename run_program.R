@@ -26,7 +26,7 @@ colnames(myDF) <- c("Ref", "Variable", "Unit", "aCO2", "eCO2", "aP", "eP", "P_un
 myDF$aCO2 <- as.numeric(myDF$aCO2)
 myDF$eCO2 <- as.numeric(myDF$eCO2)
 myDF$aP <- as.numeric(myDF$aP)
-myDF$eP <- as.numeric(myDF$aP)
+myDF$eP <- as.numeric(myDF$eP)
 myDF$Sample_size <- as.numeric(myDF$Sample_size)
 myDF$aCaP_mean <- as.numeric(myDF$aCaP_mean)
 myDF$aCeP_mean <- as.numeric(myDF$aCeP_mean)
@@ -99,6 +99,20 @@ myDF$eCaP_minus <- myDF$eCaP_mean - myDF$eCaP_mean * myDF$eCaP_variance
 myDF$eCeP_plus <- myDF$eCeP_mean + myDF$eCeP_mean * myDF$eCeP_variance
 myDF$eCeP_minus <- myDF$eCeP_mean - myDF$eCeP_mean * myDF$eCeP_variance
 
+write.csv(myDF, "data/test_biomass.csv")
 
 ### Plotting
-with(myDF[myDF$Variable == "Total biomass",], plot(eCaP_by_aCaP~eC_by_aC, col=eP_by_aP))
+require(ggplot2)
+
+
+hist(myDF$aCO2)
+hist(myDF$eCO2)
+hist(myDF$eC_by_aC)
+hist(myDF$eP_by_aP)
+
+test <- subset(myDF, eP_by_aP <= 100)
+
+
+with(test[test$Variable == "Total biomass",], barplot(eCaP_by_aCaP, horiz=T, names.arg = Ref))
+with(test[test$Variable == "Total biomass",], barplot(aCeP_by_aCaP, horiz=T))
+with(test[test$Variable == "Total biomass",], barplot(eCeP_by_aCaP, horiz=T))

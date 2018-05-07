@@ -35,6 +35,7 @@ vignettes/*.pdf
 
 # input data
 *.xlsx
+*.csv
 
 # mac
 *.DS_Store
