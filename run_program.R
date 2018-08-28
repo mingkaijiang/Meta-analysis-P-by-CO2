@@ -19,18 +19,22 @@ myDF$Trt_eC_by_aC <- myDF$Trt_eCO2/myDF$Trt_aCO2
 ### Calculate how much P reduction there is
 myDF$Trt_P_reduction <- (myDF$Trt_eP - myDF$Trt_aP) / myDF$Trt_eP
 
-test <- subset(myDF, Trt_P_reduction <= 0.9)
-myDF <- test
+### Exclude some extremely high P addition experiment
+#test <- subset(myDF, Trt_P_reduction <= 0.9)
+test2 <- subset(myDF, Vegetation_type == "Grass Forb Legume")
+
+myDF2 <- test2
+
 ### Plotting
 
 ### summary histgram of treatments
-hist(myDF$Trt_aCO2, xlab = "aCO2 (ppm)", main=NA)
-hist(myDF$Trt_eCO2, xlab = "eCO2 (ppm)", main=NA)
-hist(myDF$Trt_eC_by_aC, xlab = "eCO2/aCO2", main=NA)
-hist(myDF$Trt_P_reduction, xlab = "eP/aP", main=NA)
+hist(myDF2$Trt_aCO2, xlab = "aCO2 (ppm)", main=NA)
+hist(myDF2$Trt_eCO2, xlab = "eCO2 (ppm)", main=NA)
+hist(myDF2$Trt_eC_by_aC, xlab = "eCO2/aCO2", main=NA)
+hist(myDF2$Trt_P_reduction, xlab = "eP/aP", main=NA)
 
 ### Subset biomass category
-bioDF <- subset(myDF, Category == "Biomass")
+bioDF <- subset(myDF2, Category == "Biomass")
 bioDF1 <- bioDF[bioDF$Variable %in% c("Total plant biomass", "Leaf biomass", "Stem biomass",
                                       "Root biomass", "Aboveground biomass", "Belowground biomass"),]
 
