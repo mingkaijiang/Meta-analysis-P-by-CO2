@@ -13,7 +13,7 @@ myDF <- as.data.frame(myDF)
 myDF$Interaction_additive <- as.numeric(as.character(myDF$Interaction_additive))
 myDF$Interaction_multiplicative <- as.numeric(as.character(myDF$Interaction_multiplicative))
 
-### Calculate how much CO2 rise there is
+### Calculate how much CO2 rise there is 
 myDF$Trt_eC_by_aC <- myDF$Trt_eCO2/myDF$Trt_aCO2
 
 ### Calculate how much P reduction there is
@@ -23,7 +23,7 @@ myDF$Trt_P_reduction <- (myDF$Trt_eP - myDF$Trt_aP) / myDF$Trt_eP
 #test <- subset(myDF, Trt_P_reduction <= 0.9)
 test2 <- subset(myDF, Vegetation_type == "Grass Forb Legume")
 
-myDF2 <- test2
+myDF2 <- myDF
 
 ### Plotting
 
@@ -245,5 +245,7 @@ plot(p5)
 ### Comment:
 ### need to find a way to constrain P addition range
 ### right now eP can be 1000 times bigger than aP. 
-### Check with Belinda how to weigh the studies
+### Check with stat book how to weigh the studies
 ### and what to do for those that don't have a variance. 
+### Consider eC and aP as the treatment, so what is interaction then?
+### Also, need to compute per study response ratio, which needs information on sd/se, which means going through the papers again. 
