@@ -17,6 +17,9 @@ myDF$Interaction_multiplicative_aCaP <- as.numeric(as.character(myDF$Interaction
 myDF$Interaction_additive_aCaP_aCeP <- as.numeric(as.character(myDF$Interaction_additive_aCeP))
 myDF$Interaction_multiplicative_aCeP <- as.numeric(as.character(myDF$Interaction_multiplicative_aCeP))
 
+### remove P treatment of zero low P addition
+myDF <- subset(myDF, Trt_aP > 0.0)
+
 ### Basic statistics that summarize 
 ### number of studies
 ### number of data entries

@@ -1,7 +1,13 @@
 make_basic_stats_plots <- function(myDF) {
+    ### This function processes the dataframe with some basic summaries
+    
+    ### check ratio of CO2 treatment
     myDF$Trt_eC_by_aC <- myDF$Trt_eCO2/myDF$Trt_aCO2
     
-    ### Calculate how much P reduction there is
+    ### check P treatment
+    myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
+    
+    ### check P reduction ratio
     myDF$Trt_P_reduction <- (myDF$Trt_eP - myDF$Trt_aP) / myDF$Trt_eP
     
     ### Exclude some extremely high P addition experiment
