@@ -6,7 +6,9 @@ if(!dir.exists("output")) {
 #### Install packages
 if(!require(pacman))install.packages("pacman")
 pacman::p_load(doBy, 
-               ggplot2)  
+               ggplot2,
+               grid,
+               cowplot)  
 
 #### Sourcing all R files in the modules subdirectory
 sourcefiles <- dir("function", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
