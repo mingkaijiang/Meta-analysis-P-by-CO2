@@ -81,7 +81,7 @@ make_basic_stats_plots <- function(myDF) {
     
 
     ### summary histgram of treatments
-    pdf("output/basic_treatment_summary.pdf", width=8, height=8)
+    pdf("output/summary_basic_treatment.pdf", width=8, height=8)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,
@@ -93,7 +93,27 @@ make_basic_stats_plots <- function(myDF) {
     
     
     #### summary of variables
-
+    p1 <- ggplot()+
+        geom_bar(data=test, aes(Category),stat="count")+
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.position="bottom",
+              legend.text.align=0)+
+        ylab("Data entry count")+
+        scale_x_discrete(name="Category",
+                         breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
+                                   "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency", "Other"))
+    
+    pdf("output/summary_data_variable.pdf", width=12, height=8)
+    plot(p1)
+    dev.off()
     
     
     ### Subset biomass category
@@ -119,14 +139,14 @@ make_basic_stats_plots <- function(myDF) {
                       width=0.2, size=1, color="grey") + 
         geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=eCeP_over_aCaP-eCeP_over_aCaP_sd, 
                                                   ymax=eCeP_over_aCaP+eCeP_over_aCaP_sd), 
-                      width=0.2, size=1, color="cyan") + 
+                      width=0.2, size=1, color="red") + 
         geom_point(data=bioDF1.sm, stat = "identity", 
                    aes(Variable, aCeP_over_aCaP, fill=Variable),
                    position="stack") +
         geom_point(data=bioDF1.sm, stat = "identity", 
                    aes(Variable, eCeP_over_aCaP, fill=Variable),
-                   position = "stack", col="blue") +
-        xlab("") + ylab("P effect ratio") +
+                   position = "stack", col="brown") +
+        xlab("") + ylab("eP / aP") +
         scale_x_discrete(labels=c("AG", 
                                   "BG",
                                   "Leaf", 
@@ -134,7 +154,7 @@ make_basic_stats_plots <- function(myDF) {
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-5,25)+
+        ylim(-5,15)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -147,12 +167,13 @@ make_basic_stats_plots <- function(myDF) {
               legend.text.align=0)+
         coord_flip()+
         geom_hline(yintercept=0, linetype=2)+
-        annotate("text", x=6, y=6, label=paste0("(n=", n1, ")"), size=5)+
+        annotate("text", x=6, y=8, label=paste0("(n=", n1, ")"), size=5)+
         annotate("text", x=5, y=8, label=paste0("(n=", n2, ")"), size=5)+
         annotate("text", x=4, y=6, label=paste0("(n=", n3, ")"), size=5)+
-        annotate("text", x=3, y=17, label=paste0("(n=", n4, ")"), size=5)+
+        annotate("text", x=3, y=8, label=paste0("(n=", n4, ")"), size=5)+
         annotate("text", x=2, y=6, label=paste0("(n=", n5, ")"), size=5)+
-        annotate("text", x=1, y=6, label=paste0("(n=", n6, ")"), size=5)
+        annotate("text", x=1, y=10, label=paste0("(n=", n6, ")"), size=5)+
+        theme(legend.justification=c(1,0), legend.position=c(1,0))
     
     plot(p1)
     
