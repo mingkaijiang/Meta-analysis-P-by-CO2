@@ -1,17 +1,5 @@
-make_basic_summary_stats_plots <- function(myDF) {
+make_basic_summary_stats_plots <- function(test) {
     ### This function processes the dataframe with some basic summaries
-    
-    ### check ratio of CO2 treatment
-    myDF$Trt_eC_by_aC <- myDF$Trt_eCO2/myDF$Trt_aCO2
-    
-    ### check P treatment
-    myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
-    
-    ### check P reduction ratio
-    #myDF$Trt_P_reduction <- (myDF$Trt_eP - myDF$Trt_aP) / myDF$Trt_eP
-    
-    ### Exclude some extremely high P addition experiment
-    test <- subset(myDF, Trt_eP_by_aP <= 10)
     
     #### Summary of treatment
     
@@ -114,8 +102,5 @@ make_basic_summary_stats_plots <- function(myDF) {
     pdf("output/summary_data_variable.pdf", width=12, height=8)
     plot(p1)
     dev.off()
-    
-    
-    return(test)
     
 }

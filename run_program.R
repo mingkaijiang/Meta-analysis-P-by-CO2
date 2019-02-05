@@ -22,6 +22,17 @@ myDF <- subset(myDF, Trt_aP > 0.0)
 ### make consistent standard error confidence intervals
 myDF <- make_consistent_confidence_interval(inDF=myDF, return.option="all_se")
 
+### check ratio of CO2 treatment
+myDF$Trt_eC_by_aC <- myDF$Trt_eCO2/myDF$Trt_aCO2
+
+### check P treatment
+myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
+
+### check P reduction ratio
+#myDF$Trt_P_reduction <- (myDF$Trt_eP - myDF$Trt_aP) / myDF$Trt_eP
+
+### Exclude some extremely high P addition experiment
+subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 
 ### Basic statistics that summarize 
 ### number of studies
@@ -30,11 +41,17 @@ myDF <- make_consistent_confidence_interval(inDF=myDF, return.option="all_se")
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
-### return a dataframe that exclude extremely high P addition experiment
-subDF <- make_basic_summary_stats_plots(myDF)
+make_basic_summary_stats_plots(test=subDF)
 
 ### Make plots - biomass
-make_biomass_plot(inDF=subDF) 
+make_biomass_plots(inDF=subDF) 
+
+### Make plots - concentration
+make_concentration_plots(inDF=subDF)
+
+### Make plots - nutrient ratio 
+make_nutrient_ratio_plots(inDF=subDF)
+
 
 
 ### To do list:
