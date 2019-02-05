@@ -1,5 +1,9 @@
 make_concentration_plots <- function(inDF) {
     
+    if(!dir.exists("output/overall_concentration")) {
+        dir.create("output/overall_concentration", showWarnings = FALSE)
+    }
+    
     ### Subset biomass category
     bioDF <- subset(inDF, Category == "Concentration")
     
@@ -195,7 +199,7 @@ make_concentration_plots <- function(inDF) {
     
     
     ### summary histgram of treatments
-    pdf("output/summary_N_concentration_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_concentration/summary_N_concentration_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,
@@ -393,7 +397,7 @@ make_concentration_plots <- function(inDF) {
     
     
     ### summary histgram of treatments
-    pdf("output/summary_P_concentration_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_concentration/summary_P_concentration_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,

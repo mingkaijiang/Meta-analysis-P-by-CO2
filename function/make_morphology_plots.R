@@ -1,5 +1,9 @@
 make_morphology_plots <- function(inDF) {
     
+    if(!dir.exists("output/overall_morphology")) {
+        dir.create("output/overall_morphology", showWarnings = FALSE)
+    }
+    
     ### Subset biomass category
     bioDF <- subset(inDF, Category == "Morphology")
     
@@ -196,7 +200,7 @@ make_morphology_plots <- function(inDF) {
         geom_hline(yintercept=0, linetype=2)
     
     ### summary histgram of treatments
-    pdf("output/summary_morphology_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_morphology/summary_morphology_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,

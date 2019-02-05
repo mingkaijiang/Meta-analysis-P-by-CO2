@@ -4,11 +4,11 @@
 #### clear wk space
 rm(list=ls(all=TRUE))
 
-##### Master script
-### source
+################################# Master script ################################# 
+############## source
 source("prepare.R")
 
-#### check input files
+############## check input files
 myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V1.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
@@ -31,10 +31,10 @@ myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
 ### check P reduction ratio
 #myDF$Trt_P_reduction <- (myDF$Trt_eP - myDF$Trt_aP) / myDF$Trt_eP
 
-### Exclude some extremely high P addition experiment
+############## Exclude some extremely high P addition experiment
 subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 
-### Basic statistics that summarize 
+############## Basic statistics that summarize 
 ### number of studies
 ### number of data entries
 ### species numbers
@@ -43,6 +43,8 @@ subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 ### etc.
 make_basic_summary_stats_plots(test=subDF)
 
+
+############## make overall plots
 ### Make plots - biomass
 make_biomass_plots(inDF=subDF) 
 
@@ -63,6 +65,28 @@ make_resource_use_efficiency_plots(inDF=subDF)
 
 ### Make plots - gas exchange
 make_gas_exchange_plots(inDF=subDF)
+
+############## Make response ratio plots per study
+### Make plots - biomass
+make_biomass_plots_per_study(inDF=subDF) 
+
+### Make plots - concentration
+make_concentration_plots_per_study(inDF=subDF)
+
+### Make plots - nutrient ratio 
+make_nutrient_ratio_plots_per_study(inDF=subDF)
+
+### Make plots - morphology
+make_morphology_plots_per_study(inDF=subDF)
+
+### Make plots - nutrient uptake
+make_nutrient_uptake_plots_per_study(inDF=subDF)
+
+### Make plots - resource use efficiency
+make_resource_use_efficiency_plots_per_study(inDF=subDF)
+
+### Make plots - gas exchange
+make_gas_exchange_plots_per_study(inDF=subDF)
 
 
 ### To do list:

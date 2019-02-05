@@ -1,5 +1,8 @@
 make_gas_exchange_plots <- function(inDF) {
     
+    if(!dir.exists("output/overall_gas_exchange")) {
+        dir.create("output/overall_gas_exchange", showWarnings = FALSE)
+    }
     ### Subset biomass category
     bioDF <- subset(inDF, Category == "Gas Exchange")
     
@@ -175,7 +178,7 @@ make_gas_exchange_plots <- function(inDF) {
         geom_hline(yintercept=0, linetype=2)
     
     ### summary histgram of treatments
-    pdf("output/summary_gas_exchange_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_gas_exchange/summary_gas_exchange_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,

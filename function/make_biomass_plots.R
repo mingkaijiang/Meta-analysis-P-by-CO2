@@ -1,5 +1,8 @@
 make_biomass_plots <- function(inDF) {
     
+    if(!dir.exists("output/overall_biomass")) {
+        dir.create("output/overall_biomass", showWarnings = FALSE)
+    }
     ### Subset biomass category
     bioDF <- subset(inDF, Category == "Biomass")
     
@@ -201,7 +204,7 @@ make_biomass_plots <- function(inDF) {
     
     
     ### summary histgram of treatments
-    pdf("output/summary_biomass_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_biomass/summary_biomass_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,
@@ -399,7 +402,7 @@ make_biomass_plots <- function(inDF) {
     
     
     ### summary histgram of treatments
-    pdf("output/summary_N_content_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_biomass/summary_N_content_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,
@@ -595,7 +598,7 @@ make_biomass_plots <- function(inDF) {
     
     
     ### summary histgram of treatments
-    pdf("output/summary_P_content_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_biomass/summary_P_content_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,

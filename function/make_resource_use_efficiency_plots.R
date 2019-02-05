@@ -1,5 +1,9 @@
 make_resource_use_efficiency_plots <- function(inDF) {
     
+    if(!dir.exists("output/overall_resource_use_efficiency")) {
+        dir.create("output/overall_resource_use_efficiency", showWarnings = FALSE)
+    }
+    
     ### Subset biomass category
     bioDF <- subset(inDF, Category == "Resource Use Efficiency")
     
@@ -175,7 +179,7 @@ make_resource_use_efficiency_plots <- function(inDF) {
         geom_hline(yintercept=0, linetype=2)
     
     ### summary histgram of treatments
-    pdf("output/summary_resource_use_efficiency_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_resource_use_efficiency/summary_resource_use_efficiency_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,

@@ -1,5 +1,9 @@
 make_nutrient_ratio_plots <- function(inDF) {
     
+    if(!dir.exists("output/overall_nutrient_ratio")) {
+        dir.create("output/overall_nutrient_ratio", showWarnings = FALSE)
+    }
+    
     ### Subset biomass category
     bioDF <- subset(inDF, Category == "Nutrient Ratio")
     
@@ -193,7 +197,7 @@ make_nutrient_ratio_plots <- function(inDF) {
     
     
     ### summary histgram of treatments
-    pdf("output/summary_nutrient_ratio_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_nutrient_ratio/summary_nutrient_ratio_overall_plot.pdf", width=16, height=5)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,
