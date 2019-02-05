@@ -52,6 +52,17 @@ make_concentration_plots(inDF=subDF)
 ### Make plots - nutrient ratio 
 make_nutrient_ratio_plots(inDF=subDF)
 
+### Make plots - morphology
+make_morphology_plots(inDF=subDF)
+
+### Make plots - nutrient uptake
+make_nutrient_uptake_plots(inDF=subDF)
+
+### Make plots - resource use efficiency
+make_resource_use_efficiency_plots(inDF=subDF)
+
+### Make plots - gas exchange
+make_gas_exchange_plots(inDF=subDF)
 
 
 ### To do list:
