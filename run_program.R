@@ -67,12 +67,8 @@ make_gas_exchange_plots(inDF=subDF)
 
 ### To do list:
 ### 1. Finish basic plot with manuscript quality figures
-### 2. Follow example in Baig to plot individual additive effect size for each study
-
-### Comment:
-### need to find a way to constrain P addition range
-### right now eP can be 1000 times bigger than aP. 
-### Check with stat book how to weigh the studies
+### 2. Add individual plots, following example of Baig, and subject to data availability
+### 3. Perform statistical analysis to compute CIs
 
 
 
