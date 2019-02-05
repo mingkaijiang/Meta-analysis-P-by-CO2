@@ -1,6 +1,9 @@
 ##### Script to process raw data on P by CO2 literature 
 ##### Author: Mingkai Jiang
 
+#### clear wk space
+rm(list=ls(all=TRUE))
+
 ##### Master script
 ### source
 source("prepare.R")
@@ -10,14 +13,8 @@ myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V1.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
 
-### make numbers numeric
-myDF$Interaction_additive_aCaP <- as.numeric(as.character(myDF$Interaction_additive_aCaP))
-myDF$Interaction_multiplicative_aCaP <- as.numeric(as.character(myDF$Interaction_multiplicative_aCaP))
-
-myDF$Interaction_additive_aCaP_aCeP <- as.numeric(as.character(myDF$Interaction_additive_aCeP))
-myDF$Interaction_multiplicative_aCeP <- as.numeric(as.character(myDF$Interaction_multiplicative_aCeP))
-
-myDF$Sample.Size <- as.numeric(as.character(myDF$Sample.Size))
+### recalculate all the mean effect size
+myDF <- make_mean_effect_size_recalculation(inDF=myDF)
 
 ### remove P treatment of zero low P addition
 myDF <- subset(myDF, Trt_aP > 0.0)
@@ -32,8 +29,12 @@ myDF <- make_consistent_confidence_interval(inDF=myDF, return.option="all_se")
 ### species numbers
 ### vegetation type
 ### CO2 and P treatment
-### etc. 
-make_basic_summary_stats_plots(myDF)
+### etc.
+### return a dataframe that exclude extremely high P addition experiment
+subDF <- make_basic_summary_stats_plots(myDF)
+
+### Make plots - biomass
+make_biomass_plot(inDF=subDF) 
 
 
 ### To do list:
