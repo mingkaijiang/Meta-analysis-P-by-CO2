@@ -3,6 +3,7 @@ make_gas_exchange_plots <- function(inDF) {
     if(!dir.exists("output/overall_gas_exchange")) {
         dir.create("output/overall_gas_exchange", showWarnings = FALSE)
     }
+    
     ### Subset biomass category
     bioDF <- subset(inDF, Category == "Gas Exchange")
     
