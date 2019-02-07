@@ -74,6 +74,12 @@ make_consistent_confidence_interval <- function(inDF, return.option="all_se") {
     outDF1 <- rbind(myDF1, myDF3, myDF4, myDF5)
     outDF2 <- rbind(myDF1, myDF3, myDF4)
     
+    ### add sd information 
+    outDF1$aCaP_sd <- (outDF1$aCaP_pos - outDF1$aCaP_neg) / 2 * sqrt(as.numeric(as.character(outDF1$Sample.Size)))
+    outDF1$eCaP_sd <- (outDF1$eCaP_pos - outDF1$eCaP_neg) / 2 * sqrt(as.numeric(as.character(outDF1$Sample.Size)))
+    outDF1$aCeP_sd <- (outDF1$aCeP_pos - outDF1$aCeP_neg) / 2 * sqrt(as.numeric(as.character(outDF1$Sample.Size)))
+    outDF1$eCeP_sd <- (outDF1$eCeP_pos - outDF1$eCeP_neg) / 2 * sqrt(as.numeric(as.character(outDF1$Sample.Size)))
+    
     
     ### return
     if(return.option=="all_se") {

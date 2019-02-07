@@ -41,7 +41,7 @@ make_morphology_plots <- function(inDF) {
                    aes(Variable, eCeP_over_eCaP, fill=Variable),
                    position = "stack", col="brown") +
         xlab("") + 
-        ylab("Phosphorus effect (%)") +
+        ylab("Phosphorus effect ratio") +
         scale_x_discrete(name="Morphology", 
                          labels=c("Leaf Area", 
                                   "LMA", 
@@ -49,7 +49,7 @@ make_morphology_plots <- function(inDF) {
                                   "SLA",
                                   "Root length"))+
         theme_linedraw() +
-        ylim(-100,500)+
+        ylim(-1.00,5.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -61,30 +61,30 @@ make_morphology_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("text", x=5, y=-70, label=paste0("n=", n1, ""), size=5)+
-        annotate("text", x=4, y=-70, label=paste0("n=", n2, ""), size=5)+
-        annotate("text", x=3, y=-70, label=paste0("n=", n3, ""), size=5)+
-        annotate("text", x=2, y=-70, label=paste0("n=", n4, ""), size=5)+
-        annotate("text", x=1, y=-70, label=paste0("n=", n5, ""), size=5)+
-        annotate("rect", xmin = 2, xmax = 3, ymin = 200, ymax = 450,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("text", x=5, y=-0.70, label=paste0("n=", n1, ""), size=5)+
+        annotate("text", x=4, y=-0.70, label=paste0("n=", n2, ""), size=5)+
+        annotate("text", x=3, y=-0.70, label=paste0("n=", n3, ""), size=5)+
+        annotate("text", x=2, y=-0.70, label=paste0("n=", n4, ""), size=5)+
+        annotate("text", x=1, y=-0.70, label=paste0("n=", n5, ""), size=5)+
+        annotate("rect", xmin = 2, xmax = 3, ymin = 2.00, ymax = 4.50,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=2.7, y=380, label=expression(aCO[2]), size=6)+
-        annotate("text", x=2.3, y=380, label=expression(eCO[2]), size=6)+
-        annotate("segment", x = 2.7, xend = 2.7, y = 210, yend = 310,
+        annotate("text", x=2.7, y=3.80, label=expression(aCO[2]), size=6)+
+        annotate("text", x=2.3, y=3.80, label=expression(eCO[2]), size=6)+
+        annotate("segment", x = 2.7, xend = 2.7, y = 2.10, yend = 3.10,
                  colour = "grey", size=1)+
-        annotate("segment", x = 2.3, xend = 2.3, y = 210, yend = 310,
+        annotate("segment", x = 2.3, xend = 2.3, y = 2.10, yend = 3.10,
                  colour = "red", size=1)+
-        annotate("segment", x = 2.6, xend = 2.8, y = 210, yend = 210,
+        annotate("segment", x = 2.6, xend = 2.8, y = 2.10, yend = 2.10,
                  colour = "grey", size=1)+
-        annotate("segment", x = 2.6, xend = 2.8, y = 310, yend = 310,
+        annotate("segment", x = 2.6, xend = 2.8, y = 3.10, yend = 3.10,
                  colour = "grey", size=1)+
-        annotate("segment", x = 2.2, xend = 2.4, y = 210, yend = 210,
+        annotate("segment", x = 2.2, xend = 2.4, y = 2.10, yend = 2.10,
                  colour = "red", size=1)+
-        annotate("segment", x = 2.2, xend = 2.4, y = 310, yend = 310,
+        annotate("segment", x = 2.2, xend = 2.4, y = 3.10, yend = 3.10,
                  colour = "red", size=1)+
-        geom_point(aes(x=2.7, y=260), color="black")+
-        geom_point(aes(x=2.3, y=260), color="brown")
+        geom_point(aes(x=2.7, y=2.60), color="black")+
+        geom_point(aes(x=2.3, y=2.60), color="brown")
     
     p2 <- ggplot() +  
         geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=eCaP_over_aCaP-eCaP_over_aCaP_sd, 
@@ -100,7 +100,7 @@ make_morphology_plots <- function(inDF) {
                    aes(Variable, eCeP_over_aCeP, fill=Variable),
                    position = "stack", col="brown") +
         xlab("") + 
-        ylab(expression(paste(CO[2], " effect (%)"))) +
+        ylab(expression(paste(CO[2], " effect ratio"))) +
         scale_x_discrete(name="Morphology", 
                          labels=c("Leaf Area", 
                                   "LMA", 
@@ -108,7 +108,7 @@ make_morphology_plots <- function(inDF) {
                                   "SLA",
                                   "Root length"))+
         theme_linedraw() +
-        ylim(-50,300)+
+        ylim(-0.50,3.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -120,25 +120,25 @@ make_morphology_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("rect", xmin = 1, xmax = 2, ymin = 180, ymax = 300,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("rect", xmin = 1, xmax = 2, ymin = 1.80, ymax = 3.00,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=1.7, y=270, label=expression(aP), size=6)+
-        annotate("text", x=1.3, y=270, label=expression(eP), size=6)+
-        annotate("segment", x = 1.7, xend = 1.7, y = 190, yend = 250,
+        annotate("text", x=1.7, y=2.70, label=expression(aP), size=6)+
+        annotate("text", x=1.3, y=2.70, label=expression(eP), size=6)+
+        annotate("segment", x = 1.7, xend = 1.7, y = 1.90, yend = 2.50,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.3, xend = 1.3, y = 190, yend = 250,
+        annotate("segment", x = 1.3, xend = 1.3, y = 1.90, yend = 2.50,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 190, yend = 190,
+        annotate("segment", x = 1.6, xend = 1.8, y = 1.90, yend = 1.90,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 250, yend = 250,
+        annotate("segment", x = 1.6, xend = 1.8, y = 2.50, yend = 2.50,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 190, yend = 190,
+        annotate("segment", x = 1.2, xend = 1.4, y = 1.90, yend = 1.90,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 250, yend = 250,
+        annotate("segment", x = 1.2, xend = 1.4, y = 2.50, yend = 2.50,
                  colour = "red", size=1)+
-        geom_point(aes(x=1.7, y=220), color="black")+
-        geom_point(aes(x=1.3, y=220), color="brown")
+        geom_point(aes(x=1.7, y=2.20), color="black")+
+        geom_point(aes(x=1.3, y=2.20), color="brown")
     
 
     p3 <- ggplot(bioDF1.sm,
@@ -148,7 +148,7 @@ make_morphology_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_additive_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Additive ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Additive ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(name="Morphology", 
                          labels=c("Leaf Area", 
                                   "LMA", 
@@ -156,7 +156,7 @@ make_morphology_plots <- function(inDF) {
                                   "SLA",
                                   "Root length"))+
         theme_linedraw() +
-        ylim(-250,300)+
+        ylim(-2.50,3.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -177,7 +177,7 @@ make_morphology_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_multiplicative_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(name="Morphology", 
                          labels=c("Leaf Area", 
                                   "LMA", 
@@ -185,7 +185,7 @@ make_morphology_plots <- function(inDF) {
                                   "SLA",
                                   "Root length"))+
         theme_linedraw() +
-        ylim(-250,300)+
+        ylim(-1,4.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -197,7 +197,7 @@ make_morphology_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
+        geom_hline(yintercept=1, linetype=2)
     
     ### summary histgram of treatments
     pdf("output/overall_morphology/summary_morphology_overall_plot.pdf", width=16, height=5)

@@ -35,12 +35,12 @@ make_gas_exchange_plots <- function(inDF) {
                    aes(Variable, eCeP_over_eCaP, fill=Variable),
                    position = "stack", col="brown") +
         xlab("") + 
-        ylab("Phosphorus effect (%)") +
+        ylab("Phosphorus effect ratio") +
         scale_x_discrete(labels=c(expression(A[sat]), 
                                   expression(A[inst]), 
                                   expression(g[s])))+
         theme_linedraw() +
-        ylim(-100,500)+
+        ylim(-1.00,5.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -52,28 +52,28 @@ make_gas_exchange_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("text", x=3, y=-70, label=paste0("n=", n3, ""), size=5)+
-        annotate("text", x=2, y=-70, label=paste0("n=", n2, ""), size=5)+
-        annotate("text", x=1, y=-70, label=paste0("n=", n1, ""), size=5)+
-        annotate("rect", xmin = 0.8, xmax = 1.5, ymin = 250, ymax = 480,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("text", x=3, y=-0.70, label=paste0("n=", n3, ""), size=5)+
+        annotate("text", x=2, y=-0.70, label=paste0("n=", n2, ""), size=5)+
+        annotate("text", x=1, y=-0.70, label=paste0("n=", n1, ""), size=5)+
+        annotate("rect", xmin = 0.8, xmax = 1.5, ymin = 2.50, ymax = 4.80,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=1.3, y=420, label=expression(aCO[2]), size=6)+
-        annotate("text", x=1.0, y=420, label=expression(eCO[2]), size=6)+
-        annotate("segment", x = 1.3, xend = 1.3, y = 270, yend = 370,
+        annotate("text", x=1.3, y=4.20, label=expression(aCO[2]), size=6)+
+        annotate("text", x=1.0, y=4.20, label=expression(eCO[2]), size=6)+
+        annotate("segment", x = 1.3, xend = 1.3, y = 2.70, yend = 3.70,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.0, xend = 1.0, y = 270, yend = 370,
+        annotate("segment", x = 1.0, xend = 1.0, y = 2.70, yend = 3.70,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.25, xend = 1.35, y = 270, yend = 270,
+        annotate("segment", x = 1.25, xend = 1.35, y = 2.70, yend = 2.70,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.25, xend = 1.35, y = 370, yend = 370,
+        annotate("segment", x = 1.25, xend = 1.35, y = 3.70, yend = 3.70,
                  colour = "grey", size=1)+
-        annotate("segment", x = 0.95, xend = 1.05, y = 270, yend = 270,
+        annotate("segment", x = 0.95, xend = 1.05, y = 2.70, yend = 2.70,
                  colour = "red", size=1)+
-        annotate("segment", x = 0.95, xend = 1.05, y = 370, yend = 370,
+        annotate("segment", x = 0.95, xend = 1.05, y = 3.70, yend = 3.70,
                  colour = "red", size=1)+
-        geom_point(aes(x=1.3, y=320), color="black")+
-        geom_point(aes(x=1.0, y=320), color="brown")
+        geom_point(aes(x=1.3, y=3.20), color="black")+
+        geom_point(aes(x=1.0, y=3.20), color="brown")
     
     p2 <- ggplot() +  
         geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=eCaP_over_aCaP-eCaP_over_aCaP_sd, 
@@ -89,12 +89,12 @@ make_gas_exchange_plots <- function(inDF) {
                    aes(Variable, eCeP_over_aCeP, fill=Variable),
                    position = "stack", col="brown") +
         xlab("") + 
-        ylab(expression(paste(CO[2], " effect (%)"))) +
+        ylab(expression(paste(CO[2], " effect ratio"))) +
         scale_x_discrete(labels=c(expression(A[sat]), 
                                   expression(A[inst]), 
                                   expression(g[s])))+
         theme_linedraw() +
-        ylim(-10,200)+
+        ylim(-0.10,2.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -106,25 +106,25 @@ make_gas_exchange_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("rect", xmin = 0.8, xmax = 1.5, ymin = 120, ymax = 200,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("rect", xmin = 0.8, xmax = 1.5, ymin = 1.20, ymax = 2.00,
                  alpha = .2, color="black", fill="white")+
         annotate("text", x=1.3, y=180, label=expression(aP), size=6)+
         annotate("text", x=1, y=180, label=expression(eP), size=6)+
-        annotate("segment", x = 1.3, xend = 1.3, y = 130, yend = 160,
+        annotate("segment", x = 1.3, xend = 1.3, y = 1.30, yend = 1.60,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.0, xend = 1.0, y = 130, yend = 160,
+        annotate("segment", x = 1.0, xend = 1.0, y = 1.30, yend = 1.60,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.25, xend = 1.35, y = 130, yend = 130,
+        annotate("segment", x = 1.25, xend = 1.35, y = 1.30, yend = 1.30,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.25, xend = 1.35, y = 160, yend = 160,
+        annotate("segment", x = 1.25, xend = 1.35, y = 1.60, yend = 1.60,
                  colour = "grey", size=1)+
-        annotate("segment", x = 0.95, xend = 1.05, y = 130, yend = 130,
+        annotate("segment", x = 0.95, xend = 1.05, y = 1.30, yend = 1.30,
                  colour = "red", size=1)+
-        annotate("segment", x = 0.95, xend = 1.05, y = 160, yend = 160,
+        annotate("segment", x = 0.95, xend = 1.05, y = 1.60, yend = 1.60,
                  colour = "red", size=1)+
-        geom_point(aes(x=1.3, y=145), color="black")+
-        geom_point(aes(x=1.0, y=145), color="brown")
+        geom_point(aes(x=1.3, y=1.45), color="black")+
+        geom_point(aes(x=1.0, y=1.45), color="brown")
     
     p3 <- ggplot(bioDF1.sm,
                  aes(Variable, Interaction_additive_aCaP)) +  
@@ -133,12 +133,12 @@ make_gas_exchange_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_additive_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Additive ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Additive ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(labels=c(expression(A[sat]), 
                                   expression(A[inst]), 
                                   expression(g[s])))+
         theme_linedraw() +
-        ylim(-100,100)+
+        ylim(-1.00,1.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -159,12 +159,12 @@ make_gas_exchange_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_multiplicative_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(labels=c(expression(A[sat]), 
                                   expression(A[inst]), 
                                   expression(g[s])))+
         theme_linedraw() +
-        ylim(-50,50)+
+        ylim(-0.10,1.50)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -176,7 +176,7 @@ make_gas_exchange_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
+        geom_hline(yintercept=1, linetype=2)
     
     ### summary histgram of treatments
     pdf("output/overall_gas_exchange/summary_gas_exchange_overall_plot.pdf", width=16, height=5)

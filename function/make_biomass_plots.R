@@ -38,8 +38,8 @@ make_biomass_plots <- function(inDF) {
         geom_point(data=bioDF1.sm, stat = "identity", 
                    aes(Variable, eCeP_over_eCaP, fill=Variable),
                    position = "stack", col="brown") +
-        xlab("") + 
-        ylab("Phosphorus effect (%)") +
+        xlab("Biomass") + 
+        ylab("Phosphorus effect ratio") +
         scale_x_discrete(labels=c("AG", 
                                   "BG",
                                   "Leaf", 
@@ -47,7 +47,7 @@ make_biomass_plots <- function(inDF) {
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-500,1500)+
+        ylim(-5,15)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -59,32 +59,32 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("text", x=6, y=-220, label=paste0("n=", n1, ""), size=5)+
-        annotate("text", x=5, y=-220, label=paste0("n=", n2, ""), size=5)+
-        annotate("text", x=4, y=-220, label=paste0("n=", n3, ""), size=5)+
-        annotate("text", x=3, y=-220, label=paste0("n=", n4, ""), size=5)+
-        annotate("text", x=2, y=-220, label=paste0("n=", n5, ""), size=5)+
-        annotate("text", x=1, y=-220, label=paste0("n=", n6, ""), size=5)+
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("text", x=6, y=-2.20, label=paste0("n=", n1, ""), size=5)+
+        annotate("text", x=5, y=-2.20, label=paste0("n=", n2, ""), size=5)+
+        annotate("text", x=4, y=-2.20, label=paste0("n=", n3, ""), size=5)+
+        annotate("text", x=3, y=-2.20, label=paste0("n=", n4, ""), size=5)+
+        annotate("text", x=2, y=-2.20, label=paste0("n=", n5, ""), size=5)+
+        annotate("text", x=1, y=-2.20, label=paste0("n=", n6, ""), size=5)+
         #theme(legend.justification=c(1,0), legend.position=c(1,0))+
-        annotate("rect", xmin = 5, xmax = 6, ymin = 800, ymax = 1500,
+        annotate("rect", xmin = 5, xmax = 6, ymin = 8.00, ymax = 15.00,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=5.7, y=1300, label=expression(aCO[2]), size=6)+
-        annotate("text", x=5.3, y=1300, label=expression(eCO[2]), size=6)+
-        annotate("segment", x = 5.7, xend = 5.7, y = 850, yend = 1100,
+        annotate("text", x=5.7, y=13.00, label=expression(aCO[2]), size=6)+
+        annotate("text", x=5.3, y=13.00, label=expression(eCO[2]), size=6)+
+        annotate("segment", x = 5.7, xend = 5.7, y = 8.50, yend = 11.00,
                  colour = "grey", size=1)+
-        annotate("segment", x = 5.3, xend = 5.3, y = 850, yend = 1100,
+        annotate("segment", x = 5.3, xend = 5.3, y = 8.50, yend = 11.00,
                  colour = "red", size=1)+
-        annotate("segment", x = 5.6, xend = 5.8, y = 850, yend = 850,
+        annotate("segment", x = 5.6, xend = 5.8, y = 8.50, yend = 8.50,
                  colour = "grey", size=1)+
-        annotate("segment", x = 5.6, xend = 5.8, y = 1100, yend = 1100,
+        annotate("segment", x = 5.6, xend = 5.8, y = 11.00, yend = 11.00,
                  colour = "grey", size=1)+
-        annotate("segment", x = 5.2, xend = 5.4, y = 850, yend = 850,
+        annotate("segment", x = 5.2, xend = 5.4, y = 8.50, yend = 85.0,
                  colour = "red", size=1)+
-        annotate("segment", x = 5.2, xend = 5.4, y = 1100, yend = 1100,
+        annotate("segment", x = 5.2, xend = 5.4, y = 11.00, yend = 11.00,
                  colour = "red", size=1)+
-        geom_point(aes(x=5.7, y=975), color="black")+
-        geom_point(aes(x=5.3, y=975), color="brown")
+        geom_point(aes(x=5.7, y=9.75), color="black")+
+        geom_point(aes(x=5.3, y=9.75), color="brown")
     
     
     
@@ -102,7 +102,7 @@ make_biomass_plots <- function(inDF) {
                    aes(Variable, eCeP_over_aCeP, fill=Variable),
                    position = "stack", col="brown") +
         xlab("") + 
-        ylab(expression(paste(CO[2], " effect (%)"))) +
+        ylab(expression(paste(CO[2], " effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "BG",
                                   "Leaf", 
@@ -110,7 +110,7 @@ make_biomass_plots <- function(inDF) {
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-100,500)+
+        ylim(-1,5)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -122,25 +122,25 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("rect", xmin = 5, xmax = 6, ymin = 300, ymax = 500,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("rect", xmin = 5, xmax = 6, ymin = 3.00, ymax = 5.00,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=5.7, y=440, label=expression(aP), size=6)+
-        annotate("text", x=5.3, y=440, label=expression(eP), size=6)+
-        annotate("segment", x = 5.7, xend = 5.7, y = 310, yend = 390,
+        annotate("text", x=5.7, y=4.40, label=expression(aP), size=6)+
+        annotate("text", x=5.3, y=4.40, label=expression(eP), size=6)+
+        annotate("segment", x = 5.7, xend = 5.7, y = 3.10, yend = 3.90,
                  colour = "grey", size=1)+
-        annotate("segment", x = 5.3, xend = 5.3, y = 310, yend = 390,
+        annotate("segment", x = 5.3, xend = 5.3, y = 3.10, yend = 3.90,
                  colour = "red", size=1)+
-        annotate("segment", x = 5.6, xend = 5.8, y = 310, yend = 310,
+        annotate("segment", x = 5.6, xend = 5.8, y = 3.10, yend = 3.10,
                  colour = "grey", size=1)+
-        annotate("segment", x = 5.6, xend = 5.8, y = 390, yend = 390,
+        annotate("segment", x = 5.6, xend = 5.8, y = 3.90, yend = 3.90,
                  colour = "grey", size=1)+
-        annotate("segment", x = 5.2, xend = 5.4, y = 310, yend = 310,
+        annotate("segment", x = 5.2, xend = 5.4, y = 3.10, yend = 3.10,
                  colour = "red", size=1)+
-        annotate("segment", x = 5.2, xend = 5.4, y = 390, yend = 390,
+        annotate("segment", x = 5.2, xend = 5.4, y = 3.90, yend = 3.90,
                  colour = "red", size=1)+
-        geom_point(aes(x=5.7, y=350), color="black")+
-        geom_point(aes(x=5.3, y=350), color="brown")
+        geom_point(aes(x=5.7, y=3.50), color="black")+
+        geom_point(aes(x=5.3, y=3.50), color="brown")
     
     
     p3 <- ggplot(bioDF1.sm,
@@ -150,7 +150,7 @@ make_biomass_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_additive_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Additive ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Additive ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "BG",
                                   "Leaf", 
@@ -158,7 +158,7 @@ make_biomass_plots <- function(inDF) {
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-250,500)+
+        ylim(-2.50,5.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -179,7 +179,7 @@ make_biomass_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_multiplicative_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "BG",
                                   "Leaf", 
@@ -187,7 +187,7 @@ make_biomass_plots <- function(inDF) {
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-100,150)+
+        ylim(-1.00,2.50)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -199,7 +199,7 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
+        geom_hline(yintercept=1, linetype=2)
     
     
     
@@ -243,15 +243,15 @@ make_biomass_plots <- function(inDF) {
         geom_point(data=bioDF2.sm, stat = "identity", 
                    aes(Variable, eCeP_over_eCaP, fill=Variable),
                    position = "stack", col="brown") +
-        xlab("") + 
-        ylab("Phosphorus effect (%)") +
+        xlab("N content") + 
+        ylab("Phosphorus effect ratio") +
         scale_x_discrete(labels=c("AG", 
                                   "Leaf", 
                                   "Root",
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-100,600)+
+        ylim(-1.00,6.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -263,30 +263,30 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("text", x=5, y=-80, label=paste0("n=", n1, ""), size=5)+
-        annotate("text", x=4, y=-80, label=paste0("n=", n2, ""), size=5)+
-        annotate("text", x=3, y=-80, label=paste0("n=", n3, ""), size=5)+
-        annotate("text", x=2, y=-80, label=paste0("n=", n4, ""), size=5)+
-        annotate("text", x=1, y=-80, label=paste0("n=", n5, ""), size=5)+
-        annotate("rect", xmin = 1, xmax = 2, ymin = 400, ymax = 600,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("text", x=5, y=-0.80, label=paste0("n=", n1, ""), size=5)+
+        annotate("text", x=4, y=-0.80, label=paste0("n=", n2, ""), size=5)+
+        annotate("text", x=3, y=-0.80, label=paste0("n=", n3, ""), size=5)+
+        annotate("text", x=2, y=-0.80, label=paste0("n=", n4, ""), size=5)+
+        annotate("text", x=1, y=-0.80, label=paste0("n=", n5, ""), size=5)+
+        annotate("rect", xmin = 1, xmax = 2, ymin = 4.00, ymax = 6.00,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=1.7, y=540, label=expression(aCO[2]), size=6)+
-        annotate("text", x=1.3, y=540, label=expression(eCO[2]), size=6)+
-        annotate("segment", x = 1.7, xend = 1.7, y = 410, yend = 450,
+        annotate("text", x=1.7, y=5.40, label=expression(aCO[2]), size=6)+
+        annotate("text", x=1.3, y=5.40, label=expression(eCO[2]), size=6)+
+        annotate("segment", x = 1.7, xend = 1.7, y = 4.10, yend = 4.50,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.3, xend = 1.3, y = 410, yend = 450,
+        annotate("segment", x = 1.3, xend = 1.3, y = 4.10, yend = 4.50,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 410, yend = 410,
+        annotate("segment", x = 1.6, xend = 1.8, y = 4.10, yend = 4.10,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 450, yend = 450,
+        annotate("segment", x = 1.6, xend = 1.8, y = 4.50, yend = 4.50,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 410, yend = 410,
+        annotate("segment", x = 1.2, xend = 1.4, y = 4.10, yend = 4.10,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 450, yend = 450,
+        annotate("segment", x = 1.2, xend = 1.4, y = 4.50, yend = 4.50,
                  colour = "red", size=1)+
-        geom_point(aes(x=1.7, y=430), color="black")+
-        geom_point(aes(x=1.3, y=430), color="brown")
+        geom_point(aes(x=1.7, y=4.30), color="black")+
+        geom_point(aes(x=1.3, y=4.30), color="brown")
     
     
     p2 <- ggplot() +  
@@ -303,14 +303,14 @@ make_biomass_plots <- function(inDF) {
                    aes(Variable, eCeP_over_aCeP, fill=Variable),
                    position = "stack", col="brown") +
         xlab("") + 
-        ylab(expression(paste(CO[2], " effect (%)"))) +
+        ylab(expression(paste(CO[2], " effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "Leaf", 
                                   "Root",
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-10,240)+
+        ylim(-0.10,2.40)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -322,25 +322,25 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("rect", xmin = 1, xmax = 2, ymin = 170, ymax = 240,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("rect", xmin = 1, xmax = 2, ymin = 1.70, ymax = 2.40,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=1.7, y=220, label=expression(aP), size=6)+
-        annotate("text", x=1.3, y=220, label=expression(eP), size=6)+
-        annotate("segment", x = 1.7, xend = 1.7, y = 175, yend = 200,
+        annotate("text", x=1.7, y=2.20, label=expression(aP), size=6)+
+        annotate("text", x=1.3, y=2.20, label=expression(eP), size=6)+
+        annotate("segment", x = 1.7, xend = 1.7, y = 175, yend = 2.00,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.3, xend = 1.3, y = 175, yend = 200,
+        annotate("segment", x = 1.3, xend = 1.3, y = 1.75, yend = 2.00,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 175, yend = 175,
+        annotate("segment", x = 1.6, xend = 1.8, y = 1.75, yend = 1.75,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 200, yend = 200,
+        annotate("segment", x = 1.6, xend = 1.8, y = 2.00, yend = 2.00,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 175, yend = 175,
+        annotate("segment", x = 1.2, xend = 1.4, y = 1.75, yend = 1.75,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 200, yend = 200,
+        annotate("segment", x = 1.2, xend = 1.4, y = 2.00, yend = 2.00,
                  colour = "red", size=1)+
-        geom_point(aes(x=1.7, y=187.5), color="black")+
-        geom_point(aes(x=1.3, y=187.5), color="brown")
+        geom_point(aes(x=1.7, y=1.875), color="black")+
+        geom_point(aes(x=1.3, y=1.875), color="brown")
     
     
     p3 <- ggplot(bioDF2.sm,
@@ -350,14 +350,14 @@ make_biomass_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF2.sm, mapping=aes(x=Variable, y=Interaction_additive_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Additive ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Additive ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "Leaf", 
                                   "Root",
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-50,100)+
+        ylim(-0.50,1.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -378,14 +378,14 @@ make_biomass_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF2.sm, mapping=aes(x=Variable, y=Interaction_multiplicative_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "Leaf", 
                                   "Root",
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-50,50)+
+        ylim(-0.10,2.0)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -397,7 +397,7 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
+        geom_hline(yintercept=1, linetype=2)
     
     
     
@@ -441,15 +441,15 @@ make_biomass_plots <- function(inDF) {
         geom_point(data=bioDF3.sm, stat = "identity", 
                    aes(Variable, eCeP_over_eCaP, fill=Variable),
                    position = "stack", col="brown") +
-        xlab("") + 
-        ylab("Phosphorus effect (%)") +
+        xlab("P content") + 
+        ylab("Phosphorus effect ratio") +
         scale_x_discrete(labels=c("AG", 
                                   "Leaf", 
                                   "Root",
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-650,1500)+
+        ylim(-6.50,15.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -461,30 +461,30 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("text", x=5, y=-580, label=paste0("n=", n1, ""), size=5)+
-        annotate("text", x=4, y=-580, label=paste0("n=", n2, ""), size=5)+
-        annotate("text", x=3, y=-580, label=paste0("n=", n3, ""), size=5)+
-        annotate("text", x=2, y=-580, label=paste0("n=", n4, ""), size=5)+
-        annotate("text", x=1, y=-580, label=paste0("n=", n5, ""), size=5)+
-        annotate("rect", xmin = 1, xmax = 2, ymin = 800, ymax = 1500,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("text", x=5, y=-5.80, label=paste0("n=", n1, ""), size=5)+
+        annotate("text", x=4, y=-5.80, label=paste0("n=", n2, ""), size=5)+
+        annotate("text", x=3, y=-5.80, label=paste0("n=", n3, ""), size=5)+
+        annotate("text", x=2, y=-5.80, label=paste0("n=", n4, ""), size=5)+
+        annotate("text", x=1, y=-5.80, label=paste0("n=", n5, ""), size=5)+
+        annotate("rect", xmin = 1, xmax = 2, ymin = 8.00, ymax = 15.00,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=1.7, y=1250, label=expression(aCO[2]), size=6)+
-        annotate("text", x=1.3, y=1250, label=expression(eCO[2]), size=6)+
-        annotate("segment", x = 1.7, xend = 1.7, y = 850, yend = 1050,
+        annotate("text", x=1.7, y=12.50, label=expression(aCO[2]), size=6)+
+        annotate("text", x=1.3, y=12.50, label=expression(eCO[2]), size=6)+
+        annotate("segment", x = 1.7, xend = 1.7, y = 8.50, yend = 10.50,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.3, xend = 1.3, y = 850, yend = 1050,
+        annotate("segment", x = 1.3, xend = 1.3, y = 8.50, yend = 10.50,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 850, yend = 850,
+        annotate("segment", x = 1.6, xend = 1.8, y = 8.50, yend = 8.50,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 1050, yend = 1050,
+        annotate("segment", x = 1.6, xend = 1.8, y = 10.50, yend = 10.50,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 850, yend = 850,
+        annotate("segment", x = 1.2, xend = 1.4, y = 8.50, yend = 8.50,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 1050, yend = 1050,
+        annotate("segment", x = 1.2, xend = 1.4, y = 10.50, yend = 10.50,
                  colour = "red", size=1)+
-        geom_point(aes(x=1.7, y=950), color="black")+
-        geom_point(aes(x=1.3, y=950), color="brown")
+        geom_point(aes(x=1.7, y=9.50), color="black")+
+        geom_point(aes(x=1.3, y=9.50), color="brown")
     
     p2 <- ggplot() +  
         geom_errorbar(data=bioDF3.sm, mapping=aes(x=Variable, ymin=eCaP_over_aCaP-eCaP_over_aCaP_sd, 
@@ -500,14 +500,14 @@ make_biomass_plots <- function(inDF) {
                    aes(Variable, eCeP_over_aCeP, fill=Variable),
                    position = "stack", col="brown") +
         xlab("") + 
-        ylab(expression(paste(CO[2], " effect (%)"))) +
+        ylab(expression(paste(CO[2], " effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "Leaf", 
                                   "Root",
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-10,240)+
+        ylim(-0.10,2.40)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -519,25 +519,25 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
-        annotate("rect", xmin = 1, xmax = 2, ymin = 170, ymax = 240,
+        geom_hline(yintercept=1, linetype=2)+
+        annotate("rect", xmin = 1, xmax = 2, ymin = 1.70, ymax = 2.40,
                  alpha = .2, color="black", fill="white")+
-        annotate("text", x=1.7, y=220, label=expression(aP), size=6)+
-        annotate("text", x=1.3, y=220, label=expression(eP), size=6)+
-        annotate("segment", x = 1.7, xend = 1.7, y = 175, yend = 200,
+        annotate("text", x=1.7, y=2.20, label=expression(aP), size=6)+
+        annotate("text", x=1.3, y=2.20, label=expression(eP), size=6)+
+        annotate("segment", x = 1.7, xend = 1.7, y = 1.75, yend = 2.00,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.3, xend = 1.3, y = 175, yend = 200,
+        annotate("segment", x = 1.3, xend = 1.3, y = 1.75, yend = 2.00,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 175, yend = 175,
+        annotate("segment", x = 1.6, xend = 1.8, y = 1.75, yend = 1.75,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 200, yend = 200,
+        annotate("segment", x = 1.6, xend = 1.8, y = 2.00, yend = 2.00,
                  colour = "grey", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 175, yend = 175,
+        annotate("segment", x = 1.2, xend = 1.4, y = 1.75, yend = 1.75,
                  colour = "red", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 200, yend = 200,
+        annotate("segment", x = 1.2, xend = 1.4, y = 2.00, yend = 2.00,
                  colour = "red", size=1)+
-        geom_point(aes(x=1.7, y=187.5), color="black")+
-        geom_point(aes(x=1.3, y=187.5), color="brown")
+        geom_point(aes(x=1.7, y=1.875), color="black")+
+        geom_point(aes(x=1.3, y=1.875), color="brown")
     
     p3 <- ggplot(bioDF3.sm,
                  aes(Variable, Interaction_additive_aCaP)) +  
@@ -546,14 +546,14 @@ make_biomass_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF3.sm, mapping=aes(x=Variable, y=Interaction_additive_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Additive ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Additive ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "Leaf", 
                                   "Root",
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-250,500)+
+        ylim(-2.50,5.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -574,14 +574,14 @@ make_biomass_plots <- function(inDF) {
                       width=0.2, size=1, color="black") + 
         geom_point(data=bioDF3.sm, mapping=aes(x=Variable, y=Interaction_multiplicative_aCaP))+
         xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
         scale_x_discrete(labels=c("AG", 
                                   "Leaf", 
                                   "Root",
                                   "Stem",
                                   "Total"))+
         theme_linedraw() +
-        ylim(-50,100)+
+        ylim(-0.10,2.00)+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -593,7 +593,7 @@ make_biomass_plots <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
+        geom_hline(yintercept=1, linetype=2)
     
     
     

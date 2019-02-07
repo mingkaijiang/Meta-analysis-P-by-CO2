@@ -51,7 +51,7 @@ make_nutrient_uptake_plots_per_study <- function(inDF) {
                    aes(Literature, eCeP_over_eCaP, shape=Vegetation_type),
                    position = "stack", size=3, color="brown") +
         xlab("") + 
-        ylab("Phosphorus effect (%)") +
+        ylab("Phosphorus effect ratio") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -74,7 +74,7 @@ make_nutrient_uptake_plots_per_study <- function(inDF) {
                    aes(Literature, eCeP_over_aCeP, shape=Vegetation_type),
                    position = "stack", size=3, color="brown") +
         xlab("") + 
-        ylab(expression(paste(CO[2], " effect (%)"))) +
+        ylab(expression(paste(CO[2], " effect ratio"))) +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -94,7 +94,7 @@ make_nutrient_uptake_plots_per_study <- function(inDF) {
                  aes(Literature, Interaction_additive_aCaP)) +  
         geom_point(data=subDF1, mapping=aes(x=Literature, y=Interaction_additive_aCaP, shape=Vegetation_type), size=3)+
         xlab("") + 
-        ylab(expression(paste("Additive ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Additive ", CO[2], " x P effect ratio"))) +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -113,7 +113,7 @@ make_nutrient_uptake_plots_per_study <- function(inDF) {
                  aes(Literature, Interaction_multiplicative_aCaP)) +  
         geom_point(data=subDF1, mapping=aes(x=Literature, y=Interaction_multiplicative_aCaP, shape=Vegetation_type), size=3)+
         xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -154,7 +154,7 @@ make_nutrient_uptake_plots_per_study <- function(inDF) {
                    aes(Literature, eCeP_over_eCaP, shape=Vegetation_type),
                    position = "stack", size=3, color="brown") +
         xlab("") + 
-        ylab("Phosphorus effect (%)") +
+        ylab("Phosphorus effect ratio") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -177,7 +177,7 @@ make_nutrient_uptake_plots_per_study <- function(inDF) {
                    aes(Literature, eCeP_over_aCeP, shape=Vegetation_type),
                    position = "stack", size=3, color="brown") +
         xlab("") + 
-        ylab(expression(paste(CO[2], " effect (%)"))) +
+        ylab(expression(paste(CO[2], " effect ratio"))) +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -197,7 +197,7 @@ make_nutrient_uptake_plots_per_study <- function(inDF) {
                  aes(Literature, Interaction_additive_aCaP)) +  
         geom_point(data=subDF1, mapping=aes(x=Literature, y=Interaction_additive_aCaP, shape=Vegetation_type), size=3)+
         xlab("") + 
-        ylab(expression(paste("Additive ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Additive ", CO[2], " x P effect ratio"))) +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -216,7 +216,7 @@ make_nutrient_uptake_plots_per_study <- function(inDF) {
                  aes(Literature, Interaction_multiplicative_aCaP)) +  
         geom_point(data=subDF1, mapping=aes(x=Literature, y=Interaction_multiplicative_aCaP, shape=Vegetation_type), size=3)+
         xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect (%)"))) +
+        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 

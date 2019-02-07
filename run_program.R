@@ -37,7 +37,6 @@ subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 ############## Basic statistics that summarize 
 ### number of studies
 ### number of data entries
-### species numbers
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
@@ -111,11 +110,13 @@ make_resource_use_efficiency_plots_along_gradients(inDF=subDF)
 make_gas_exchange_plots_along_gradients(inDF=subDF)
 
 
+############## Re-process the dataset to perform statistical analysis
+reDF <- reprocessing_interaction_term(inDF=subDF)
+
 
 ### To do list:
-### 1. Finish basic plot with manuscript quality figures
-### 2. Add individual plots, following example of Baig, and subject to data availability
-### 3. Perform statistical analysis to compute CIs
-
+### 1. Write hypotheses regarding the available variable based on plausible model predictions
+### 2. Perform statistical analysis
+### 3. Interpret the results. 
 
 
