@@ -64,7 +64,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2) 
+        geom_hline(yintercept=1, linetype=2) 
     
     p2 <- ggplot() +  
         geom_point(data=subDF1, stat = "identity", 
@@ -87,7 +87,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
+        geom_hline(yintercept=1, linetype=2)
     
     
     p3 <- ggplot(subDF1,
@@ -126,7 +126,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="right",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
+        geom_hline(yintercept=1, linetype=2)+
         scale_shape(name="Vegetation type") 
     
     
@@ -167,7 +167,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2) 
+        geom_hline(yintercept=1, linetype=2) 
     
     p2 <- ggplot() +  
         geom_point(data=subDF1, stat = "identity", 
@@ -190,7 +190,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
+        geom_hline(yintercept=1, linetype=2)
     
     
     p3 <- ggplot(subDF1,
@@ -229,7 +229,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="right",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
+        geom_hline(yintercept=1, linetype=2)+
         scale_shape(name="Vegetation type") 
     
     
@@ -269,7 +269,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2) 
+        geom_hline(yintercept=1, linetype=2) 
     
     p2 <- ggplot() +  
         geom_point(data=subDF1, stat = "identity", 
@@ -292,7 +292,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
+        geom_hline(yintercept=1, linetype=2)
     
     
     p3 <- ggplot(subDF1,
@@ -331,7 +331,7 @@ make_resource_use_efficiency_plots_per_study <- function(inDF) {
               legend.position="right",
               legend.text.align=0)+
         coord_flip()+
-        geom_hline(yintercept=0, linetype=2)+
+        geom_hline(yintercept=1, linetype=2)+
         scale_shape(name="Vegetation type") 
     
     
