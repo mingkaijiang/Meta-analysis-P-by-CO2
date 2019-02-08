@@ -8,7 +8,8 @@ if(!require(pacman))install.packages("pacman")
 pacman::p_load(doBy, 
                ggplot2,
                grid,
-               cowplot)  
+               cowplot,
+               metafor)  
 
 #### Sourcing all R files in the modules subdirectory
 sourcefiles <- dir("function", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
