@@ -22,9 +22,29 @@ reprocessing_interaction_term <- function(inDF) {
         (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))+
         (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))
     
+    ### many studies do not report sd, hence variance needs to be calculated using proxies
+    ### here variance for missing data of each study is calculated assuming
+    ### mean variance of the remaining studies within each data variable
     
-    ### estimate overall interaction mean and variance for each variable
-    outDF <- unique(inDF[c("Literature", "Category", "Variable")])
+    for (i in unique(inDF$Variable)) {
+        
+        ### calcualte mean variance for the subset
+        test1 <- subset(inDF, Variable == i)
+        mean.variance <- mean(test1$v_variance, na.rm=T)
+        
+        ### assign the mean variance to missing data
+        inDF$v_variance[inDF$Variable==i] <- ifelse(is.na(inDF$v_variance[inDF$Variable==i]), mean.variance, 
+                                                    inDF$v_variance[inDF$Variable==i])
+        
+        inDF$v_variance[inDF$Variable==i & is.na(inDF$v_variance)] <- mean.variance
+    }
+    
+    inDF$Vegetation_type <- as.character(inDF$Vegetation_type)
+    
+    inDF$Vegetation_type[inDF$Vegetation_type=="Grass Forb Legume"] <- "GFL"
+    
+    outDF <- inDF
+    
     
     return(outDF)
 }

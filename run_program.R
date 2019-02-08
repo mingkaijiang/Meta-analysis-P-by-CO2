@@ -110,8 +110,35 @@ make_resource_use_efficiency_plots_along_gradients(inDF=subDF)
 make_gas_exchange_plots_along_gradients(inDF=subDF)
 
 
-############## Re-process the dataset to perform statistical analysis
+############## Statistical analysis
+### reprogressing the dataset to calculate individual means and variance for the interaction term
 reDF <- reprocessing_interaction_term(inDF=subDF)
+
+### split the dataset into individual response variable
+### and perform statistical analysis for the overall effect size and variance
+### also check for data issues, make plots
+
+### Biomass
+metafor_statistics_biomass(reDF)
+
+### concentration
+metafor_statistics_concentration(reDF)
+
+### nutrient ratio
+metafor_statistics_nutrient_ratio(reDF)
+
+### morphology
+metafor_statistics_morphology(reDF)
+
+### nutrient uptake
+metafor_statistics_nutrient_uptake(reDF)
+
+### resource use efficiency
+metafor_statistics_resource_use_efficiency(reDF)
+
+### gas exchange
+metafor_statistics_gas_exchange(reDF)
+
 
 
 ### To do list:
