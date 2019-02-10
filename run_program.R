@@ -142,8 +142,16 @@ metafor_statistics_gas_exchange(reDF)
 
 
 ### To do list:
-### 1. Write hypotheses regarding the available variable based on plausible model predictions
-### 2. Perform statistical analysis
-### 3. Interpret the results. 
+### 1. Write hypotheses based on models
+###    1.1 scenarios of different P by CO2 treatment to understand the interaction effect
+###    1.2. Katrin's paper
+###    1.3 David's experimental perspective
+### 2. check data quality 
+###    2.1 outliers check
+###    2.2. log all responses???
+### 3. Perform statistical analysis
+###    3.1 weighted regression based on error bars
+###    3.2 finish all statistical analysis for all variables
+### 4. Interpret the results with writing. 
 
 
