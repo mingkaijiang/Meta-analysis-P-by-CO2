@@ -40,74 +40,74 @@ subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
-make_basic_summary_stats_plots(test=subDF)
-
-
-############## make overall plots
-### Make plots - biomass
-make_biomass_plots(inDF=subDF) 
-
-### Make plots - concentration
-make_concentration_plots(inDF=subDF)
-
-### Make plots - nutrient ratio 
-make_nutrient_ratio_plots(inDF=subDF)
-
-### Make plots - morphology
-make_morphology_plots(inDF=subDF)
-
-### Make plots - nutrient uptake
-make_nutrient_uptake_plots(inDF=subDF)
-
-### Make plots - resource use efficiency
-make_resource_use_efficiency_plots(inDF=subDF)
-
-### Make plots - gas exchange
-make_gas_exchange_plots(inDF=subDF)
-
-############## Make response ratio plots per study
-### Make plots - biomass
-make_biomass_plots_per_study(inDF=subDF) 
-
-### Make plots - concentration
-make_concentration_plots_per_study(inDF=subDF)
-
-### Make plots - nutrient ratio 
-make_nutrient_ratio_plots_per_study(inDF=subDF)
-
-### Make plots - morphology
-make_morphology_plots_per_study(inDF=subDF)
-
-### Make plots - nutrient uptake
-make_nutrient_uptake_plots_per_study(inDF=subDF)
-
-### Make plots - resource use efficiency
-make_resource_use_efficiency_plots_per_study(inDF=subDF)
-
-### Make plots - gas exchange
-make_gas_exchange_plots_per_study(inDF=subDF)
-
-############## make response ratio plots along concentration gradients
-### Make plots - biomass
-make_biomass_plots_along_gradients(inDF=subDF) 
-
-### Make plots - concentration
-make_concentration_plots_along_gradients(inDF=subDF)
-
-### Make plots - nutrient ratio 
-make_nutrient_ratio_plots_along_gradients(inDF=subDF)
-
-### Make plots - morphology
-make_morphology_plots_along_gradients(inDF=subDF)
-
-### Make plots - nutrient uptake
-make_nutrient_uptake_plots_along_gradients(inDF=subDF)
-
-### Make plots - resource use efficiency
-make_resource_use_efficiency_plots_along_gradients(inDF=subDF)
-
-### Make plots - gas exchange
-make_gas_exchange_plots_along_gradients(inDF=subDF)
+#make_basic_summary_stats_plots(test=subDF)
+#
+#
+############### make overall plots
+#### Make plots - biomass
+#make_biomass_plots(inDF=subDF) 
+#
+#### Make plots - concentration
+#make_concentration_plots(inDF=subDF)
+#
+#### Make plots - nutrient ratio 
+#make_nutrient_ratio_plots(inDF=subDF)
+#
+#### Make plots - morphology
+#make_morphology_plots(inDF=subDF)
+#
+#### Make plots - nutrient uptake
+#make_nutrient_uptake_plots(inDF=subDF)
+#
+#### Make plots - resource use efficiency
+#make_resource_use_efficiency_plots(inDF=subDF)
+#
+#### Make plots - gas exchange
+#make_gas_exchange_plots(inDF=subDF)
+#
+############### Make response ratio plots per study
+#### Make plots - biomass
+#make_biomass_plots_per_study(inDF=subDF) 
+#
+#### Make plots - concentration
+#make_concentration_plots_per_study(inDF=subDF)
+#
+#### Make plots - nutrient ratio 
+#make_nutrient_ratio_plots_per_study(inDF=subDF)
+#
+#### Make plots - morphology
+#make_morphology_plots_per_study(inDF=subDF)
+#
+#### Make plots - nutrient uptake
+#make_nutrient_uptake_plots_per_study(inDF=subDF)
+#
+#### Make plots - resource use efficiency
+#make_resource_use_efficiency_plots_per_study(inDF=subDF)
+#
+#### Make plots - gas exchange
+#make_gas_exchange_plots_per_study(inDF=subDF)
+#
+############### make response ratio plots along concentration gradients
+#### Make plots - biomass
+#make_biomass_plots_along_gradients(inDF=subDF) 
+#
+#### Make plots - concentration
+#make_concentration_plots_along_gradients(inDF=subDF)
+#
+#### Make plots - nutrient ratio 
+#make_nutrient_ratio_plots_along_gradients(inDF=subDF)
+#
+#### Make plots - morphology
+#make_morphology_plots_along_gradients(inDF=subDF)
+#
+#### Make plots - nutrient uptake
+#make_nutrient_uptake_plots_along_gradients(inDF=subDF)
+#
+#### Make plots - resource use efficiency
+#make_resource_use_efficiency_plots_along_gradients(inDF=subDF)
+#
+#### Make plots - gas exchange
+#make_gas_exchange_plots_along_gradients(inDF=subDF)
 
 
 ############## Statistical analysis
@@ -145,7 +145,8 @@ metafor_statistics_gas_exchange(reDF)
 ### 1. Write hypotheses based on models
 ###    1.1 scenarios of different P by CO2 treatment to understand the interaction effect
 ###    1.2. Katrin's paper
-###    1.3 David's experimental perspective
+###    1.3 Luo's paper
+###    1.4 The classic meta-anaysis papers
 ### 2. check data quality 
 ###    2.1 outliers check
 ###    2.2. log all responses???
