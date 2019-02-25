@@ -124,9 +124,6 @@ metafor_statistics_biomass(reDF)
 ### concentration
 metafor_statistics_concentration(reDF)
 
-### nutrient ratio
-metafor_statistics_nutrient_ratio(reDF)
-
 ### morphology
 metafor_statistics_morphology(reDF)
 
