@@ -1,8 +1,10 @@
-make_basic_summary_stats_plots <- function(test) {
+make_basic_summary_stats_plots <- function() {
     ### This function processes the dataframe with some basic summaries
     if(!dir.exists("output/basic_summary")) {
         dir.create("output/basic_summary", showWarnings = FALSE)
     }
+    
+    test <- subDF
     
     #### Summary of treatment
     
