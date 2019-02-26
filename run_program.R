@@ -111,7 +111,7 @@ make_resource_use_efficiency_plots_along_gradients(inDF=subDF)
 make_gas_exchange_plots_along_gradients(inDF=subDF)
 
 
-############## Statistical analysis
+############## Statistical analysis - metafor
 ### reprogressing the dataset to calculate individual means and variance for the interaction term
 reDF <- reprocessing_interaction_term(inDF=subDF)
 
@@ -137,20 +137,20 @@ metafor_statistics_resource_use_efficiency(reDF)
 ### gas exchange
 metafor_statistics_gas_exchange(reDF)
 
+############## Statistical analysis - path analysis
+
 
 
 ### To do list:
 ### 1. Write hypotheses based on models
-###    1.1 scenarios of different P by CO2 treatment to understand the interaction effect
-###    1.2. Katrin's paper
-###    1.3 Luo's paper
-###    1.4 The classic meta-anaysis papers
-### 2. check data quality 
-###    2.1 outliers check
-###    2.2. log all responses???
-### 3. Perform statistical analysis
-###    3.1 weighted regression based on error bars
-###    3.2 finish all statistical analysis for all variables
-### 4. Interpret the results with writing. 
+###    1.1 model based hypotheses
+###    1.2 Luo's paper
+###    1.3 Waring and Wang paper
+### 2. Perform statistical analysis
+###    2.1. log all responses???
+###    2.2 weighted regression based on error bars
+###    2.3 finish all statistical analysis for all variables
+###    2.4 Pathway analysis
+### 3. Interpret the results with writing. 
 
 
