@@ -26,21 +26,21 @@ metafor_statistics_morphology <- function(reDF) {
     pdf("output/statistics_morphology/leaf_area_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-16, 6), 
-           at = log(c(0.05, 0.25, 1, 4)), atransf = exp,
+           xlim = c(-12, 4), 
+           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-9.5, -8, -6, -4.5), cex = 0.6)
-    text(c(-9.5, -8, -6, -4.5), l+2.5, c("Vegetation", 
-                                       expression(paste(eCO[2], "/", aCO[2])),
-                                       "ePaP", "Experiment"),
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    text(c(-8, -6.5, -4.5, -3, 0), l+2.5, c("Vegetation", 
+                                            expression(paste(eCO[2], "/", aCO[2])),
+                                            "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-9.5, -8, -6, -4.5), l+1.5,
+    text(c(-8, -6.5, -4.5, -3), l+1.5,
          c("type","", "", "duration"), cex=0.7)
-    text(-16, l+2.5, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-12, l+2.5, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
     dev.off()
     
     ### mixed effect model
@@ -48,7 +48,7 @@ metafor_statistics_morphology <- function(reDF) {
                 data = tDF)
     
     ### make predictions
-    preds <- predict(res1, newmods = c(1.5, 2, 2.5))
+    preds <- predict(res1, newmods = c(1.25, 1.5, 2.0))
     
     ### 2nd mixed model
     res2 <- rma(log_interaction, v_variance, mods = cbind(Trt_eC_by_aC, Trt_eP_by_aP), 
@@ -58,27 +58,27 @@ metafor_statistics_morphology <- function(reDF) {
     pdf("output/statistics_morphology/leaf_area_morphology_response_ratio_mixed_effect_model.pdf",
         height=12, width=9)
     forest(res1, slab = tDF$Literature,
-           xlim = c(-16, 6),
+           xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.05, 0.25, 1, 4)), atransf = exp,
+           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-9.5, -8, -6, -4.5), cex = 0.6)
-    addpoly(preds$pred, sei = preds$se, atransf = exp,
-            mlab = c(expression(paste(eCO[2], "/", aCO[2], "=1.5")),
-                     expression(paste(eCO[2], "/", aCO[2], "=2.0")),
-                     expression(paste(eCO[2], "/", aCO[2], "=2.5"))),
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    addpoly(preds$pred, sei = preds$se, #atransf = exp,
+            mlab = c(expression(paste(eCO[2], "/", aCO[2], "=1.25")),
+                     expression(paste(eCO[2], "/", aCO[2], "=1.5")),
+                     expression(paste(eCO[2], "/", aCO[2], "=2.0"))),
             cex=0.6)
-    text(c(-9.5, -8, -6, -4.5), l+3, c("Vegetation", 
-                                         expression(paste(eCO[2], "/", aCO[2])),
-                                         "ePaP", "Experiment"),
+    text(c(-8, -6.5, -4.5, -3), l+3, c("Vegetation", 
+                                       expression(paste(eCO[2], "/", aCO[2])),
+                                       "ePaP", "Experiment"),
          cex=0.7)
-    text(c(-9.5, -8, -6, -4.5), l+2,
+    text(c(-8, -6.5, -4.5, -3), l+2,
          c("type","", "", "duration"), cex=0.7)
-    text(-16, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
     dev.off()
 
     
@@ -97,22 +97,22 @@ metafor_statistics_morphology <- function(reDF) {
     
     pdf("output/statistics_morphology/leaf_area_morphology_response_ratio_mixed_effect_model_categorical.pdf",
         height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-16, 6), 
-           at = log(c(0.05, 0.25, 1, 4)), atransf = exp,
+    forest(res3, slab = tDF$Literature,
+           xlim = c(-12, 4), 
+           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-9.5, -8, -6, -4.5), cex = 0.6)
-    text(c(-9.5, -8, -6, -4.5), l+2.5, c("Vegetation", 
-                                         expression(paste(eCO[2], "/", aCO[2])),
-                                         "ePaP", "Experiment"),
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    text(c(-8, -6.5, -4.5, -3, 0), l+2.5, c("Vegetation", 
+                                            expression(paste(eCO[2], "/", aCO[2])),
+                                            "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-9.5, -8, -6, -4.5), l+1.5,
+    text(c(-8, -6.5, -4.5, -3), l+1.5,
          c("type","", "", "duration"), cex=0.7)
-    text(-16, l+2.5, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-12, l+2.5, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
     dev.off()
     
     ### check across models model performance
@@ -149,21 +149,21 @@ metafor_statistics_morphology <- function(reDF) {
     pdf("output/statistics_morphology/LMA_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-16, 6), 
-           at = log(c(0.05, 0.25, 1, 4)), atransf = exp,
+           xlim = c(-12, 4), 
+           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-9.5, -8, -6, -4.5), cex = 0.6)
-    text(c(-9.5, -8, -6, -4.5), l+2.5, c("Vegetation", 
-                                         expression(paste(eCO[2], "/", aCO[2])),
-                                         "ePaP", "Experiment"),
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    text(c(-8, -6.5, -4.5, -3, 0), l+2.5, c("Vegetation", 
+                                            expression(paste(eCO[2], "/", aCO[2])),
+                                            "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-9.5, -8, -6, -4.5), l+1.5,
+    text(c(-8, -6.5, -4.5, -3), l+1.5,
          c("type","", "", "duration"), cex=0.7)
-    text(-16, l+2.5, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-12, l+2.5, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
     dev.off()
     
 
@@ -184,21 +184,21 @@ metafor_statistics_morphology <- function(reDF) {
     pdf("output/statistics_morphology/SLA_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-16, 6), 
-           at = log(c(0.05, 0.25, 1, 4)), atransf = exp,
+           xlim = c(-12, 4), 
+           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-9.5, -8, -6, -4.5), cex = 0.6)
-    text(c(-9.5, -8, -6, -4.5), l+2.5, c("Vegetation", 
-                                         expression(paste(eCO[2], "/", aCO[2])),
-                                         "ePaP", "Experiment"),
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    text(c(-8, -6.5, -4.5, -3, 0), l+2.5, c("Vegetation", 
+                                            expression(paste(eCO[2], "/", aCO[2])),
+                                            "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-9.5, -8, -6, -4.5), l+1.5,
+    text(c(-8, -6.5, -4.5, -3), l+1.5,
          c("type","", "", "duration"), cex=0.7)
-    text(-16, l+2.5, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-12, l+2.5, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
     dev.off()
     
 
@@ -219,21 +219,21 @@ metafor_statistics_morphology <- function(reDF) {
     pdf("output/statistics_morphology/root_length_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-16, 6), 
-           at = log(c(0.05, 0.25, 1, 4)), atransf = exp,
+           xlim = c(-12, 4), 
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-9.5, -8, -6, -4.5), cex = 0.6)
-    text(c(-9.5, -8, -6, -4.5), l+2.5, c("Vegetation", 
-                                         expression(paste(eCO[2], "/", aCO[2])),
-                                         "ePaP", "Experiment"),
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    text(c(-8, -6.5, -4.5, -3, 0), l+2.5, c("Vegetation", 
+                                            expression(paste(eCO[2], "/", aCO[2])),
+                                            "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-9.5, -8, -6, -4.5), l+1.5,
+    text(c(-8, -6.5, -4.5, -3), l+1.5,
          c("type","", "", "duration"), cex=0.7)
-    text(-16, l+2.5, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-12, l+2.5, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+2.5, "Relative Response [95% CI]", pos = 2, cex = 0.7)
     dev.off()
     
     
