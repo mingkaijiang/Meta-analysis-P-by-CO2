@@ -42,14 +42,14 @@ scenario_illustration_plot <- function() {
         ylab("Response") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=12), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
-              legend.position="none",
+              legend.position = c(0.2, 0.8),
               legend.text.align=0)+
         scale_x_continuous(limit=c(0, 5),
                            labels=c("0" ="",
@@ -90,7 +90,11 @@ scenario_illustration_plot <- function() {
         annotate("segment", x = 4.94, xend = 5.0, y = 2.86, yend = 2.86,
                  colour = "black", size=1)+
         annotate("segment", x = 4.94, xend = 5.0, y = 3.28, yend = 3.28,
-                 colour = "black", size=1)
+                 colour = "black", size=1)+
+        scale_color_discrete(name=expression(paste(CO[2], " treatment")),
+                                 labels=c(expression(aCO[2]), expression(eCO[2])))+
+        ylim(0.8, 6.2)
+    
     
     ### plot  - elevated P effect at aC and eC
     p2 <- ggplot() +  
@@ -108,8 +112,8 @@ scenario_illustration_plot <- function() {
         ylab("Response") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=12), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
@@ -142,7 +146,8 @@ scenario_illustration_plot <- function() {
         annotate("segment", x = 4.94, xend = 5.0, y = 4.37, yend = 4.37,
                  colour = "black", size=1)+
         annotate("segment", x = 4.94, xend = 5.0, y = 5.9, yend = 5.9,
-                 colour = "black", size=1)
+                 colour = "black", size=1)+
+        ylim(0.8, 6.2)
     
     ### plot  - elevated P effect at aC and eC
     p3 <- ggplot() +  
@@ -167,7 +172,7 @@ scenario_illustration_plot <- function() {
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
-              legend.position="bottom",
+              legend.position="none",
               legend.text.align=0)+
         scale_x_continuous(limit=c(0, 5),
                            labels=c("0" ="",
@@ -194,12 +199,13 @@ scenario_illustration_plot <- function() {
         annotate("segment", x = 4.94, xend = 5.0, y = 1.63, yend = 1.63,
                  colour = "black", size=1)+
         annotate("segment", x = 4.94, xend = 5.0, y = 1.72, yend = 1.72,
-                 colour = "black", size=1)
+                 colour = "black", size=1)+
+        ylim(0.8, 6.2)
     
     
     ### Plotting
-    pdf("output/scenario_illustration.pdf")
+    pdf("output/scenario_illustration.pdf", height=12, width=6)
     plot_grid(p1, p2, p3,
-              labels="AUTO", ncol=1, align="h", axis = "l")
+              labels="AUTO", ncol=1, align="v", axis = "l")
     dev.off()
 }
