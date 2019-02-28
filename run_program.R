@@ -40,7 +40,7 @@ subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
-make_basic_summary_stats_plots(subDF)
+make_basic_summary_stats_plots()
 
 inDF <- subDF
 

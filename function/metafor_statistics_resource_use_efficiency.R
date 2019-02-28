@@ -135,7 +135,26 @@ metafor_statistics_resource_use_efficiency <- function(reDF) {
     qqnorm(res3, main="Mixed-effect model [CO2 + P + Veg]")  
     dev.off()
     
- 
+    ####################### subset the dataframe for the right variable ##############################
+    tDF <- subset(reDF, Variable=="NUE")
     
+    ### length of the data frame
+    l <- length(tDF$Literature)
+    ns <- length(unique(tDF$Literature))
+    
+    l
+    ns
+    
+    ####################### subset the dataframe for the right variable ##############################
+    tDF <- subset(reDF, Variable=="PUE")
+    
+    ### length of the data frame
+    l <- length(tDF$Literature)
+    ns <- length(unique(tDF$Literature))
+    
+    l
+    ns
+    
+
     
 }
