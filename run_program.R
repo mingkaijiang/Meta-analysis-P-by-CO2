@@ -40,6 +40,9 @@ myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
 ############## Exclude some extremely high P addition experiment
 subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 
+subDF100 <- subset(myDF, Trt_eP_by_aP <= 100)
+
+
 ############## Basic statistics that summarize 
 ### number of studies
 ### number of data entries
@@ -120,7 +123,7 @@ make_gas_exchange_plots_along_gradients(inDF=subDF)
 ############## Statistical analysis - metafor
 ### reprogressing the dataset to calculate individual means and variance for the interaction term
 reDF <- reprocessing_interaction_term(inDF=subDF)
-
+reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 ### split the dataset into individual response variable
 ### and perform statistical analysis for the overall effect size and variance
 ### also check for data issues, make plots
@@ -142,6 +145,25 @@ metafor_statistics_resource_use_efficiency(reDF)
 
 ### gas exchange
 metafor_statistics_gas_exchange(reDF)
+
+
+### Biomass
+metafor_statistics_biomass_100(reDF100)
+
+### concentration
+metafor_statistics_concentration_100(reDF100)
+
+### morphology
+metafor_statistics_morphology_100(reDF100)
+
+### nutrient uptake
+metafor_statistics_nutrient_uptake_100(reDF100)
+
+### resource use efficiency
+metafor_statistics_resource_use_efficiency_100(reDF100)
+
+### gas exchange
+metafor_statistics_gas_exchange_100(reDF100)
 
 ############## Statistical analysis - path analysis
 
