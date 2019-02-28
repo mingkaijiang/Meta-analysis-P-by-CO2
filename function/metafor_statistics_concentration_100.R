@@ -301,6 +301,7 @@ metafor_statistics_concentration_100 <- function(reDF) {
     ns
     
     res <- rma(log_interaction, v_variance, data = tDF)
+    
     ### forest plot
     pdf("output/statistics_concentration_100/stem_N_concentration_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -415,10 +416,7 @@ metafor_statistics_concentration_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
-    
-    l
-    ns
-    
+
 
     
 }

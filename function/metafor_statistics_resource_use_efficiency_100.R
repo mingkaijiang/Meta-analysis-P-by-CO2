@@ -144,7 +144,7 @@ metafor_statistics_resource_use_efficiency_100 <- function(reDF) {
     
     l
     ns
-    
+
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="PUE")
     

@@ -9,11 +9,6 @@ rm(list=ls(all=TRUE))
 source("prepare.R")
 
 
-############## scenario illustration
-scenario_illustration_plot()
-
-
-
 ############## check input files
 myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V1.csv",strip.white=T)
 
@@ -147,6 +142,8 @@ metafor_statistics_resource_use_efficiency(reDF)
 metafor_statistics_gas_exchange(reDF)
 
 
+
+##############
 ### Biomass
 metafor_statistics_biomass_100(reDF100)
 
@@ -165,7 +162,12 @@ metafor_statistics_resource_use_efficiency_100(reDF100)
 ### gas exchange
 metafor_statistics_gas_exchange_100(reDF100)
 
-############## Statistical analysis - path analysis
+
+
+############## scenario illustration
+scenario_illustration_plot()
+
+
 
 
 
@@ -175,10 +177,7 @@ metafor_statistics_gas_exchange_100(reDF100)
 ###    1.2 Luo's paper
 ###    1.3 Waring and Wang paper
 ### 2. Perform statistical analysis
-###    2.1. log all responses???
 ###    2.2 weighted regression based on error bars
-###    2.3 finish all statistical analysis for all variables
-###    2.4 Pathway analysis
 ### 3. Interpret the results with writing. 
 
 
