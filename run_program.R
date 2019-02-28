@@ -8,6 +8,12 @@ rm(list=ls(all=TRUE))
 ############## source
 source("prepare.R")
 
+
+############## scenario illustration
+scenario_illustration_plot()
+
+
+
 ############## check input files
 myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V1.csv",strip.white=T)
 
