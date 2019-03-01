@@ -46,8 +46,6 @@ subDF100 <- subset(myDF, Trt_eP_by_aP <= 100)
 ### etc.
 make_basic_summary_stats_plots()
 
-inDF <- subDF
-
 ############## make overall plots
 ### Make plots - biomass
 make_biomass_plots(inDF=subDF) 
@@ -163,12 +161,28 @@ metafor_statistics_resource_use_efficiency_100(reDF100)
 metafor_statistics_gas_exchange_100(reDF100)
 
 
-
 ############## scenario illustration
 scenario_illustration_plot()
 
 
+############## make overall plots
+### Make plots - biomass
+make_biomass_plots_100(inDF=subDF100) 
 
+### Make plots - concentration
+make_concentration_plots_100(inDF=subDF100)
+
+### Make plots - morphology
+make_morphology_plots_100(inDF=subDF100)
+
+### Make plots - nutrient uptake
+make_nutrient_uptake_plots_100(inDF=subDF100)
+
+### Make plots - resource use efficiency
+make_resource_use_efficiency_plots_100(inDF=subDF100)
+
+### Make plots - gas exchange
+make_gas_exchange_plots_100(inDF=subDF100)
 
 
 ### To do list:
