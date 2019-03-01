@@ -4,7 +4,7 @@ make_basic_summary_stats_plots <- function() {
         dir.create("output/basic_summary", showWarnings = FALSE)
     }
     
-    test <- subDF
+    test <- subDF100
     
     #### Summary of treatment
     
