@@ -113,7 +113,6 @@ make_biomass_plots_along_gradients <- function(inDF) {
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))
     
-    
     ### plot  - elevated P effect at aC and eC, along CO2 gradient
     p5 <- ggplot() +  
         geom_point(data=subDF1, 

@@ -552,6 +552,8 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    l
+    ns
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem P content")
@@ -604,9 +606,6 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
-    
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
     
@@ -635,7 +634,7 @@ metafor_statistics_biomass_100 <- function(reDF) {
     dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total plant P content")
+    tDF <- subset(reDF, Variable=="Total plant N content")
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -643,6 +642,13 @@ metafor_statistics_biomass_100 <- function(reDF) {
     
     l
     ns
+    
+    ####################### subset the dataframe for the right variable ##############################
+    tDF <- subset(reDF, Variable=="Total plant P content")
+    
+    ### length of the data frame
+    l <- length(tDF$Literature)
+    ns <- length(unique(tDF$Literature))
     
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
@@ -670,13 +676,6 @@ metafor_statistics_biomass_100 <- function(reDF) {
     text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
-    
-    ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total plant N content")
-    
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
 
 
 }

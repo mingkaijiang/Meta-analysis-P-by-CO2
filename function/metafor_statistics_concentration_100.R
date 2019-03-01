@@ -296,10 +296,7 @@ metafor_statistics_concentration_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
-    
-    l
-    ns
-    
+
     res <- rma(log_interaction, v_variance, data = tDF)
     
     ### forest plot
@@ -333,9 +330,6 @@ metafor_statistics_concentration_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
-    
-    l
-    ns
     
     res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -380,10 +374,7 @@ metafor_statistics_concentration_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
-    
-    l
-    ns
-    
+
     res <- rma(log_interaction, v_variance, data = tDF)
     
     ### forest plot
@@ -417,6 +408,7 @@ metafor_statistics_concentration_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
 
-
+l
+ns
     
 }
