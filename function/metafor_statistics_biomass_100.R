@@ -23,9 +23,9 @@ metafor_statistics_biomass_100 <- function(reDF) {
     pdf("output/statistics_biomass_100/leaf_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-12, 6), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           at = log(c(0.082085, 0.3678794, 1, 2.718282, 12.18249)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
@@ -38,7 +38,7 @@ metafor_statistics_biomass_100 <- function(reDF) {
     text(c(-8, -6.5, -4.5, -3), l+2,
          c("type","", "", "duration"), cex=0.7)
     text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(6, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
     text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
@@ -238,7 +238,7 @@ metafor_statistics_biomass_100 <- function(reDF) {
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
@@ -319,7 +319,7 @@ metafor_statistics_biomass_100 <- function(reDF) {
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
@@ -402,7 +402,7 @@ metafor_statistics_biomass_100 <- function(reDF) {
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
@@ -483,7 +483,7 @@ metafor_statistics_biomass_100 <- function(reDF) {
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
@@ -560,9 +560,6 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
-    
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
     
@@ -572,7 +569,7 @@ metafor_statistics_biomass_100 <- function(reDF) {
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
@@ -656,7 +653,7 @@ metafor_statistics_biomass_100 <- function(reDF) {
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 6), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.04978707, 0.2231302, 1, 4.481689, 20.08554)), #atransf = exp,
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),

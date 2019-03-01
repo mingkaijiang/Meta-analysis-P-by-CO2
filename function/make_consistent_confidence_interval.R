@@ -43,36 +43,37 @@ make_consistent_confidence_interval <- function(inDF, return.option="all_se") {
     myDF3$Confidence.interval.type <- "SE"
     
     ### Convert 2SE to SE
-    myDF4$aCaP_pos <- myDF4$aCaP_mean + (myDF4$aCaP_pos - myDF4$aCaP_mean) / 2
-    myDF4$aCaP_pos <- myDF4$aCaP_mean + (myDF4$aCaP_pos - myDF4$aCaP_mean) / 2
-    
-    myDF4$aCeP_pos <- myDF4$aCeP_mean + (myDF4$aCeP_pos - myDF4$aCeP_mean) / 2
-    myDF4$aCeP_pos <- myDF4$aCeP_mean + (myDF4$aCeP_pos - myDF4$aCeP_mean) / 2
-    
-    myDF4$aCeP_neg <- myDF4$aCeP_mean - (myDF4$aCeP_mean - myDF4$aCeP_neg) / 2
-    myDF4$aCeP_neg <- myDF4$aCeP_mean - (myDF4$aCeP_mean - myDF4$aCeP_neg) / 2
-    
-    myDF4$eCaP_pos <- myDF4$eCaP_mean + (myDF4$eCaP_pos - myDF4$eCaP_mean) / 2
-    myDF4$eCaP_pos <- myDF4$eCaP_mean + (myDF4$eCaP_pos - myDF4$eCaP_mean) / 2
-    
-    myDF4$eCaP_neg <- myDF4$eCeP_mean - (myDF4$eCaP_mean - myDF4$eCaP_neg) / 2
-    myDF4$eCaP_neg <- myDF4$eCeP_mean - (myDF4$eCaP_mean - myDF4$eCaP_neg) / 2
-    
-    
-    myDF4$eCeP_pos <- myDF4$eCeP_mean + (myDF4$eCeP_pos - myDF4$eCeP_mean) / 2
-    myDF4$eCeP_pos <- myDF4$eCeP_mean + (myDF4$eCeP_pos - myDF4$eCeP_mean) / 2
-    
-    myDF4$eCeP_neg <- myDF4$eCeP_mean - (myDF4$eCeP_mean - myDF4$eCeP_neg) / 2
-    myDF4$eCeP_neg <- myDF4$eCeP_mean - (myDF4$eCeP_mean - myDF4$eCeP_neg) / 2
-    
-    myDF4$Confidence.interval.type <- "SE"
+    #myDF4$aCaP_pos <- myDF4$aCaP_mean + (myDF4$aCaP_pos - myDF4$aCaP_mean) / 2
+    #myDF4$aCaP_pos <- myDF4$aCaP_mean + (myDF4$aCaP_pos - myDF4$aCaP_mean) / 2
+    #
+    #myDF4$aCeP_pos <- myDF4$aCeP_mean + (myDF4$aCeP_pos - myDF4$aCeP_mean) / 2
+    #myDF4$aCeP_pos <- myDF4$aCeP_mean + (myDF4$aCeP_pos - myDF4$aCeP_mean) / 2
+    #
+    #myDF4$aCeP_neg <- myDF4$aCeP_mean - (myDF4$aCeP_mean - myDF4$aCeP_neg) / 2
+    #myDF4$aCeP_neg <- myDF4$aCeP_mean - (myDF4$aCeP_mean - myDF4$aCeP_neg) / 2
+    #
+    #myDF4$eCaP_pos <- myDF4$eCaP_mean + (myDF4$eCaP_pos - myDF4$eCaP_mean) / 2
+    #myDF4$eCaP_pos <- myDF4$eCaP_mean + (myDF4$eCaP_pos - myDF4$eCaP_mean) / 2
+    #
+    #myDF4$eCaP_neg <- myDF4$eCeP_mean - (myDF4$eCaP_mean - myDF4$eCaP_neg) / 2
+    #myDF4$eCaP_neg <- myDF4$eCeP_mean - (myDF4$eCaP_mean - myDF4$eCaP_neg) / 2
+    #
+    #
+    #myDF4$eCeP_pos <- myDF4$eCeP_mean + (myDF4$eCeP_pos - myDF4$eCeP_mean) / 2
+    #myDF4$eCeP_pos <- myDF4$eCeP_mean + (myDF4$eCeP_pos - myDF4$eCeP_mean) / 2
+    #
+    #myDF4$eCeP_neg <- myDF4$eCeP_mean - (myDF4$eCeP_mean - myDF4$eCeP_neg) / 2
+    #myDF4$eCeP_neg <- myDF4$eCeP_mean - (myDF4$eCeP_mean - myDF4$eCeP_neg) / 2
+    #
+    #myDF4$Confidence.interval.type <- "SE"
     
     ### No CI information available, consider it as SE
     myDF5$Confidence.interval.type <- "SE"
     
     ### return
-    outDF1 <- rbind(myDF1, myDF3, myDF4, myDF5)
+    #outDF1 <- rbind(myDF1, myDF3, myDF4, myDF5)
     outDF2 <- rbind(myDF1, myDF3, myDF4)
+    outDF1 <- rbind(myDF1, myDF3, myDF5)
     
     ### add sd information 
     outDF1$aCaP_sd <- (outDF1$aCaP_pos - outDF1$aCaP_neg) / 2 * sqrt(as.numeric(as.character(outDF1$Sample.Size)))

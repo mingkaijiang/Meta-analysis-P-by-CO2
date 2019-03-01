@@ -229,7 +229,7 @@ metafor_statistics_concentration_100 <- function(reDF) {
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
