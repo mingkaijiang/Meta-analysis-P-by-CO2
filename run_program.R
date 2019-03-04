@@ -185,6 +185,15 @@ make_resource_use_efficiency_plots_100(inDF=subDF100)
 make_gas_exchange_plots_100(inDF=subDF100)
 
 
+############## make gradient subplot 10
+
+#### ep/ap < 10
+make_subplots_along_gradients(inDF=subDF)
+
+### ep/ap < 100
+make_subplots_along_gradients_100(inDF=subDF100)
+
+
 ### To do list:
 ### 1. Write hypotheses based on models
 ###    1.1 model based hypotheses
