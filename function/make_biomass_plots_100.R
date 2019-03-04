@@ -43,67 +43,233 @@ make_biomass_plots_100 <- function(inDF) {
                            "Total plant N content", "Stem N content",
                            "Root N content", "Leaf N content",
                            "Total plant P content", "Stem P content",
-                           "Root P content", "Leaf P content"),2)
-    pDF1$CO2_trt <- rep(c("aC", "eC"), each=12)
-    pDF3 <- pDF2 <- pDF1
+                           "Root P content", "Leaf P content"),each=2)
+    pDF1$CO2_trt <- rep(c("aC", "eC"),12)
+    pDF2 <- pDF1
     
     ### assign values
     for (i in variable.list) {
-        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "value"] <- bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                        "aCeP_over_aCaP"]
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "aCeP_over_aCaP"])
         
-        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "pos"] <- bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                        "aCeP_over_aCaP"] + 
-            bioDF1.sm[bioDF1.sm$Variable==i,
-                      "aCeP_over_aCaP_sd"]
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "aCeP_over_aCaP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "aCeP_over_aCaP_sd"])
         
-        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "neg"] <- bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                        "aCeP_over_aCaP"] -
-            bioDF1.sm[bioDF1.sm$Variable==i,
-                      "aCeP_over_aCaP_sd"]
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "aCeP_over_aCaP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "aCeP_over_aCaP_sd"])
         
-        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "value"] <- bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                        "eCeP_over_eCaP"]
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "eCeP_over_eCaP"])
         
-        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "pos"] <- bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                      "eCeP_over_eCaP"] + 
-            bioDF1.sm[bioDF1.sm$Variable==i,
-                      "eCeP_over_eCaP_sd"]
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                      "eCeP_over_eCaP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "eCeP_over_eCaP_sd"])
         
-        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "neg"] <- bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                      "eCeP_over_eCaP"] -
-            bioDF1.sm[bioDF1.sm$Variable==i,
-                      "eCeP_over_eCaP_sd"]
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                      "eCeP_over_eCaP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "eCeP_over_eCaP_sd"])
     }
     
-    p1 <- ggplot() +
-        
     
+    
+        
+    ### rename pDF2
+    names(pDF2)[3] <- "P_trt"
+    pDF2$P_trt <- gsub("aC", "aP", pDF2$P_trt)
+    pDF2$P_trt <- gsub("eC", "eP", pDF2$P_trt)
+    
+    ### assign values
+    for (i in variable.list) {
+        pDF2[pDF2$variable==i&pDF2$P_trt=="aP", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "eCaP_over_aCaP"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="aP", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                      "eCaP_over_aCaP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "eCaP_over_aCaP_sd"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="aP", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                      "eCaP_over_aCaP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "eCaP_over_aCaP_sd"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="eP", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "eCeP_over_aCeP"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="eP", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                      "eCeP_over_aCeP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "eCeP_over_aCeP_sd"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="eP", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                      "eCeP_over_aCeP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "eCeP_over_aCeP_sd"])
+    }
 
-    ### plot 
-    p1 <- ggplot() +  
-        geom_errorbar(data=bioDF1.sm, 
-                      mapping=aes(x=Variable, ymin=aCeP_over_aCaP-aCeP_over_aCaP_sd, 
-                                  ymax=aCeP_over_aCaP+aCeP_over_aCaP_sd), 
-                      width=0.2, size=1, color="grey") + 
-        geom_errorbar(data=bioDF1.sm,
-                      mapping=aes(x=Variable, ymin=eCeP_over_aCaP-eCeP_over_aCaP_sd, 
-                                  ymax=eCeP_over_eCaP+eCeP_over_eCaP_sd), 
-                      width=0.2, size=1, color="red") + 
-        geom_point(data=bioDF1.sm, stat = "identity", 
-                   aes(Variable, aCeP_over_aCaP, fill=Variable),
-                   position="stack") +
-        geom_point(data=bioDF1.sm, stat = "identity", 
-                   aes(Variable, eCeP_over_eCaP, fill=Variable),
-                   position = "stack", col="brown") +
-        xlab("Biomass") + 
-        ylab("Phosphorus effect ratio") +
-        scale_x_discrete(labels=c("Leaf", 
-                                  "Root",
-                                  "Stem",
-                                  "Total"))+
+    ### create a dataframe to contain long format data for each plot (3 dataframes)
+    pDF3 <- data.frame(c(1:12), NA, NA, NA, NA)
+    colnames(pDF3) <- c("brk", "variable", "value", "pos", "neg")
+    pDF3$variable <- c("Total plant biomass", "Stem biomass",
+                           "Root biomass", "Leaf biomass",
+                           "Total plant N content", "Stem N content",
+                           "Root N content", "Leaf N content",
+                           "Total plant P content", "Stem P content",
+                           "Root P content", "Leaf P content")
+
+    ### assign values
+    for (i in variable.list) {
+        pDF3[pDF3$variable==i, "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                      "Interaction_multiplicative_aCaP"])
+        
+        pDF3[pDF3$variable==i, "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                    "Interaction_multiplicative_aCaP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "Interaction_multiplicative_aCaP_sd"])
+        
+        pDF3[pDF3$variable==i, "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                    "Interaction_multiplicative_aCaP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                      "Interaction_multiplicative_aCaP_sd"])
+    }
+    
+    ### plotting
+    p1 <- ggplot() +
+        geom_point(data=pDF1, stat = "identity", 
+                   aes(brk, value, col=CO2_trt),
+                   position="stack", size=5) +
+        geom_errorbar(data=pDF1, 
+                      mapping=aes(x=brk, ymin=neg, 
+                                  ymax=pos, col=CO2_trt), 
+                      width=0.2, size=1) +
+        ylab("eP RR") +
+        scale_x_continuous(name = "Biomass content",
+                           breaks=c(1,2,3,4,5,6,7,8,9,10,11,12),
+                           labels=c("Total", 
+                                    "Stem", 
+                                    "Root", 
+                                    "Leaf", 
+                                    "Total N",
+                                    "Stem N", 
+                                    "Root N", 
+                                    "Leaf N", 
+                                    "Total P",
+                                    "Stem P", 
+                                    "Root P", 
+                                    "Leaf P"))+
         theme_linedraw() +
-        ylim(-5,15)+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.9))+
+        geom_hline(yintercept=0, linetype=2)+
+        ylim(-2,6)+
+        #annotate("text", x=0.5, y=-1.5, label="n=", size=5)+
+        #annotate("text", x=1, y=-1.5, label=n1, size=5)+
+        #annotate("text", x=2, y=-1.5, label=n2, size=5)+
+        #annotate("text", x=3, y=-1.5, label=n3, size=5)+
+        #annotate("text", x=4, y=-1.5, label=n4, size=5)+
+        #annotate("text", x=5, y=-1.5, label=n5, size=5)+
+        #annotate("text", x=6, y=-1.5, label=n6, size=5)+
+        #annotate("text", x=7, y=-1.5, label=n7, size=5)+
+        #annotate("text", x=8, y=-1.5, label=n8, size=5)+
+        #annotate("text", x=9, y=-1.5, label=n9, size=5)+
+        #annotate("text", x=10, y=-1.5, label=n10, size=5)+
+        #annotate("text", x=11, y=-1.5, label=n11, size=5)+
+        #annotate("text", x=12, y=-1.5, label=n12, size=5)+
+        scale_color_manual(name=expression(paste(CO[2], " treatment")),
+                           breaks=c("aC", "eC"),
+                           values=c("black","red"))
+    
+    p2 <- ggplot() +
+        geom_point(data=pDF2, stat = "identity", 
+                   aes(brk, value, col=P_trt),
+                   position="stack", size=5) +
+        geom_errorbar(data=pDF2, 
+                      mapping=aes(x=brk, ymin=neg, 
+                                  ymax=pos, col=P_trt), 
+                      width=0.2, size=1) +
+        ylab(expression(paste(eCO[2], " RR"))) +
+        scale_x_continuous(name = "Biomass content",
+                           breaks=c(1,2,3,4,5,6,7,8,9,10,11,12),
+                           labels=c("Total", 
+                                    "Stem", 
+                                    "Root", 
+                                    "Leaf", 
+                                    "Total N",
+                                    "Stem N", 
+                                    "Root N", 
+                                    "Leaf N", 
+                                    "Total P",
+                                    "Stem P", 
+                                    "Root P", 
+                                    "Leaf P"))+
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.9))+
+        geom_hline(yintercept=0, linetype=2)+
+        ylim(-3,4)+
+        #annotate("text", x=0.5, y=-2.5, label="n=", size=5)+
+        #annotate("text", x=1, y=-2.5, label=n1, size=5)+
+        #annotate("text", x=2, y=-2.5, label=n2, size=5)+
+        #annotate("text", x=3, y=-2.5, label=n3, size=5)+
+        #annotate("text", x=4, y=-2.5, label=n4, size=5)+
+        #annotate("text", x=5, y=-2.5, label=n5, size=5)+
+        #annotate("text", x=6, y=-2.5, label=n6, size=5)+
+        #annotate("text", x=7, y=-2.5, label=n7, size=5)+
+        #annotate("text", x=8, y=-2.5, label=n8, size=5)+
+        #annotate("text", x=9, y=-2.5, label=n9, size=5)+
+        #annotate("text", x=10, y=-2.5, label=n10, size=5)+
+        #annotate("text", x=11, y=-2.5, label=n11, size=5)+
+        #annotate("text", x=12, y=-2.5, label=n12, size=5)+
+        scale_color_manual(name=paste("P treatment"),
+                           breaks=c("aP", "eP"),
+                           values=c("black","red"))
+    
+    p3 <- ggplot() +
+        geom_point(data=pDF3, stat = "identity", 
+                   aes(brk, value),
+                   position="stack", size=5) +
+        geom_errorbar(data=pDF3, 
+                      mapping=aes(x=brk, ymin=neg, 
+                                  ymax=pos), 
+                      width=0.2, size=1) +
+        ylab(expression(paste("Interaction RR"))) +
+        scale_x_continuous(name = "Biomass content",
+                           breaks=c(1,2,3,4,5,6,7,8,9,10,11,12),
+                           labels=c("Total", 
+                                    "Stem", 
+                                    "Root", 
+                                    "Leaf", 
+                                    "Total N",
+                                    "Stem N", 
+                                    "Root N", 
+                                    "Leaf N", 
+                                    "Total P",
+                                    "Stem P", 
+                                    "Root P", 
+                                    "Leaf P"))+
+        theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -112,128 +278,30 @@ make_biomass_plots_100 <- function(inDF) {
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
-              legend.position="none",
-              legend.text.align=0)+
-        coord_flip()+
-        geom_hline(yintercept=1, linetype=2)+
-        annotate("text", x=6, y=-2.20, label=paste0("n=", n1, ""), size=5)+
-        annotate("text", x=5, y=-2.20, label=paste0("n=", n2, ""), size=5)+
-        annotate("text", x=4, y=-2.20, label=paste0("n=", n3, ""), size=5)+
-        annotate("text", x=3, y=-2.20, label=paste0("n=", n4, ""), size=5)+
-        #theme(legend.justification=c(1,0), legend.position=c(1,0))+
-        annotate("rect", xmin = 5, xmax = 6, ymin = 8.00, ymax = 15.00,
-                 alpha = .2, color="black", fill="white")+
-        annotate("text", x=5.7, y=13.00, label=expression(aCO[2]), size=6)+
-        annotate("text", x=5.3, y=13.00, label=expression(eCO[2]), size=6)+
-        annotate("segment", x = 5.7, xend = 5.7, y = 8.50, yend = 11.00,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 5.3, xend = 5.3, y = 8.50, yend = 11.00,
-                 colour = "red", size=1)+
-        annotate("segment", x = 5.6, xend = 5.8, y = 8.50, yend = 8.50,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 5.6, xend = 5.8, y = 11.00, yend = 11.00,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 5.2, xend = 5.4, y = 8.50, yend = 85.0,
-                 colour = "red", size=1)+
-        annotate("segment", x = 5.2, xend = 5.4, y = 11.00, yend = 11.00,
-                 colour = "red", size=1)+
-        geom_point(aes(x=5.7, y=9.75), color="black")+
-        geom_point(aes(x=5.3, y=9.75), color="brown")
-    
-    plot(p1)
-    
-    p2 <- ggplot() +  
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=eCaP_over_aCaP-eCaP_over_aCaP_sd, 
-                                                  ymax=eCaP_over_aCaP+eCaP_over_aCaP_sd), 
-                      width=0.2, size=1, color="grey") + 
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=eCeP_over_aCeP-eCeP_over_aCeP_sd, 
-                                                  ymax=eCeP_over_aCeP+eCeP_over_aCeP_sd), 
-                      width=0.2, size=1, color="red") + 
-        geom_point(data=bioDF1.sm, stat = "identity", 
-                   aes(Variable, eCaP_over_aCaP, fill=Variable),
-                   position="stack") +
-        geom_point(data=bioDF1.sm, stat = "identity", 
-                   aes(Variable, eCeP_over_aCeP, fill=Variable),
-                   position = "stack", col="brown") +
-        xlab("") + 
-        ylab(expression(paste(CO[2], " effect ratio"))) +
-        scale_x_discrete(labels=c("Leaf", 
-                                  "Root",
-                                  "Stem",
-                                  "Total"))+
-        theme_linedraw() +
-        ylim(-1,5)+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.position="none",
-              legend.text.align=0)+
-        coord_flip()+
-        geom_hline(yintercept=1, linetype=2)+
-        annotate("rect", xmin = 5, xmax = 6, ymin = 3.00, ymax = 5.00,
-                 alpha = .2, color="black", fill="white")+
-        annotate("text", x=5.7, y=4.40, label=expression(aP), size=6)+
-        annotate("text", x=5.3, y=4.40, label=expression(eP), size=6)+
-        annotate("segment", x = 5.7, xend = 5.7, y = 3.10, yend = 3.90,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 5.3, xend = 5.3, y = 3.10, yend = 3.90,
-                 colour = "red", size=1)+
-        annotate("segment", x = 5.6, xend = 5.8, y = 3.10, yend = 3.10,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 5.6, xend = 5.8, y = 3.90, yend = 3.90,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 5.2, xend = 5.4, y = 3.10, yend = 3.10,
-                 colour = "red", size=1)+
-        annotate("segment", x = 5.2, xend = 5.4, y = 3.90, yend = 3.90,
-                 colour = "red", size=1)+
-        geom_point(aes(x=5.7, y=3.50), color="black")+
-        geom_point(aes(x=5.3, y=3.50), color="brown")
-    
-    
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.9))+
+        geom_hline(yintercept=0, linetype=2)+
+        ylim(-3,3)+
+        annotate("text", x=0.5, y=-2.5, label="n = ", size=5)+
+        annotate("text", x=1, y=-2.5, label=n1, size=5)+
+        annotate("text", x=2, y=-2.5, label=n2, size=5)+
+        annotate("text", x=3, y=-2.5, label=n3, size=5)+
+        annotate("text", x=4, y=-2.5, label=n4, size=5)+
+        annotate("text", x=5, y=-2.5, label=n5, size=5)+
+        annotate("text", x=6, y=-2.5, label=n6, size=5)+
+        annotate("text", x=7, y=-2.5, label=n7, size=5)+
+        annotate("text", x=8, y=-2.5, label=n8, size=5)+
+        annotate("text", x=9, y=-2.5, label=n9, size=5)+
+        annotate("text", x=10, y=-2.5, label=n10, size=5)+
+        annotate("text", x=11, y=-2.5, label=n11, size=5)+
+        annotate("text", x=12, y=-2.5, label=n12, size=5)
 
-    
-    p3 <- ggplot(bioDF1.sm,
-                 aes(Variable, Interaction_multiplicative_aCaP)) +  
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=Interaction_multiplicative_aCaP-Interaction_multiplicative_aCaP_sd, 
-                                                  ymax=Interaction_multiplicative_aCaP+Interaction_multiplicative_aCaP_sd),
-                      width=0.2, size=1, color="black") + 
-        geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_multiplicative_aCaP))+
-        xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
-        scale_x_discrete(labels=c("AG", 
-                                  "BG",
-                                  "Leaf", 
-                                  "Root",
-                                  "Stem",
-                                  "Total"))+
-        theme_linedraw() +
-        ylim(-1.00,2.50)+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.position="none",
-              legend.text.align=0)+
-        coord_flip()+
-        geom_hline(yintercept=1, linetype=2)
-    
-    
     
     ### summary histgram of treatments
-    pdf("output/overall_biomass_100/summary_biomass_overall_plot.pdf", width=16, height=5)
+    pdf("output/overall_biomass_100/summary_biomass_overall_plot.pdf", width=16, height=12)
 
     plot_grid(p1, p2, p3, 
-              labels="AUTO", ncol=4, align="h", axis = "l",
-              rel_widths = c(1.2, 1.2,1,1))
+              labels="AUTO", ncol=1, align="v", axis = "l")
     dev.off()
     
     

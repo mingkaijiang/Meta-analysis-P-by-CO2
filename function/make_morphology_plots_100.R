@@ -15,41 +15,191 @@ make_morphology_plots_100 <- function(inDF) {
     
     ########## Make a further subset of the dataframe
     bioDF1 <- bioDF[bioDF$Variable %in% c("Total root length", "SLA", 
-                                          "Root to shoot ratio", "LMA", "Leaf area"),]
+                                          "LMA", "Leaf area"),]
     
     bioDF1.sm <- compute_variable_mean_sd(bioDF1)
+    
+    variable.list <- unique(bioDF1$Variable)
     
     ### Get sample size for each variable
     n1 <- length(bioDF1$Variable[bioDF1$Variable=="Total root length"])
     n2 <- length(bioDF1$Variable[bioDF1$Variable=="SLA"])
-    n3 <- length(bioDF1$Variable[bioDF1$Variable=="Root to shoot ratio"])
-    n4 <- length(bioDF1$Variable[bioDF1$Variable=="LMA"])
-    n5 <- length(bioDF1$Variable[bioDF1$Variable=="Leaf area"])
+    n3 <- length(bioDF1$Variable[bioDF1$Variable=="LMA"])
+    n4 <- length(bioDF1$Variable[bioDF1$Variable=="Leaf area"])
     
-    ### plot 
-    p1 <- ggplot() +  
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=aCeP_over_aCaP-aCeP_over_aCaP_sd, 
-                                                  ymax=aCeP_over_aCaP+aCeP_over_aCaP_sd), 
-                      width=0.2, size=1, color="grey") + 
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=eCeP_over_aCaP-eCeP_over_aCaP_sd, 
-                                                  ymax=eCeP_over_eCaP+eCeP_over_eCaP_sd), 
-                      width=0.2, size=1, color="red") + 
-        geom_point(data=bioDF1.sm, stat = "identity", 
-                   aes(Variable, aCeP_over_aCaP, fill=Variable),
-                   position="stack") +
-        geom_point(data=bioDF1.sm, stat = "identity", 
-                   aes(Variable, eCeP_over_eCaP, fill=Variable),
-                   position = "stack", col="brown") +
-        xlab("") + 
-        ylab("Phosphorus effect ratio") +
-        scale_x_discrete(name="Morphology", 
-                         labels=c("Leaf Area", 
-                                  "LMA", 
-                                  "Root/shoot ratio",
-                                  "SLA",
-                                  "Root length"))+
+    ### create a dataframe to contain long format data for each plot (3 dataframes)
+    pDF1 <- data.frame(c(0.8, 1.2, 1.8, 2.2, 2.8, 3.2, 
+                         3.8, 4.2), NA, NA, NA, NA, NA)
+    colnames(pDF1) <- c("brk", "variable", "CO2_trt", "value", "pos", "neg")
+    pDF1$variable <- rep(c("Total root length", "SLA", 
+                           "LMA", "Leaf area"),each=2)
+    pDF1$CO2_trt <- rep(c("aC", "eC"),4)
+    pDF2 <- pDF1
+    
+    
+    ### assign values
+    for (i in variable.list) {
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                            "aCeP_over_aCaP"])
+        
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                          "aCeP_over_aCaP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "aCeP_over_aCaP_sd"])
+        
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                          "aCeP_over_aCaP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "aCeP_over_aCaP_sd"])
+        
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                            "eCeP_over_eCaP"])
+        
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                          "eCeP_over_eCaP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "eCeP_over_eCaP_sd"])
+        
+        pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                          "eCeP_over_eCaP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "eCeP_over_eCaP_sd"])
+    }
+    
+    
+    
+    
+    ### rename pDF2
+    names(pDF2)[3] <- "P_trt"
+    pDF2$P_trt <- gsub("aC", "aP", pDF2$P_trt)
+    pDF2$P_trt <- gsub("eC", "eP", pDF2$P_trt)
+    
+    ### assign values
+    for (i in variable.list) {
+        pDF2[pDF2$variable==i&pDF2$P_trt=="aP", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                          "eCaP_over_aCaP"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="aP", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "eCaP_over_aCaP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "eCaP_over_aCaP_sd"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="aP", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "eCaP_over_aCaP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "eCaP_over_aCaP_sd"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="eP", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                          "eCeP_over_aCeP"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="eP", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "eCeP_over_aCeP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "eCeP_over_aCeP_sd"])
+        
+        pDF2[pDF2$variable==i&pDF2$P_trt=="eP", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                                        "eCeP_over_aCeP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "eCeP_over_aCeP_sd"])
+    }
+    
+    ### create a dataframe to contain long format data for each plot (3 dataframes)
+    pDF3 <- data.frame(c(1:4), NA, NA, NA, NA)
+    colnames(pDF3) <- c("brk", "variable", "value", "pos", "neg")
+    pDF3$variable <- c("Total root length", "SLA", 
+                       "LMA", "Leaf area")
+    
+    ### assign values
+    for (i in variable.list) {
+        pDF3[pDF3$variable==i, "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                         "Interaction_multiplicative_aCaP"])
+        
+        pDF3[pDF3$variable==i, "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                       "Interaction_multiplicative_aCaP"]) + 
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "Interaction_multiplicative_aCaP_sd"])
+        
+        pDF3[pDF3$variable==i, "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+                                                       "Interaction_multiplicative_aCaP"]) -
+            log(bioDF1.sm[bioDF1.sm$Variable==i,
+                          "Interaction_multiplicative_aCaP_sd"])
+    }
+    
+    ### plotting
+    p1 <- ggplot() +
+        geom_point(data=pDF1, stat = "identity", 
+                   aes(brk, value, col=CO2_trt),
+                   position="stack", size=5) +
+        geom_errorbar(data=pDF1, 
+                      mapping=aes(x=brk, ymin=neg, 
+                                  ymax=pos, col=CO2_trt), 
+                      width=0.2, size=1) +
+        ylab("eP RR") +
+        scale_x_continuous(name = "Morphology",
+                           breaks=c(1,2,3,4),
+                           labels=c("Total root length", "SLA", 
+                                    "LMA", "Leaf area"))+
         theme_linedraw() +
-        ylim(-1.00,5.00)+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.3))+
+        geom_hline(yintercept=0, linetype=2)+
+        ylim(-3,2)+
+        scale_color_manual(name=expression(paste(CO[2], " treatment")),
+                           breaks=c("aC", "eC"),
+                           values=c("black","red"))
+    
+    p2 <- ggplot() +
+        geom_point(data=pDF2, stat = "identity", 
+                   aes(brk, value, col=P_trt),
+                   position="stack", size=5) +
+        geom_errorbar(data=pDF2, 
+                      mapping=aes(x=brk, ymin=neg, 
+                                  ymax=pos, col=P_trt), 
+                      width=0.2, size=1) +
+        ylab(expression(paste(eCO[2], " RR"))) +
+        scale_x_continuous(name = "Morphology",
+                           breaks=c(1,2,3,4),
+                           labels=c("Total root length", "SLA", 
+                                    "LMA", "Leaf area"))+
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.9))+
+        geom_hline(yintercept=0, linetype=2)+
+        ylim(-3,4)+
+        scale_color_manual(name=paste("P treatment"),
+                           breaks=c("aP", "eP"),
+                           values=c("black","red"))
+    
+    p3 <- ggplot() +
+        geom_point(data=pDF3, stat = "identity", 
+                   aes(brk, value),
+                   position="stack", size=5) +
+        geom_errorbar(data=pDF3, 
+                      mapping=aes(x=brk, ymin=neg, 
+                                  ymax=pos), 
+                      width=0.2, size=1) +
+        ylab(expression(paste("Interaction RR"))) +
+        scale_x_continuous(name = "Morphology",
+                           breaks=c(1,2,3,4),
+                           labels=c("Total root length", "SLA", 
+                                    "LMA", "Leaf area"))+
+        theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
@@ -58,157 +208,21 @@ make_morphology_plots_100 <- function(inDF) {
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
-              legend.position="none",
-              legend.text.align=0)+
-        coord_flip()+
-        geom_hline(yintercept=1, linetype=2)+
-        annotate("text", x=5, y=-0.70, label=paste0("n=", n1, ""), size=5)+
-        annotate("text", x=4, y=-0.70, label=paste0("n=", n2, ""), size=5)+
-        annotate("text", x=3, y=-0.70, label=paste0("n=", n3, ""), size=5)+
-        annotate("text", x=2, y=-0.70, label=paste0("n=", n4, ""), size=5)+
-        annotate("text", x=1, y=-0.70, label=paste0("n=", n5, ""), size=5)+
-        annotate("rect", xmin = 2, xmax = 3, ymin = 2.00, ymax = 4.50,
-                 alpha = .2, color="black", fill="white")+
-        annotate("text", x=2.7, y=3.80, label=expression(aCO[2]), size=6)+
-        annotate("text", x=2.3, y=3.80, label=expression(eCO[2]), size=6)+
-        annotate("segment", x = 2.7, xend = 2.7, y = 2.10, yend = 3.10,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 2.3, xend = 2.3, y = 2.10, yend = 3.10,
-                 colour = "red", size=1)+
-        annotate("segment", x = 2.6, xend = 2.8, y = 2.10, yend = 2.10,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 2.6, xend = 2.8, y = 3.10, yend = 3.10,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 2.2, xend = 2.4, y = 2.10, yend = 2.10,
-                 colour = "red", size=1)+
-        annotate("segment", x = 2.2, xend = 2.4, y = 3.10, yend = 3.10,
-                 colour = "red", size=1)+
-        geom_point(aes(x=2.7, y=2.60), color="black")+
-        geom_point(aes(x=2.3, y=2.60), color="brown")
-    
-    p2 <- ggplot() +  
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=eCaP_over_aCaP-eCaP_over_aCaP_sd, 
-                                                  ymax=eCaP_over_aCaP+eCaP_over_aCaP_sd), 
-                      width=0.2, size=1, color="grey") + 
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=eCeP_over_aCeP-eCeP_over_aCeP_sd, 
-                                                  ymax=eCeP_over_aCeP+eCeP_over_aCeP_sd), 
-                      width=0.2, size=1, color="red") + 
-        geom_point(data=bioDF1.sm, stat = "identity", 
-                   aes(Variable, eCaP_over_aCaP, fill=Variable),
-                   position="stack") +
-        geom_point(data=bioDF1.sm, stat = "identity", 
-                   aes(Variable, eCeP_over_aCeP, fill=Variable),
-                   position = "stack", col="brown") +
-        xlab("") + 
-        ylab(expression(paste(CO[2], " effect ratio"))) +
-        scale_x_discrete(name="Morphology", 
-                         labels=c("Leaf Area", 
-                                  "LMA", 
-                                  "Root/shoot ratio",
-                                  "SLA",
-                                  "Root length"))+
-        theme_linedraw() +
-        ylim(-0.50,3.00)+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.position="none",
-              legend.text.align=0)+
-        coord_flip()+
-        geom_hline(yintercept=1, linetype=2)+
-        annotate("rect", xmin = 1, xmax = 2, ymin = 1.80, ymax = 3.00,
-                 alpha = .2, color="black", fill="white")+
-        annotate("text", x=1.7, y=2.70, label=expression(aP), size=6)+
-        annotate("text", x=1.3, y=2.70, label=expression(eP), size=6)+
-        annotate("segment", x = 1.7, xend = 1.7, y = 1.90, yend = 2.50,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 1.3, xend = 1.3, y = 1.90, yend = 2.50,
-                 colour = "red", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 1.90, yend = 1.90,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 1.6, xend = 1.8, y = 2.50, yend = 2.50,
-                 colour = "grey", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 1.90, yend = 1.90,
-                 colour = "red", size=1)+
-        annotate("segment", x = 1.2, xend = 1.4, y = 2.50, yend = 2.50,
-                 colour = "red", size=1)+
-        geom_point(aes(x=1.7, y=2.20), color="black")+
-        geom_point(aes(x=1.3, y=2.20), color="brown")
-    
-
-    p3 <- ggplot(bioDF1.sm,
-                 aes(Variable, Interaction_additive_aCaP)) +  
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=Interaction_additive_aCaP-Interaction_additive_aCaP_sd, 
-                                                  ymax=Interaction_additive_aCaP+Interaction_additive_aCaP_sd),
-                      width=0.2, size=1, color="black") + 
-        geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_additive_aCaP))+
-        xlab("") + 
-        ylab(expression(paste("Additive ", CO[2], " x P effect ratio"))) +
-        scale_x_discrete(name="Morphology", 
-                         labels=c("Leaf Area", 
-                                  "LMA", 
-                                  "Root/shoot ratio",
-                                  "SLA",
-                                  "Root length"))+
-        theme_linedraw() +
-        ylim(-2.50,3.00)+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.position="none",
-              legend.text.align=0)+
-        coord_flip()+
-        geom_hline(yintercept=0, linetype=2)
-    
-    p4 <- ggplot(bioDF1.sm,
-                 aes(Variable, Interaction_multiplicative_aCaP)) +  
-        geom_errorbar(data=bioDF1.sm, mapping=aes(x=Variable, ymin=Interaction_multiplicative_aCaP-Interaction_multiplicative_aCaP_sd, 
-                                                  ymax=Interaction_multiplicative_aCaP+Interaction_multiplicative_aCaP_sd),
-                      width=0.2, size=1, color="black") + 
-        geom_point(data=bioDF1.sm, mapping=aes(x=Variable, y=Interaction_multiplicative_aCaP))+
-        xlab("") + 
-        ylab(expression(paste("Multiplicative ", CO[2], " x P effect ratio"))) +
-        scale_x_discrete(name="Morphology", 
-                         labels=c("Leaf Area", 
-                                  "LMA", 
-                                  "Root/shoot ratio",
-                                  "SLA",
-                                  "Root length"))+
-        theme_linedraw() +
-        ylim(-1,4.00)+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.position="none",
-              legend.text.align=0)+
-        coord_flip()+
-        geom_hline(yintercept=1, linetype=2)
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.9))+
+        geom_hline(yintercept=0, linetype=2)+
+        ylim(-3,3)+
+        annotate("text", x=0.5, y=-2.7, label="n = ", size=5)+
+        annotate("text", x=1, y=-2.7, label=n1, size=5)+
+        annotate("text", x=2, y=-2.7, label=n2, size=5)+
+        annotate("text", x=3, y=-2.7, label=n3, size=5)+
+        annotate("text", x=4, y=-2.7, label=n4, size=5)
     
     ### summary histgram of treatments
-    pdf("output/overall_morphology_100/summary_morphology_overall_plot.pdf", width=16, height=5)
-    grid.labs <- c("(a)", "(b)", "(c)", "(d)")
+    pdf("output/overall_morphology_100/summary_morphology_overall_plot.pdf", width=6, height=12)
     
-    plot_grid(p1, p2, p3, p4,
-              labels="", ncol=4, align="h", axis = "l",
-              rel_widths = c(1.2, 1.2,1,1))
-    grid.text(grid.labs,x = c(0.065, 0.3, 0.57, 0.8),
-              y = c(0.95, 0.95, 0.95, 0.95),
-              gp=gpar(fontsize=16, col="black", fontface="bold"))
+    plot_grid(p1, p2, p3, 
+              labels="AUTO", ncol=1, align="v", axis = "l")
     dev.off()
     
 
