@@ -1,5 +1,7 @@
 make_subplots_along_gradients_100 <- function(inDF) {
     
+    inDF <- subset(inDF, Trt_eP_by_aP <= 10)
+    
     if(!dir.exists("output/subplot_gradient")) {
         dir.create("output/subplot_gradient", showWarnings = FALSE)
     }
@@ -178,7 +180,9 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position = c(0.4, 0.9),
               legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))+
         guides(col=guide_legend(nrow=2,bycol=TRUE, title="Vegetation type"))+
-        xlim(1,100)
+        xlim(1,10)+
+        annotate("text", x=6.3, y=0.5, label=paste0("s = ", round(coef1.slope, 2)), size=5)+
+        annotate("text", x=6.3, y=0.38, label=paste0("p < ", 0.1), size=5)
     
     ### plot  - leaf biomass, CO2 gradient
     p2 <- ggplot() +  
@@ -202,7 +206,9 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
               guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,2.5)
+        xlim(1,2.5) +
+        annotate("text", x=2.3, y=0.6, label=paste0("s = ", round(coef1.2.slope, 2)), size=5)+
+        annotate("text", x=2.3, y=0.4, label=paste0("p < ", 0.01), size=5)
         
     ### plot  - stem biomass, P gradient
     p3 <- ggplot() +  
@@ -226,9 +232,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100) +
-        annotate("text", x=6.3, y=0.5, label=paste0("s = ", round(coef2.slope, 2)), size=5)+
-        annotate("text", x=6.3, y=0.38, label=paste0("p < ", 0.01), size=5)
+        xlim(1,10)
     
     
     ### plot  - stem biomass, CO2 gradient
@@ -278,7 +282,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100)
+        xlim(1,10)
     
     
     ### plot  - leaf N content, CO2 gradient
@@ -318,8 +322,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("Total biomass RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_blank(), 
-              axis.text.x = element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=8),
@@ -328,7 +332,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100)
+        xlim(1,10)
 
     
     ### plot  - total biomass, CO2 gradient
@@ -343,8 +347,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("Total biomass RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_blank(), 
-              axis.text.x = element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
               legend.text=element_text(size=8),
@@ -367,8 +371,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("Leaf P conc. RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=8),
@@ -377,9 +381,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100)+
-        annotate("text", x=6.3, y=0.5, label=paste0("s = ", round(coef5.slope, 2)), size=5)+
-        annotate("text", x=6.3, y=0.38, label=paste0("p < ", 0.1), size=5)
+        xlim(1,10)
     
     
     ### plot  - leaf biomass, CO2 gradient
@@ -394,8 +396,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("Leaf P conc. RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
               legend.text=element_text(size=8),
@@ -418,8 +420,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("Stem N conc. RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=8),
@@ -428,7 +430,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100)
+        xlim(1,10)
     
     
     ### plot  - stem N conc, CO2 gradient
@@ -443,8 +445,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("Stem N conc. RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
               legend.text=element_text(size=8),
@@ -477,7 +479,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100)
+        xlim(1,10)
     
     
     ### plot  - root P conc, CO2 gradient
@@ -516,8 +518,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("CO2 assimilation RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=8),
@@ -526,9 +528,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100) +
-        annotate("text", x=6.3, y=0.5, label=paste0("s = ", round(coef8.slope, 2)), size=5)+
-        annotate("text", x=6.3, y=0.4, label=paste0("p < ", 0.05), size=5)
+        xlim(1,10) 
     
     
     ### plot  - co2 assimilation, CO2 gradient
@@ -543,8 +543,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("CO2 assimilation RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
               legend.text=element_text(size=8),
@@ -567,8 +567,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("N uptake RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=8),
@@ -577,9 +577,9 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100) +
+        xlim(1,10) +
         annotate("text", x=6.3, y=0.5, label=paste0("s = ", round(coef9.slope, 2)), size=5)+
-        annotate("text", x=6.3, y=0.4, label=paste0("p < ", 0.01), size=5)
+        annotate("text", x=6.3, y=0.4, label=paste0("p < ", 0.05), size=5)
     
     
     ### plot  - n uptake, CO2 gradient
@@ -594,8 +594,8 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylab("N uptake RR") +
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
               legend.text=element_text(size=8),
@@ -628,7 +628,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
               legend.position="none",
               legend.text.align=0)+
         guides(col=guide_legend(nrow=2,bycol=TRUE))+
-        xlim(1,100) 
+        xlim(1,10) 
     
     
     ### plot  - p uptake, CO2 gradient
@@ -656,7 +656,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
         xlim(1,2.5)
     
     ### summary histgram of treatments
-    pdf("output/subplot_gradient/summary_gradient_subplot_100_biomass_plot.pdf", width=8, height=16)
+    pdf("output/subplot_gradient/summary_gradient_subplot_100_biomass_plot.pdf", width=8, height=14)
     
     plot_grid(p1, p2, p3, p4, p5, p6, p7, p8, 
               labels="AUTO", ncol=2, align="h", axis = "l", rel_widths=c(1.2, 1),
@@ -665,7 +665,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
     
     
     ### summary histgram of treatments
-    pdf("output/subplot_gradient/summary_gradient_subplot_100_concentration_plot.pdf", width=8, height=16)
+    pdf("output/subplot_gradient/summary_gradient_subplot_100_concentration_plot.pdf", width=8, height=12)
     
     plot_grid(p9, p10, p11, p12, p13, p14,
               labels="AUTO", ncol=2, align="h", axis = "l", rel_widths=c(1.2, 1),
@@ -680,4 +680,120 @@ make_subplots_along_gradients_100 <- function(inDF) {
               label_x = 0.9, label_y=0.95)
     dev.off()
     
+    
+    ### plot  - leaf biomass, P gradient
+    p21 <- ggplot() +  
+        geom_point(data=subDF1, 
+                   aes(Trt_eP_by_aP, log(Interaction_multiplicative_aCaP), col=Vegetation_type),
+                   shape=19, size=2) +
+        geom_hline(yintercept=0, linetype=2)+
+        geom_smooth(data=subDF1, mapping=aes(Trt_eP_by_aP, log(Interaction_multiplicative_aCaP)),
+                    se=T, method="gam", col="black")+
+        xlab("Phosphorus Addition Ratio") + 
+        ylab("Leaf biomass RR") +
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=8),
+              legend.title=element_text(size=10),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.4, 0.9),
+              legend.background = element_rect(fill="gray90", size=.5, linetype="dotted"))+
+        guides(col=guide_legend(nrow=2,bycol=TRUE, title="Vegetation type"))+
+        xlim(1,10)+
+        annotate("text", x=6.3, y=0.5, label=paste0("s = ", round(coef1.slope, 2)), size=5)+
+        annotate("text", x=6.3, y=0.38, label=paste0("p < ", 0.1), size=5)+
+        ylim(-0.5, 1.5)
+    
+    ### plot  - leaf biomass, CO2 gradient
+    p22 <- ggplot() +  
+        geom_point(data=subDF1, 
+                   aes(Trt_eC_by_aC, log(Interaction_multiplicative_aCaP), col=Vegetation_type),
+                   shape=19, size=2) +
+        geom_hline(yintercept=0, linetype=2)+
+        geom_smooth(data=subDF1, mapping=aes(Trt_eC_by_aC, log(Interaction_multiplicative_aCaP)),
+                    se=T, method="gam", col="black")+
+        xlab(expression(paste(CO[2], " Enrichment Ratio"))) + 
+        ylab("Leaf biomass RR") +
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=8),
+              legend.title=element_text(size=10),
+              panel.grid.major=element_blank(),
+              legend.position="none",
+              legend.text.align=0)+
+        guides(col=guide_legend(nrow=2,bycol=TRUE))+
+        xlim(1,2.5) +
+        annotate("text", x=2.3, y=0.6, label=paste0("s = ", round(coef1.2.slope, 2)), size=5)+
+        annotate("text", x=2.3, y=0.4, label=paste0("p < ", 0.01), size=5)+
+        ylim(-0.5, 1.5)
+    
+    ### plot  - n uptake , P gradient
+    p23 <- ggplot() +  
+        geom_point(data=subDF9, 
+                   aes(Trt_eP_by_aP, log(Interaction_multiplicative_aCaP), col=Vegetation_type),
+                   shape=19, size=2) +
+        geom_hline(yintercept=0, linetype=2)+
+        geom_smooth(data=subDF9, mapping=aes(Trt_eP_by_aP, log(Interaction_multiplicative_aCaP)),
+                    se=T, method="gam", col="black")+
+        xlab("Phosphorus Addition Ratio") + 
+        ylab("N uptake RR") +
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=8),
+              legend.title=element_text(size=10),
+              panel.grid.major=element_blank(),
+              legend.position="none",
+              legend.text.align=0)+
+        guides(col=guide_legend(nrow=2,bycol=TRUE))+
+        xlim(1,10) +
+        annotate("text", x=6.3, y=0.45, label=paste0("s = ", round(coef9.slope, 2)), size=5)+
+        annotate("text", x=6.3, y=0.4, label=paste0("p < ", 0.05), size=5)+
+        ylim(-0.5, 0.5)
+    
+    
+    ### plot  - n uptake, CO2 gradient
+    p24 <- ggplot() +  
+        geom_point(data=subDF9, 
+                   aes(Trt_eC_by_aC, log(Interaction_multiplicative_aCaP), col=Vegetation_type),
+                   shape=19, size=2) +
+        geom_hline(yintercept=0, linetype=2)+
+        geom_smooth(data=subDF9, mapping=aes(Trt_eC_by_aC, log(Interaction_multiplicative_aCaP)),
+                    se=T, method="gam", col="black")+
+        xlab(expression(paste(CO[2], " Enrichment Ratio"))) + 
+        ylab("N uptake RR") +
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=8),
+              legend.title=element_text(size=10),
+              panel.grid.major=element_blank(),
+              legend.position="none",
+              legend.text.align=0)+
+        guides(col=guide_legend(nrow=2,bycol=TRUE))+
+        xlim(1,2.5)+
+        ylim(-0.5, 0.5)
+    
+    ### summary histgram of treatments
+    pdf("output/subplot_gradient/summary_gradient_subplot_100_significant_plot.pdf", width=8, height=8)
+    
+    plot_grid(p21, p22, p23, p24,
+              labels="AUTO", ncol=2, align="h", axis = "l", rel_widths=c(1.2, 1),
+              label_x = 0.9, label_y=0.95)
+    dev.off()
  }
