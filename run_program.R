@@ -200,7 +200,9 @@ make_subplots_along_gradients_100(inDF=subDF100)
 ###    1.2 Luo's paper
 ###    1.3 Waring and Wang paper
 ### 2. Perform statistical analysis
-###    2.2 weighted regression based on error bars
+###    2.1 weighted regression based on error bars
+###    2.2 add statistical check on slope of gam in gradient plot
+###    2.3 repeat 2.2 for ep/ap < 100 result
 ### 3. Interpret the results with writing. 
 
 
