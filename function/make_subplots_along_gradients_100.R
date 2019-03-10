@@ -681,11 +681,15 @@ make_subplots_along_gradients_100 <- function(inDF) {
     dev.off()
     
     
+    #### prepare point size
+    require(scales)
+    subDF1$plot_size <- rescale(1/subDF1$v_variance, to = c(1, 5))
+    
     ### plot  - leaf biomass, P gradient
     p21 <- ggplot() +  
         geom_point(data=subDF1, 
                    aes(Trt_eP_by_aP, log(Interaction_multiplicative_aCaP), col=Vegetation_type),
-                   shape=19, size=2) +
+                   shape=19, size=subDF1$plot_size) +
         geom_hline(yintercept=0, linetype=2)+
         geom_smooth(data=subDF1, mapping=aes(Trt_eP_by_aP, log(Interaction_multiplicative_aCaP)),
                     se=T, method="gam", col="black")+
@@ -713,7 +717,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
     p22 <- ggplot() +  
         geom_point(data=subDF1, 
                    aes(Trt_eC_by_aC, log(Interaction_multiplicative_aCaP), col=Vegetation_type),
-                   shape=19, size=2) +
+                   shape=19, size=subDF1$plot_size) +
         geom_hline(yintercept=0, linetype=2)+
         geom_smooth(data=subDF1, mapping=aes(Trt_eC_by_aC, log(Interaction_multiplicative_aCaP)),
                     se=T, method="gam", col="black")+
@@ -737,10 +741,11 @@ make_subplots_along_gradients_100 <- function(inDF) {
         ylim(-0.5, 1.5)
     
     ### plot  - n uptake , P gradient
+    subDF9$plot_size <- rescale(1/subDF9$v_variance, to = c(1, 5))
     p23 <- ggplot() +  
         geom_point(data=subDF9, 
                    aes(Trt_eP_by_aP, log(Interaction_multiplicative_aCaP), col=Vegetation_type),
-                   shape=19, size=2) +
+                   shape=19, size=subDF9$plot_size) +
         geom_hline(yintercept=0, linetype=2)+
         geom_smooth(data=subDF9, mapping=aes(Trt_eP_by_aP, log(Interaction_multiplicative_aCaP)),
                     se=T, method="gam", col="black")+
@@ -768,7 +773,7 @@ make_subplots_along_gradients_100 <- function(inDF) {
     p24 <- ggplot() +  
         geom_point(data=subDF9, 
                    aes(Trt_eC_by_aC, log(Interaction_multiplicative_aCaP), col=Vegetation_type),
-                   shape=19, size=2) +
+                   shape=19, size=subDF9$plot_size) +
         geom_hline(yintercept=0, linetype=2)+
         geom_smooth(data=subDF9, mapping=aes(Trt_eC_by_aC, log(Interaction_multiplicative_aCaP)),
                     se=T, method="gam", col="black")+
