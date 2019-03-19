@@ -142,6 +142,7 @@ metafor_statistics_gas_exchange(reDF)
 
 
 ##############
+######## Interaction effect
 ### Biomass
 metafor_statistics_biomass_100(reDF100)
 
@@ -159,6 +160,52 @@ metafor_statistics_resource_use_efficiency_100(reDF100)
 
 ### gas exchange
 metafor_statistics_gas_exchange_100(reDF100)
+
+
+##############
+####### P effect
+reDF100 <- reprocessing_p_effect_term(inDF=reDF100)
+
+### Biomass
+metafor_p_statistics_biomass_100(reDF100)
+
+### concentration
+metafor_p_statistics_concentration_100(reDF100)
+
+### morphology
+metafor_p_statistics_morphology_100(reDF100)
+
+### nutrient uptake
+metafor_p_statistics_nutrient_uptake_100(reDF100)
+
+### resource use efficiency
+metafor_p_statistics_resource_use_efficiency_100(reDF100)
+
+### gas exchange
+metafor_p_statistics_gas_exchange_100(reDF100)
+
+##############
+######## CO2 effect
+reDF100 <- reprocessing_co2_effect_term(inDF=reDF100)
+
+
+### Biomass
+metafor_co2_statistics_biomass_100(reDF100)
+
+### concentration
+metafor_co2_statistics_concentration_100(reDF100)
+
+### morphology
+metafor_co2_statistics_morphology_100(reDF100)
+
+### nutrient uptake
+metafor_co2_statistics_nutrient_uptake_100(reDF100)
+
+### resource use efficiency
+metafor_co2_statistics_resource_use_efficiency_100(reDF100)
+
+### gas exchange
+metafor_co2_statistics_gas_exchange_100(reDF100)
 
 
 ############## scenario illustration
@@ -193,16 +240,5 @@ make_subplots_along_gradients(inDF=subDF)
 ### ep/ap < 100
 make_subplots_along_gradients_100(inDF=subDF100)
 
-
-### To do list:
-### 1. Write hypotheses based on models
-###    1.1 model based hypotheses
-###    1.2 Luo's paper
-###    1.3 Waring and Wang paper
-### 2. Perform statistical analysis
-###    2.1 weighted regression based on error bars
-###    2.2 add statistical check on slope of gam in gradient plot
-###    2.3 repeat 2.2 for ep/ap < 100 result
-### 3. Interpret the results with writing. 
 
 
