@@ -42,12 +42,9 @@ make_mean_effect_size_recalculation <- function(inDF) {
     inDF$Interaction_additive_aCeP <- (inDF$eCaP_over_aCeP - 1) - (inDF$eCeP_over_aCeP - 1) - (inDF$aCaP_over_aCeP - 1)
     
     ### Compute interaction terms, multiplicative
-    #inDF$Interaction_multiplicative_aCaP <- ((inDF$eCeP_mean / inDF$eCaP_mean) / (inDF$aCeP_mean / inDF$aCaP_mean) - 1) * 100
-    #inDF$Interaction_multiplicative_aCeP <- ((inDF$eCaP_mean / inDF$eCeP_mean) / (inDF$aCaP_mean / inDF$aCeP_mean) - 1) * 100
-    
     inDF$Interaction_multiplicative_aCaP <- ((inDF$eCeP_mean / inDF$eCaP_mean) / (inDF$aCeP_mean / inDF$aCaP_mean)) 
-    inDF$Interaction_multiplicative_aCeP <- ((inDF$eCaP_mean / inDF$eCeP_mean) / (inDF$aCaP_mean / inDF$aCeP_mean)) 
-    
+    inDF$Interaction_multiplicative_aCeP <- ((inDF$eCaP_mean / inDF$aCaP_mean) / (inDF$eCeP_mean / inDF$aCeP_mean)) 
+
     outDF <- inDF
     
     return(outDF)

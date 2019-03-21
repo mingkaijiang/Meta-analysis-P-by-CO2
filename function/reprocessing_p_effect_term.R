@@ -8,11 +8,17 @@ reprocessing_p_effect_term <- function(inDF) {
     ### therefore, for these entries (i.e. missing standard deviation), 
     ### I used the mean sd of the same variable as a proxy. 
     
-    ####### P effect
+    ####### P effect, fertilization (i.e. aP is control)
     inDF$log_P <- log(inDF$aCeP_mean/inDF$aCaP_mean)
     
     inDF$variance_p <- (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))+
         (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))
+    
+    ####### P effect, limitation (i.e. eP is control)
+    inDF$log_P <- log(inDF$aCaP_mean/inDF$aCeP_mean)
+    
+    inDF$variance_p <- (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))+
+        (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))
     
     ### many studies do not report sd, hence variance needs to be calculated using proxies
     ### here variance for missing data of each study is calculated assuming

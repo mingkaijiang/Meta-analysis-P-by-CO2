@@ -342,7 +342,6 @@ make_biomass_plots <- function(inDF) {
         geom_point(aes(x=1.7, y=1.875), color="black")+
         geom_point(aes(x=1.3, y=1.875), color="brown")
     
-    
     p3 <- ggplot(bioDF2.sm,
                  aes(Variable, Interaction_additive_aCaP)) +  
         geom_errorbar(data=bioDF2.sm, mapping=aes(x=Variable, ymin=Interaction_additive_aCaP-Interaction_additive_aCaP_sd, 

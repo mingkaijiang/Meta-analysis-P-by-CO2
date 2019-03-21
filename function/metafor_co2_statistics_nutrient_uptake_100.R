@@ -1,4 +1,4 @@
-metafor_p_statistics_nutrient_uptake_100 <- function(reDF) {
+metafor_co2_statistics_nutrient_uptake_100 <- function(reDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_co2_nutrient_uptake_100")) {
