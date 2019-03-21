@@ -49,31 +49,58 @@ make_biomass_plots_100 <- function(inDF) {
     
     ### assign values
     for (i in variable.list) {
+        #pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                                "aCeP_over_aCaP"])
+        #
+        #pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                                "aCeP_over_aCaP"]) + 
+        #    log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #              "aCeP_over_aCaP_sd"])
+        #
+        #pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                                "aCeP_over_aCaP"]) -
+        #    log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #              "aCeP_over_aCaP_sd"])
+        #
+        #pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                                "eCeP_over_eCaP"])
+        #
+        #pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                              "eCeP_over_eCaP"]) + 
+        #    log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #              "eCeP_over_eCaP_sd"])
+        #
+        #pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                              "eCeP_over_eCaP"]) -
+        #    log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #              "eCeP_over_eCaP_sd"])
+        
+        
         pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                        "aCeP_over_aCaP"])
+                                                                            "aCaP_over_aCeP"])
         
         pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                        "aCeP_over_aCaP"]) + 
+                                                                          "aCaP_over_aCeP"]) + 
             log(bioDF1.sm[bioDF1.sm$Variable==i,
-                      "aCeP_over_aCaP_sd"])
+                          "aCaP_over_aCeP_sd"])
         
         pDF1[pDF1$variable==i&pDF1$CO2_trt=="aC", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                        "aCeP_over_aCaP"]) -
+                                                                          "aCaP_over_aCeP"]) -
             log(bioDF1.sm[bioDF1.sm$Variable==i,
-                      "aCeP_over_aCaP_sd"])
+                          "aCaP_over_aCeP_sd"])
         
         pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                        "eCeP_over_eCaP"])
+                                                                            "eCaP_over_eCeP"])
         
         pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                      "eCeP_over_eCaP"]) + 
+                                                                          "eCaP_over_eCeP"]) + 
             log(bioDF1.sm[bioDF1.sm$Variable==i,
-                      "eCeP_over_eCaP_sd"])
+                          "eCaP_over_eCeP_sd"])
         
         pDF1[pDF1$variable==i&pDF1$CO2_trt=="eC", "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                      "eCeP_over_eCaP"]) -
+                                                                          "eCaP_over_eCeP"]) -
             log(bioDF1.sm[bioDF1.sm$Variable==i,
-                      "eCeP_over_eCaP_sd"])
+                          "eCaP_over_eCeP_sd"])
     }
     
     
@@ -81,8 +108,8 @@ make_biomass_plots_100 <- function(inDF) {
         
     ### rename pDF2
     names(pDF2)[3] <- "P_trt"
-    pDF2$P_trt <- gsub("aC", "aP", pDF2$P_trt)
-    pDF2$P_trt <- gsub("eC", "eP", pDF2$P_trt)
+    pDF2$P_trt <- gsub("aC", "eP", pDF2$P_trt)
+    pDF2$P_trt <- gsub("eC", "aP", pDF2$P_trt)
     
     ### assign values
     for (i in variable.list) {
@@ -125,30 +152,43 @@ make_biomass_plots_100 <- function(inDF) {
 
     ### assign values
     for (i in variable.list) {
+        #pDF3[pDF3$variable==i, "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                              "Interaction_multiplicative_aCaP"])
+        #
+        #pDF3[pDF3$variable==i, "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                            "Interaction_multiplicative_aCaP"]) + 
+        #    log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #              "Interaction_multiplicative_aCaP_sd"])
+        #
+        #pDF3[pDF3$variable==i, "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #                                                            "Interaction_multiplicative_aCaP"]) -
+        #    log(bioDF1.sm[bioDF1.sm$Variable==i,
+        #              "Interaction_multiplicative_aCaP_sd"])
+        
         pDF3[pDF3$variable==i, "value"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                      "Interaction_multiplicative_aCaP"])
+                                                         "Interaction_multiplicative_aCeP"])
         
         pDF3[pDF3$variable==i, "pos"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                    "Interaction_multiplicative_aCaP"]) + 
+                                                       "Interaction_multiplicative_aCeP"]) + 
             log(bioDF1.sm[bioDF1.sm$Variable==i,
-                      "Interaction_multiplicative_aCaP_sd"])
+                          "Interaction_multiplicative_aCeP_sd"])
         
         pDF3[pDF3$variable==i, "neg"] <- log(bioDF1.sm[bioDF1.sm$Variable==i,
-                                                                    "Interaction_multiplicative_aCaP"]) -
+                                                       "Interaction_multiplicative_aCeP"]) -
             log(bioDF1.sm[bioDF1.sm$Variable==i,
-                      "Interaction_multiplicative_aCaP_sd"])
+                          "Interaction_multiplicative_aCeP_sd"])
     }
     
     ### plotting
     p1 <- ggplot() +
         geom_point(data=pDF1, stat = "identity", 
                    aes(brk, value, col=CO2_trt),
-                   position="stack", size=5) +
+                    size=5) +
         geom_errorbar(data=pDF1, 
                       mapping=aes(x=brk, ymin=neg, 
                                   ymax=pos, col=CO2_trt), 
                       width=0.2, size=1) +
-        ylab("eP RR") +
+        ylab("P reduction RR") +
         scale_x_continuous(name = "Biomass content",
                            breaks=c(1,2,3,4,5,6,7,8,9,10,11,12),
                            labels=c("Total", 
@@ -175,7 +215,7 @@ make_biomass_plots_100 <- function(inDF) {
               legend.justification = c(0, 1), 
               legend.position = c(0.1, 0.9))+
         geom_hline(yintercept=0, linetype=2)+
-        ylim(-2,6)+
+        ylim(-4,4)+
         #annotate("text", x=0.5, y=-1.5, label="n=", size=5)+
         #annotate("text", x=1, y=-1.5, label=n1, size=5)+
         #annotate("text", x=2, y=-1.5, label=n2, size=5)+
@@ -196,7 +236,7 @@ make_biomass_plots_100 <- function(inDF) {
     p2 <- ggplot() +
         geom_point(data=pDF2, stat = "identity", 
                    aes(brk, value, col=P_trt),
-                   position="stack", size=5) +
+                   size=5) +
         geom_errorbar(data=pDF2, 
                       mapping=aes(x=brk, ymin=neg, 
                                   ymax=pos, col=P_trt), 
@@ -243,13 +283,14 @@ make_biomass_plots_100 <- function(inDF) {
         #annotate("text", x=11, y=-2.5, label=n11, size=5)+
         #annotate("text", x=12, y=-2.5, label=n12, size=5)+
         scale_color_manual(name=paste("P treatment"),
-                           breaks=c("aP", "eP"),
-                           values=c("black","red"))
+                           breaks=c("eP", "aP"),
+                           values=c("black","red"),
+                           labels=c("hP", "lP"))
     
     p3 <- ggplot() +
         geom_point(data=pDF3, stat = "identity", 
                    aes(brk, value),
-                   position="stack", size=5) +
+                   size=5) +
         geom_errorbar(data=pDF3, 
                       mapping=aes(x=brk, ymin=neg, 
                                   ymax=pos), 
