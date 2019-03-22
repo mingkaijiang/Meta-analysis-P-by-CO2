@@ -211,6 +211,7 @@ metafor_co2_statistics_gas_exchange_100(reDF100)
 ############## scenario illustration
 scenario_illustration_plot()
 
+scenario_illustration_plot_high_P()
 
 ############## make overall plots
 ### Make plots - biomass
@@ -233,12 +234,12 @@ make_gas_exchange_plots_100(inDF=subDF100)
 
 
 ############## make gradient subplot 10
-
-#### ep/ap < 10
-make_subplots_along_gradients(inDF=subDF)
-
-### ep/ap < 100
-make_subplots_along_gradients_100(inDF=subDF100)
+#
+##### ep/ap < 10
+#make_subplots_along_gradients(inDF=subDF)
+#
+#### ep/ap < 100
+#make_subplots_along_gradients_100(inDF=subDF100)
 
 
 
