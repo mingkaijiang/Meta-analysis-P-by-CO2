@@ -213,6 +213,8 @@ scenario_illustration_plot()
 
 scenario_illustration_plot_high_P()
 
+scenario_illustration_simplified_plot_high_P()
+
 ############## make overall plots
 ### Make plots - biomass
 make_biomass_plots_100(inDF=subDF100) 
