@@ -204,42 +204,69 @@ metafor_statistics_gas_exchange_100(reDF100)
 
 
 ##############
-####### P effect
+####### P effect under aCO2 and eCO2
 reDF100 <- reprocessing_p_effect_term(inDF=reDF100)
 
+### prepare a storage dataframe for all summary information
+### useful for making later summary plot
+sumDF2 <- prepare_summary_p_effect_df()
+
+####### P effect under aCO2 
 ### Biomass
-metafor_p_statistics_biomass_100(reDF100)
+sumDF2 <- metafor_p_statistics_biomass_100(reDF100, sumDF2)
 
 ### concentration
-metafor_p_statistics_concentration_100(reDF100)
+sumDF2 <- metafor_p_statistics_concentration_100(reDF100, sumDF2)
 
 ### morphology
-metafor_p_statistics_morphology_100(reDF100)
+sumDF2 <- metafor_p_statistics_morphology_100(reDF100, sumDF2)
 
 ### nutrient uptake
-metafor_p_statistics_nutrient_uptake_100(reDF100)
+sumDF2 <- metafor_p_statistics_nutrient_uptake_100(reDF100, sumDF2)
 
 ### resource use efficiency
-metafor_p_statistics_resource_use_efficiency_100(reDF100)
+sumDF2 <- metafor_p_statistics_resource_use_efficiency_100(reDF100, sumDF2)
 
 ### gas exchange
-metafor_p_statistics_gas_exchange_100(reDF100)
+sumDF2 <- metafor_p_statistics_gas_exchange_100(reDF100, sumDF2)
 
 
 
+
+
+####### P effect under eCO2 
+
+### Biomass
+sumDF2 <- metafor_p_statistics_biomass_100(reDF100, sumDF2)
+
+### concentration
+sumDF2 <- metafor_p_statistics_concentration_100(reDF100, sumDF2)
+
+### morphology
+sumDF2 <- metafor_p_statistics_morphology_100(reDF100, sumDF2)
+
+### nutrient uptake
+sumDF2 <- metafor_p_statistics_nutrient_uptake_100(reDF100, sumDF2)
+
+### resource use efficiency
+sumDF2 <- metafor_p_statistics_resource_use_efficiency_100(reDF100, sumDF2)
+
+### gas exchange
+sumDF2 <- metafor_p_statistics_gas_exchange_100(reDF100, sumDF2)
 
 
 
 
 ##############
-######## CO2 effect under eP
+######## CO2 effect under aP and eP
 reDF100 <- reprocessing_co2_effect_term(inDF=reDF100)
 
 ### prepare a storage dataframe for all summary information
 ### useful for making later summary plot
-sumDF <- prepare_summary_df()
+sumDF <- prepare_summary_co2_effect_df()
 
 
+######## CO2 effect under eP
 ### Biomass
 sumDF <- metafor_co2_statistics_biomass_100_eP(reDF100, sumDF)
 
@@ -260,7 +287,7 @@ sumDF <- metafor_co2_statistics_gas_exchange_100_eP(reDF100, sumDF)
 
 
 
-##############
+######## CO2 effect under aP
 ### Biomass
 sumDF <- metafor_co2_statistics_biomass_100_aP(reDF100, sumDF)
 
@@ -279,12 +306,24 @@ sumDF <- metafor_co2_statistics_resource_use_efficiency_100_aP(reDF100, sumDF)
 ### gas exchange
 sumDF <- metafor_co2_statistics_gas_exchange_100_aP(reDF100, sumDF)
 
+
+
 ############## plot all significant responses
 plot_significant_response_ratio_100(sumDF)
 
 
+
+
+
 ############## make eCO2 at low P and high P plot
 make_eCO2_effect_at_lowP_highP_chart(sumDF)
+
+############## make lP effect at aCO2 and eCO2
+make_lP_effect_at_aCO2_eCO2_chart(sumDF2)
+
+############## make interaction effect 
+make_interaction_effect_chart(sumDF, sumDF2, intDF)
+
 
 
 ############## scenario illustration

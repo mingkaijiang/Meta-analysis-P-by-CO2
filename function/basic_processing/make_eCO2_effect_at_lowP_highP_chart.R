@@ -3,8 +3,8 @@
 make_eCO2_effect_at_lowP_highP_chart <- function(sumDF) {
     
     ### This function processes the dataframe with some basic summaries
-    if(!dir.exists("output/CO2_effect_lowP_highP")) {
-        dir.create("output/CO2_effect_lowP_highP", showWarnings = FALSE)
+    if(!dir.exists("output/metafor_summary_plot")) {
+        dir.create("output/metafor_summary_plot", showWarnings = FALSE)
     }
     
     ### prepare df
@@ -133,41 +133,46 @@ make_eCO2_effect_at_lowP_highP_chart <- function(sumDF) {
     
     ### plotting
     p1 <- ggplot(plotDF1)+ 
-        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=sig)) + 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
         geom_point(aes(y=id, x=CO2_effect, fill=P_treatment), 
                    size=4, shape=21)+
         labs(x="Response ratio", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        geom_vline(xintercept = 0.0)+
-        scale_x_continuous(limits=c(-1.0, 1.0))+
+        scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 
                                   9.5, 11.5, 13.5, 15.5,
                                   17.5, 19.5, 21.5, 23.5),
                          labels=y.lab1,
                          sec.axis = sec_axis(~., name = "", breaks=c(1:24),
                                              labels = y2.lab1))+
-        scale_color_manual(limits=c("pos", "neg", "neutral"),
-                           values=c("green", "red", "grey"))+
-        scale_fill_manual(limits=c("eP", "aP"),
-                          values=c("grey", "black"))+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("eP", "aP"),
+                           values=c("blue3", "red2"),
+                           labels=c("hP", "lP"))+
+        scale_fill_manual(name=paste("Means"),
+                          limits=c("eP", "aP"),
+                          values=c("blue3", "red2"),
+                          labels=c("hP", "lP"))+
         ggtitle("Biomass")
     
-    plot(p1)
+    #plot(p1)
 
     p2 <- ggplot(plotDF2)+ 
-        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=sig)) + 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
         geom_point(aes(y=id, x=CO2_effect, fill=P_treatment), 
                    size=4, shape=21)+
-        labs(x="Response ratio", y="")+
+        labs(x=expression(paste(CO[2], " response ratio")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -177,143 +182,166 @@ make_eCO2_effect_at_lowP_highP_chart <- function(sumDF) {
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
-              legend.position="none")+
-        geom_vline(xintercept = 0.0)+
-        scale_x_continuous(limits=c(-1.0, 1.0))+
+              legend.justification = c(0, 1), 
+              legend.position = c(0.7, 0.45),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(25.5, 27.5, 29.5, 31.5, 
                                     33.5, 35.5, 37.5, 39.5),
                            labels=y.lab2,
                            sec.axis = sec_axis(~., name = "", breaks=c(25:40),
                                                labels = y2.lab2))+
-        scale_color_manual(limits=c("pos", "neg", "neutral"),
-                           values=c("green", "red", "grey"))+
-        scale_fill_manual(limits=c("eP", "aP"),
-                          values=c("grey", "black"))+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("eP", "aP"),
+                           values=c("blue3", "red2"),
+                           labels=c("hP", "lP"))+
+        scale_fill_manual(name=paste("Means"),
+                          limits=c("eP", "aP"),
+                          values=c("blue3", "red2"),
+                          labels=c("hP", "lP"))+
         ggtitle("Nutrient concentration")
     
-    plot(p2)
+    #plot(p2)
     
     p3 <- ggplot(plotDF3)+ 
-        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=sig)) + 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
         geom_point(aes(y=id, x=CO2_effect, fill=P_treatment), 
                    size=4, shape=21)+
         labs(x="Response ratio", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        geom_vline(xintercept = 0.0)+
-        scale_x_continuous(limits=c(-1.0, 1.0))+
+        scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(41.5, 43.5),
                            labels=y.lab3,
                            sec.axis = sec_axis(~., name = "", breaks=c(41:44),
                                                labels = y2.lab3))+
-        scale_color_manual(limits=c("pos", "neg", "neutral"),
-                           values=c("green", "red", "grey"))+
-        scale_fill_manual(limits=c("eP", "aP"),
-                          values=c("grey", "black"))+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("eP", "aP"),
+                           values=c("blue3", "red2"),
+                           labels=c("hP", "lP"))+
+        scale_fill_manual(name=paste("Means"),
+                          limits=c("eP", "aP"),
+                          values=c("blue3", "red2"),
+                          labels=c("hP", "lP"))+
         ggtitle("Gas exchange")
     
-    plot(p3)
+    #plot(p3)
     
     p4 <- ggplot(plotDF4)+ 
-        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=sig)) + 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
         geom_point(aes(y=id, x=CO2_effect, fill=P_treatment), 
                    size=4, shape=21)+
         labs(x="Response ratio", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        geom_vline(xintercept = 0.0)+
-        scale_x_continuous(limits=c(-1.0, 1.0))+
+        scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(45.5, 47.5, 49.5, 51.5),
                            labels=y.lab4,
                            sec.axis = sec_axis(~., name = "", breaks=c(45:52),
                                                labels = y2.lab4))+
-        scale_color_manual(limits=c("pos", "neg", "neutral"),
-                           values=c("green", "red", "grey"))+
-        scale_fill_manual(limits=c("eP", "aP"),
-                          values=c("grey", "black"))+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("eP", "aP"),
+                           values=c("blue3", "red2"),
+                           labels=c("hP", "lP"))+
+        scale_fill_manual(name=paste("Means"),
+                          limits=c("eP", "aP"),
+                          values=c("blue3", "red2"),
+                          labels=c("hP", "lP"))+
         ggtitle("Morphology")
     
-    plot(p4)
+    #plot(p4)
     
     p5 <- ggplot(plotDF5)+ 
-        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=sig)) + 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
         geom_point(aes(y=id, x=CO2_effect, fill=P_treatment), 
                    size=4, shape=21)+
         labs(x="Response ratio", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        geom_vline(xintercept = 0.0)+
-        scale_x_continuous(limits=c(-1.0, 1.0))+
+        scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(53.5, 55.5),
                            labels=y.lab5,
                            sec.axis = sec_axis(~., name = "", breaks=c(53:56),
                                                labels = y2.lab5))+
-        scale_color_manual(limits=c("pos", "neg", "neutral"),
-                           values=c("green", "red", "grey"))+
-        scale_fill_manual(limits=c("eP", "aP"),
-                          values=c("grey", "black"))+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("eP", "aP"),
+                           values=c("blue3", "red2"),
+                           labels=c("hP", "lP"))+
+        scale_fill_manual(name=paste("Means"),
+                          limits=c("eP", "aP"),
+                          values=c("blue3", "red2"),
+                          labels=c("hP", "lP"))+
         ggtitle("Nutrient uptake")
     
-    plot(p5)
+    #plot(p5)
     
     p6 <- ggplot(plotDF6)+ 
-        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=sig)) + 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
         geom_point(aes(y=id, x=CO2_effect, fill=P_treatment), 
                    size=4, shape=21)+
         labs(x="Response ratio", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        geom_vline(xintercept = 0.0)+
-        scale_x_continuous(limits=c(-1.0, 1.0))+
+        scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(57.5, 59.5, 61.5),
                            labels=y.lab6,
                            sec.axis = sec_axis(~., name = "", breaks=c(57:62),
                                                labels = y2.lab6))+
-        scale_color_manual(limits=c("pos", "neg", "neutral"),
-                           values=c("green", "red", "grey"))+
-        scale_fill_manual(limits=c("eP", "aP"),
-                          values=c("grey", "black"))+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("eP", "aP"),
+                           values=c("blue3", "red2"),
+                           labels=c("hP", "lP"))+
+        scale_fill_manual(name=paste("Means"),
+                          limits=c("eP", "aP"),
+                          values=c("blue3", "red2"),
+                          labels=c("hP", "lP"))+
         ggtitle("Resource use efficiency")
     
-    plot(p6)
+    #plot(p6)
     
-    pdf("output/subplot_gradient/mean_confidence_interval_100.pdf", width=6, height=16)
-    plot_grid(p6, p5, p4, p3, p2, p1,
+    pdf("output/metafor_summary_plot/CO2_effect_at_lowP_highP_all_results.pdf", width=6, height=20)
+    plot_grid(p6, p5, p4, p3, p1, p2,
               labels="", ncol=1, align="v", axis = "l",
-              rel_heights=c(0.4, 0.3, 0.5, 0.3, 1.4, 2.0))
+              rel_heights=c(0.4, 0.3, 0.5, 0.3, 1.6, 1.2))
     dev.off()
     
     
-}
+    }

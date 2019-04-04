@@ -8,17 +8,16 @@ reprocessing_p_effect_term <- function(inDF) {
     ### therefore, for these entries (i.e. missing standard deviation), 
     ### I used the mean sd of the same variable as a proxy. 
     
-    ####### P effect, fertilization (i.e. aP is control)
-    inDF$log_P <- log(inDF$aCeP_mean/inDF$aCaP_mean)
-    
-    inDF$variance_p <- (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))+
-        (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))
-    
+
     ####### P effect, limitation (i.e. eP is control)
-    inDF$log_P <- log(inDF$aCaP_mean/inDF$aCeP_mean)
+    inDF$log_P_aCO2 <- log(inDF$aCaP_mean/inDF$aCeP_mean)
+    inDF$log_P_eCO2 <- log(inDF$eCaP_mean/inDF$eCeP_mean)
     
-    inDF$variance_p <- (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))+
+    inDF$variance_p_aCO2 <- (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))+
         (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))
+    
+    inDF$variance_p_eCO2 <- (inDF$eCaP_sd^2/(inDF$Sample.Size*(inDF$eCaP_mean)^2))+
+        (inDF$eCeP_sd^2/(inDF$Sample.Size*(inDF$eCeP_mean)^2))
     
     ### many studies do not report sd, hence variance needs to be calculated using proxies
     ### here variance for missing data of each study is calculated assuming
@@ -28,13 +27,20 @@ reprocessing_p_effect_term <- function(inDF) {
         
         ### calcualte mean variance for the subset
         test1 <- subset(inDF, Variable == i)
-        mean.variance <- mean(test1$variance_p, na.rm=T)
+        mean.variance.aCO2 <- mean(test1$variance_p_aCO2, na.rm=T)
+        mean.variance.eCO2 <- mean(test1$variance_p_eCO2, na.rm=T)
         
         ### assign the mean variance to missing data
-        inDF$variance_p[inDF$Variable==i] <- ifelse(is.na(inDF$variance_p[inDF$Variable==i]), mean.variance, 
-                                                    inDF$variance_p[inDF$Variable==i])
+        inDF$variance_p_aCO2[inDF$Variable==i] <- ifelse(is.na(inDF$variance_p_aCO2[inDF$Variable==i]), mean.variance.aCO2, 
+                                                    inDF$variance_p_aCO2[inDF$Variable==i])
         
-        inDF$variance_p[inDF$Variable==i & is.na(inDF$variance_p)] <- mean.variance
+        inDF$variance_p_aCO2[inDF$Variable==i & is.na(inDF$variance_p_aCO2)] <- mean.variance.aCO2
+        
+        ### assign the mean variance to missing data
+        inDF$variance_p_eCO2[inDF$Variable==i] <- ifelse(is.na(inDF$variance_p_eCO2[inDF$Variable==i]), mean.variance.eCO2, 
+                                                         inDF$variance_p_eCO2[inDF$Variable==i])
+        
+        inDF$variance_p_eCO2[inDF$Variable==i & is.na(inDF$variance_p_eCO2)] <- mean.variance.eCO2
     }
     
     outDF <- inDF

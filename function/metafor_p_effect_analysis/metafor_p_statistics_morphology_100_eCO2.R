@@ -1,8 +1,8 @@
-metafor_p_statistics_morphology_100 <- function(reDF) {
+metafor_p_statistics_morphology_100_eCO2 <- function(reDF, sumDF2) {
     
     ### create directory
-    if(!dir.exists("output/statistics_p_morphology_100")) {
-        dir.create("output/statistics_p_morphology_100", showWarnings = FALSE)
+    if(!dir.exists("output/statistics_p_morphology_100_eCO2")) {
+        dir.create("output/statistics_p_morphology_100_eCO2", showWarnings = FALSE)
     }
     
     ### change LAI to leaf area and combine it with Total leaf area
@@ -13,7 +13,7 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="Leaf area")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -23,8 +23,14 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_morphology_100/leaf_area_morphology_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_morphology_100_eCO2/leaf_area_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -53,7 +59,7 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="LMA")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
     
@@ -61,8 +67,14 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_morphology_100/LMA_morphology_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_morphology_100_eCO2/LMA_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -90,7 +102,7 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="SLA")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -100,8 +112,14 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_morphology_100/SLA_morphology_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_morphology_100_eCO2/SLA_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -129,7 +147,7 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="Total root length")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -139,8 +157,14 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_morphology_100/root_length_morphology_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_morphology_100_eCO2/root_length_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -163,6 +187,7 @@ metafor_p_statistics_morphology_100 <- function(reDF) {
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
-
+    return(sumDF2)
+    
     
 }

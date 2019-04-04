@@ -1,15 +1,15 @@
-metafor_p_statistics_biomass_100 <- function(reDF) {
+metafor_p_statistics_biomass_100_eCO2 <- function(reDF, sumDF2) {
     
     ### create directory
-    if(!dir.exists("output/statistics_p_biomass_100")) {
-        dir.create("output/statistics_p_biomass_100", showWarnings = FALSE)
+    if(!dir.exists("output/statistics_p_biomass_100_eCO2")) {
+        dir.create("output/statistics_p_biomass_100_eCO2", showWarnings = FALSE)
     }
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf biomass")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -19,8 +19,14 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="leaf_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="leaf_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="leaf_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="leaf_biomass"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="leaf_biomass"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_biomass_100/leaf_biomass_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/leaf_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 6), 
@@ -48,7 +54,7 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="Stem biomass")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
     
@@ -56,8 +62,14 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="stem_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="stem_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="stem_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="stem_biomass"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="stem_biomass"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_biomass_100/stem_biomass_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/stem_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -85,7 +97,7 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="Root biomass")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -95,8 +107,14 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="root_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="root_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="root_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="root_biomass"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="root_biomass"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_biomass_100/root_biomass_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/root_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -124,7 +142,7 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -134,8 +152,14 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="total_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="total_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="total_biomass"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="total_biomass"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="total_biomass"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_biomass_100/total_biomass_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/total_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -163,7 +187,7 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="Leaf N content")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -173,8 +197,14 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="leaf_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="leaf_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="leaf_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="leaf_N_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="leaf_N_content"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_biomass_100/leaf_N_content_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/leaf_N_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -202,7 +232,7 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="Leaf P content")
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)#, control=list(stepadj=0.5))
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)#, control=list(stepadj=0.5))
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -212,8 +242,14 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF2$P_effect[sumDF2$variable=="leaf_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="leaf_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="leaf_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="leaf_P_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="leaf_P_content"&sumDF2$CO2_treatment=="eCO2"] <- l
+    
     ### forest plot
-    pdf("output/statistics_p_biomass_100/leaf_P_content_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/leaf_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -244,8 +280,8 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    sumDF2$ns[sumDF2$variable=="stem_N_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="stem_N_content"&sumDF2$CO2_treatment=="eCO2"] <- l
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem P content")
@@ -255,10 +291,16 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)#, control=list(stepadj=0.05))
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)#, control=list(stepadj=0.05))
+    
+    sumDF2$P_effect[sumDF2$variable=="stem_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="stem_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="stem_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="stem_P_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="stem_P_content"&sumDF2$CO2_treatment=="eCO2"] <- l
     
     ### forest plot
-    pdf("output/statistics_p_biomass_100/stem_P_content_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/stem_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -288,8 +330,8 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    sumDF2$ns[sumDF2$variable=="root_N_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="root_N_content"&sumDF2$CO2_treatment=="eCO2"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root P content")
@@ -299,10 +341,16 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)# control=list(stepadj=0.5))
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)# control=list(stepadj=0.5))
+    
+    sumDF2$P_effect[sumDF2$variable=="root_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="root_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="root_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="root_P_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="root_P_content"&sumDF2$CO2_treatment=="eCO2"] <- l
     
     ### forest plot
-    pdf("output/statistics_p_biomass_100/root_P_content_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/root_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -332,8 +380,11 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    sumDF2$P_effect[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant P content")
@@ -343,10 +394,16 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_P, variance_p, data = tDF)#, control=list(stepadj=0.5))
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)#, control=list(stepadj=0.5))
+    
+    sumDF2$P_effect[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
+    sumDF2$ns[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
+    sumDF2$ne[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="eCO2"] <- l
     
     ### forest plot
-    pdf("output/statistics_p_biomass_100/total_P_content_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_p_biomass_100_eCO2/total_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 6), 
@@ -369,5 +426,7 @@ metafor_p_statistics_biomass_100 <- function(reDF) {
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
 
+    return(sumDF2)
+    
 
 }
