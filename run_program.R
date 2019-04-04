@@ -113,6 +113,38 @@ make_basic_summary_stats_plots()
 #make_gas_exchange_plots_along_gradients(inDF=subDF)
 
 
+
+############## make overall plots
+### Make plots - biomass
+make_biomass_plots_100(inDF=subDF100) 
+
+### Make plots - concentration
+make_concentration_plots_100(inDF=subDF100)
+
+### Make plots - morphology
+make_morphology_plots_100(inDF=subDF100)
+
+### Make plots - nutrient uptake
+make_nutrient_uptake_plots_100(inDF=subDF100)
+
+### Make plots - resource use efficiency
+make_resource_use_efficiency_plots_100(inDF=subDF100)
+
+### Make plots - gas exchange
+make_gas_exchange_plots_100(inDF=subDF100)
+
+
+############## make gradient subplot 10
+#
+##### ep/ap < 10
+#make_subplots_along_gradients(inDF=subDF)
+#
+#### ep/ap < 100
+#make_subplots_along_gradients_100(inDF=subDF100)
+
+
+
+
 ############## Statistical analysis - metafor
 ### reprogressing the dataset to calculate individual means and variance for the interaction term
 reDF <- reprocessing_interaction_term(inDF=subDF)
@@ -247,9 +279,12 @@ sumDF <- metafor_co2_statistics_resource_use_efficiency_100_aP(reDF100, sumDF)
 ### gas exchange
 sumDF <- metafor_co2_statistics_gas_exchange_100_aP(reDF100, sumDF)
 
+############## plot all significant responses
+plot_significant_response_ratio_100(sumDF)
 
 
-
+############## make eCO2 at low P and high P plot
+make_eCO2_effect_at_lowP_highP_chart(sumDF)
 
 
 ############## scenario illustration
@@ -258,34 +293,6 @@ scenario_illustration_plot()
 scenario_illustration_plot_high_P()
 
 scenario_illustration_simplified_plot_high_P()
-
-############## make overall plots
-### Make plots - biomass
-make_biomass_plots_100(inDF=subDF100) 
-
-### Make plots - concentration
-make_concentration_plots_100(inDF=subDF100)
-
-### Make plots - morphology
-make_morphology_plots_100(inDF=subDF100)
-
-### Make plots - nutrient uptake
-make_nutrient_uptake_plots_100(inDF=subDF100)
-
-### Make plots - resource use efficiency
-make_resource_use_efficiency_plots_100(inDF=subDF100)
-
-### Make plots - gas exchange
-make_gas_exchange_plots_100(inDF=subDF100)
-
-
-############## make gradient subplot 10
-#
-##### ep/ap < 10
-#make_subplots_along_gradients(inDF=subDF)
-#
-#### ep/ap < 100
-#make_subplots_along_gradients_100(inDF=subDF100)
 
 
 ### To do plan

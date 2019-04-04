@@ -1,6 +1,6 @@
 ### This script plot bar chart for all significant response ratio means and confidence interval
 
-plot_significant_response_ratio_100 <- function() {
+plot_significant_response_ratio_100 <- function(sumDF) {
     
     ### prepare df
     myDF <- data.frame(c("Leaf biomass", "Stem biomass", "Root biomass", "Total biomass",
