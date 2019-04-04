@@ -1,4 +1,4 @@
-metafor_co2_statistics_biomass_100_aP <- function(reDF) {
+metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_co2_biomass_100_aP")) {
@@ -371,5 +371,6 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF) {
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
 
-
+    return(sumDF)
+    
 }

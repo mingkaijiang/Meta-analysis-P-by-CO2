@@ -203,45 +203,49 @@ metafor_p_statistics_gas_exchange_100(reDF100)
 ######## CO2 effect under eP
 reDF100 <- reprocessing_co2_effect_term(inDF=reDF100)
 
+### prepare a storage dataframe for all summary information
+### useful for making later summary plot
+sumDF <- prepare_summary_df()
+
 
 ### Biomass
-metafor_co2_statistics_biomass_100_eP(reDF100)
+sumDF <- metafor_co2_statistics_biomass_100_eP(reDF100, sumDF)
 
 ### concentration
-metafor_co2_statistics_concentration_100_eP(reDF100)
+sumDF <- metafor_co2_statistics_concentration_100_eP(reDF100, sumDF)
 
 ### morphology
-metafor_co2_statistics_morphology_100_eP(reDF100)
+sumDF <- metafor_co2_statistics_morphology_100_eP(reDF100, sumDF)
 
 ### nutrient uptake
-metafor_co2_statistics_nutrient_uptake_100_eP(reDF100)
+sumDF <- metafor_co2_statistics_nutrient_uptake_100_eP(reDF100, sumDF)
 
 ### resource use efficiency
-metafor_co2_statistics_resource_use_efficiency_100_eP(reDF100)
+sumDF <- metafor_co2_statistics_resource_use_efficiency_100_eP(reDF100, sumDF)
 
 ### gas exchange
-metafor_co2_statistics_gas_exchange_100_eP(reDF100)
+sumDF <- metafor_co2_statistics_gas_exchange_100_eP(reDF100, sumDF)
 
 
 
 ##############
 ### Biomass
-metafor_co2_statistics_biomass_100_aP(reDF100)
+sumDF <- metafor_co2_statistics_biomass_100_aP(reDF100, sumDF)
 
 ### concentration
-metafor_co2_statistics_concentration_100_aP(reDF100)
+sumDF <- metafor_co2_statistics_concentration_100_aP(reDF100, sumDF)
 
 ### morphology
-metafor_co2_statistics_morphology_100_aP(reDF100)
+sumDF <- metafor_co2_statistics_morphology_100_aP(reDF100, sumDF)
 
 ### nutrient uptake
-metafor_co2_statistics_nutrient_uptake_100_aP(reDF100)
+sumDF <- metafor_co2_statistics_nutrient_uptake_100_aP(reDF100, sumDF)
 
 ### resource use efficiency
-metafor_co2_statistics_resource_use_efficiency_100_aP(reDF100)
+sumDF <- metafor_co2_statistics_resource_use_efficiency_100_aP(reDF100, sumDF)
 
 ### gas exchange
-metafor_co2_statistics_gas_exchange_100_aP(reDF100)
+sumDF <- metafor_co2_statistics_gas_exchange_100_aP(reDF100, sumDF)
 
 
 

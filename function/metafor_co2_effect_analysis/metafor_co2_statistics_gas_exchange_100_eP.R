@@ -1,4 +1,4 @@
-metafor_co2_statistics_gas_exchange_100_eP <- function(reDF) {
+metafor_co2_statistics_gas_exchange_100_eP <- function(reDF, sumDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_co2_gas_exchange_100_eP")) {
@@ -80,4 +80,5 @@ metafor_co2_statistics_gas_exchange_100_eP <- function(reDF) {
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
+    return(sumDF)
 }

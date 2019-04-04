@@ -1,4 +1,4 @@
-metafor_co2_statistics_concentration_100_eP <- function(reDF) {
+metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_co2_concentration_100_eP")) {
@@ -240,5 +240,7 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF) {
     
     l
     ns
+    
+    return(sumDF)
     
 }

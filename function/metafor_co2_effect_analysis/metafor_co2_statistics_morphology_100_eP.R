@@ -1,4 +1,4 @@
-metafor_co2_statistics_morphology_100_eP <- function(reDF) {
+metafor_co2_statistics_morphology_100_eP <- function(reDF, sumDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_co2_morphology_100_eP")) {
@@ -164,5 +164,6 @@ metafor_co2_statistics_morphology_100_eP <- function(reDF) {
     dev.off()
     
 
+    return(sumDF)
     
 }
