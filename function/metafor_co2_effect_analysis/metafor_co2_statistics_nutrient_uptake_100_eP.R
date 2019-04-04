@@ -20,6 +20,12 @@ metafor_co2_statistics_nutrient_uptake_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="N_uptake"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="N_uptake"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="N_uptake"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="N_uptake"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="N_uptake"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_nutrient_uptake_100_eP/plant_N_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -56,6 +62,12 @@ metafor_co2_statistics_nutrient_uptake_100_eP <- function(reDF, sumDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    sumDF$CO2_effect[sumDF$variable=="P_uptake"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="P_uptake"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="P_uptake"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="P_uptake"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="P_uptake"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_nutrient_uptake_100_eP/plant_P_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",

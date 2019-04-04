@@ -20,6 +20,12 @@ metafor_co2_statistics_resource_use_efficiency_100_aP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="WUE"&sumDF$P_treatment=="aP"] <- res$b
+    sumDF$se[sumDF$variable=="WUE"&sumDF$P_treatment=="aP"] <- res$se
+    sumDF$p_value[sumDF$variable=="WUE"&sumDF$P_treatment=="aP"] <- res$pval
+    sumDF$ns[sumDF$variable=="WUE"&sumDF$P_treatment=="aP"] <- ns
+    sumDF$ne[sumDF$variable=="WUE"&sumDF$P_treatment=="aP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_resource_use_efficiency_100_aP/WUE_resource_use_efficiency_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -54,8 +60,8 @@ metafor_co2_statistics_resource_use_efficiency_100_aP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    sumDF$ns[sumDF$variable=="NUE"&sumDF$P_treatment=="aP"] <- ns
+    sumDF$ne[sumDF$variable=="NUE"&sumDF$P_treatment=="aP"] <- l
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="PUE")
@@ -64,8 +70,8 @@ metafor_co2_statistics_resource_use_efficiency_100_aP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    sumDF$ns[sumDF$variable=="PUE"&sumDF$P_treatment=="aP"] <- ns
+    sumDF$ne[sumDF$variable=="PUE"&sumDF$P_treatment=="aP"] <- l
     
     return(sumDF)
     
