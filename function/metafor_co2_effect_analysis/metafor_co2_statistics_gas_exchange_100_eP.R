@@ -1,8 +1,8 @@
-metafor_co2_statistics_gas_exchange_100 <- function(reDF) {
+metafor_co2_statistics_gas_exchange_100_eP <- function(reDF) {
     
     ### create directory
-    if(!dir.exists("output/statistics_co2_gas_exchange_100")) {
-        dir.create("output/statistics_co2_gas_exchange_100", showWarnings = FALSE)
+    if(!dir.exists("output/statistics_co2_gas_exchange_100_eP")) {
+        dir.create("output/statistics_co2_gas_exchange_100_eP", showWarnings = FALSE)
     }
     
     
@@ -10,7 +10,7 @@ metafor_co2_statistics_gas_exchange_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="CO2 assimilation rate")
     
     ### random-effect model
-    res <- rma(log_co2, variance_co2, data = tDF)
+    res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -21,7 +21,7 @@ metafor_co2_statistics_gas_exchange_100 <- function(reDF) {
     ns <- length(unique(tDF$Literature))
     
     ### forest plot
-    pdf("output/statistics_co2_gas_exchange_100/co2_assimilation_rate_gas_exchange_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_co2_gas_exchange_100_eP/co2_assimilation_rate_gas_exchange_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
@@ -50,14 +50,14 @@ metafor_co2_statistics_gas_exchange_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="Stomatal conductance")
     
     ### random-effect model
-    res <- rma(log_co2, variance_co2, data = tDF)
+    res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
     ### forest plot
-    pdf("output/statistics_co2_gas_exchange_100/stomatal_conductance_gas_exchange_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_co2_gas_exchange_100_eP/stomatal_conductance_gas_exchange_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 

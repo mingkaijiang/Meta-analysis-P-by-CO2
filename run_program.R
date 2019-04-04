@@ -141,6 +141,10 @@ metafor_statistics_gas_exchange(reDF)
 
 
 
+
+
+
+
 ##############
 ######## Interaction effect
 ### Biomass
@@ -160,6 +164,11 @@ metafor_statistics_resource_use_efficiency_100(reDF100)
 
 ### gas exchange
 metafor_statistics_gas_exchange_100(reDF100)
+
+
+
+
+
 
 
 ##############
@@ -184,28 +193,59 @@ metafor_p_statistics_resource_use_efficiency_100(reDF100)
 ### gas exchange
 metafor_p_statistics_gas_exchange_100(reDF100)
 
+
+
+
+
+
+
 ##############
-######## CO2 effect
+######## CO2 effect under eP
 reDF100 <- reprocessing_co2_effect_term(inDF=reDF100)
 
 
 ### Biomass
-metafor_co2_statistics_biomass_100(reDF100)
+metafor_co2_statistics_biomass_100_eP(reDF100)
 
 ### concentration
-metafor_co2_statistics_concentration_100(reDF100)
+metafor_co2_statistics_concentration_100_eP(reDF100)
 
 ### morphology
-metafor_co2_statistics_morphology_100(reDF100)
+metafor_co2_statistics_morphology_100_eP(reDF100)
 
 ### nutrient uptake
-metafor_co2_statistics_nutrient_uptake_100(reDF100)
+metafor_co2_statistics_nutrient_uptake_100_eP(reDF100)
 
 ### resource use efficiency
-metafor_co2_statistics_resource_use_efficiency_100(reDF100)
+metafor_co2_statistics_resource_use_efficiency_100_eP(reDF100)
 
 ### gas exchange
-metafor_co2_statistics_gas_exchange_100(reDF100)
+metafor_co2_statistics_gas_exchange_100_eP(reDF100)
+
+
+
+##############
+### Biomass
+metafor_co2_statistics_biomass_100_aP(reDF100)
+
+### concentration
+metafor_co2_statistics_concentration_100_aP(reDF100)
+
+### morphology
+metafor_co2_statistics_morphology_100_aP(reDF100)
+
+### nutrient uptake
+metafor_co2_statistics_nutrient_uptake_100_aP(reDF100)
+
+### resource use efficiency
+metafor_co2_statistics_resource_use_efficiency_100_aP(reDF100)
+
+### gas exchange
+metafor_co2_statistics_gas_exchange_100_aP(reDF100)
+
+
+
+
 
 
 ############## scenario illustration

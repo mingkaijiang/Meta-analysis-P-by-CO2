@@ -1,8 +1,8 @@
-metafor_co2_statistics_resource_use_efficiency_100 <- function(reDF) {
+metafor_co2_statistics_resource_use_efficiency_100_aP <- function(reDF) {
     
     ### create directory
-    if(!dir.exists("output/statistics_co2_resource_use_efficiency_100")) {
-        dir.create("output/statistics_co2_resource_use_efficiency_100", showWarnings = FALSE)
+    if(!dir.exists("output/statistics_co2_resource_use_efficiency_100_aP")) {
+        dir.create("output/statistics_co2_resource_use_efficiency_100_aP", showWarnings = FALSE)
     }
     
 
@@ -10,7 +10,7 @@ metafor_co2_statistics_resource_use_efficiency_100 <- function(reDF) {
     tDF <- subset(reDF, Variable=="WUE")
     
     ### random-effect model
-    res <- rma(log_co2, variance_co2, data = tDF)
+    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -21,7 +21,7 @@ metafor_co2_statistics_resource_use_efficiency_100 <- function(reDF) {
     ns <- length(unique(tDF$Literature))
     
     ### forest plot
-    pdf("output/statistics_co2_resource_use_efficiency_100/WUE_resource_use_efficiency_response_ratio_random_effect_model.pdf",
+    pdf("output/statistics_co2_resource_use_efficiency_100_aP/WUE_resource_use_efficiency_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
