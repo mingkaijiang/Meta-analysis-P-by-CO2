@@ -244,4 +244,10 @@ make_gas_exchange_plots_100(inDF=subDF100)
 #make_subplots_along_gradients_100(inDF=subDF100)
 
 
-
+### To do plan
+### 1. add eCO2 effect under high P
+### 2. draw figure on comparing eCO2 effect under low P and under high P
+### 3. repeat Cesar Terrer analysis on finding the most important predictor - not using random effect model but mixed linear model
+### 4. make a figure on this, for each variable. 
+### 5. Think about haiyang's suggestion on structural equation modeling again
+### 6. COnsider changing variance to 1/sample size, and compare the results. 
