@@ -19,6 +19,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/leaf_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -55,6 +61,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    sumDF$CO2_effect[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/stem_biomass_response_ratio_random_effect_model.pdf",
@@ -95,6 +107,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/root_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -133,6 +151,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    sumDF$CO2_effect[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/total_biomass_response_ratio_random_effect_model.pdf",
@@ -174,6 +198,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/leaf_N_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -213,6 +243,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/leaf_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -245,9 +281,10 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    ### random-effect model
-    l
-    ns
+
+    sumDF$ns[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="eP"] <- l
+    
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem P content")
@@ -258,6 +295,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     
     ### random-effect model
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)#, control=list(stepadj=0.05))
+    
+    sumDF$CO2_effect[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/stem_P_content_response_ratio_random_effect_model.pdf",
@@ -290,8 +333,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    sumDF$ns[sumDF$variable=="root_N_content"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="root_N_content"&sumDF$P_treatment=="eP"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root P content")
@@ -302,6 +345,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     
     ### random-effect model
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF, control=list(stepadj=0.5))
+    
+    sumDF$CO2_effect[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/root_P_content_response_ratio_random_effect_model.pdf",
@@ -334,8 +383,9 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    
+    sumDF$ns[sumDF$variable=="total_N_content"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="total_N_content"&sumDF$P_treatment=="eP"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant P content")
@@ -346,6 +396,12 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     
     ### random-effect model
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)#, control=list(stepadj=0.5))
+    
+    sumDF$CO2_effect[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/total_P_content_response_ratio_random_effect_model.pdf",

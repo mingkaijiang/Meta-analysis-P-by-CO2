@@ -23,6 +23,12 @@ metafor_co2_statistics_morphology_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="leaf_area"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="leaf_area"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="leaf_area"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="leaf_area"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="leaf_area"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_morphology_100_eP/leaf_area_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -60,6 +66,12 @@ metafor_co2_statistics_morphology_100_eP <- function(reDF, sumDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    sumDF$CO2_effect[sumDF$variable=="LMA"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="LMA"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="LMA"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="LMA"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="LMA"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_morphology_100_eP/LMA_morphology_response_ratio_random_effect_model.pdf",
@@ -100,6 +112,12 @@ metafor_co2_statistics_morphology_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="SLA"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="SLA"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="SLA"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="SLA"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="SLA"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_morphology_100_eP/SLA_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -138,6 +156,12 @@ metafor_co2_statistics_morphology_100_eP <- function(reDF, sumDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    sumDF$CO2_effect[sumDF$variable=="Root_length"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="Root_length"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="Root_length"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="Root_length"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="Root_length"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_morphology_100_eP/root_length_morphology_response_ratio_random_effect_model.pdf",

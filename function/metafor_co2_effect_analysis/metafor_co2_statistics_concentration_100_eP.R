@@ -19,6 +19,13 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="eP"] <- l
+    
+    
     ### forest plot
     pdf("output/statistics_co2_concentration_100_eP/leaf_N_concentration_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -55,6 +62,13 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    sumDF$CO2_effect[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="eP"] <- l
+    
     
     ### forest plot
     pdf("output/statistics_co2_concentration_100_eP/leaf_P_concentration_response_ratio_random_effect_model.pdf",
@@ -95,6 +109,12 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    sumDF$CO2_effect[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_concentration_100_eP/root_P_concentration_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -128,6 +148,12 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     ns <- length(unique(tDF$Literature))
 
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    
+    sumDF$CO2_effect[sumDF$variable=="stem_N_concentration"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="stem_N_concentration"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="stem_N_concentration"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="stem_N_concentration"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="stem_N_concentration"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_concentration_100_eP/stem_N_concentration_response_ratio_random_effect_model.pdf",
@@ -163,6 +189,12 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
+    sumDF$CO2_effect[sumDF$variable=="stem_P_concentration"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="stem_P_concentration"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="stem_P_concentration"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="stem_P_concentration"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="stem_P_concentration"&sumDF$P_treatment=="eP"] <- l
+    
     ### forest plot
     pdf("output/statistics_co2_concentration_100_eP/stem_P_concentration_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -195,8 +227,8 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    sumDF$ns[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant N concentration")
@@ -206,6 +238,12 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     ns <- length(unique(tDF$Literature))
 
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    
+    sumDF$CO2_effect[sumDF$variable=="total_N_concentration"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="total_N_concentration"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="total_N_concentration"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$ns[sumDF$variable=="total_N_concentration"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="total_N_concentration"&sumDF$P_treatment=="eP"] <- l
     
     ### forest plot
     pdf("output/statistics_co2_concentration_100_eP/total_N_concentration_response_ratio_random_effect_model.pdf",
@@ -238,8 +276,8 @@ metafor_co2_statistics_concentration_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    sumDF$ns[sumDF$variable=="total_P_concentration"&sumDF$P_treatment=="eP"] <- ns
+    sumDF$ne[sumDF$variable=="total_P_concentration"&sumDF$P_treatment=="eP"] <- l
     
     return(sumDF)
     
