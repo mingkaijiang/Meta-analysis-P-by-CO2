@@ -1,4 +1,4 @@
-metafor_statistics_gas_exchange_100 <- function(reDF) {
+metafor_statistics_gas_exchange_100 <- function(reDF, intDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_gas_exchange_100")) {
@@ -19,6 +19,12 @@ metafor_statistics_gas_exchange_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="CO2_assimilation_rate"] <- res$b
+    intDF$se[intDF$variable=="CO2_assimilation_rate"] <- res$se
+    intDF$p_value[intDF$variable=="CO2_assimilation_rate"] <- res$pval
+    intDF$ns[intDF$variable=="CO2_assimilation_rate"] <- ns
+    intDF$ne[intDF$variable=="CO2_assimilation_rate"] <- l
     
     ### forest plot
     pdf("output/statistics_gas_exchange_100/co2_assimilation_rate_gas_exchange_response_ratio_random_effect_model.pdf",
@@ -144,6 +150,12 @@ metafor_statistics_gas_exchange_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="stomatal_conductance"] <- res$b
+    intDF$se[intDF$variable=="stomatal_conductance"] <- res$se
+    intDF$p_value[intDF$variable=="stomatal_conductance"] <- res$pval
+    intDF$ns[intDF$variable=="stomatal_conductance"] <- ns
+    intDF$ne[intDF$variable=="stomatal_conductance"] <- l
+    
     ### forest plot
     pdf("output/statistics_gas_exchange_100/stomatal_conductance_gas_exchange_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -167,5 +179,7 @@ metafor_statistics_gas_exchange_100 <- function(reDF) {
     text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
+    
+    return(intDF)
     
 }

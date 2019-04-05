@@ -1,4 +1,4 @@
-metafor_statistics_concentration_100 <- function(reDF) {
+metafor_statistics_concentration_100 <- function(reDF, intDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_concentration_100")) {
@@ -18,6 +18,12 @@ metafor_statistics_concentration_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="leaf_N_concentration"] <- res$b
+    intDF$se[intDF$variable=="leaf_N_concentration"] <- res$se
+    intDF$p_value[intDF$variable=="leaf_N_concentration"] <- res$pval
+    intDF$ns[intDF$variable=="leaf_N_concentration"] <- ns
+    intDF$ne[intDF$variable=="leaf_N_concentration"] <- l
     
     ### forest plot
     pdf("output/statistics_concentration_100/leaf_N_concentration_response_ratio_random_effect_model.pdf",
@@ -146,6 +152,12 @@ metafor_statistics_concentration_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="leaf_P_concentration"] <- res$b
+    intDF$se[intDF$variable=="leaf_P_concentration"] <- res$se
+    intDF$p_value[intDF$variable=="leaf_P_concentration"] <- res$pval
+    intDF$ns[intDF$variable=="leaf_P_concentration"] <- ns
+    intDF$ne[intDF$variable=="leaf_P_concentration"] <- l
+    
     ### forest plot
     pdf("output/statistics_concentration_100/leaf_P_concentration_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -223,6 +235,12 @@ metafor_statistics_concentration_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="root_P_concentration"] <- res$b
+    intDF$se[intDF$variable=="root_P_concentration"] <- res$se
+    intDF$p_value[intDF$variable=="root_P_concentration"] <- res$pval
+    intDF$ns[intDF$variable=="root_P_concentration"] <- ns
+    intDF$ne[intDF$variable=="root_P_concentration"] <- l
+    
     ### forest plot
     pdf("output/statistics_concentration_100/root_P_concentration_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -299,6 +317,12 @@ metafor_statistics_concentration_100 <- function(reDF) {
 
     res <- rma(log_interaction, v_variance, data = tDF)
     
+    intDF$interaction[intDF$variable=="stem_N_concentration"] <- res$b
+    intDF$se[intDF$variable=="stem_N_concentration"] <- res$se
+    intDF$p_value[intDF$variable=="stem_N_concentration"] <- res$pval
+    intDF$ns[intDF$variable=="stem_N_concentration"] <- ns
+    intDF$ne[intDF$variable=="stem_N_concentration"] <- l
+    
     ### forest plot
     pdf("output/statistics_concentration_100/stem_N_concentration_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -333,6 +357,12 @@ metafor_statistics_concentration_100 <- function(reDF) {
     
     res <- rma(log_interaction, v_variance, data = tDF)
     
+    intDF$interaction[intDF$variable=="stem_P_concentration"] <- res$b
+    intDF$se[intDF$variable=="stem_P_concentration"] <- res$se
+    intDF$p_value[intDF$variable=="stem_P_concentration"] <- res$pval
+    intDF$ns[intDF$variable=="stem_P_concentration"] <- ns
+    intDF$ne[intDF$variable=="stem_P_concentration"] <- l
+    
     ### forest plot
     pdf("output/statistics_concentration_100/stem_P_concentration_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -365,8 +395,8 @@ metafor_statistics_concentration_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    intDF$ns[intDF$variable=="root_N_concentration"] <- ns
+    intDF$ne[intDF$variable=="root_N_concentration"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant N concentration")
@@ -376,6 +406,12 @@ metafor_statistics_concentration_100 <- function(reDF) {
     ns <- length(unique(tDF$Literature))
 
     res <- rma(log_interaction, v_variance, data = tDF)
+    
+    intDF$interaction[intDF$variable=="total_N_concentration"] <- res$b
+    intDF$se[intDF$variable=="total_N_concentration"] <- res$se
+    intDF$p_value[intDF$variable=="total_N_concentration"] <- res$pval
+    intDF$ns[intDF$variable=="total_N_concentration"] <- ns
+    intDF$ne[intDF$variable=="total_N_concentration"] <- l
     
     ### forest plot
     pdf("output/statistics_concentration_100/total_N_concentration_response_ratio_random_effect_model.pdf",
@@ -407,8 +443,10 @@ metafor_statistics_concentration_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$ns[intDF$variable=="total_P_concentration"] <- ns
+    intDF$ne[intDF$variable=="total_P_concentration"] <- l
 
-l
-ns
+    return(intDF)
     
 }

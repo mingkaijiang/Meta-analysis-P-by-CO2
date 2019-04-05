@@ -1,4 +1,4 @@
-metafor_statistics_resource_use_efficiency_100 <- function(reDF) {
+metafor_statistics_resource_use_efficiency_100 <- function(reDF, intDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_resource_use_efficiency_100")) {
@@ -19,6 +19,12 @@ metafor_statistics_resource_use_efficiency_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="WUE"] <- res$b
+    intDF$se[intDF$variable=="WUE"] <- res$se
+    intDF$p_value[intDF$variable=="WUE"] <- res$pval
+    intDF$ns[intDF$variable=="WUE"] <- ns
+    intDF$ne[intDF$variable=="WUE"] <- l
     
     ### forest plot
     pdf("output/statistics_resource_use_efficiency_100/WUE_resource_use_efficiency_response_ratio_random_effect_model.pdf",
@@ -142,8 +148,8 @@ metafor_statistics_resource_use_efficiency_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    intDF$ns[intDF$variable=="NUE"] <- ns
+    intDF$ne[intDF$variable=="NUE"] <- l
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="PUE")
@@ -152,8 +158,10 @@ metafor_statistics_resource_use_efficiency_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    intDF$ns[intDF$variable=="PUE"] <- ns
+    intDF$ne[intDF$variable=="PUE"] <- l
+    
+    return(intDF)
     
 
     

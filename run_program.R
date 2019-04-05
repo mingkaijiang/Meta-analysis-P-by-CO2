@@ -179,26 +179,27 @@ metafor_statistics_gas_exchange(reDF)
 
 ##############
 ######## Interaction effect
+
+intDF <- prepare_summary_interaction_effect_df()
+
+
 ### Biomass
-metafor_statistics_biomass_100(reDF100)
+intDF <- metafor_statistics_biomass_100(reDF100, intDF)
 
 ### concentration
-metafor_statistics_concentration_100(reDF100)
+intDF <- metafor_statistics_concentration_100(reDF100, intDF)
 
 ### morphology
-metafor_statistics_morphology_100(reDF100)
+intDF <- metafor_statistics_morphology_100(reDF100, intDF)
 
 ### nutrient uptake
-metafor_statistics_nutrient_uptake_100(reDF100)
+intDF <- metafor_statistics_nutrient_uptake_100(reDF100, intDF)
 
 ### resource use efficiency
-metafor_statistics_resource_use_efficiency_100(reDF100)
+intDF <- metafor_statistics_resource_use_efficiency_100(reDF100, intDF)
 
 ### gas exchange
-metafor_statistics_gas_exchange_100(reDF100)
-
-
-
+intDF <- metafor_statistics_gas_exchange_100(reDF100, intDF)
 
 
 
@@ -213,46 +214,45 @@ sumDF2 <- prepare_summary_p_effect_df()
 
 ####### P effect under aCO2 
 ### Biomass
-sumDF2 <- metafor_p_statistics_biomass_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_biomass_100_aCO2(reDF100, sumDF2)
 
 ### concentration
-sumDF2 <- metafor_p_statistics_concentration_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_concentration_100_aCO2(reDF100, sumDF2)
 
 ### morphology
-sumDF2 <- metafor_p_statistics_morphology_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_morphology_100_aCO2(reDF100, sumDF2)
 
 ### nutrient uptake
-sumDF2 <- metafor_p_statistics_nutrient_uptake_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_nutrient_uptake_100_aCO2(reDF100, sumDF2)
 
 ### resource use efficiency
-sumDF2 <- metafor_p_statistics_resource_use_efficiency_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_resource_use_efficiency_100_aCO2(reDF100, sumDF2)
 
 ### gas exchange
-sumDF2 <- metafor_p_statistics_gas_exchange_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_gas_exchange_100_aCO2(reDF100, sumDF2)
 
 
 
 
 
 ####### P effect under eCO2 
-
 ### Biomass
-sumDF2 <- metafor_p_statistics_biomass_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_biomass_100_eCO2(reDF100, sumDF2)
 
 ### concentration
-sumDF2 <- metafor_p_statistics_concentration_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_concentration_100_eCO2(reDF100, sumDF2)
 
 ### morphology
-sumDF2 <- metafor_p_statistics_morphology_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_morphology_100_eCO2(reDF100, sumDF2)
 
 ### nutrient uptake
-sumDF2 <- metafor_p_statistics_nutrient_uptake_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_nutrient_uptake_100_eCO2(reDF100, sumDF2)
 
 ### resource use efficiency
-sumDF2 <- metafor_p_statistics_resource_use_efficiency_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_resource_use_efficiency_100_eCO2(reDF100, sumDF2)
 
 ### gas exchange
-sumDF2 <- metafor_p_statistics_gas_exchange_100(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_gas_exchange_100_eCO2(reDF100, sumDF2)
 
 
 
@@ -313,8 +313,6 @@ plot_significant_response_ratio_100(sumDF)
 
 
 
-
-
 ############## make eCO2 at low P and high P plot
 make_eCO2_effect_at_lowP_highP_chart(sumDF)
 
@@ -323,6 +321,9 @@ make_lP_effect_at_aCO2_eCO2_chart(sumDF2)
 
 ############## make interaction effect 
 make_interaction_effect_chart(sumDF, sumDF2, intDF)
+
+
+
 
 
 

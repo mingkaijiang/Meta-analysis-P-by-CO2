@@ -1,4 +1,4 @@
-metafor_statistics_biomass_100 <- function(reDF) {
+metafor_statistics_biomass_100 <- function(reDF, intDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_biomass_100")) {
@@ -18,6 +18,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="leaf_biomass"] <- res$b
+    intDF$se[intDF$variable=="leaf_biomass"] <- res$se
+    intDF$p_value[intDF$variable=="leaf_biomass"] <- res$pval
+    intDF$ns[intDF$variable=="leaf_biomass"] <- ns
+    intDF$ne[intDF$variable=="leaf_biomass"] <- l
     
     ### forest plot
     pdf("output/statistics_biomass_100/leaf_biomass_response_ratio_random_effect_model.pdf",
@@ -155,6 +161,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="stem_biomass"] <- res$b
+    intDF$se[intDF$variable=="stem_biomass"] <- res$se
+    intDF$p_value[intDF$variable=="stem_biomass"] <- res$pval
+    intDF$ns[intDF$variable=="stem_biomass"] <- ns
+    intDF$ne[intDF$variable=="stem_biomass"] <- l
+    
     ### forest plot
     pdf("output/statistics_biomass_100/stem_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -231,6 +243,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="root_biomass"] <- res$b
+    intDF$se[intDF$variable=="root_biomass"] <- res$se
+    intDF$p_value[intDF$variable=="root_biomass"] <- res$pval
+    intDF$ns[intDF$variable=="root_biomass"] <- ns
+    intDF$ne[intDF$variable=="root_biomass"] <- l
     
     ### forest plot
     pdf("output/statistics_biomass_100/root_biomass_response_ratio_random_effect_model.pdf",
@@ -312,6 +330,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="total_biomass"] <- res$b
+    intDF$se[intDF$variable=="total_biomass"] <- res$se
+    intDF$p_value[intDF$variable=="total_biomass"] <- res$pval
+    intDF$ns[intDF$variable=="total_biomass"] <- ns
+    intDF$ne[intDF$variable=="total_biomass"] <- l
     
     ### forest plot
     pdf("output/statistics_biomass_100/total_biomass_response_ratio_random_effect_model.pdf",
@@ -396,6 +420,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="leaf_N_content"] <- res$b
+    intDF$se[intDF$variable=="leaf_N_content"] <- res$se
+    intDF$p_value[intDF$variable=="leaf_N_content"] <- res$pval
+    intDF$ns[intDF$variable=="leaf_N_content"] <- ns
+    intDF$ne[intDF$variable=="leaf_N_content"] <- l
+    
     ### forest plot
     pdf("output/statistics_biomass_100/leaf_N_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -477,6 +507,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="leaf_P_content"] <- res$b
+    intDF$se[intDF$variable=="leaf_P_content"] <- res$se
+    intDF$p_value[intDF$variable=="leaf_P_content"] <- res$pval
+    intDF$ns[intDF$variable=="leaf_P_content"] <- ns
+    intDF$ne[intDF$variable=="leaf_P_content"] <- l
+    
     ### forest plot
     pdf("output/statistics_biomass_100/leaf_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -552,8 +588,8 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    intDF$ns[intDF$variable=="stem_N_content"] <- ns
+    intDF$ne[intDF$variable=="stem_N_content"] <- l
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem P content")
@@ -564,6 +600,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    
+    intDF$interaction[intDF$variable=="stem_P_content"] <- res$b
+    intDF$se[intDF$variable=="stem_P_content"] <- res$se
+    intDF$p_value[intDF$variable=="stem_P_content"] <- res$pval
+    intDF$ns[intDF$variable=="stem_P_content"] <- ns
+    intDF$ne[intDF$variable=="stem_P_content"] <- l
     
     ### forest plot
     pdf("output/statistics_biomass_100/stem_P_content_response_ratio_random_effect_model.pdf",
@@ -596,8 +638,8 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    intDF$ns[intDF$variable=="root_N_content"] <- ns
+    intDF$ne[intDF$variable=="root_N_content"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root P content")
@@ -608,6 +650,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
+    
+    intDF$interaction[intDF$variable=="root_P_content"] <- res$b
+    intDF$se[intDF$variable=="root_P_content"] <- res$se
+    intDF$p_value[intDF$variable=="root_P_content"] <- res$pval
+    intDF$ns[intDF$variable=="root_P_content"] <- ns
+    intDF$ne[intDF$variable=="root_P_content"] <- l
     
     ### forest plot
     pdf("output/statistics_biomass_100/root_P_content_response_ratio_random_effect_model.pdf",
@@ -640,8 +688,8 @@ metafor_statistics_biomass_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    l
-    ns
+    intDF$ns[intDF$variable=="total_P_content"] <- ns
+    intDF$ne[intDF$variable=="total_P_content"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant P content")
@@ -652,6 +700,12 @@ metafor_statistics_biomass_100 <- function(reDF) {
     
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
+    
+    intDF$interaction[intDF$variable=="total_P_content"] <- res$b
+    intDF$se[intDF$variable=="total_P_content"] <- res$se
+    intDF$p_value[intDF$variable=="total_P_content"] <- res$pval
+    intDF$ns[intDF$variable=="total_P_content"] <- ns
+    intDF$ne[intDF$variable=="total_P_content"] <- l
     
     ### forest plot
     pdf("output/statistics_biomass_100/total_P_content_response_ratio_random_effect_model.pdf",
@@ -677,5 +731,6 @@ metafor_statistics_biomass_100 <- function(reDF) {
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
 
+    return(intDF)
 
 }

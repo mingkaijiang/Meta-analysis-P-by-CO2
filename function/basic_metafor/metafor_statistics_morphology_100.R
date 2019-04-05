@@ -1,4 +1,4 @@
-metafor_statistics_morphology_100 <- function(reDF) {
+metafor_statistics_morphology_100 <- function(reDF, intDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_morphology_100")) {
@@ -22,6 +22,12 @@ metafor_statistics_morphology_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="leaf_area"] <- res$b
+    intDF$se[intDF$variable=="leaf_area"] <- res$se
+    intDF$p_value[intDF$variable=="leaf_area"] <- res$pval
+    intDF$ns[intDF$variable=="leaf_area"] <- ns
+    intDF$ne[intDF$variable=="leaf_area"] <- l
     
     ### forest plot
     pdf("output/statistics_morphology_100/leaf_area_morphology_response_ratio_random_effect_model.pdf",
@@ -150,6 +156,12 @@ metafor_statistics_morphology_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="LMA"] <- res$b
+    intDF$se[intDF$variable=="LMA"] <- res$se
+    intDF$p_value[intDF$variable=="LMA"] <- res$pval
+    intDF$ns[intDF$variable=="LMA"] <- ns
+    intDF$ne[intDF$variable=="LMA"] <- l
+    
     ### forest plot
     pdf("output/statistics_morphology_100/LMA_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -188,6 +200,12 @@ metafor_statistics_morphology_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="SLA"] <- res$b
+    intDF$se[intDF$variable=="SLA"] <- res$se
+    intDF$p_value[intDF$variable=="SLA"] <- res$pval
+    intDF$ns[intDF$variable=="SLA"] <- ns
+    intDF$ne[intDF$variable=="SLA"] <- l
     
     ### forest plot
     pdf("output/statistics_morphology_100/SLA_morphology_response_ratio_random_effect_model.pdf",
@@ -228,6 +246,12 @@ metafor_statistics_morphology_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="Root_length"] <- res$b
+    intDF$se[intDF$variable=="Root_length"] <- res$se
+    intDF$p_value[intDF$variable=="Root_length"] <- res$pval
+    intDF$ns[intDF$variable=="Root_length"] <- ns
+    intDF$ne[intDF$variable=="Root_length"] <- l
+    
     ### forest plot
     pdf("output/statistics_morphology_100/root_length_morphology_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -252,6 +276,7 @@ metafor_statistics_morphology_100 <- function(reDF) {
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
-
+    return(intDF)
+    
     
 }

@@ -1,4 +1,4 @@
-metafor_statistics_nutrient_uptake_100 <- function(reDF) {
+metafor_statistics_nutrient_uptake_100 <- function(reDF, intDF) {
     
     ### create directory
     if(!dir.exists("output/statistics_nutrient_uptake_100")) {
@@ -19,6 +19,12 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
+    
+    intDF$interaction[intDF$variable=="N_uptake"] <- res$b
+    intDF$se[intDF$variable=="N_uptake"] <- res$se
+    intDF$p_value[intDF$variable=="N_uptake"] <- res$pval
+    intDF$ns[intDF$variable=="N_uptake"] <- ns
+    intDF$ne[intDF$variable=="N_uptake"] <- l
     
     ### forest plot
     pdf("output/statistics_nutrient_uptake_100/plant_N_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",
@@ -147,6 +153,12 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    intDF$interaction[intDF$variable=="P_uptake"] <- res$b
+    intDF$se[intDF$variable=="P_uptake"] <- res$se
+    intDF$p_value[intDF$variable=="P_uptake"] <- res$pval
+    intDF$ns[intDF$variable=="P_uptake"] <- ns
+    intDF$ne[intDF$variable=="P_uptake"] <- l
+    
     ### forest plot
     pdf("output/statistics_nutrient_uptake_100/plant_P_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",
         height=12, width=9)
@@ -172,5 +184,6 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF) {
     dev.off()
     
     
+    return(intDF)
     
 }
