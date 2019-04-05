@@ -380,9 +380,6 @@ metafor_p_statistics_biomass_100_eCO2 <- function(reDF, sumDF2) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    sumDF2$P_effect[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$b
-    sumDF2$se[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$se
-    sumDF2$p_value[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="eCO2"] <- l
     

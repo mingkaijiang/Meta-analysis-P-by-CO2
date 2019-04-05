@@ -321,6 +321,7 @@ make_lP_effect_at_aCO2_eCO2_chart(sumDF2)
 
 ############## make interaction effect 
 make_interaction_effect_chart(sumDF, sumDF2, intDF)
+make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
 
 
 
@@ -336,9 +337,9 @@ scenario_illustration_simplified_plot_high_P()
 
 
 ### To do plan
-### 1. add eCO2 effect under high P
-### 2. draw figure on comparing eCO2 effect under low P and under high P
-### 3. repeat Cesar Terrer analysis on finding the most important predictor - not using random effect model but mixed linear model
+### 2. draw combine and individual figures to come up with the best way of presenting the results
+### 3. important note: significancze can be improved by only looking at se, currently it is sd
+### 3. repeat Cesar Terrer analysis on finding the most important predictor - using mixed model
 ### 4. make a figure on this, for each variable. 
 ### 5. Think about haiyang's suggestion on structural equation modeling again
-### 6. COnsider changing variance to 1/sample size, and compare the results. 
+### 6. Consider changing variance to 1/sample size, and compare the results. 

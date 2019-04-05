@@ -1,6 +1,6 @@
 ### This script plot bar chart for all significant response ratio means and confidence interval
 
-make_lP_effect_at_aCO2_eCO2_chart <- function(sumDF, sumDF2, intDF) {
+make_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
     
     ### This function processes the dataframe with some basic summaries
     if(!dir.exists("output/metafor_summary_plot")) {

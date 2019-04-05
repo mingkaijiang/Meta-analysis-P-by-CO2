@@ -688,8 +688,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    intDF$ns[intDF$variable=="total_P_content"] <- ns
-    intDF$ne[intDF$variable=="total_P_content"] <- l
+    intDF$ns[intDF$variable=="total_N_content"] <- ns
+    intDF$ne[intDF$variable=="total_N_content"] <- l
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant P content")
