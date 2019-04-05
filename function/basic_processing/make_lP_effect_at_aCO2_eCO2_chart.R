@@ -11,8 +11,8 @@ make_lP_effect_at_aCO2_eCO2_chart <- function(sumDF2) {
     sumDF2$Category <- c(rep("Biomass", 24), rep("Concentration", 16), rep("Gas exchange", 4),
                        rep("Morphology", 8), rep("Nutrient uptake", 4), 
                        rep("Resource use efficiency", 6))
-    sumDF2$Pos <- sumDF2$P_effect + sumDF2$se
-    sumDF2$Neg <- sumDF2$P_effect - sumDF2$se
+    sumDF2$Pos <- sumDF2$P_effect + (sumDF2$se *1.96)
+    sumDF2$Neg <- sumDF2$P_effect - (sumDF2$se *1.96)
     
     ### assign color
     sumDF2$sig <- ifelse(sumDF2$Pos < 0, "neg", ifelse(sumDF2$Neg > 0, "pos", "neutral"))
@@ -148,7 +148,7 @@ make_lP_effect_at_aCO2_eCO2_chart <- function(sumDF2) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        scale_x_continuous(limits=c(-2.0, 0.4))+
+        scale_x_continuous(limits=c(-2.2, 0.5))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 
                                   9.5, 11.5, 13.5, 15.5,
                                   17.5, 19.5, 21.5, 23.5),
@@ -187,7 +187,7 @@ make_lP_effect_at_aCO2_eCO2_chart <- function(sumDF2) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-2.0, 0.4))+
+        scale_x_continuous(limits=c(-2.2, 0.5))+
         scale_y_continuous(breaks=c(25.5, 27.5, 29.5, 31.5, 
                                     33.5, 35.5, 37.5, 39.5),
                            labels=y.lab2,
@@ -221,7 +221,7 @@ make_lP_effect_at_aCO2_eCO2_chart <- function(sumDF2) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        scale_x_continuous(limits=c(-2.0, 0.4))+
+        scale_x_continuous(limits=c(-2.2, 0.5))+
         scale_y_continuous(breaks=c(41.5, 43.5),
                            labels=y.lab3,
                            sec.axis = sec_axis(~., name = "", breaks=c(41:44),
@@ -254,7 +254,7 @@ make_lP_effect_at_aCO2_eCO2_chart <- function(sumDF2) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        scale_x_continuous(limits=c(-2.0, 0.4))+
+        scale_x_continuous(limits=c(-2.2, 0.5))+
         scale_y_continuous(breaks=c(45.5, 47.5, 49.5, 51.5),
                            labels=y.lab4,
                            sec.axis = sec_axis(~., name = "", breaks=c(45:52),
@@ -287,7 +287,7 @@ make_lP_effect_at_aCO2_eCO2_chart <- function(sumDF2) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        scale_x_continuous(limits=c(-2.0, 0.4))+
+        scale_x_continuous(limits=c(-2.2, 0.5))+
         scale_y_continuous(breaks=c(53.5, 55.5),
                            labels=y.lab5,
                            sec.axis = sec_axis(~., name = "", breaks=c(53:56),
@@ -320,7 +320,7 @@ make_lP_effect_at_aCO2_eCO2_chart <- function(sumDF2) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position="none")+
-        scale_x_continuous(limits=c(-2.0, 0.4))+
+        scale_x_continuous(limits=c(-2.2, 0.5))+
         scale_y_continuous(breaks=c(57.5, 59.5, 61.5),
                            labels=y.lab6,
                            sec.axis = sec_axis(~., name = "", breaks=c(57:62),
