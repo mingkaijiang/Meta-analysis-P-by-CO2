@@ -9,7 +9,8 @@ pacman::p_load(doBy,
                ggplot2,
                grid,
                cowplot,
-               metafor)  
+               metafor,
+               mgcv)  
 
 #### Sourcing all R files in the modules subdirectory
 source_basic_scripts <- dir("function/basic_processing", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
