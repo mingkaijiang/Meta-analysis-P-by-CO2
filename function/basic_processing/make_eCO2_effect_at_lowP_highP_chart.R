@@ -17,6 +17,10 @@ make_eCO2_effect_at_lowP_highP_chart <- function(sumDF) {
     ### assign color
     sumDF$sig <- ifelse(sumDF$Pos < 0, "neg", ifelse(sumDF$Neg > 0, "pos", "neutral"))
     
+    #sumDF <- sumDF[complete.cases(sumDF$CO2_effect),]
+    #sumDF$id <- as.character(sumDF$id)
+    
+    
     ### subset
     plotDF1 <- subset(sumDF, Category == "Biomass")
     plotDF2 <- subset(sumDF, Category == "Concentration")

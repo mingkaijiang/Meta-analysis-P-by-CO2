@@ -31,6 +31,15 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
     sumDF2$sig <- ifelse(sumDF2$Pos < 0, "neg", ifelse(sumDF2$Neg > 0, "pos", "neutral"))
     intDF$sig <- ifelse(intDF$Pos < 0, "neg", ifelse(intDF$Neg > 0, "pos", "neutral"))
     
+    ### remove nas
+    sumDF <- sumDF[complete.cases(sumDF$CO2_effect),]
+    sumDF2 <- sumDF2[complete.cases(sumDF2$P_effect),]
+    intDF <- intDF[complete.cases(intDF$interaction),]
+    
+    sumDF$id <- as.character(sumDF$id)
+    sumDF2$id <- as.character(sumDF2$id)
+    intDF$id <- as.character(intDF$id)
+    
     ### subset
     plotDF1 <- subset(intDF, Category == "Biomass")
     plotDF1a <- subset(sumDF2, Category == "Biomass")
@@ -61,7 +70,10 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
     plotDF3a <- rbind(plotDF3a, plotDF6a)
     plotDF3b <- rbind(plotDF3b, plotDF6b)
     
-    plotDF3$id[plotDF3$id=="57.5"] <- 45.5
+    
+    ## reassigning id numbers
+    plotDF3$id[plotDF3$id=="57.5"] <- "45.5"
+    plotDF3$id <- as.numeric(plotDF3$id)
 
     plotDF3a$id[plotDF3a$id=="57"] <- 45
     plotDF3a$id[plotDF3a$id=="58"] <- 46
@@ -69,80 +81,98 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
     plotDF3b$id[plotDF3b$id=="57"] <- 45
     plotDF3b$id[plotDF3b$id=="58"] <- 46
     
+    plotDF1$id <- seq(1.5, 17.5, by=2)
+    plotDF1a$id <- plotDF1b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8, 7.2, 7.8, 
+                                    9.2, 9.8, 11.2, 11.8, 13.2, 13.8, 15.2, 15.8,
+                                    17.2, 17.8)
+    
+    plotDF2$id <- seq(25.5, 35.5, by=2)
+    plotDF2a$id <- plotDF2b$id <- c(25.2, 25.8, 27.2, 27.8, 29.2, 29.8, 31.2, 31.8,
+                                    33.2, 33.8, 35.2, 35.8)
+    
+    plotDF3a$id <- plotDF3b$id <- c(41.2, 41.8, 43.2, 43.8, 45.2, 45.8)
+    plotDF4a$id <- plotDF4b$id <- c(45.2, 45.8, 47.2, 47.8, 49.2, 49.8, 
+                                    51.2, 51.8)
+    plotDF5a$id <- plotDF5b$id <- c(53.2, 53.8, 55.2, 55.8)
+    
+    plotDF4$id <- as.numeric(plotDF4$id)
+    plotDF5$id <- as.numeric(plotDF5$id)
+    
+    
     ### prepare labels
     y.lab1 <- c("leaf_biomass"="Leaf",
                 "stem_biomass"="Stem",
                 "root_biomass"="Root",
                 "total_biomass"="Total",
                 "leaf_N_content"="Leaf N",
-                "stem_N_content"="Stem N",
-                "root_N_content"="Root N",
-                "total_N_content"="Total N",
+                #"stem_N_content"="Stem N",
+                #"root_N_content"="Root N",
+                #"total_N_content"="Total N",
                 "leaf_P_content"="Leaf P",
                 "stem_P_content"="Stem P",
                 "root_P_content"="Root P",
                 "total_P_content"="Total P")
     
-    y2.lab1 <- c(bquote(n[s]==.(plotDF1$ns[1])),
+    y2.lab1 <- c(#bquote(n[s]==.(plotDF1$ns[1])),
                  bquote(n[e]==.(plotDF1$ne[1])),
-                 bquote(n[s]==.(plotDF1$ns[2])),
+                 #bquote(n[s]==.(plotDF1$ns[2])),
                  bquote(n[e]==.(plotDF1$ne[2])),
-                 bquote(n[s]==.(plotDF1$ns[3])),
+                 #bquote(n[s]==.(plotDF1$ns[3])),
                  bquote(n[e]==.(plotDF1$ne[3])),
-                 bquote(n[s]==.(plotDF1$ns[4])),
+                 #bquote(n[s]==.(plotDF1$ns[4])),
                  bquote(n[e]==.(plotDF1$ne[4])),
-                 bquote(n[s]==.(plotDF1$ns[5])),
+                 #bquote(n[s]==.(plotDF1$ns[5])),
                  bquote(n[e]==.(plotDF1$ne[5])),
-                 bquote(n[s]==.(plotDF1$ns[6])),
+                 #bquote(n[s]==.(plotDF1$ns[6])),
                  bquote(n[e]==.(plotDF1$ne[6])),
-                 bquote(n[s]==.(plotDF1$ns[7])),
+                 #bquote(n[s]==.(plotDF1$ns[7])),
                  bquote(n[e]==.(plotDF1$ne[7])),
-                 bquote(n[s]==.(plotDF1$ns[8])),
+                 #bquote(n[s]==.(plotDF1$ns[8])),
                  bquote(n[e]==.(plotDF1$ne[8])),
-                 bquote(n[s]==.(plotDF1$ns[9])),
-                 bquote(n[e]==.(plotDF1$ne[9])),
-                 bquote(n[s]==.(plotDF1$ns[10])),
-                 bquote(n[e]==.(plotDF1$ne[10])),
-                 bquote(n[s]==.(plotDF1$ns[11])),
-                 bquote(n[e]==.(plotDF1$ne[11])),
-                 bquote(n[s]==.(plotDF1$ns[12])),
-                 bquote(n[e]==.(plotDF1$ne[12])))
+                 #bquote(n[s]==.(plotDF1$ns[9])),
+                 bquote(n[e]==.(plotDF1$ne[9])))#,
+                 #bquote(n[s]==.(plotDF1$ns[10])),
+                 #bquote(n[e]==.(plotDF1$ne[10])),
+                 #bquote(n[s]==.(plotDF1$ns[11])),
+                 #bquote(n[e]==.(plotDF1$ne[11])),
+                 #bquote(n[s]==.(plotDF1$ns[12])),
+                 #bquote(n[e]==.(plotDF1$ne[12])))
     
     y.lab2 <- c("leaf_N_concentration"="Leaf N",
                 "stem_N_concentration"="Stem N",
-                "root_N_concentration"="Root N",
+                #"root_N_concentration"="Root N",
                 "total_N_concentration"="Total N",
                 "leaf_P_concentration"="Leaf P",
                 "stem_P_concentration"="Stem P",
-                "root_P_concentration"="Root P",
-                "total_P_concentration"="Total P")
+                "root_P_concentration"="Root P")#,
+                #"total_P_concentration"="Total P")
     
-    y2.lab2 <- c(bquote(n[s]==.(plotDF2$ns[1])),
+    y2.lab2 <- c(#bquote(n[s]==.(plotDF2$ns[1])),
                  bquote(n[e]==.(plotDF2$ne[1])),
-                 bquote(n[s]==.(plotDF2$ns[2])),
+                 #bquote(n[s]==.(plotDF2$ns[2])),
                  bquote(n[e]==.(plotDF2$ne[2])),
-                 bquote(n[s]==.(plotDF2$ns[3])),
+                 #bquote(n[s]==.(plotDF2$ns[3])),
                  bquote(n[e]==.(plotDF2$ne[3])),
-                 bquote(n[s]==.(plotDF2$ns[4])),
+                 #bquote(n[s]==.(plotDF2$ns[4])),
                  bquote(n[e]==.(plotDF2$ne[4])),
-                 bquote(n[s]==.(plotDF2$ns[5])),
+                 #bquote(n[s]==.(plotDF2$ns[5])),
                  bquote(n[e]==.(plotDF2$ne[5])),
-                 bquote(n[s]==.(plotDF2$ns[6])),
-                 bquote(n[e]==.(plotDF2$ne[6])),
-                 bquote(n[s]==.(plotDF2$ns[7])),
-                 bquote(n[e]==.(plotDF2$ne[7])),
-                 bquote(n[s]==.(plotDF2$ns[8])),
-                 bquote(n[e]==.(plotDF2$ne[8])))
+                 #bquote(n[s]==.(plotDF2$ns[6])),
+                 bquote(n[e]==.(plotDF2$ne[6])))#,
+                 #bquote(n[s]==.(plotDF2$ns[7])),
+                 #bquote(n[e]==.(plotDF2$ne[7])),
+                 #bquote(n[s]==.(plotDF2$ns[8])),
+                 #bquote(n[e]==.(plotDF2$ne[8])))
     
     y.lab3 <- c("CO2_assimilation_rate"="A",
                 "stomatal_conductance"=expression(g[s]),
                 "WUE"="    WUE")
     
-    y2.lab3 <- c(bquote(n[s]==.(plotDF3$ns[1])),
+    y2.lab3 <- c(#bquote(n[s]==.(plotDF3$ns[1])),
                  bquote(n[e]==.(plotDF3$ne[1])),
-                 bquote(n[s]==.(plotDF3$ns[2])),
+                 #bquote(n[s]==.(plotDF3$ns[2])),
                  bquote(n[e]==.(plotDF3$ne[2])),
-                 bquote(n[s]==.(plotDF3$ns[3])),
+                 #bquote(n[s]==.(plotDF3$ns[3])),
                  bquote(n[e]==.(plotDF3$ne[3])))
     
     y.lab4 <- c("leaf_area"="LA",
@@ -150,21 +180,21 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
                 "LMA"="LMA",
                 "Root_length"="RL")
     
-    y2.lab4 <- c(bquote(n[s]==.(plotDF4$ns[1])),
+    y2.lab4 <- c(#bquote(n[s]==.(plotDF4$ns[1])),
                  bquote(n[e]==.(plotDF4$ne[1])),
-                 bquote(n[s]==.(plotDF4$ns[2])),
+                 #bquote(n[s]==.(plotDF4$ns[2])),
                  bquote(n[e]==.(plotDF4$ne[2])),
-                 bquote(n[s]==.(plotDF4$ns[3])),
+                 #bquote(n[s]==.(plotDF4$ns[3])),
                  bquote(n[e]==.(plotDF4$ne[3])),
-                 bquote(n[s]==.(plotDF4$ns[4])),
+                 #bquote(n[s]==.(plotDF4$ns[4])),
                  bquote(n[e]==.(plotDF4$ne[4])))
     
     y.lab5 <- c("N_uptake"="    Nupt",
                 "P_uptake"="Pupt")
     
-    y2.lab5 <- c(bquote(n[s]==.(plotDF5$ns[1])),
+    y2.lab5 <- c(#bquote(n[s]==.(plotDF5$ns[1])),
                  bquote(n[e]==.(plotDF5$ne[1])),
-                 bquote(n[s]==.(plotDF5$ns[2])),
+                 #bquote(n[s]==.(plotDF5$ns[2])),
                  bquote(n[e]==.(plotDF5$ne[2])))
     
     
@@ -185,14 +215,14 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.1, 0.6),
+              legend.position = c(0.01, 0.2),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-2.5, 0.5))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 
                                   9.5, 11.5, 13.5, 15.5,
-                                  17.5, 19.5, 21.5, 23.5),
+                                  17.5),
                          labels=y.lab1)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("aCO2", "eCO2"),
@@ -221,14 +251,14 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.7, 0.6),
+              legend.position = c(0.1, 0.2),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-0.5, 0.5))+
+        scale_x_continuous(limits=c(-0.5, 0.7))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 
                                     9.5, 11.5, 13.5, 15.5,
-                                    17.5, 19.5, 21.5, 23.5),
+                                    17.5),
                            labels=y.lab1)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("eP", "aP"),
@@ -257,17 +287,16 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.65, 0.6),
+              legend.position = c(0.6, 0.2),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 
                                     9.5, 11.5, 13.5, 15.5,
-                                    17.5, 19.5, 21.5, 23.5),
-                           labels=c("","","","","","","","",
-                                    "","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=c(1:24),
+                                    17.5),
+                           labels=c("","","","","","","","",""),
+                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5,17.5, by=2),
                                                labels = y2.lab1))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -304,13 +333,13 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.1, 0.6),
+              legend.position = c(0.1, 0.3),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-2.5, 0.5))+
         scale_y_continuous(breaks=c(25.5, 27.5, 29.5, 31.5, 
-                                    33.5, 35.5, 37.5, 39.5),
+                                    33.5, 35.5),
                            labels=y.lab2)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("aCO2", "eCO2"),
@@ -339,13 +368,13 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.7, 0.6),
+              legend.position = c(0.7, 0.3),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-0.5, 0.5))+
+        scale_x_continuous(limits=c(-0.5, 0.7))+
         scale_y_continuous(breaks=c(25.5, 27.5, 29.5, 31.5, 
-                                    33.5, 35.5, 37.5, 39.5),
+                                    33.5, 35.5),
                            labels=y.lab2)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("eP", "aP"),
@@ -374,15 +403,15 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.65, 0.6),
+              legend.position = c(0.65, 0.3),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(25.5, 27.5, 29.5, 31.5, 
-                                    33.5, 35.5, 37.5, 39.5),
-                           labels=c("","","","","","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=c(25:40),
+                                    33.5, 35.5),
+                           labels=c("","","","","",""),
+                           sec.axis = sec_axis(~., name = "", breaks=seq(25.5, 35.5, by=2),
                                                labels = y2.lab2))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -454,7 +483,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position = "none")+
-        scale_x_continuous(limits=c(-0.5, 0.5))+
+        scale_x_continuous(limits=c(-0.5, 0.7))+
         scale_y_continuous(breaks=c(41.5, 43.5, 45.5),
                            labels=y.lab3)+
         scale_color_manual(name=paste("CIs"),
@@ -488,7 +517,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(41.5, 43.5, 45.5),
                            labels=c("","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=c(41:46),
+                           sec.axis = sec_axis(~., name = "", breaks=c(41.5, 43.5, 45.5),
                                                labels = y2.lab3))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -501,7 +530,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
                           labels=c("Positive", "Negative", "Neutral"))+
         ggtitle("")
     
-    
+
     p4a <- ggplot(plotDF4a)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
@@ -558,7 +587,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-0.5, 0.5))+
+        scale_x_continuous(limits=c(-0.5, 0.7))+
         scale_y_continuous(breaks=c(45.5, 47.5, 49.5, 51.5),
                            labels=y.lab4)+
         scale_color_manual(name=paste("CIs"),
@@ -596,7 +625,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(45.5, 47.5, 49.5, 51.5),
                            labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=c(45:52),
+                           sec.axis = sec_axis(~., name = "", breaks=c(45.5, 47.5, 49.5, 51.5),
                                                labels = y2.lab4))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -658,7 +687,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position = "none")+
-        scale_x_continuous(limits=c(-0.5, 0.5))+
+        scale_x_continuous(limits=c(-0.5, 0.7))+
         scale_y_continuous(breaks=c(53.5, 55.5),
                            labels=y.lab5)+
         scale_color_manual(name=paste("CIs"),
@@ -692,7 +721,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-0.4, 0.6))+
         scale_y_continuous(breaks=c(53.5, 55.5),
                            labels=c("",""),
-                           sec.axis = sec_axis(~., name = "", breaks=c(53:56),
+                           sec.axis = sec_axis(~., name = "", breaks=seq(53.5, 55.5, by=2),
                                                labels = y2.lab5))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -706,11 +735,11 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("")
     
     pdf("output/metafor_summary_plot/other_responses_all_results.pdf", width=14, height=6)
-    plot_grid(p3a, p3b, p3c,
-              p5a, p5b, p5c,
+    plot_grid(p5a, p5b, p5c,
+              p3a, p3b, p3c,
               p4a, p4b, p4c,
               labels="", ncol=3, align="h", axis = "l",
-              rel_heights=c(0.25, 0.2, 0.3),
+              rel_heights=c(0.2, 0.25, 0.3),
               rel_widths=c(1.0, 0.9, 1.0))
     dev.off()
     
