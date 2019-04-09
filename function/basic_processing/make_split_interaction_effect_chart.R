@@ -767,7 +767,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.01, 0.2),
+              legend.position = "none",
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -881,7 +881,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = "none",
+              legend.position = c(0.1, 0.2),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
