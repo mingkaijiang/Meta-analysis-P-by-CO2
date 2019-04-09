@@ -9,7 +9,7 @@ metafor_statistics_mixed_effect_model <- function(reDF, intDF) {
     reDF$Pot_volume <- as.numeric(reDF$Pot_volume)
     reDF$Experiment_duration <- as.numeric(reDF$Experiment_duration)
     #reDF <- subset(reDF, Trt_eP_by_aP <= 25)
-    #reDF <- subset(reDF, Trt_eCO2 >= 550)
+    #reDF <- subset(reDF, Trt_eCO2 <= 800)
     
     ### assign co2 predictors
     Trt_eCO2 <- c(550, 600, 650, 700)
@@ -726,7 +726,7 @@ metafor_statistics_mixed_effect_model <- function(reDF, intDF) {
     #plot(p8)
     #plot(p9)
     
-    
+    write.csv(outDF, "output/statistics_mixed_effect_model/predicted_responses.csv")
     
     ### summary histgram of treatments
     pdf("output/statistics_mixed_effect_model/biomass_prediction_response.pdf", width=12, height=14)
@@ -735,6 +735,49 @@ metafor_statistics_mixed_effect_model <- function(reDF, intDF) {
               labels="AUTO", ncol=2, align="v", axis = "l",
               rel_heights=c(1,1,1,1.5,1))
     dev.off()
+    
+    
+    
+    ### make plots of eCO2 = 600 for a selected list of variables
+    plotDF2 <- subset(plotDF, eCO2==600)
+    plotDF2 <- subset(plotDF2, Variable%in%c("biomass", "concentration", "A", 
+                                             "uptake"))
+    
+    plotDF2$Variable <- gsub("uptake", "nutrient uptake", plotDF2$Variable)
+    
 
+    p1 <- ggplot(plotDF2,
+                  aes(Variable, mean.v*100, fill=P_trt)) +
+        geom_bar(stat="identity", 
+                 position=position_dodge()) +
+        geom_errorbar(aes(x=Variable, ymin=(mean.v-se)*100, ymax=(mean.v+se)*100), 
+                      width=.2, position=position_dodge(.9))+
+        ylab(expression(paste(eCO[2], " response (%)"))) +
+        xlab("")+
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.2),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_fill_manual(name=paste("P treatment"),
+                          breaks=c("hP", "lP"),
+                          values=c("grey","orange"),
+                          labels=c("HP", "LP"))+
+        scale_x_discrete(breaks=c("A", "biomass", "concentration", "nutrient uptake"),
+                         labels=c("A","Biomass","Concentration","Nutrient uptake"))+
+        ylim(c(-20,50))
+    
+    pdf("output/statistics_mixed_effect_model/predicted_response_at_eCO2_600.pdf")
+    plot(p1)
 
+    dev.off()
 }
