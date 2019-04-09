@@ -327,7 +327,9 @@ make_interaction_effect_chart(sumDF, sumDF2, intDF)
 make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
 
 
-
+#### make predictions
+metafor_statistics_gam_model(reDF100, intDF)
+metafor_statistics_mixed_effect_model(reDF100, intDF)
 
 
 

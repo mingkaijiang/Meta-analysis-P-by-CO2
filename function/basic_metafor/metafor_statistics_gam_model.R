@@ -1,8 +1,8 @@
-metafor_statistics_biomass_100_mixed_effect_model <- function(reDF, intDF) {
+metafor_statistics_gam_model <- function(reDF, intDF) {
     
     ### create directory
-    if(!dir.exists("output/statistics_biomass_100_mixed_effect_model")) {
-        dir.create("output/statistics_biomass_100_mixed_effect_model", showWarnings = FALSE)
+    if(!dir.exists("output/statistics_mixed_effect_model")) {
+        dir.create("output/statistics_mixed_effect_model", showWarnings = FALSE)
     }
     
     ### prepare the df
@@ -694,7 +694,7 @@ metafor_statistics_biomass_100_mixed_effect_model <- function(reDF, intDF) {
     
     
     ### summary histgram of treatments
-    pdf("output/statistics_biomass_100_mixed_effect_model/biomass_prediction_response.pdf", width=12, height=14)
+    pdf("output/statistics_mixed_effect_model/biomass_prediction_response.pdf", width=12, height=14)
     
     plot_grid(p11, p10, p6, p13, p1, 
               labels="AUTO", ncol=2, align="v", axis = "l",
