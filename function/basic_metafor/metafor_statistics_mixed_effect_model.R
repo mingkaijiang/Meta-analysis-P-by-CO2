@@ -16,6 +16,8 @@ metafor_statistics_mixed_effect_model <- function(reDF, intDF) {
     Trt_eC_by_aC <- c(1.25, 1.5, 1.75, 2)
     
     Trt_aCO2 <- c(350, 350, 350, 350)
+    Trt_aCO2 <- c(365, 365, 365, 365)
+    
     Trt_eP_by_aP <- c(10, 10, 10, 10)
     
     ### create storage df to store all outputs, available for later plotting
@@ -739,7 +741,7 @@ metafor_statistics_mixed_effect_model <- function(reDF, intDF) {
     
     
     ### make plots of eCO2 = 600 for a selected list of variables
-    plotDF2 <- subset(plotDF, eCO2==600)
+    plotDF2 <- subset(plotDF, eCO2==700)
     plotDF2 <- subset(plotDF2, Variable%in%c("biomass", "concentration", "A", 
                                              "uptake"))
     
