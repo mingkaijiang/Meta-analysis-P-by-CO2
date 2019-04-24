@@ -27,7 +27,7 @@ make_consistent_confidence_interval <- function(inDF, return.option="all_se") {
     myDF3$aCeP_neg <- myDF3$aCeP_mean - (myDF3$aCeP_mean - myDF3$aCeP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     myDF3$aCeP_neg <- myDF3$aCeP_mean - (myDF3$aCeP_mean - myDF3$aCeP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
-    myDF3$eCaP_pos <- myDF3$eCaP_mean + (myDF3$eCaP_pos - myDF3$eCaP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
+    myDF3$eCaP_pos <- myDF3$eCaP_mean + (as.numeric(myDF3$eCaP_pos) - myDF3$eCaP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     myDF3$eCaP_pos <- myDF3$eCaP_mean + (myDF3$eCaP_pos - myDF3$eCaP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
     myDF3$eCaP_neg <- myDF3$eCeP_mean - (myDF3$eCaP_mean - myDF3$eCaP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))

@@ -204,7 +204,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -322,7 +322,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -436,7 +436,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -536,7 +536,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -644,7 +644,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -756,7 +756,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -810,7 +810,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 70))+
+        scale_x_continuous(limits=c(-50, 85))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 
                                     9.5, 11.5, 13.5, 15.5,
                                     17.5),
@@ -847,7 +847,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-40, 60))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 
                                     9.5, 11.5, 13.5, 15.5,
                                     17.5),
@@ -870,7 +870,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -923,7 +923,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 70))+
+        scale_x_continuous(limits=c(-50, 85))+
         scale_y_continuous(breaks=c(25.5, 27.5, 29.5, 31.5, 
                                     33.5, 35.5),
                            labels=y.lab2)+
@@ -959,7 +959,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-40, 60))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(25.5, 27.5, 29.5, 31.5, 
                                     33.5, 35.5),
                            labels=y.lab2)+
@@ -981,7 +981,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -1030,7 +1030,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position = "none")+
-        scale_x_continuous(limits=c(-50, 70))+
+        scale_x_continuous(limits=c(-50, 85))+
         scale_y_continuous(breaks=c(41.5, 43.5, 45.5),
                            labels=y.lab3)+
         scale_color_manual(name=paste("CIs"),
@@ -1061,7 +1061,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position = "none")+
-        scale_x_continuous(limits=c(-40, 60))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(41.5, 43.5, 45.5),
                            labels=y.lab3)+
         scale_color_manual(name=paste("CIs"),
@@ -1081,7 +1081,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -1134,7 +1134,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 70))+
+        scale_x_continuous(limits=c(-50, 85))+
         scale_y_continuous(breaks=c(45.5, 47.5, 49.5, 51.5),
                            labels=y.lab4)+
         scale_color_manual(name=paste("CIs"),
@@ -1169,7 +1169,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-40, 60))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(45.5, 47.5, 49.5, 51.5),
                            labels=y.lab4)+
         scale_color_manual(name=paste("CIs"),
@@ -1189,7 +1189,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response (%)", y="")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -1234,7 +1234,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position = "none")+
-        scale_x_continuous(limits=c(-50, 70))+
+        scale_x_continuous(limits=c(-50, 85))+
         scale_y_continuous(breaks=c(53.5, 55.5),
                            labels=y.lab5)+
         scale_color_manual(name=paste("CIs"),
@@ -1265,7 +1265,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.position = "none")+
-        scale_x_continuous(limits=c(-40, 60))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(53.5, 55.5),
                            labels=y.lab5)+
         scale_color_manual(name=paste("CIs"),
@@ -1343,7 +1343,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response", y="")+
+        labs(x="LP treatment response", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -1457,7 +1457,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response", y="")+
+        labs(x="LP treatment response", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -1568,7 +1568,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response", y="")+
+        labs(x="LP treatment response", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -1668,7 +1668,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response", y="")+
+        labs(x="LP treatment response", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -1776,7 +1776,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="P reduction response", y="")+
+        labs(x="LP treatment response", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
