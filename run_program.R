@@ -341,6 +341,7 @@ sumDF <- metafor_co2_statistics_nutrient_ratio_100_aP(reDF100, sumDF)
 #make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
 
 make_split_interaction_effect_chart_2(sumDF, sumDF2, intDF)
+make_split_interaction_effect_chart_3(sumDF, sumDF2, intDF)
 
 
 #### make predictions

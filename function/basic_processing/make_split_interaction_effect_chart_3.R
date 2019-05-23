@@ -1,6 +1,6 @@
 ### This script plot bar chart for all significant response ratio means and confidence interval
 
-make_split_interaction_effect_chart_2 <- function(sumDF, sumDF2, intDF) {
+make_split_interaction_effect_chart_3 <- function(sumDF, sumDF2, intDF) {
     
     ###this script include nutrient ratio
     
@@ -12,19 +12,19 @@ make_split_interaction_effect_chart_2 <- function(sumDF, sumDF2, intDF) {
     ### prepare df
     sumDF$Category <- c(rep("Biomass", 24), rep("Concentration", 16), rep("Gas exchange", 4),
                          rep("Morphology", 8), rep("Nutrient uptake", 4), 
-                         rep("Resource use efficiency", 6))
+                         rep("Resource use efficiency", 6), rep("Nutrient ratio", 8))
     sumDF$Pos <- sumDF$CO2_effect + (sumDF$se *1.96)
     sumDF$Neg <- sumDF$CO2_effect - (sumDF$se *1.96)
     
     sumDF2$Category <- c(rep("Biomass", 24), rep("Concentration", 16), rep("Gas exchange", 4),
                        rep("Morphology", 8), rep("Nutrient uptake", 4), 
-                       rep("Resource use efficiency", 6))
+                       rep("Resource use efficiency", 6), rep("Nutrient ratio", 8))
     sumDF2$Pos <- sumDF2$P_effect + (sumDF2$se *1.96)
     sumDF2$Neg <- sumDF2$P_effect - (sumDF2$se *1.96)
     
     intDF$Category <- c(rep("Biomass", 12), rep("Concentration", 8), rep("Gas exchange", 2),
                          rep("Morphology", 4), rep("Nutrient uptake", 2), 
-                         rep("Resource use efficiency", 3))
+                         rep("Resource use efficiency", 3), rep("Nutrient ratio", 4))
     intDF$Pos <- intDF$interaction + (intDF$se *1.96)
     intDF$Neg <- intDF$interaction - (intDF$se *1.96)
     
@@ -42,73 +42,86 @@ make_split_interaction_effect_chart_2 <- function(sumDF, sumDF2, intDF) {
     sumDF2$id <- as.character(sumDF2$id)
     intDF$id <- as.character(intDF$id)
     
-    ### subset
-    plotDF1 <- subset(intDF, variable %in% c("leaf_biomass", "stem_biomass", "root_biomass", "total_biomass"))
-    plotDF1a <- subset(sumDF2, variable %in% c("leaf_biomass", "stem_biomass", "root_biomass", "total_biomass"))
-    plotDF1b <- subset(sumDF, variable %in% c("leaf_biomass", "stem_biomass", "root_biomass", "total_biomass"))
     
-    plotDF2 <- subset(intDF, variable %in% c("leaf_N_content", "leaf_P_content", "stem_P_content", "root_P_content", "total_P_content"))
-    plotDF2a <- subset(sumDF2, variable %in% c("leaf_N_content", "leaf_P_content", "stem_P_content", "root_P_content", "total_P_content"))
-    plotDF2b <- subset(sumDF, variable %in% c("leaf_N_content", "leaf_P_content", "stem_P_content", "root_P_content", "total_P_content"))
+    ### create subset plotting groups
+    ## leaf
+    plotDF1 <- subset(intDF, variable %in% c("leaf_biomass", "leaf_N_concentration", "leaf_P_concentration",
+                                             "leaf_N_content", "leaf_P_content", "leaf_NP"))
+    plotDF1a <- subset(sumDF2, variable %in% c("leaf_biomass", "leaf_N_concentration", "leaf_P_concentration",
+                                               "leaf_N_content", "leaf_P_content", "leaf_NP"))
+    plotDF1b <- subset(sumDF, variable %in% c("leaf_biomass", "leaf_N_concentration", "leaf_P_concentration",
+                                              "leaf_N_content", "leaf_P_content", "leaf_NP"))
+    plotDF1$id <- seq(1.5, 11.5, by=2)
+    plotDF1a$id <- plotDF1b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8, 
+                                    7.2, 7.8, 9.2, 9.8, 11.2, 11.8)
     
-    plotDF3 <- subset(intDF, Category == "Concentration")
-    plotDF3a <- subset(sumDF2, Category == "Concentration")
-    plotDF3b <- subset(sumDF, Category == "Concentration")
+    ## stem
+    plotDF2 <- subset(intDF, variable %in% c("stem_biomass", "stem_N_concentration", "stem_P_concentration",
+                                             "stem_N_content", "stem_P_content", "stem_NP"))
+    plotDF2a <- subset(sumDF2, variable %in% c("stem_biomass", "stem_N_concentration", "stem_P_concentration",
+                                               "stem_N_content", "stem_P_content", "stem_NP"))
+    plotDF2b <- subset(sumDF, variable %in% c("stem_biomass", "stem_N_concentration", "stem_P_concentration",
+                                              "stem_N_content", "stem_P_content", "stem_NP"))
+    plotDF2$id <- seq(1.5, 11.5, by=2)
+    plotDF2a$id <- plotDF2b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8, 
+                                    7.2, 7.8, 9.2, 9.8, 11.2, 11.8)
     
-    plotDF4 <- subset(intDF, Category == "Gas exchange")
-    plotDF4a <- subset(sumDF2, Category == "Gas exchange")
-    plotDF4b <- subset(sumDF, Category == "Gas exchange")
+    ## root
+    plotDF3 <- subset(intDF, variable %in% c("root_biomass", "root_N_concentration", "root_P_concentration",
+                                             "root_N_content", "root_P_content", "root_NP"))
+    plotDF3a <- subset(sumDF2, variable %in% c("root_biomass", "root_N_concentration", "root_P_concentration",
+                                               "root_N_content", "root_P_content", "root_NP"))
+    plotDF3b <- subset(sumDF, variable %in% c("root_biomass", "root_N_concentration", "root_P_concentration",
+                                              "root_N_content", "root_P_content", "root_NP"))
+    plotDF3$id <- seq(1.5, 11.5, by=2)
+    plotDF3a$id <- plotDF3b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8, 
+                                    7.2, 7.8, 9.2, 9.8, 11.2, 11.8)
     
-    plotDF5 <- subset(intDF, Category == "Nutrient uptake")
-    plotDF5a <- subset(sumDF2, Category == "Nutrient uptake")
-    plotDF5b <- subset(sumDF, Category == "Nutrient uptake")
+    ## total
+    plotDF4 <- subset(intDF, variable %in% c("total_biomass", "total_N_concentration", "total_P_concentration",
+                                             "total_N_content", "total_P_content", "total_NP"))
+    plotDF4a <- subset(sumDF2, variable %in% c("total_biomass", "total_N_concentration", "total_P_concentration",
+                                               "total_N_content", "total_P_content", "total_NP"))
+    plotDF4b <- subset(sumDF, variable %in% c("total_biomass", "total_N_concentration", "total_P_concentration",
+                                              "total_N_content", "total_P_content", "total_NP"))
+    plotDF4$id <- seq(1.5, 11.5, by=2)
+    plotDF4a$id <- plotDF4b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8, 
+                                    7.2, 7.8, 9.2, 9.8, 11.2, 11.8)
     
-    plotDF6 <- subset(intDF, variable %in% c("leaf_area", "LMA", "Root_length"))
-    plotDF6a <- subset(sumDF2, variable %in% c("leaf_area", "LMA", "Root_length"))
-    plotDF6b <- subset(sumDF, variable %in% c("leaf_area", "LMA", "Root_length"))
+    ## gas exchange and WUE combined together
+    plotDF5 <- subset(intDF, Category == "Gas exchange")
+    plotDF5a <- subset(sumDF2, Category == "Gas exchange")
+    plotDF5b <- subset(sumDF, Category == "Gas exchange")
     
-    plotDF7 <- subset(intDF, variable == "WUE")
-    plotDF7a <- subset(sumDF2, variable == "WUE")
-    plotDF7b <- subset(sumDF, variable == "WUE")
+    plotDF6 <- subset(intDF, variable == "WUE")
+    plotDF6a <- subset(sumDF2, variable == "WUE")
+    plotDF6b <- subset(sumDF, variable == "WUE")
     
-    ### combine gas exchange with WUE
-    plotDF4 <- rbind(plotDF4, plotDF7)
-    plotDF4a <- rbind(plotDF4a, plotDF7a)
-    plotDF4b <- rbind(plotDF4b, plotDF7b)
+    plotDF5 <- rbind(plotDF5, plotDF6)
+    plotDF5a <- rbind(plotDF5a, plotDF6a)
+    plotDF5b <- rbind(plotDF5b, plotDF6b)
+    
+    plotDF5$id <- seq(1.5, 5.5, by=2)
+    plotDF5a$id <- plotDF5b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8)
+    
+    ## nutrient uptake and nutrient use efficiency
+    plotDF6 <- subset(intDF, variable %in% c("N_uptake", "P_uptake", "NUE", "PUE"))
+    plotDF6a <- subset(sumDF2, variable %in% c("N_uptake", "P_uptake", "NUE", "PUE"))
+    plotDF6b <- subset(sumDF, variable %in% c("N_uptake", "P_uptake", "NUE", "PUE"))
+    
+    plotDF6$id <- seq(1.5, 7.5, by=2)
+    plotDF6a$id <- plotDF6b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8, 7.2, 7.8)
+    
+    ## morphology
+    plotDF7 <- subset(intDF, variable %in% c("leaf_area", "LMA", "Root_length"))
+    plotDF7a <- subset(sumDF2, variable %in% c("leaf_area", "LMA", "Root_length"))
+    plotDF7b <- subset(sumDF, variable %in% c("leaf_area", "LMA", "Root_length"))
+    
+    plotDF7$id <- seq(1.5, 5.5, by=2)
+    plotDF7a$id <- plotDF7b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8)
     
     
-    ## reassigning id numbers
-    plotDF4$id[plotDF4$id=="57.5"] <- "45.5"
-    plotDF4$id <- as.numeric(plotDF4$id)
 
-    plotDF4a$id[plotDF4a$id=="57"] <- 45
-    plotDF4a$id[plotDF4a$id=="58"] <- 46
-    
-    plotDF4b$id[plotDF4b$id=="57"] <- 45
-    plotDF4b$id[plotDF4b$id=="58"] <- 46
-    
-    plotDF6$id <- seq(45.5, 49.5, by=2)
-    plotDF6a$id <- plotDF6b$id <- c(45.2, 45.8, 47.2, 47.8, 49.2, 49.8)
-    
-    
-    plotDF1a$id <- plotDF1b$id <- c(1.2, 1.8, 3.2, 3.8, 5.2, 5.8, 7.2, 7.8)
-    
-
-    plotDF2$id <- seq(9.5, 17.5, by=2)
-    plotDF2a$id <- plotDF2b$id <- c(9.2, 9.8, 11.2, 11.8, 13.2, 13.8, 15.2, 15.8,
-                                    17.2, 17.8)
-    
-    plotDF3$id <- seq(25.5, 35.5, by=2)
-    plotDF3a$id <- plotDF3b$id <- c(25.2, 25.8, 27.2, 27.8, 29.2, 29.8, 31.2, 31.8,
-                                    33.2, 33.8, 35.2, 35.8)
-    
-    plotDF4a$id <- plotDF4b$id <- c(41.2, 41.8, 43.2, 43.8, 45.2, 45.8)
-    
-    plotDF5a$id <- plotDF5b$id <- c(53.2, 53.8, 55.2, 55.8)
-    
-    plotDF4$id <- as.numeric(plotDF4$id)
-    plotDF5$id <- as.numeric(plotDF5$id)
-    plotDF1$id <- as.numeric(plotDF1$id)
     
     ### prepare labels
     y.lab1 <- c("leaf_biomass"="    Leaf",
