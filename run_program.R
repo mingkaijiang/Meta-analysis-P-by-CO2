@@ -203,6 +203,10 @@ intDF <- metafor_statistics_resource_use_efficiency_100(reDF100, intDF)
 intDF <- metafor_statistics_gas_exchange_100(reDF100, intDF)
 
 
+### nutrient ratio
+intDF <- metafor_statistics_nutrient_ratio_100(reDF100, intDF)
+
+
 
 
 ##############

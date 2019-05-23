@@ -1,6 +1,6 @@
 prepare_summary_interaction_effect_df <- function() {
     
-    id.list <- seq(1.5, 61.5, by=2)
+    id.list <- seq(1.5, 69.5, by=2)
     sumDF <- data.frame(id.list, NA, NA, NA, NA, NA, NA)
     
     colnames(sumDF) <- c("id", "variable", "interaction", 
@@ -13,7 +13,8 @@ prepare_summary_interaction_effect_df <- function() {
                             "leaf_N_concentration", "stem_N_concentration", "root_N_concentration", "total_N_concentration",
                             "leaf_P_concentration", "stem_P_concentration", "root_P_concentration", "total_P_concentration",
                             "CO2_assimilation_rate", "stomatal_conductance", "leaf_area", "SLA", "LMA",
-                            "Root_length", "N_uptake", "P_uptake", "WUE", "NUE", "PUE")
+                            "Root_length", "N_uptake", "P_uptake", "WUE", "NUE", "PUE",
+                        "leaf_NP", "stem_NP", "root_NP", "total_NP")
     
     return(sumDF)
     
