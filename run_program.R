@@ -236,7 +236,8 @@ sumDF2 <- metafor_p_statistics_resource_use_efficiency_100_aCO2(reDF100, sumDF2)
 ### gas exchange
 sumDF2 <- metafor_p_statistics_gas_exchange_100_aCO2(reDF100, sumDF2)
 
-
+### nutrient ratio
+sumDF2 <- metafor_p_statistics_nutrient_ratio_100_aCO2(reDF100, sumDF2)
 
 
 
@@ -259,7 +260,8 @@ sumDF2 <- metafor_p_statistics_resource_use_efficiency_100_eCO2(reDF100, sumDF2)
 ### gas exchange
 sumDF2 <- metafor_p_statistics_gas_exchange_100_eCO2(reDF100, sumDF2)
 
-
+### nutrient ratio
+sumDF2 <- metafor_p_statistics_nutrient_ratio_100_eCO2(reDF100, sumDF2)
 
 
 ##############
@@ -290,6 +292,9 @@ sumDF <- metafor_co2_statistics_resource_use_efficiency_100_eP(reDF100, sumDF)
 ### gas exchange
 sumDF <- metafor_co2_statistics_gas_exchange_100_eP(reDF100, sumDF)
 
+### nutrient ratio
+sumDF <- metafor_co2_statistics_nutrient_ratio_100_eP(reDF100, sumDF)
+
 
 
 ######## CO2 effect under aP
@@ -310,6 +315,10 @@ sumDF <- metafor_co2_statistics_resource_use_efficiency_100_aP(reDF100, sumDF)
 
 ### gas exchange
 sumDF <- metafor_co2_statistics_gas_exchange_100_aP(reDF100, sumDF)
+
+### nutrient ratio
+sumDF <- metafor_co2_statistics_nutrient_ratio_100_aP(reDF100, sumDF)
+
 
 
 
