@@ -116,23 +116,23 @@ make_basic_summary_stats_plots()
 
 
 ############## make overall plots
-### Make plots - biomass
-make_biomass_plots_100(inDF=subDF100) 
-
-### Make plots - concentration
-make_concentration_plots_100(inDF=subDF100)
-
-### Make plots - morphology
-make_morphology_plots_100(inDF=subDF100)
-
-### Make plots - nutrient uptake
-make_nutrient_uptake_plots_100(inDF=subDF100)
-
-### Make plots - resource use efficiency
-make_resource_use_efficiency_plots_100(inDF=subDF100)
-
-### Make plots - gas exchange
-make_gas_exchange_plots_100(inDF=subDF100)
+#### Make plots - biomass
+#make_biomass_plots_100(inDF=subDF100) 
+#
+#### Make plots - concentration
+#make_concentration_plots_100(inDF=subDF100)
+#
+#### Make plots - morphology
+#make_morphology_plots_100(inDF=subDF100)
+#
+#### Make plots - nutrient uptake
+#make_nutrient_uptake_plots_100(inDF=subDF100)
+#
+#### Make plots - resource use efficiency
+#make_resource_use_efficiency_plots_100(inDF=subDF100)
+#
+#### Make plots - gas exchange
+#make_gas_exchange_plots_100(inDF=subDF100)
 
 
 ############## make gradient subplot 10

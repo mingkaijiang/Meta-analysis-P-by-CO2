@@ -225,8 +225,42 @@ metafor_p_statistics_concentration_100_aCO2 <- function(reDF, sumDF2) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    ### use 1/n to get the variance
+    tDF$variance_p_aCO2 <- 1/tDF$Sample.Size
+    
+    ### random-effect model
+    res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF, control=list(stepadj=0.05))
+    
+    sumDF2$P_effect[sumDF2$variable=="root_N_concentration"&sumDF2$CO2_treatment=="aCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="root_N_concentration"&sumDF2$CO2_treatment=="aCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="root_N_concentration"&sumDF2$CO2_treatment=="aCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="root_N_concentration"&sumDF2$CO2_treatment=="aCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="root_N_concentration"&sumDF2$CO2_treatment=="aCO2"] <- l
+    
+    
+    ### forest plot
+    pdf("output/statistics_p_biomass_100_aCO2/root_N_concentration_response_ratio_random_effect_model.pdf",
+        height=12, width=9)
+    forest(res, slab = tDF$Literature,
+           xlim = c(-12, 4), 
+           ylim = c(-3.5, l+3.5),
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           ilab = cbind(tDF$Vegetation_type,
+                        round(tDF$Trt_eC_by_aC,1), 
+                        round(tDF$Trt_eP_by_aP,1),
+                        as.character(tDF$Experiment_duration)), 
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
+                                          expression(paste(eCO[2], "/", aCO[2])),
+                                          "ePaP", "Experiment", "Range"),
+         cex=0.7)
+    text(c(-8, -6.5, -4.5, -3), l+2,
+         c("type","", "", "duration"), cex=0.7)
+    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant N concentration")
@@ -274,8 +308,42 @@ metafor_p_statistics_concentration_100_aCO2 <- function(reDF, sumDF2) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
+    ### use 1/n to get the variance
+    tDF$variance_p_aCO2 <- 1/tDF$Sample.Size
+    
+    ### random-effect model
+    res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF, control=list(stepadj=0.05))
+    
+    sumDF2$P_effect[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="aCO2"] <- res$b
+    sumDF2$se[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="aCO2"] <- res$se
+    sumDF2$p_value[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="aCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="aCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="aCO2"] <- l
+    
+    
+    ### forest plot
+    pdf("output/statistics_p_biomass_100_aCO2/total_P_concentration_response_ratio_random_effect_model.pdf",
+        height=12, width=9)
+    forest(res, slab = tDF$Literature,
+           xlim = c(-12, 4), 
+           ylim = c(-3.5, l+3.5),
+           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
+           ilab = cbind(tDF$Vegetation_type,
+                        round(tDF$Trt_eC_by_aC,1), 
+                        round(tDF$Trt_eP_by_aP,1),
+                        as.character(tDF$Experiment_duration)), 
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
+                                          expression(paste(eCO[2], "/", aCO[2])),
+                                          "ePaP", "Experiment", "Range"),
+         cex=0.7)
+    text(c(-8, -6.5, -4.5, -3), l+2,
+         c("type","", "", "duration"), cex=0.7)
+    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    dev.off()
     
     return(sumDF2)
     
