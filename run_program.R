@@ -37,6 +37,7 @@ subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 
 subDF100 <- subset(myDF, Trt_eP_by_aP <= 100)
 
+subDF100 <- subset(myDF, Trt_eP_by_aP <= 100 & Trt_aCO2 <= 410)
 
 ############## Basic statistics that summarize 
 ### number of studies
@@ -147,29 +148,29 @@ make_gas_exchange_plots_100(inDF=subDF100)
 
 ############## Statistical analysis - metafor
 ### reprogressing the dataset to calculate individual means and variance for the interaction term
-reDF <- reprocessing_interaction_term(inDF=subDF)
+#reDF <- reprocessing_interaction_term(inDF=subDF)
 reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 ### split the dataset into individual response variable
 ### and perform statistical analysis for the overall effect size and variance
 ### also check for data issues, make plots
 
-### Biomass
-metafor_statistics_biomass(reDF)
-
-### concentration
-metafor_statistics_concentration(reDF)
-
-### morphology
-metafor_statistics_morphology(reDF)
-
-### nutrient uptake
-metafor_statistics_nutrient_uptake(reDF)
-
-### resource use efficiency
-metafor_statistics_resource_use_efficiency(reDF)
-
-### gas exchange
-metafor_statistics_gas_exchange(reDF)
+#### Biomass
+#metafor_statistics_biomass(reDF)
+#
+#### concentration
+#metafor_statistics_concentration(reDF)
+#
+#### morphology
+#metafor_statistics_morphology(reDF)
+#
+#### nutrient uptake
+#metafor_statistics_nutrient_uptake(reDF)
+#
+#### resource use efficiency
+#metafor_statistics_resource_use_efficiency(reDF)
+#
+#### gas exchange
+#metafor_statistics_gas_exchange(reDF)
 
 
 
@@ -309,22 +310,24 @@ sumDF <- metafor_co2_statistics_gas_exchange_100_aP(reDF100, sumDF)
 
 
 ############## plot all significant responses
-plot_significant_response_ratio_100(sumDF)
+#plot_significant_response_ratio_100(sumDF)
 
 
 
 ############## make eCO2 at low P and high P plot
-make_eCO2_effect_at_lowP_highP_chart(sumDF)
+#make_eCO2_effect_at_lowP_highP_chart(sumDF)
 
 ############## make lP effect at aCO2 and eCO2
-make_lP_effect_at_aCO2_eCO2_chart(sumDF2)
+#make_lP_effect_at_aCO2_eCO2_chart(sumDF2)
 
 ############## make interaction effect 
-make_interaction_effect_chart(sumDF, sumDF2, intDF)
+#make_interaction_effect_chart(sumDF, sumDF2, intDF)
 
 
 #### this is the plot script used for main text
-make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
+#make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
+
+make_split_interaction_effect_chart_2(sumDF, sumDF2, intDF)
 
 
 #### make predictions
