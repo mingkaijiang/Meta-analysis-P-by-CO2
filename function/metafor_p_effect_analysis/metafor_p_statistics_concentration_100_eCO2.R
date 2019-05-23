@@ -313,7 +313,7 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     tDF$variance_p_eCO2 <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF, control=list(stepadj=0.05))
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     sumDF2$P_effect[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$b
     sumDF2$se[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$se
