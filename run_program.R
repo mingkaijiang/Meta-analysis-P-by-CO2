@@ -339,9 +339,13 @@ sumDF <- metafor_co2_statistics_nutrient_ratio_100_aP(reDF100, sumDF)
 
 #### this is the plot script used for main text
 #make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
-
-make_split_interaction_effect_chart_2(sumDF, sumDF2, intDF)
+#make_split_interaction_effect_chart_2(sumDF, sumDF2, intDF)
 make_split_interaction_effect_chart_3(sumDF, sumDF2, intDF)
+
+
+############## testing gradient with just a xy plot
+
+
 
 
 #### make predictions
@@ -359,9 +363,5 @@ scenario_illustration_simplified_plot_high_P()
 
 
 ### To do plan
-### 2. draw combine and individual figures to come up with the best way of presenting the results
-### 3. important note: significancze can be improved by only looking at se, currently it is sd
-### 3. repeat Cesar Terrer analysis on finding the most important predictor - using mixed model
-### 4. make a figure on this, for each variable. 
-### 5. Think about haiyang's suggestion on structural equation modeling again
-### 6. Consider changing variance to 1/sample size, and compare the results. 
+### gradient example using leaf biomass
+### mixed model prediction, split data variables, with gradient of P addition
