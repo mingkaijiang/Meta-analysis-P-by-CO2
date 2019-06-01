@@ -340,7 +340,8 @@ sumDF <- metafor_co2_statistics_nutrient_ratio_100_aP(reDF100, sumDF)
 #### this is the plot script used for main text
 #make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
 #make_split_interaction_effect_chart_2(sumDF, sumDF2, intDF)
-make_split_interaction_effect_chart_3(sumDF, sumDF2, intDF)
+#make_split_interaction_effect_chart_3(sumDF, sumDF2, intDF)
+make_split_interaction_effect_chart_4(sumDF, sumDF2, intDF)
 
 
 ############## testing gradient with just a xy plot

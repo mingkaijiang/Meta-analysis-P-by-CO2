@@ -18,7 +18,8 @@ metafor_statistics_mixed_effect_model <- function(reDF, intDF) {
     Trt_aCO2 <- c(350, 350, 350, 350)
     Trt_aCO2 <- c(365, 365, 365, 365)
     
-    Trt_eP_by_aP <- c(10, 10, 10, 10)
+    Trt_eP_by_aP <- c(6,6,6,6)
+    #Trt_eP_by_aP <- c(1,1,1,1)
     
     ### create storage df to store all outputs, available for later plotting
     outDF <- data.frame(rep(c("biomass", "leaf", "stem", "root", "total", 
@@ -781,5 +782,59 @@ metafor_statistics_mixed_effect_model <- function(reDF, intDF) {
     pdf("output/statistics_mixed_effect_model/predicted_response_at_eCO2_600.pdf")
     plot(p1)
 
+    dev.off()
+    
+    
+    
+    
+    ### make plots of eCO2 = 600 for a selected list of variables
+    plotDF3 <- subset(plotDF, eCO2==700)
+    plotDF4 <- subset(plotDF3, Variable%in%c("leaf", "stem", "root", 
+                                             "total"))
+    
+    plotDF4$Variable <- gsub("uptake", "nutrient uptake", plotDF2$Variable)
+    
+    
+    p1 <- ggplot(plotDF4,
+                 aes(Variable, mean.v*100, fill=P_trt)) +
+        geom_bar(stat="identity", 
+                 position=position_dodge()) +
+        geom_errorbar(aes(x=Variable, ymin=(mean.v-se)*100, ymax=(mean.v+se)*100), 
+                      width=.2, position=position_dodge(.9))+
+        ylab(expression(paste(eCO[2], " response (%)"))) +
+        xlab("")+
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.2),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_fill_manual(name=paste("P treatment"),
+                          breaks=c("hP", "lP"),
+                          values=c("grey","orange"),
+                          labels=c("HP", "LP"))+
+        scale_x_discrete(breaks=c("leaf", "stem", "root", "total"),
+                         labels=c("Leaf", "Stem", "Root", "Total"))+
+        ylim(c(-20,100))
+    
+    
+    plot(p1)
+    
+    test <- subset(reDF, Variable=="Stem biomass")
+    summary(test$Trt_aCO2)
+    summary(test$Trt_eCO2)
+    summary(test$Trt_eP_by_aP)
+    
+    pdf("output/statistics_mixed_effect_model/predicted_response_at_eCO2_700_significant_variables.pdf")
+    plot(p1)
+    
     dev.off()
 }
