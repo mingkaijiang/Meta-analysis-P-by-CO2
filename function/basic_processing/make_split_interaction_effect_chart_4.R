@@ -114,26 +114,34 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
     plotDF7a <- rbind(plotDF7a, plotDF8a)
     plotDF7b <- rbind(plotDF7b, plotDF8b)
     
-    plotDF7$id <- seq(5.5, 1.5, by=-2)
-    plotDF7a$id <- plotDF7b$id <- c(5.2, 5.8, 3.2, 3.8, 
+    plotDF8 <- subset(intDF, variable%in% c("leaf_area", "LMA"))
+    plotDF8a <- subset(sumDF2, variable%in% c("leaf_area", "LMA"))
+    plotDF8b <- subset(sumDF, variable%in% c("leaf_area", "LMA"))
+    
+    plotDF7 <- rbind(plotDF7, plotDF8)
+    plotDF7a <- rbind(plotDF7a, plotDF8a)
+    plotDF7b <- rbind(plotDF7b, plotDF8b)
+    
+    plotDF7$id <- seq(9.5, 1.5, by=-2)
+    plotDF7a$id <- plotDF7b$id <- c(9.2, 9.8, 7.2, 7.8, 5.2, 5.8, 3.2, 3.8, 
                                     1.2, 1.8)
     
     ## nutrient uptake and nutrient use efficiency
-    plotDF8 <- subset(intDF, variable %in% c("N_uptake", "P_uptake", "NUE", "PUE"))
-    plotDF8a <- subset(sumDF2, variable %in% c("N_uptake", "P_uptake", "NUE", "PUE"))
-    plotDF8b <- subset(sumDF, variable %in% c("N_uptake", "P_uptake", "NUE", "PUE"))
+    plotDF8 <- subset(intDF, variable %in% c("N_uptake", "P_uptake", "Root_length"))
+    plotDF8a <- subset(sumDF2, variable %in% c("N_uptake", "P_uptake", "Root_length"))
+    plotDF8b <- subset(sumDF, variable %in% c("N_uptake", "P_uptake", "Root_length"))
     
-    plotDF8$id <- seq(7.5, 1.5, by=-2)
-    plotDF8a$id <- plotDF8b$id <- c(7.2, 7.8, 5.2, 5.8, 3.2, 3.8, 
+    plotDF8$id <- seq(5.5, 1.5, by=-2)
+    plotDF8a$id <- plotDF8b$id <- c(5.2, 5.8, 3.2, 3.8, 
                                     1.2, 1.8)
     
     ## morphology
-    plotDF9 <- subset(intDF, variable %in% c("leaf_area", "LMA", "Root_length"))
-    plotDF9a <- subset(sumDF2, variable %in% c("leaf_area", "LMA", "Root_length"))
-    plotDF9b <- subset(sumDF, variable %in% c("leaf_area", "LMA", "Root_length"))
+    plotDF9 <- subset(intDF, variable %in% c("NUE", "PUE"))
+    plotDF9a <- subset(sumDF2, variable %in% c("NUE", "PUE"))
+    plotDF9b <- subset(sumDF, variable %in% c("NUE", "PUE"))
     
-    plotDF9$id <- seq(5.5, 1.5, by=-2)
-    plotDF9a$id <- plotDF9b$id <- c(5.2, 5.8, 3.2, 3.8, 
+    plotDF9$id <- seq(3.5, 1.5, by=-2)
+    plotDF9a$id <- plotDF9b$id <- c(3.2, 3.8, 
                                     1.2, 1.8)
     
     
@@ -201,33 +209,33 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                  bquote(n[e]==.(plotDF6$ne[1])))
     
     
-    y.lab7 <- c("WUE"="iWUE",
+    y.lab7 <- c("LMA" = "LMA",
+                "leaf_area"="LA",
+                "WUE"="iWUE",
                 "stomatal_conductance"=expression(g[s]),
                 "CO2_assimilation_rate"="A")
     
-    y2.lab7 <- c(bquote(n[e]==.(plotDF7$ne[3])),
+    y2.lab7 <- c(bquote(n[e]==.(plotDF7$ne[5])),
+                 bquote(n[e]==.(plotDF7$ne[4])),
+                 bquote(n[e]==.(plotDF7$ne[3])),
                  bquote(n[e]==.(plotDF7$ne[2])),
                  bquote(n[e]==.(plotDF7$ne[1])))
     
     
-    y.lab8 <- c("PUE" = "PUE",
-                "NUE" = "NUE",
+    y.lab8 <- c("Root_length" = "RL",
                 "P_uptake"=expression(P[upt]),
                 "N_uptake"=expression(N[upt]))
     
-    y2.lab8 <- c(bquote(n[e]==.(plotDF8$ne[4])),
-                 bquote(n[e]==.(plotDF8$ne[3])),
+    y2.lab8 <- c(bquote(n[e]==.(plotDF8$ne[3])),
                  bquote(n[e]==.(plotDF8$ne[2])),
                  bquote(n[e]==.(plotDF8$ne[1])))
     
     
-    y.lab9 <- c("Root_length"="RL",
-                "LMA"="LMA",
-                "leaf_area"="LA")
+    y.lab9 <- c("PUE"="PUE",
+                "NUE"="NUE")
                 
     
-    y2.lab9 <- c(bquote(n[e]==.(plotDF9$ne[3])),
-                 bquote(n[e]==.(plotDF9$ne[2])),
+    y2.lab9 <- c(bquote(n[e]==.(plotDF9$ne[2])),
                  bquote(n[e]==.(plotDF9$ne[1])))
     
     
@@ -455,15 +463,15 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         labs(x="LP treatment response (%)", y="N concentration")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_blank(), 
-              axis.text.x = element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
               axis.text.y=element_text(size=12),
-              axis.title.y=element_text(size=14),
+              axis.title.y=element_text(size=14, angle=90),
               legend.text=element_text(size=12),
-              legend.title=element_text(size=14, angle=90),
+              legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = "none",
+              legend.position = c(0.05, 0.4),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -490,15 +498,15 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_blank(), 
-              axis.text.x = element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = "none",
+              legend.position = c(0.68, 0.4),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -525,15 +533,15 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         labs(x="Interaction response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_blank(), 
-              axis.text.x = element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = "none",
+              legend.position = c(0.65, 0.5),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -553,30 +561,40 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                           labels=c("Positive", "Negative", "Neutral"))+
         ggtitle("i")
     
+    pdf("output/metafor_summary_plot/Figure1_biomass_responses_all_results.pdf", width=14, height=12)
+    plot_grid(p1a, p1b, p1c,
+              p2a, p2b, p2c,
+              p3a, p3b, p3c,
+              #rel_heights=c(0.2, 0.25, 0.3),
+              rel_widths=c(1.0, 0.9, 1.0),
+              labels=c(""), ncol=3, align="h", axis = "l")
+    dev.off()
     
-    p4a <- ggplot(plotDF4a)+ 
+    
+    ### plotting
+    p1a <- ggplot(plotDF7a)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="LP treatment response (%)", y="NP ratio")+
+        labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
               axis.text.x = element_text(size=12),
               axis.text.y=element_text(size=12),
-              axis.title.y=element_text(size=14, angle=90),
+              axis.title.y=element_text(size=14, angle = 90),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.1, 0.3),
+              legend.position = c(0.65, 0.35),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-225, 200))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
-                           labels=y.lab4)+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 9.5),
+                           labels=y.lab7)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("aCO2", "eCO2"),
                            values=c("blue3", "red2"),
@@ -586,10 +604,10 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("blue3", "red2"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("j")
+        ggtitle("a")
     
     
-    p4b <- ggplot(plotDF4b)+ 
+    p1b <- ggplot(plotDF7b)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
         geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
@@ -605,13 +623,13 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.72, 0.3),
+              legend.position = c(0.05, 0.35),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-75, 100))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
-                           labels=y.lab4)+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 9.5),
+                           labels=y.lab7)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("eP", "aP"),
                            values=c("blue3", "red2"),
@@ -621,9 +639,10 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("blue3", "red2"),
                           labels=c("HP", "LP"))+
-        ggtitle("k")
+        ggtitle("b")
     
-    p4c <- ggplot(plotDF4)+ 
+    
+    p1c <- ggplot(plotDF7)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
         geom_point(aes(y=id, x=interaction*100, fill=sig), 
@@ -639,15 +658,15 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.65, 0.38),
+              legend.position = c(0.05, 0.4),
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-100, 100))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
-                           labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
-                                               labels = y2.lab4))+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5, 9.5),
+                           labels=c("","","", "", ""),
+                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 9.5, by=2),
+                                               labels = y2.lab7))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
                            values=c("#0072B2", "#D55E00", "#999999"),
@@ -657,21 +676,130 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("#0072B2", "#D55E00", "#999999"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("l")
+        ggtitle("c")
     
-    
-    pdf("output/metafor_summary_plot/Figure1_biomass_responses_all_results.pdf", width=14, height=16)
+    pdf("output/metafor_summary_plot/Figure2_gas_exchange_responses_all_results.pdf", width=16, height=4)
     plot_grid(p1a, p1b, p1c,
-              p2a, p2b, p2c,
-              p3a, p3b, p3c,
-              p4a, p4b, p4c,
-              #rel_heights=c(0.2, 0.25, 0.3),
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
     dev.off()
     
     
+    ### plotting
+    p1a <- ggplot(plotDF8a)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+                   size=4, shape=21)+
+        labs(x="LP treatment response (%)", y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14, angle = 90),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.65, 0.35),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-225, 200))+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
+                           labels=y.lab8)+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("aCO2", "eCO2"),
+                           values=c("blue3", "red2"),
+                           labels=c(expression(aCO[2]), expression(eCO[2])), 
+                           guide=F)+
+        scale_fill_manual(name=expression(paste(CO[2], " treatment")),
+                          limits=c("aCO2", "eCO2"),
+                          values=c("blue3", "red2"),
+                          labels=c(expression(aCO[2]), expression(eCO[2])))+
+        ggtitle("a")
     
+    
+    p1b <- ggplot(plotDF8b)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+                   size=4, shape=21)+
+        labs(x=expression(paste(eCO[2], " response (%)")), y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.65, 0.35),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-75, 100))+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
+                           labels=y.lab8)+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("eP", "aP"),
+                           values=c("blue3", "red2"),
+                           labels=c("HP", "LP"),
+                           guide=F)+
+        scale_fill_manual(name=paste("P treatment"),
+                          limits=c("eP", "aP"),
+                          values=c("blue3", "red2"),
+                          labels=c("HP", "LP"))+
+        ggtitle("b")
+    
+    
+    p1c <- ggplot(plotDF8)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
+        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+                   size=4, shape=21)+
+        labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.7, 0.4),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-100, 100))+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
+                           labels=c("","",""),
+                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 5.5, by=2),
+                                               labels = y2.lab8))+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("pos", "neg", "neutral"),
+                           values=c("#0072B2", "#D55E00", "#999999"),
+                           labels=c("Positive", "Negative", "Neutral"),
+                           guide = FALSE)+
+        scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
+                          limits=c("pos", "neg", "neutral"),
+                          values=c("#0072B2", "#D55E00", "#999999"),
+                          labels=c("Positive", "Negative", "Neutral"))+
+        ggtitle("c")
+    
+    pdf("output/metafor_summary_plot/Figure3_nutrient_responses_all_results.pdf", width=16, height=4)
+    plot_grid(p1a, p1b, p1c,
+              rel_widths=c(1.0, 0.9, 1.0),
+              labels=c(""), ncol=3, align="h", axis = "l")
+    dev.off()
+    
+    
+    #### plotting
     ### plotting
     p1a <- ggplot(plotDF5a)+ 
         geom_vline(xintercept = 0.0)+
@@ -787,15 +915,15 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         labs(x="LP treatment response (%)", y="N content")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14, angle=90),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.6, 0.4),
+              legend.position = "none",
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -822,15 +950,15 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.72, 0.4),
+              legend.position = "none",
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -856,15 +984,15 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.65, 0.5),
+              legend.position = "none",
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -884,265 +1012,30 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                           labels=c("Positive", "Negative", "Neutral"))+
         ggtitle("f")
     
-    pdf("output/metafor_summary_plot/Figure2_content_responses_all_results.pdf", width=16, height=8)
-    plot_grid(p1a, p1b, p1c,
-              p2a, p2b, p2c,
-              rel_widths=c(1.0, 0.9, 1.0),
-              labels=c(""), ncol=3, align="h", axis = "l")
-    dev.off()
-    
     
     ### plotting
-    p1a <- ggplot(plotDF7a)+ 
+    p3a <- ggplot(plotDF9a)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
         geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
                    size=4, shape=21)+
-        labs(x="LP treatment response (%)", y="")+
+        labs(x="LP treatment response (%)", y="Nutrient use efficiency")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14, angle = 90),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.65, 0.35),
+              legend.position = "none",
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-225, 200))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
-                           labels=y.lab7)+
-        scale_color_manual(name=paste("CIs"),
-                           limits=c("aCO2", "eCO2"),
-                           values=c("blue3", "red2"),
-                           labels=c(expression(aCO[2]), expression(eCO[2])), 
-                           guide=F)+
-        scale_fill_manual(name=expression(paste(CO[2], " treatment")),
-                          limits=c("aCO2", "eCO2"),
-                          values=c("blue3", "red2"),
-                          labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")
-    
-    
-    p1b <- ggplot(plotDF7b)+ 
-        geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
-                   size=4, shape=21)+
-        labs(x=expression(paste(eCO[2], " response (%)")), y="")+
-        theme_linedraw()+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.justification = c(0, 1), 
-              legend.position = c(0.05, 0.35),
-              legend.background = element_rect(fill="grey",
-                                               size=0.5, linetype="solid", 
-                                               colour ="black"))+
-        scale_x_continuous(limits=c(-75, 100))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
-                           labels=y.lab7)+
-        scale_color_manual(name=paste("CIs"),
-                           limits=c("eP", "aP"),
-                           values=c("blue3", "red2"),
-                           labels=c("HP", "LP"),
-                           guide=F)+
-        scale_fill_manual(name=paste("P treatment"),
-                          limits=c("eP", "aP"),
-                          values=c("blue3", "red2"),
-                          labels=c("HP", "LP"))+
-        ggtitle("b")
-    
-    
-    p1c <- ggplot(plotDF7)+ 
-        geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
-                   size=4, shape=21)+
-        labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
-        theme_linedraw()+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_text(size=12),
-              axis.title.y=element_text(size=14),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.justification = c(0, 1), 
-              legend.position = c(0.05, 0.4),
-              legend.background = element_rect(fill="grey",
-                                               size=0.5, linetype="solid", 
-                                               colour ="black"))+
-        scale_x_continuous(limits=c(-100, 100))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
-                           labels=c("","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 5.5, by=2),
-                                               labels = y2.lab7))+
-        scale_color_manual(name=paste("CIs"),
-                           limits=c("pos", "neg", "neutral"),
-                           values=c("#0072B2", "#D55E00", "#999999"),
-                           labels=c("Positive", "Negative", "Neutral"),
-                           guide = FALSE)+
-        scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
-                          limits=c("pos", "neg", "neutral"),
-                          values=c("#0072B2", "#D55E00", "#999999"),
-                          labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")
-    
-    pdf("output/metafor_summary_plot/Figure3_gas_exchange_responses_all_results.pdf", width=16, height=4)
-    plot_grid(p1a, p1b, p1c,
-              rel_widths=c(1.0, 0.9, 1.0),
-              labels=c(""), ncol=3, align="h", axis = "l")
-    dev.off()
-    
-    
-    ### plotting
-    p1a <- ggplot(plotDF8a)+ 
-        geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
-                   size=4, shape=21)+
-        labs(x="LP treatment response (%)", y="")+
-        theme_linedraw()+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_text(size=12),
-              axis.title.y=element_text(size=14, angle = 90),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.justification = c(0, 1), 
-              legend.position = c(0.65, 0.35),
-              legend.background = element_rect(fill="grey",
-                                               size=0.5, linetype="solid", 
-                                               colour ="black"))+
-        scale_x_continuous(limits=c(-225, 200))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
-                           labels=y.lab8)+
-        scale_color_manual(name=paste("CIs"),
-                           limits=c("aCO2", "eCO2"),
-                           values=c("blue3", "red2"),
-                           labels=c(expression(aCO[2]), expression(eCO[2])), 
-                           guide=F)+
-        scale_fill_manual(name=expression(paste(CO[2], " treatment")),
-                          limits=c("aCO2", "eCO2"),
-                          values=c("blue3", "red2"),
-                          labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")
-    
-    
-    p1b <- ggplot(plotDF8b)+ 
-        geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
-                   size=4, shape=21)+
-        labs(x=expression(paste(eCO[2], " response (%)")), y="")+
-        theme_linedraw()+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.justification = c(0, 1), 
-              legend.position = c(0.05, 0.35),
-              legend.background = element_rect(fill="grey",
-                                               size=0.5, linetype="solid", 
-                                               colour ="black"))+
-        scale_x_continuous(limits=c(-75, 100))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
-                           labels=y.lab8)+
-        scale_color_manual(name=paste("CIs"),
-                           limits=c("eP", "aP"),
-                           values=c("blue3", "red2"),
-                           labels=c("HP", "LP"),
-                           guide=F)+
-        scale_fill_manual(name=paste("P treatment"),
-                          limits=c("eP", "aP"),
-                          values=c("blue3", "red2"),
-                          labels=c("HP", "LP"))+
-        ggtitle("b")
-    
-    
-    p1c <- ggplot(plotDF8)+ 
-        geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
-                   size=4, shape=21)+
-        labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
-        theme_linedraw()+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_text(size=12),
-              axis.title.y=element_text(size=14),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.justification = c(0, 1), 
-              legend.position = c(0.7, 0.4),
-              legend.background = element_rect(fill="grey",
-                                               size=0.5, linetype="solid", 
-                                               colour ="black"))+
-        scale_x_continuous(limits=c(-100, 100))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
-                           labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
-                                               labels = y2.lab8))+
-        scale_color_manual(name=paste("CIs"),
-                           limits=c("pos", "neg", "neutral"),
-                           values=c("#0072B2", "#D55E00", "#999999"),
-                           labels=c("Positive", "Negative", "Neutral"),
-                           guide = FALSE)+
-        scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
-                          limits=c("pos", "neg", "neutral"),
-                          values=c("#0072B2", "#D55E00", "#999999"),
-                          labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")
-    
-    pdf("output/metafor_summary_plot/Figure4_nutrient_responses_all_results.pdf", width=16, height=4)
-    plot_grid(p1a, p1b, p1c,
-              rel_widths=c(1.0, 0.9, 1.0),
-              labels=c(""), ncol=3, align="h", axis = "l")
-    dev.off()
-    
-    
-    ### plotting
-    p1a <- ggplot(plotDF9a)+ 
-        geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
-                   size=4, shape=21)+
-        labs(x="LP treatment response (%)", y="")+
-        theme_linedraw()+
-        theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
-              axis.text.y=element_text(size=12),
-              axis.title.y=element_text(size=14, angle = 90),
-              legend.text=element_text(size=12),
-              legend.title=element_text(size=14),
-              panel.grid.major=element_blank(),
-              legend.justification = c(0, 1), 
-              legend.position = c(0.65, 0.35),
-              legend.background = element_rect(fill="grey",
-                                               size=0.5, linetype="solid", 
-                                               colour ="black"))+
-        scale_x_continuous(limits=c(-225, 200))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
+        scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=y.lab9)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("aCO2", "eCO2"),
@@ -1153,10 +1046,10 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("blue3", "red2"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")
+        ggtitle("g")
     
     
-    p1b <- ggplot(plotDF9b)+ 
+    p3b <- ggplot(plotDF9b)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
         geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
@@ -1164,20 +1057,20 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.05, 0.35),
+              legend.position = "none",
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-75, 100))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
+        scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=y.lab9)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("eP", "aP"),
@@ -1188,10 +1081,10 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("blue3", "red2"),
                           labels=c("HP", "LP"))+
-        ggtitle("b")
+        ggtitle("h")
     
     
-    p1c <- ggplot(plotDF9)+ 
+    p3c <- ggplot(plotDF9)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
         geom_point(aes(y=id, x=interaction*100, fill=sig), 
@@ -1199,22 +1092,22 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=14), 
-              axis.text.x = element_text(size=12),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=12),
               axis.title.y=element_text(size=14),
               legend.text=element_text(size=12),
               legend.title=element_text(size=14),
               panel.grid.major=element_blank(),
               legend.justification = c(0, 1), 
-              legend.position = c(0.05, 0.4),
+              legend.position = "none",
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-100, 100))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
-                           labels=c("","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 5.5, by=2),
+        scale_y_continuous(breaks=c(1.5, 3.5),
+                           labels=c("",""),
+                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 3.5, by=2),
                                                labels = y2.lab9))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -1225,13 +1118,123 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("#0072B2", "#D55E00", "#999999"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")
+        ggtitle("i")
     
-    pdf("output/metafor_summary_plot/Figure5_morphology_responses_all_results.pdf", width=16, height=4)
+    
+    p4a <- ggplot(plotDF4a)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+                   size=4, shape=21)+
+        labs(x="LP treatment response (%)", y="NP ratio")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14, angle=90),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.1, 0.35),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-225, 200))+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
+                           labels=y.lab4)+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("aCO2", "eCO2"),
+                           values=c("blue3", "red2"),
+                           labels=c(expression(aCO[2]), expression(eCO[2])), 
+                           guide=F)+
+        scale_fill_manual(name=expression(paste(CO[2], " treatment")),
+                          limits=c("aCO2", "eCO2"),
+                          values=c("blue3", "red2"),
+                          labels=c(expression(aCO[2]), expression(eCO[2])))+
+        ggtitle("j")
+    
+    
+    p4b <- ggplot(plotDF4b)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+                   size=4, shape=21)+
+        labs(x=expression(paste(eCO[2], " response (%)")), y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.72, 0.3),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-75, 100))+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
+                           labels=y.lab4)+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("eP", "aP"),
+                           values=c("blue3", "red2"),
+                           labels=c("HP", "LP"),
+                           guide=F)+
+        scale_fill_manual(name=paste("P treatment"),
+                          limits=c("eP", "aP"),
+                          values=c("blue3", "red2"),
+                          labels=c("HP", "LP"))+
+        ggtitle("k")
+    
+    p4c <- ggplot(plotDF4)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
+        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+                   size=4, shape=21)+
+        labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.justification = c(0, 1), 
+              legend.position = c(0.65, 0.38),
+              legend.background = element_rect(fill="grey",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-100, 100))+
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
+                           labels=c("","","",""),
+                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
+                                               labels = y2.lab4))+
+        scale_color_manual(name=paste("CIs"),
+                           limits=c("pos", "neg", "neutral"),
+                           values=c("#0072B2", "#D55E00", "#999999"),
+                           labels=c("Positive", "Negative", "Neutral"),
+                           guide = FALSE)+
+        scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
+                          limits=c("pos", "neg", "neutral"),
+                          values=c("#0072B2", "#D55E00", "#999999"),
+                          labels=c("Positive", "Negative", "Neutral"))+
+        ggtitle("l")
+    
+    pdf("output/metafor_summary_plot/FigureX_content_responses_all_results.pdf", width=16, height=16)
     plot_grid(p1a, p1b, p1c,
+              p2a, p2b, p2c,
+              p3a, p3b, p3c,
+              p4a, p4b, p4c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
     dev.off()
+    
     
     
     
