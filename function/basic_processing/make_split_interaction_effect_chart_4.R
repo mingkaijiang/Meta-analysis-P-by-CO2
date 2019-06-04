@@ -223,8 +223,8 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
     
     
     y.lab8 <- c("Root_length" = "RL",
-                "P_uptake"=expression(P[upt]),
-                "N_uptake"=expression(N[upt]))
+                "N_uptake"=expression(N[upt]),
+                "P_uptake"=expression(P[upt]))
     
     y2.lab8 <- c(bquote(n[e]==.(plotDF8$ne[3])),
                  bquote(n[e]==.(plotDF8$ne[2])),
