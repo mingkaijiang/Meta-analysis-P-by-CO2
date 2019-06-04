@@ -316,7 +316,7 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
         geom_point(aes(y=id, x=interaction*100, fill=sig), 
                    size=4, shape=21)+
-        labs(x="Interaction response (%)", y="")+
+        labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -423,7 +423,7 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
         geom_point(aes(y=id, x=interaction*100, fill=sig), 
                    size=4, shape=21)+
-        labs(x="Interaction response (%)", y="")+
+        labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -530,7 +530,7 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
         geom_point(aes(y=id, x=interaction*100, fill=sig), 
                    size=4, shape=21)+
-        labs(x="Interaction response (%)", y="")+
+        labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -875,7 +875,7 @@ make_split_interaction_effect_chart_4 <- function(sumDF, sumDF2, intDF) {
         geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=sig), height=0.5) + 
         geom_point(aes(y=id, x=interaction*100, fill=sig), 
                    size=4, shape=21)+
-        labs(x="Interaction response (%)", y="")+
+        labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 

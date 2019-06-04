@@ -70,7 +70,7 @@ make_basic_summary_stats_plots <- function() {
               legend.position="bottom",
               legend.text.align=0)+
         ylab("Data entry count")+
-        xlab("eP / aP")
+        xlab("HP / LP")
     
 
     ### summary histgram of treatments
@@ -120,7 +120,8 @@ make_basic_summary_stats_plots <- function() {
               legend.text.align=0)+
         ylab("Data entry count")+
         scale_x_discrete(name="Vegetation type",
-                         breaks=c( "Grass Forb Legume", "Tree", "Crop"))
+                         breaks=c( "Grass Forb Legume", "Tree", "Crop"),
+                         labels=c( "Grass & others", "Tree", "Crop"))
     
     catDF <- unique(test[c("Literature", "Category")])
     vegDF <- unique(test[c("Literature", "Vegetation_type")])
@@ -159,7 +160,8 @@ make_basic_summary_stats_plots <- function() {
               legend.text.align=0)+
         ylab("Study count")+
         scale_x_discrete(name="Vegetation type",
-                         breaks=c( "Grass Forb Legume", "Tree", "Crop"))
+                         breaks=c( "Grass Forb Legume", "Tree", "Crop"),
+                         labels=c( "Grass & others", "Tree", "Crop"))
     
     
     pdf("output/basic_summary/summary_data_variable.pdf", width=12, height=8)
