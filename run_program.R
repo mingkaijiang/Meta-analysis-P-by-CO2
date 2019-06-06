@@ -344,7 +344,8 @@ sumDF <- metafor_co2_statistics_nutrient_ratio_100_aP(reDF100, sumDF)
 make_split_interaction_effect_chart_4(sumDF, sumDF2, intDF)
 
 
-############## testing gradient with just a xy plot
+############## testing N uptake, P uptake and correlation with root biomass and length
+
 
 
 
