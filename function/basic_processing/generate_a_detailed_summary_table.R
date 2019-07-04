@@ -79,7 +79,7 @@ generate_a_detailed_summary_table <- function(reDF100) {
     outDF$HP_LP[outDF$Category=="P concentration"] <- mean(test$Trt_eP_by_aP)
     
     ### plant NP ratio
-    test <- subset(reDF100,Variable%in%c("Total plant NP ratio", "Leaf NP ratio", "Stem NP ratio", "Root NP ratio"))
+    test <- subset(reDF100,Variable%in%c("Total NP ratio", "Leaf NP ratio", "Stem NP ratio", "Root NP ratio"))
     outDF$entries[outDF$Category=="N:P ratio"] <- dim(test)[1]
     outDF$studies[outDF$Category=="N:P ratio"] <- length(unique(test$Literature))
     outDF$aCO2_low[outDF$Category=="N:P ratio"] <- min(test$Trt_aCO2)
