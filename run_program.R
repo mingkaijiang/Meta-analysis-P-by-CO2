@@ -173,8 +173,8 @@ reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 #metafor_statistics_gas_exchange(reDF)
 
 
-
-
+##### a detailed summary table 
+generate_a_detailed_summary_table(reDF100)
 
 
 
