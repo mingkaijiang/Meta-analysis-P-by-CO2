@@ -341,18 +341,64 @@ sumDF <- metafor_co2_statistics_nutrient_ratio_100_aP(reDF100, sumDF)
 #make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
 #make_split_interaction_effect_chart_2(sumDF, sumDF2, intDF)
 #make_split_interaction_effect_chart_3(sumDF, sumDF2, intDF)
-make_split_interaction_effect_chart_4(sumDF, sumDF2, intDF)
+#make_split_interaction_effect_chart_4(sumDF, sumDF2, intDF)
+make_split_interaction_effect_chart_5(sumDF, sumDF2, intDF)
 
 
-############## testing N uptake, P uptake and correlation with root biomass and length
+
+
+##############
+#### subset woody plant DF
+wdDF <- subset(reDF100, Vegetation_type=="Tree")
+
+#### Interaction effect for woody plants
+intDF2 <- prepare_summary_interaction_effect_woody_df()
+
+#### metafor statistics
+intDF2 <- metafor_statistics_woody_plants_100(wdDF, intDF2)
+
+#### CO2 effect under aP and eP for woody plants
+sumDF2 <- prepare_summary_co2_effect_woody_df()
+
+#### CO2 effect under eP
+sumDF2 <- metafor_co2_statistics_woody_plants_100_eP(wdDF, sumDF2)
+
+#### CO2 effect under aP
+sumDF2 <- metafor_co2_statistics_woody_plants_100_aP(wdDF, sumDF2)
+
+
+##############
+#### subset woody plant DF
+nwdDF <- subset(reDF100, Vegetation_type!="Tree")
+
+#### Interaction effect for nonwoody plants
+intDF3 <- prepare_summary_interaction_effect_woody_df()
+
+#### metafor statistics
+intDF3 <- metafor_statistics_nonwoody_plants_100(nwdDF, intDF3)
+
+#### CO2 effect under aP and eP for nonwoody plants
+sumDF3 <- prepare_summary_co2_effect_nonwoody_df()
+
+#### CO2 effect under eP
+sumDF3 <- metafor_co2_statistics_nonwoody_plants_100_eP(nwdDF, sumDF3)
+
+#### CO2 effect under aP
+sumDF3 <- metafor_co2_statistics_nonwoody_plants_100_aP(nwdDF, sumDF3)
+
+
+#### plot woody and nonwoody comparison
+plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
+
+
 
 
 
 
 
 #### make predictions
-metafor_statistics_gam_model(reDF100, intDF)
-metafor_statistics_mixed_effect_model(reDF100, intDF)
+#metafor_statistics_gam_model(reDF100, intDF)
+#metafor_statistics_mixed_effect_model(reDF100, intDF)
 
 
 
