@@ -249,11 +249,11 @@ metafor_co2_statistics_nonwoody_plants_100_eP <- function(reDF, sumDF) {
     tDF$variance_co2_eP <- 1/tDF$Sample.Size
     
     ### random-effect model
-    #res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    res <- rma(log_co2_eP, variance_co2_eP, data = tDF, control=list(stepadj=0.5))
     
-    #sumDF$CO2_effect[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- res$b
-    #sumDF$se[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- res$se
-    #sumDF$p_value[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$CO2_effect[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="eP"] <- l
     
