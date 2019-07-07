@@ -35,6 +35,7 @@ source_per_study_scripts <- dir("function/per_study_analysis", pattern="[.]R$", 
 for(z7 in source_per_study_scripts)source(z7)
 
 
-
+source_per_study_scripts <- dir("function/by_plant_group", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
+for(z8 in source_per_study_scripts)source(z8)
 
 

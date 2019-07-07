@@ -220,19 +220,19 @@ metafor_co2_statistics_woody_plants_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Root P concentration")
     
     ### random-effect model
-    #res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    res <- rma(log_co2_eP, variance_co2_eP, data = tDF, control=list(stepadj=0.5))
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    confint(res)
     
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    #sumDF$CO2_effect[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$b
-    #sumDF$se[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$se
-    #sumDF$p_value[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$pval
+    sumDF$CO2_effect[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$b
+    sumDF$se[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$se
+    sumDF$p_value[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="eP"] <- l
     
