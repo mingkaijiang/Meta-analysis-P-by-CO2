@@ -32,7 +32,7 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
                                             "Root_length"))
     plotDF1$id <- c(0.8, 1.8, 2.8, 3.8, 1.2, 2.2, 3.2, 4.2)
     
-    plotDF2 <- subset(intDF4, variable%in%c("leaf_biomass", "total_biomass", 
+    plotDF2 <- subset(intDF4, variable%in%c("leaf_biomass", 
                                             "aboveground_biomass", "belowground_biomass"))
     
     plotDF3 <- subset(intDF4, variable%in%c("leaf_N_concentration", "leaf_P_concentration", 
@@ -46,10 +46,10 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
     plotDF5 <- subset(sumDF4, PFT=="nonwoody" & variable%in%c("CO2_assimilation_rate", "leaf_area", "LMA",
                                                            "Root_length"))
     
-    plotDF6 <- subset(sumDF4, PFT=="woody" & variable%in%c("leaf_biomass", "total_biomass", 
+    plotDF6 <- subset(sumDF4, PFT=="woody" & variable%in%c("leaf_biomass", 
                                                            "aboveground_biomass", "belowground_biomass"))
     
-    plotDF7 <- subset(sumDF4, PFT=="nonwoody" & variable%in%c("leaf_biomass", "total_biomass", 
+    plotDF7 <- subset(sumDF4, PFT=="nonwoody" & variable%in%c("leaf_biomass", 
                                                            "aboveground_biomass", "belowground_biomass"))
     
     plotDF8 <- subset(sumDF4, PFT=="woody" & variable%in%c("leaf_N_concentration", "leaf_P_concentration", 
@@ -58,9 +58,9 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
     plotDF9 <- subset(sumDF4, PFT=="nonwoody" & variable%in%c("leaf_N_concentration", "leaf_P_concentration", 
                                                            "root_N_concentration", "root_P_concentration"))
     
-    plotDF4$id <- plotDF5$id <- plotDF6$id <- plotDF7$id <- plotDF8$id <- plotDF9$id <- c(0.9, 1.1, 1.9, 2.1, 2.9, 3.1, 3.9, 4.1)
+    plotDF4$id <- plotDF5$id <- plotDF8$id <- plotDF9$id <- c(0.9, 1.1, 1.9, 2.1, 2.9, 3.1, 3.9, 4.1)
     
-    
+    plotDF6$id <- plotDF7$id <- c(1.9, 2.1, 2.9, 3.1, 3.9, 4.1)
     
     ### plot effect of LP on eCO2 response
     p1a <- ggplot(plotDF1, aes(id, interaction))+ 
