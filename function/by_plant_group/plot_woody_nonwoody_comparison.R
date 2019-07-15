@@ -292,8 +292,8 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_y_continuous(limits=c(-25, 100))+
-        scale_x_continuous(breaks=c(1:4),
-                           labels=c("Leaf", "Aboveground", "Belowground", "Total"))+
+        scale_x_continuous(breaks=c(2:4),
+                           labels=c("Leaf", "Aboveground", "Belowground"))+
         scale_color_manual(name=paste("P treatment"),
                            limits=c("eP", "aP"),
                            values=c("grey", "black"),
@@ -331,8 +331,8 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_y_continuous(limits=c(-25, 100))+
-        scale_x_continuous(breaks=c(1:4),
-                           labels=c("Leaf", "Aboveground", "Belowground", "Total"))+
+        scale_x_continuous(breaks=c(2:4),
+                           labels=c("Leaf", "Aboveground", "Belowground"))+
         scale_color_manual(name=paste("P treatment"),
                            limits=c("eP", "aP"),
                            values=c("grey", "black"),
