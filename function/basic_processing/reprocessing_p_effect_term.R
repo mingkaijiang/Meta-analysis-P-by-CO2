@@ -13,6 +13,9 @@ reprocessing_p_effect_term <- function(inDF) {
     inDF$log_P_aCO2 <- log(inDF$aCaP_mean/inDF$aCeP_mean)
     inDF$log_P_eCO2 <- log(inDF$eCaP_mean/inDF$eCeP_mean)
     
+    #inDF$log_P_aCO2 <- (inDF$aCaP_mean/inDF$aCeP_mean) - 1
+    #inDF$log_P_eCO2 <- (inDF$eCaP_mean/inDF$eCeP_mean) - 1
+    
     inDF$variance_p_aCO2 <- (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))+
         (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))
     

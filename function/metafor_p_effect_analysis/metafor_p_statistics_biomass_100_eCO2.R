@@ -187,7 +187,7 @@ metafor_p_statistics_biomass_100_eCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Leaf N content")
     
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF, control=list(stepadj=0.5))
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

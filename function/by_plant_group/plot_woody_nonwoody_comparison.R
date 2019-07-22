@@ -10,17 +10,18 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
     sumDF4 <- rbind(sumDF2, sumDF3)
     
     ### get %
-    intDF4$interaction <- intDF4$interaction * 100
-    intDF4$se <- intDF4$se * 100
-    intDF4$pos <- intDF4$interaction + (intDF4$se * 1.96)
-    intDF4$neg <- intDF4$interaction - (intDF4$se * 1.96)
+    #intDF4$interaction <- intDF4$interaction * 100
+    #intDF4$se <- intDF4$se * 100
+    intDF4$pos <- (exp(intDF4$interaction + (intDF4$se * 1.96)) - 1) * 100
+    intDF4$neg <- (exp(intDF4$interaction - (intDF4$se * 1.96)) - 1) * 100
+    intDF4$interaction <- (exp(intDF4$interaction) - 1) * 100
     
-    sumDF4$CO2_effect <- sumDF4$CO2_effect * 100
-    sumDF4$se <- sumDF4$se * 100
+    #sumDF4$CO2_effect <- sumDF4$CO2_effect * 100
+    #sumDF4$se <- sumDF4$se * 100
     
-    sumDF4$pos <- sumDF4$CO2_effect + (sumDF4$se * 1.96)
-    sumDF4$neg <- sumDF4$CO2_effect - (sumDF4$se * 1.96)
-    
+    sumDF4$pos <- (exp(sumDF4$CO2_effect + (sumDF4$se * 1.96)) - 1) * 100
+    sumDF4$neg <- (exp(sumDF4$CO2_effect - (sumDF4$se * 1.96)) - 1) * 100
+    sumDF4$CO2_effect <- (exp(sumDF4$CO2_effect) - 1) * 100
     
     ### arrange plot order
     intDF4$id <- c(1.8, 0, 0, 4.8, 2.8, 3.8, 0, 0, 5.8, 7.8, 6.8, 8.8, 0.8, 9.8, 0, 10.8, 11.8,
@@ -85,7 +86,7 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_y_continuous(limits=c(-30, 30))+
+        scale_y_continuous(limits=c(-30, 35))+
         scale_x_continuous(breaks=c(1:4),
                            labels=c("A", "LA", "LMA", "RL"))+
         scale_color_manual(name=paste("Vegetation group"),
@@ -162,7 +163,7 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_y_continuous(limits=c(-50, 50))+
+        scale_y_continuous(limits=c(-50, 55))+
         scale_x_continuous(breaks=c(6:9),
                            labels=c("Leaf N", "Leaf P", "Root N", "Root P"))+
         scale_color_manual(name=paste("Vegetation group"),
@@ -369,7 +370,7 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_y_continuous(limits=c(-100, 50))+
+        scale_y_continuous(limits=c(-50, 55))+
         scale_x_continuous(breaks=c(1:4),
                            labels=c("Leaf N", "Root N", "Leaf P", "Root P"))+
         scale_color_manual(name=paste("P treatment"),
@@ -408,7 +409,7 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_y_continuous(limits=c(-100, 50))+
+        scale_y_continuous(limits=c(-50, 55))+
         scale_x_continuous(breaks=c(1:4),
                            labels=c("Leaf N", "Root N", "Leaf P", "Root P"))+
         scale_color_manual(name=paste("P treatment"),

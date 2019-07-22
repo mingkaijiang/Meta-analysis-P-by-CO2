@@ -18,17 +18,14 @@ reprocessing_interaction_term <- function(inDF) {
     
     ### Calculate the log of response ratio to linearize the data
     inDF$log_interaction <- log(inDF$interaction)
+    #inDF$log_interaction <- inDF$interaction-1
     
     ### calculate v, the variance of the log response ratio for P by CO2 interaction
-    #inDF$v_variance <- (inDF$eCeP_sd^2/(inDF$Sample.Size*(inDF$eCeP_mean)^2))+
-    #    (inDF$eCaP_sd^2/(inDF$Sample.Size*(inDF$eCaP_mean)^2))+
-    #    (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))+
-    #    (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))
-    
     inDF$v_variance <- (inDF$eCaP_sd^2/(inDF$Sample.Size*(inDF$eCaP_mean)^2))+
         (inDF$eCeP_sd^2/(inDF$Sample.Size*(inDF$eCeP_mean)^2))+
         (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))+
         (inDF$aCaP_sd^2/(inDF$Sample.Size*(inDF$aCaP_mean)^2))
+    
     
     ### many studies do not report sd, hence variance needs to be calculated using proxies
     ### here variance for missing data of each study is calculated assuming

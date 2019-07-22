@@ -13,7 +13,10 @@ reprocessing_co2_effect_term <- function(inDF) {
     inDF$log_co2_eP <- log(inDF$eCeP_mean/inDF$aCeP_mean)
     inDF$log_co2_aP <- log(inDF$eCaP_mean/inDF$aCaP_mean)
     
-
+    #inDF$log_co2_eP <- (inDF$eCeP_mean/inDF$aCeP_mean) - 1
+    #inDF$log_co2_aP <- (inDF$eCaP_mean/inDF$aCaP_mean) - 1
+    
+    
     ### variance, under eP condition
     inDF$variance_co2_eP <- (inDF$eCeP_sd^2/(inDF$Sample.Size*(inDF$eCeP_mean)^2))+
         (inDF$aCeP_sd^2/(inDF$Sample.Size*(inDF$aCeP_mean)^2))
