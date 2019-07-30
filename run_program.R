@@ -39,6 +39,10 @@ subDF100 <- subset(myDF, Trt_eP_by_aP <= 100)
 
 subDF100 <- subset(myDF, Trt_eP_by_aP <= 100 & Trt_aCO2 <= 410)
 
+
+#### generate species list
+generate_species_list()
+
 ############## Basic statistics that summarize 
 ### number of studies
 ### number of data entries
@@ -153,6 +157,9 @@ reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 ### split the dataset into individual response variable
 ### and perform statistical analysis for the overall effect size and variance
 ### also check for data issues, make plots
+
+#### plot a leaf N vs. leaf P concentration comparison
+plot_leaf_N_P_concentration_comparison()
 
 #### Biomass
 #metafor_statistics_biomass(reDF)
