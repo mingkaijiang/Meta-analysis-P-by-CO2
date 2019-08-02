@@ -18,7 +18,7 @@ myDF <- as.data.frame(myDF)
 myDF <- make_mean_effect_size_recalculation(inDF=myDF)
 
 ### remove P treatment of zero low P addition
-myDF <- subset(myDF, Trt_aP > 0.0)
+#myDF <- subset(myDF, Trt_aP > 0.0)
 
 ### make consistent standard error confidence intervals
 myDF <- make_consistent_confidence_interval(inDF=myDF, return.option="all_se")
@@ -33,12 +33,13 @@ myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
 #myDF$Trt_P_reduction <- (myDF$Trt_eP - myDF$Trt_aP) / myDF$Trt_eP
 
 ############## Exclude some extremely high P addition experiment
-subDF <- subset(myDF, Trt_eP_by_aP <= 10)
+#subDF <- subset(myDF, Trt_eP_by_aP <= 10)
 
-subDF100 <- subset(myDF, Trt_eP_by_aP <= 100)
+#subDF100 <- subset(myDF, Trt_eP_by_aP <= 100)
 
-subDF100 <- subset(myDF, Trt_eP_by_aP <= 100 & Trt_aCO2 <= 410)
+#subDF100 <- subset(myDF, Trt_eP_by_aP <= 100 & Trt_aCO2 <= 410)
 
+subDF100 <- subset(myDF, Trt_aCO2 <= 410)
 
 #### generate species list
 generate_species_list()

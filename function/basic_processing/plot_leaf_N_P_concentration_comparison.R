@@ -34,11 +34,11 @@ plot_leaf_N_P_concentration_comparison <- function() {
         geom_point(data=inDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, fill = as.factor(Group)), 
                    size=6, shape=21, color="black")+
         geom_line(data=inDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, group=as.factor(Group)),
-                  arrow = arrow(length=unit(0.30,"cm"), ends="last", type = "closed"))+
+                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"))+
         geom_point(data=aggDF, mapping=aes(x=Leaf_N_eP.mean, y=Leaf_P_eP.mean), 
                    size = 10, shape=22, color="black", fill="grey")+
         geom_line(data=aggDF, mapping=aes(x=Leaf_N_eP.mean, y=Leaf_P_eP.mean), size=4,
-                  arrow = arrow(length=unit(0.50,"cm"), ends="last", type = "closed"))+
+                  arrow = arrow(length=unit(0.50,"cm"), ends="first", type = "closed"))+
         labs(y="Leaf P conc. (%)", x="Leaf N conc. (%)")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
@@ -73,11 +73,11 @@ plot_leaf_N_P_concentration_comparison <- function() {
         geom_point(data=inDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, fill = as.factor(Group)), 
                    size=6, shape=21, color="black")+
         geom_line(data=inDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, group=as.factor(Group)),
-                  arrow = arrow(length=unit(0.30,"cm"), ends="last", type = "closed"))+
+                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"))+
         geom_point(data=aggDF, mapping=aes(x=Leaf_N_aP.mean, y=Leaf_P_aP.mean), 
                    size = 10, shape=22, color="black", fill="grey")+
         geom_line(data=aggDF, mapping=aes(x=Leaf_N_aP.mean, y=Leaf_P_aP.mean), size=4,
-                  arrow = arrow(length=unit(0.50,"cm"), ends="last", type = "closed"))+
+                  arrow = arrow(length=unit(0.50,"cm"), ends="first", type = "closed"))+
         labs(y="Leaf P conc. (%)", x="Leaf N conc. (%)")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),

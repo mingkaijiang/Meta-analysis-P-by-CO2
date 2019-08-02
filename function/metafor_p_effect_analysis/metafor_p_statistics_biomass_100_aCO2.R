@@ -146,7 +146,7 @@ metafor_p_statistics_biomass_100_aCO2 <- function(reDF, sumDF2) {
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    #confint(res)
     
     ### length of the data frame
     l <- length(tDF$Literature)
