@@ -276,6 +276,12 @@ sumDF2 <- metafor_p_statistics_gas_exchange_100_eCO2(reDF100, sumDF2)
 sumDF2 <- metafor_p_statistics_nutrient_ratio_100_eCO2(reDF100, sumDF2)
 
 
+### calculate percent response
+sumDF2$P_effect_pct <- (exp(sumDF2$P_effect) - 1) * 100
+sumDF2$se_pct <- (exp(sumDF2$se) - 1) * 100
+sumDF2$ci_lb_pct <- (exp(sumDF2$ci_lb) - 1) * 100
+sumDF2$ci_ub_pct <- (exp(sumDF2$ci_ub) - 1) * 100
+
 ##############
 ######## CO2 effect under aP and eP
 reDF100 <- reprocessing_co2_effect_term(inDF=reDF100)
@@ -331,7 +337,11 @@ sumDF <- metafor_co2_statistics_gas_exchange_100_aP(reDF100, sumDF)
 ### nutrient ratio
 sumDF <- metafor_co2_statistics_nutrient_ratio_100_aP(reDF100, sumDF)
 
-
+### calculate percent response
+sumDF$CO2_effect_pct <- (exp(sumDF$CO2_effect) - 1) * 100
+sumDF$se_pct <- (exp(sumDF$se) - 1) * 100
+sumDF$ci_lb_pct <- (exp(sumDF$ci_lb) - 1) * 100
+sumDF$ci_ub_pct <- (exp(sumDF$ci_ub) - 1) * 100
 
 
 ############## plot all significant responses

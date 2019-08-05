@@ -13,16 +13,17 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     sumDF$Category <- c(rep("Biomass", 24), rep("Concentration", 16), rep("Gas exchange", 4),
                          rep("Morphology", 8), rep("Nutrient uptake", 4), 
                          rep("Resource use efficiency", 6), rep("Nutrient ratio", 8))
-    sumDF$Pos <- exp(sumDF$CO2_effect + (sumDF$se *1.96)) - 1
-    sumDF$Neg <- exp(sumDF$CO2_effect - (sumDF$se *1.96)) - 1
-    #sumDF$Pos <- sumDF$CO2_effect + (sumDF$se * sqrt(sumDF$ne))
-    #sumDF$Neg <- sumDF$CO2_effect - (sumDF$se * sqrt(sumDF$ne))
+    sumDF$Pos <- sumDF$ci_ub_pct
+    sumDF$Neg <- sumDF$ci_lb_pct
+
     
     sumDF2$Category <- c(rep("Biomass", 24), rep("Concentration", 16), rep("Gas exchange", 4),
                        rep("Morphology", 8), rep("Nutrient uptake", 4), 
                        rep("Resource use efficiency", 6), rep("Nutrient ratio", 8))
-    sumDF2$Pos <- exp(sumDF2$P_effect + (sumDF2$se *1.96)) - 1
-    sumDF2$Neg <- exp(sumDF2$P_effect - (sumDF2$se *1.96)) - 1
+    sumDF2$Pos <- sumDF2$ci_ub_pct
+    sumDF2$Neg <- sumDF2$ci_lb_pct
+    #sumDF2$Pos <- exp(sumDF2$P_effect + (sumDF2$se *1.96)) - 1
+    #sumDF2$Neg <- exp(sumDF2$P_effect - (sumDF2$se *1.96)) - 1
     #sumDF2$Pos <- sumDF2$P_effect + (sumDF2$se * sqrt(sumDF2$ne))
     #sumDF2$Neg <- sumDF2$P_effect - (sumDF2$se * sqrt(sumDF2$ne))
     
@@ -30,16 +31,22 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     intDF$Category <- c(rep("Biomass", 12), rep("Concentration", 8), rep("Gas exchange", 2),
                          rep("Morphology", 4), rep("Nutrient uptake", 2), 
                          rep("Resource use efficiency", 3), rep("Nutrient ratio", 4))
-    intDF$Pos <- exp(intDF$interaction + (intDF$se *1.96)) - 1
-    intDF$Neg <- exp(intDF$interaction - (intDF$se *1.96)) - 1
+    intDF$Pos <- intDF$ci_ub_pct
+    intDF$Neg <- intDF$ci_lb_pct
+    #intDF$Pos <- exp(intDF$interaction + (intDF$se *1.96)) - 1
+    #intDF$Neg <- exp(intDF$interaction - (intDF$se *1.96)) - 1
     #intDF$Pos <- intDF$interaction + (intDF$se * sqrt(intDF$ne))
     #intDF$Neg <- intDF$interaction - (intDF$se * sqrt(intDF$ne))
     
     
     ### back transform the log-transformed response ratios for plotting
-    sumDF$CO2_effect <- exp(sumDF$CO2_effect)-1
-    sumDF2$P_effect <- exp(sumDF2$P_effect)-1
-    intDF$interaction <- exp(intDF$interaction)-1
+    #sumDF$CO2_effect <- exp(sumDF$CO2_effect)-1
+    #sumDF2$P_effect <- exp(sumDF2$P_effect)-1
+    #intDF$interaction <- exp(intDF$interaction)-1
+    
+    sumDF$CO2_effect <- sumDF$CO2_effect_pct
+    sumDF2$P_effect <- sumDF2$P_effect_pct
+    intDF$interaction <- intDF$int_pct
     
     ### assign color
     sumDF$sig <- ifelse(sumDF$Pos < 0, "neg", ifelse(sumDF$Neg > 0, "pos", "neutral"))
@@ -259,8 +266,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     ### plotting
     p1a <- ggplot(plotDF1a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=8, shape=21)+
         labs(x="LP treatment response (%)", y="Biomass")+
         theme_linedraw()+
@@ -295,8 +302,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1b <- ggplot(plotDF1b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=8, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -331,8 +338,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
 
     p1c <- ggplot(plotDF1)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), shape=22,
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), shape=22,
                    size=8)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -373,8 +380,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p2a <- ggplot(plotDF2a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=8, shape=21)+
         labs(x="LP treatment response (%)", y="P concentration")+
         theme_linedraw()+
@@ -408,8 +415,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p2b <- ggplot(plotDF2b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=8, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -443,8 +450,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
 
     p2c <- ggplot(plotDF2)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=8, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -478,8 +485,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p3a <- ggplot(plotDF3a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=8, shape=21)+
         labs(x="LP treatment response (%)", y="N concentration")+
         theme_linedraw()+
@@ -514,8 +521,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p3b <- ggplot(plotDF3b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=8, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -550,8 +557,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
 
     p3c <- ggplot(plotDF3)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=8, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -596,8 +603,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     ### plotting
     p1a <- ggplot(plotDF7a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=8, shape=21)+
         labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
@@ -632,8 +639,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1b <- ggplot(plotDF7b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=8, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -668,8 +675,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1c <- ggplot(plotDF7)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=8, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -713,8 +720,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     ### plotting
     p1a <- ggplot(plotDF10a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=8, shape=21)+
         labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
@@ -749,8 +756,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1b <- ggplot(plotDF10b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=8, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -785,8 +792,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1c <- ggplot(plotDF10)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=8, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -830,8 +837,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     ### plotting
     p1a <- ggplot(plotDF8a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=8, shape=21)+
         labs(x="LP treatment response (%)", y="")+
         theme_linedraw()+
@@ -866,8 +873,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1b <- ggplot(plotDF8b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=8, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -902,8 +909,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1c <- ggplot(plotDF8)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=8, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -948,8 +955,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     ### plotting
     p1a <- ggplot(plotDF5a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=4, shape=21)+
         labs(x="LP treatment response (%)", y="P content")+
         theme_linedraw()+
@@ -983,8 +990,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1b <- ggplot(plotDF5b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=4, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -1017,8 +1024,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p1c <- ggplot(plotDF5)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=4, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -1054,8 +1061,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p2a <- ggplot(plotDF6a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=4, shape=21)+
         labs(x="LP treatment response (%)", y="N content")+
         theme_linedraw()+
@@ -1089,8 +1096,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p2b <- ggplot(plotDF6b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=4, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -1123,8 +1130,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p2c <- ggplot(plotDF6)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=4, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -1161,8 +1168,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     ### plotting
     p3a <- ggplot(plotDF9a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=4, shape=21)+
         labs(x="LP treatment response (%)", y="Nutrient use efficiency")+
         theme_linedraw()+
@@ -1196,8 +1203,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p3b <- ggplot(plotDF9b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=4, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -1231,8 +1238,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p3c <- ggplot(plotDF9)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=4, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -1268,8 +1275,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p4a <- ggplot(plotDF4a)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=CO2_treatment)) + 
-        geom_point(aes(y=id, x=P_effect*100, fill=CO2_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
+        geom_point(aes(y=id, x=P_effect_pct, fill=CO2_treatment), 
                    size=4, shape=21)+
         labs(x="LP treatment response (%)", y="NP ratio")+
         theme_linedraw()+
@@ -1304,8 +1311,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p4b <- ggplot(plotDF4b)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100, color=P_treatment)) + 
-        geom_point(aes(y=id, x=CO2_effect*100, fill=P_treatment), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=P_treatment)) + 
+        geom_point(aes(y=id, x=CO2_effect_pct, fill=P_treatment), 
                    size=4, shape=23)+
         labs(x=expression(paste(eCO[2], " response (%)")), y="")+
         theme_linedraw()+
@@ -1339,8 +1346,8 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     p4c <- ggplot(plotDF4)+ 
         geom_vline(xintercept = 0.0)+
-        geom_errorbarh(aes(y=id, xmin=Neg*100, xmax=Pos*100), height=0.5) + 
-        geom_point(aes(y=id, x=interaction*100, fill=sig), 
+        geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
+        geom_point(aes(y=id, x=interaction, fill=sig), 
                    size=4, shape=22)+
         labs(x=expression(paste("effect of LP on ", eCO[2], " response (%)")), y="")+
         theme_linedraw()+
