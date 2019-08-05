@@ -25,6 +25,8 @@ metafor_co2_statistics_gas_exchange_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_gas_exchange_100_eP/co2_assimilation_rate_gas_exchange_response_ratio_random_effect_model.pdf",
@@ -67,6 +69,8 @@ metafor_co2_statistics_gas_exchange_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="stomatal_conductance"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="stomatal_conductance"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="stomatal_conductance"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="stomatal_conductance"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="stomatal_conductance"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_gas_exchange_100_eP/stomatal_conductance_gas_exchange_response_ratio_random_effect_model.pdf",

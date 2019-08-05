@@ -24,6 +24,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/leaf_biomass_response_ratio_random_effect_model.pdf",
@@ -67,6 +69,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/stem_biomass_response_ratio_random_effect_model.pdf",
@@ -112,6 +116,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="root_biomass"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/root_biomass_response_ratio_random_effect_model.pdf",
@@ -157,6 +163,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="total_biomass"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/total_biomass_response_ratio_random_effect_model.pdf",
@@ -203,6 +211,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/leaf_N_content_response_ratio_random_effect_model.pdf",
@@ -248,6 +258,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/leaf_P_content_response_ratio_random_effect_model.pdf",
@@ -293,6 +305,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/stem_N_content_response_ratio_random_effect_model.pdf",
@@ -334,6 +348,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/stem_P_content_response_ratio_random_effect_model.pdf",
@@ -377,6 +393,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="root_N_content"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_N_content"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="root_N_content"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="root_N_content"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="root_N_content"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/root_N_content_response_ratio_random_effect_model.pdf",
@@ -417,6 +435,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="root_P_content"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/root_P_content_response_ratio_random_effect_model.pdf",
@@ -461,6 +481,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="total_N_content"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="total_N_content"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="total_N_content"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="total_N_content"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="total_N_content"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/total_N_content_response_ratio_random_effect_model.pdf",
@@ -501,6 +523,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="total_P_content"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/total_P_content_response_ratio_random_effect_model.pdf",

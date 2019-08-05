@@ -28,6 +28,8 @@ metafor_co2_statistics_nutrient_ratio_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_NP"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_NP"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_NP"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="leaf_NP"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_NP"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_ratio_100_eP/leaf_NP_nutrient_ratio_response_ratio_random_effect_model.pdf",
@@ -77,6 +79,8 @@ metafor_co2_statistics_nutrient_ratio_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="stem_NP"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="stem_NP"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="stem_NP"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="stem_NP"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="stem_NP"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_ratio_100_eP/stem_NP_nutrient_ratio_response_ratio_random_effect_model.pdf",
@@ -124,6 +128,8 @@ metafor_co2_statistics_nutrient_ratio_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="root_NP"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_NP"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="root_NP"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="root_NP"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="root_NP"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_ratio_100_eP/root_NP_nutrient_ratio_response_ratio_random_effect_model.pdf",
@@ -171,6 +177,8 @@ metafor_co2_statistics_nutrient_ratio_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="total_NP"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="total_NP"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="total_NP"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="total_NP"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="total_NP"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_ratio_100_eP/total_NP_nutrient_ratio_response_ratio_random_effect_model.pdf",

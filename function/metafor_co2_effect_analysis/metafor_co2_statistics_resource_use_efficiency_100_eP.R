@@ -25,6 +25,8 @@ metafor_co2_statistics_resource_use_efficiency_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="WUE"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="WUE"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="WUE"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="WUE"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="WUE"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_resource_use_efficiency_100_eP/WUE_resource_use_efficiency_response_ratio_random_effect_model.pdf",
@@ -71,6 +73,8 @@ metafor_co2_statistics_resource_use_efficiency_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="NUE"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="NUE"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="NUE"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="NUE"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="NUE"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/NUE_response_ratio_random_effect_model.pdf",
@@ -114,6 +118,8 @@ metafor_co2_statistics_resource_use_efficiency_100_eP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="PUE"&sumDF$P_treatment=="eP"] <- res$pval
     sumDF$ns[sumDF$variable=="PUE"&sumDF$P_treatment=="eP"] <- ns
     sumDF$ne[sumDF$variable=="PUE"&sumDF$P_treatment=="eP"] <- l
+    sumDF$ci_lb[sumDF$variable=="PUE"&sumDF$P_treatment=="eP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="PUE"&sumDF$P_treatment=="eP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_biomass_100_eP/PUE_response_ratio_random_effect_model.pdf",

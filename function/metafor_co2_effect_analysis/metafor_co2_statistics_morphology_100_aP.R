@@ -28,6 +28,8 @@ metafor_co2_statistics_morphology_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_morphology_100_aP/leaf_area_morphology_response_ratio_random_effect_model.pdf",
@@ -72,6 +74,8 @@ metafor_co2_statistics_morphology_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_morphology_100_aP/LMA_morphology_response_ratio_random_effect_model.pdf",
@@ -117,6 +121,8 @@ metafor_co2_statistics_morphology_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_morphology_100_aP/SLA_morphology_response_ratio_random_effect_model.pdf",
@@ -162,6 +168,8 @@ metafor_co2_statistics_morphology_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_morphology_100_aP/root_length_morphology_response_ratio_random_effect_model.pdf",

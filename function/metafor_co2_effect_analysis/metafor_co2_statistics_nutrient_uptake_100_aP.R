@@ -25,6 +25,8 @@ metafor_co2_statistics_nutrient_uptake_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="N_uptake"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="N_uptake"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="N_uptake"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="N_uptake"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="N_uptake"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_nutrient_uptake_100_aP/plant_N_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",
@@ -68,6 +70,8 @@ metafor_co2_statistics_nutrient_uptake_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="P_uptake"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="P_uptake"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="P_uptake"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="P_uptake"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="P_uptake"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_co2_nutrient_uptake_100_aP/plant_P_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",
