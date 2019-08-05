@@ -32,6 +32,10 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
     sumDF4$neg <- sumDF4$ci_lb_pct
     sumDF4$CO2_effect <- sumDF4$CO2_effect_pct
     
+    
+    write.csv(sumDF4, "output/metafor_summary_plot/co2_effect_woody_nonwoody.csv", row.names=F)
+    write.csv(intDF4, "output/metafor_summary_plot/lp_effect_on_co2_response_woody_nonwoody.csv", row.names=F)
+    
     ### arrange plot order
     intDF4$id <- c(1.8, 0, 0, 4.8, 2.8, 3.8, 0, 0, 5.8, 7.8, 6.8, 8.8, 0.8, 9.8, 0, 10.8, 11.8,
                    2.2, 0, 0, 5.2, 3.2, 4.2, 0, 0, 6.2, 8.2, 7.2, 9.2, 1.2, 10.2, 0, 11.2, 12.2)
