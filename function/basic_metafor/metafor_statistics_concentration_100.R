@@ -36,7 +36,7 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
            at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
-                        #round(tDF$Trt_eP_by_aP,1),
+                        round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
            ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
     text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
@@ -58,7 +58,8 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf P concentration")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    tDF <- tDF[tDF$v_variance > 0, ]
+    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
     
     ### confidence interval
     
@@ -103,11 +104,12 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Root P concentration")
     
     ### random-effect model
+    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF)
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    #confint(res)
     
     ### length of the data frame
     l <- length(tDF$Literature)

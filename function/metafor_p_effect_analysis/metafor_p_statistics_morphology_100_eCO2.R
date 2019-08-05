@@ -28,6 +28,8 @@ metafor_p_statistics_morphology_100_eCO2 <- function(reDF, sumDF2) {
     sumDF2$p_value[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- l
+    sumDF2$ci_lb[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.lb
+    sumDF2$ci_ub[sumDF2$variable=="leaf_area"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_p_morphology_100_eCO2/leaf_area_morphology_response_ratio_random_effect_model.pdf",
@@ -72,6 +74,8 @@ metafor_p_statistics_morphology_100_eCO2 <- function(reDF, sumDF2) {
     sumDF2$p_value[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- l
+    sumDF2$ci_lb[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.lb
+    sumDF2$ci_ub[sumDF2$variable=="LMA"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_p_morphology_100_eCO2/LMA_morphology_response_ratio_random_effect_model.pdf",
@@ -117,6 +121,8 @@ metafor_p_statistics_morphology_100_eCO2 <- function(reDF, sumDF2) {
     sumDF2$p_value[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- l
+    sumDF2$ci_lb[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.lb
+    sumDF2$ci_ub[sumDF2$variable=="SLA"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_p_morphology_100_eCO2/SLA_morphology_response_ratio_random_effect_model.pdf",
@@ -162,6 +168,8 @@ metafor_p_statistics_morphology_100_eCO2 <- function(reDF, sumDF2) {
     sumDF2$p_value[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- l
+    sumDF2$ci_lb[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.lb
+    sumDF2$ci_ub[sumDF2$variable=="Root_length"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_p_morphology_100_eCO2/root_length_morphology_response_ratio_random_effect_model.pdf",

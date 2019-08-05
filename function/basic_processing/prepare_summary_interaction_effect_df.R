@@ -1,7 +1,7 @@
 prepare_summary_interaction_effect_df <- function() {
     
     id.list <- seq(1.5, 69.5, by=2)
-    sumDF <- data.frame(id.list, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA)
+    sumDF <- data.frame(id.list, NA, NA, NA, NA, NA, NA, NA, NA)
     
     colnames(sumDF) <- c("id", "variable", "interaction", 
                          "ns", "ne", "se", "p_value", "ci_lb", "ci_ub")

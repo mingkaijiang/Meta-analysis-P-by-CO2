@@ -25,6 +25,8 @@ metafor_p_statistics_nutrient_uptake_100_eCO2 <- function(reDF, sumDF2) {
     sumDF2$p_value[sumDF2$variable=="N_uptake"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="N_uptake"&sumDF2$CO2_treatment=="eCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="N_uptake"&sumDF2$CO2_treatment=="eCO2"] <- l
+    sumDF2$ci_lb[sumDF2$variable=="N_uptake"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.lb
+    sumDF2$ci_ub[sumDF2$variable=="N_uptake"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_p_nutrient_uptake_100_eCO2/plant_N_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",
@@ -68,6 +70,8 @@ metafor_p_statistics_nutrient_uptake_100_eCO2 <- function(reDF, sumDF2) {
     sumDF2$p_value[sumDF2$variable=="P_uptake"&sumDF2$CO2_treatment=="eCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="P_uptake"&sumDF2$CO2_treatment=="eCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="P_uptake"&sumDF2$CO2_treatment=="eCO2"] <- l
+    sumDF2$ci_lb[sumDF2$variable=="P_uptake"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.lb
+    sumDF2$ci_ub[sumDF2$variable=="P_uptake"&sumDF2$CO2_treatment=="eCO2"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_p_nutrient_uptake_100_eCO2/plant_P_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",

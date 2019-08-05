@@ -150,6 +150,7 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
+    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF)
 
     ### confidence interval
