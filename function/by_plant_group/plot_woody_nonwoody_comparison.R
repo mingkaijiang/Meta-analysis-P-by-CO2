@@ -12,16 +12,25 @@ plot_woody_nonwoody_comparison <- function(intDF2, intDF3, sumDF2, sumDF3) {
     ### get %
     #intDF4$interaction <- intDF4$interaction * 100
     #intDF4$se <- intDF4$se * 100
-    intDF4$pos <- (exp(intDF4$interaction + (intDF4$se * 1.96)) - 1) * 100
-    intDF4$neg <- (exp(intDF4$interaction - (intDF4$se * 1.96)) - 1) * 100
-    intDF4$interaction <- (exp(intDF4$interaction) - 1) * 100
+    #intDF4$pos <- (exp(intDF4$interaction + (intDF4$se * 1.96)) - 1) * 100
+    #intDF4$neg <- (exp(intDF4$interaction - (intDF4$se * 1.96)) - 1) * 100
+    #intDF4$interaction <- (exp(intDF4$interaction) - 1) * 100
+    
+    intDF4$pos <- intDF4$ci_ub_pct
+    intDF4$neg <- intDF4$ci_lb_pct
+    intDF4$interaction <- intDF4$int_pct
+    
     
     #sumDF4$CO2_effect <- sumDF4$CO2_effect * 100
     #sumDF4$se <- sumDF4$se * 100
     
-    sumDF4$pos <- (exp(sumDF4$CO2_effect + (sumDF4$se * 1.96)) - 1) * 100
-    sumDF4$neg <- (exp(sumDF4$CO2_effect - (sumDF4$se * 1.96)) - 1) * 100
-    sumDF4$CO2_effect <- (exp(sumDF4$CO2_effect) - 1) * 100
+    #sumDF4$pos <- (exp(sumDF4$CO2_effect + (sumDF4$se * 1.96)) - 1) * 100
+    #sumDF4$neg <- (exp(sumDF4$CO2_effect - (sumDF4$se * 1.96)) - 1) * 100
+    #sumDF4$CO2_effect <- (exp(sumDF4$CO2_effect) - 1) * 100
+    
+    sumDF4$pos <- sumDF4$ci_ub_pct
+    sumDF4$neg <- sumDF4$ci_lb_pct
+    sumDF4$CO2_effect <- sumDF4$CO2_effect_pct
     
     ### arrange plot order
     intDF4$id <- c(1.8, 0, 0, 4.8, 2.8, 3.8, 0, 0, 5.8, 7.8, 6.8, 8.8, 0.8, 9.8, 0, 10.8, 11.8,

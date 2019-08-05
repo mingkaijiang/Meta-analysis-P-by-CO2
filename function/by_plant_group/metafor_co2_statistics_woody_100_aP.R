@@ -20,7 +20,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -40,7 +41,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root biomass")
@@ -61,7 +63,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
 
     ####################### subset the dataframe for the right variable ##############################
@@ -84,6 +87,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable%in%c("Leaf biomass", "Stem biomass", 
@@ -106,7 +111,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable%in%c("Root biomass",  
@@ -129,6 +135,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="belowground_biomass"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="belowground_biomass"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="belowground_biomass"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="belowground_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="belowground_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -151,7 +159,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     
 
@@ -174,6 +183,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf N concentration")
@@ -194,7 +205,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_N_concentration"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf P concentration")
@@ -214,7 +226,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_P_concentration"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -237,7 +250,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="root_P_concentration"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -258,6 +272,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="root_N_concentration"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="CO2 assimilation rate")
@@ -278,7 +294,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="CO2_assimilation_rate"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ### change LAI to leaf area and combine it with Total leaf area
     reDF[reDF$Variable=="LAI","Variable"] <- "Leaf area"
@@ -303,7 +320,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="leaf_area"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -323,6 +341,9 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- l
+    sumDF$ci_lb[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="LMA"&sumDF$P_treatment=="aP"] <- res$ci.ub
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="SLA")
@@ -343,7 +364,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$p_value[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- res$pval
     sumDF$ns[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- l
-    
+    sumDF$ci_lb[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="SLA"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total root length")
@@ -365,7 +387,8 @@ metafor_co2_statistics_woody_plants_100_aP <- function(reDF, sumDF) {
     sumDF$ns[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- ns
     sumDF$ne[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- l
     
-    
+    sumDF$ci_lb[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- res$ci.lb
+    sumDF$ci_ub[sumDF$variable=="Root_length"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
     return(sumDF)
     
