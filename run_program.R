@@ -344,6 +344,7 @@ sumDF$ci_lb_pct <- (exp(sumDF$ci_lb) - 1) * 100
 sumDF$ci_ub_pct <- (exp(sumDF$ci_ub) - 1) * 100
 
 write.csv(sumDF, "output/metafor_summary_plot/co2_effect_all.csv", row.names=F)
+write.csv(sumDF2, "output/metafor_summary_plot/p_effect_all.csv", row.names=F)
 write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv", row.names=F)
 
 ############## plot all significant responses

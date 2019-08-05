@@ -523,8 +523,8 @@ metafor_p_statistics_biomass_100_aCO2 <- function(reDF, sumDF2) {
     sumDF2$p_value[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="aCO2"] <- res$pval
     sumDF2$ns[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="aCO2"] <- ns
     sumDF2$ne[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="aCO2"] <- l
-    sumDF2$ci_lb[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="aCO2"] <- res$ci.lb
-    sumDF2$ci_ub[sumDF2$variable=="total_N_content"&sumDF2$CO2_treatment=="aCO2"] <- res$ci.ub
+    sumDF2$ci_lb[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="aCO2"] <- res$ci.lb
+    sumDF2$ci_ub[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="aCO2"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_p_biomass_100_aCO2/total_P_content_response_ratio_random_effect_model.pdf",
