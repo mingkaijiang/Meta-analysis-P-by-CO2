@@ -67,6 +67,8 @@ metafor_co2_statistics_woody_plants_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
@@ -88,6 +90,8 @@ metafor_co2_statistics_woody_plants_100_eP <- function(reDF, sumDF) {
                                       "Aboveground biomass"))
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
@@ -110,6 +114,8 @@ metafor_co2_statistics_woody_plants_100_eP <- function(reDF, sumDF) {
                                       "Belowground biomass"))
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
@@ -198,6 +204,8 @@ metafor_co2_statistics_woody_plants_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Leaf P concentration")
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
@@ -220,6 +228,8 @@ metafor_co2_statistics_woody_plants_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Root P concentration")
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF, control=list(stepadj=0.5))
     
     ### confidence interval

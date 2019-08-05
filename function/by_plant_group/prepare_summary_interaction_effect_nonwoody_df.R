@@ -1,10 +1,10 @@
 prepare_summary_interaction_effect_nonwoody_df <- function() {
     
     id.list <- seq(1.5, 33.5, by=2)
-    sumDF <- data.frame(id.list, NA, NA, NA, NA, NA, NA)
+    sumDF <- data.frame(id.list, NA, NA, NA, NA, NA, NA, NA, NA)
     
     colnames(sumDF) <- c("id", "variable", "interaction", 
-                         "ns", "ne", "se", "p_value")
+                         "ns", "ne", "se", "p_value", "ci_lb", "ci_ub")
 
     
     sumDF$variable <- c("leaf_biomass", "stem_biomass", "root_biomass", "total_biomass",

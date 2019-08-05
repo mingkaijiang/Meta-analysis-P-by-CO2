@@ -1,8 +1,8 @@
 prepare_summary_co2_effect_nonwoody_df <- function() {
-    sumDF <- data.frame(c(1:34), NA, NA, NA, NA, NA, NA, NA)
+    sumDF <- data.frame(c(1:34), NA, NA, NA, NA, NA, NA, NA, NA, NA)
     
     colnames(sumDF) <- c("id", "variable", "P_treatment", "CO2_effect",
-                         "ns", "ne", "se", "p_value")
+                         "ns", "ne", "se", "p_value", "ci_lb", "ci_ub")
 
     
     sumDF$variable <- rep(c("leaf_biomass", "stem_biomass", "root_biomass", "total_biomass",

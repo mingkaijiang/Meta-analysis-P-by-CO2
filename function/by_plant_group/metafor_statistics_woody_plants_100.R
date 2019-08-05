@@ -66,6 +66,7 @@ metafor_statistics_woody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
+    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF)
 
     ### confidence interval
@@ -87,6 +88,7 @@ metafor_statistics_woody_plants_100 <- function(reDF, intDF) {
                                       "Aboveground biomass"))
     
     ### random-effect model
+    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF)
     
     ### confidence interval
@@ -108,6 +110,7 @@ metafor_statistics_woody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
     
     ### random-effect model
+    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF)
     
     ### confidence interval
@@ -193,6 +196,7 @@ metafor_statistics_woody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf P concentration")
     
     ### random-effect model
+    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
     
     ### confidence interval
@@ -213,6 +217,7 @@ metafor_statistics_woody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Root P concentration")
     
     ### random-effect model
+    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF)
     
     ### confidence interval

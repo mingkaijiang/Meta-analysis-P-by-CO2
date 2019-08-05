@@ -67,6 +67,7 @@ metafor_co2_statistics_nonwoody_plants_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
@@ -88,6 +89,8 @@ metafor_co2_statistics_nonwoody_plants_100_eP <- function(reDF, sumDF) {
                                       "Aboveground biomass"))
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
@@ -110,6 +113,8 @@ metafor_co2_statistics_nonwoody_plants_100_eP <- function(reDF, sumDF) {
                                       "Belowground biomass"))
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
@@ -197,7 +202,8 @@ metafor_co2_statistics_nonwoody_plants_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Leaf P concentration")
     
     ### random-effect model
-    res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    res <- rma(log_co2_eP, variance_co2_eP, data = tDF, control=list(stepadj=0.5))
     
     ### confidence interval
     
@@ -219,6 +225,8 @@ metafor_co2_statistics_nonwoody_plants_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Root P concentration")
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
@@ -261,7 +269,7 @@ metafor_co2_statistics_nonwoody_plants_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="CO2 assimilation rate")
     
     ### random-effect model
-    res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    res <- rma(log_co2_eP, variance_co2_eP, data = tDF, control=list(stepadj=0.5))
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

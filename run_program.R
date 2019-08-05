@@ -371,7 +371,7 @@ make_split_interaction_effect_chart_5(sumDF, sumDF2, intDF)
 
 ##############
 #### subset woody plant DF
-wdDF <- subset(reDF100, Vegetation_type=="Tree")
+wdDF <- subset(reDF100, Vegetation_type=="Woody")
 
 #### Interaction effect for woody plants
 intDF2 <- prepare_summary_interaction_effect_woody_df()
@@ -391,7 +391,7 @@ sumDF2 <- metafor_co2_statistics_woody_plants_100_aP(wdDF, sumDF2)
 
 ##############
 #### subset woody plant DF
-nwdDF <- subset(reDF100, Vegetation_type!="Tree")
+nwdDF <- subset(reDF100, Vegetation_type=="Nonwoody")
 
 #### Interaction effect for nonwoody plants
 intDF3 <- prepare_summary_interaction_effect_woody_df()
