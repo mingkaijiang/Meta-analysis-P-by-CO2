@@ -214,7 +214,11 @@ intDF <- metafor_statistics_gas_exchange_100(reDF100, intDF)
 ### nutrient ratio
 intDF <- metafor_statistics_nutrient_ratio_100(reDF100, intDF)
 
-
+### calculate percent response
+intDF$int_pct <- (exp(intDF$interaction) - 1) * 100
+intDF$se_pct <- (exp(intDF$se) - 1) * 100
+intDF$ci_lb_pct <- (exp(intDF$ci_lb) - 1) * 100
+intDF$ci_ub_pct <- (exp(intDF$ci_ub) - 1) * 100
 
 
 ##############

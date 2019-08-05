@@ -148,6 +148,7 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_aP > 0, ]
     res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### confidence interval
@@ -515,6 +516,8 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_aP > 0, ]
+    
     res <- rma(log_co2_aP, variance_co2_aP, data = tDF)#, control=list(stepadj=0.5))
     
     sumDF$CO2_effect[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- res$b

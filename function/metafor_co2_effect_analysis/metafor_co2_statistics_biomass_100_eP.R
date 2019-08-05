@@ -148,6 +148,8 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
+    tDF <- tDF[tDF$variance_co2_eP > 0, ]
+    
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### confidence interval
