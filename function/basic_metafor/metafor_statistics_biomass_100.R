@@ -24,27 +24,30 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="leaf_biomass"] <- res$pval
     intDF$ns[intDF$variable=="leaf_biomass"] <- ns
     intDF$ne[intDF$variable=="leaf_biomass"] <- l
+    intDF$ci_lb[intDF$variable=="leaf_biomass"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="leaf_biomass"] <- res$ci.ub
+
     
     ### forest plot
     pdf("output/statistics_biomass_100/leaf_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 6), 
+           xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.082085, 0.3678794, 1, 2.718282, 12.18249)), #atransf = exp,
+           at = c(-1, 0, 1, 2), #atransf = exp,
            ilab = cbind(tDF$Vegetation_type,
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
            ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
     text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                       expression(paste(eCO[2], "/", aCO[2])),
-                                       "ePaP", "Experiment", "Range"),
+                                          expression(paste(eCO[2], "/", aCO[2])),
+                                          "ePaP", "Experiment", "Range"),
          cex=0.7)
     text(c(-8, -6.5, -4.5, -3), l+2,
          c("type","", "", "duration"), cex=0.7)
     text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
     text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
     text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
@@ -67,6 +70,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="stem_biomass"] <- res$pval
     intDF$ns[intDF$variable=="stem_biomass"] <- ns
     intDF$ne[intDF$variable=="stem_biomass"] <- l
+    intDF$ci_lb[intDF$variable=="stem_biomass"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="stem_biomass"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/stem_biomass_response_ratio_random_effect_model.pdf",
@@ -113,6 +118,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="root_biomass"] <- res$pval
     intDF$ns[intDF$variable=="root_biomass"] <- ns
     intDF$ne[intDF$variable=="root_biomass"] <- l
+    intDF$ci_lb[intDF$variable=="root_biomass"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="root_biomass"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/root_biomass_response_ratio_random_effect_model.pdf",
@@ -158,6 +165,9 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="total_biomass"] <- res$pval
     intDF$ns[intDF$variable=="total_biomass"] <- ns
     intDF$ne[intDF$variable=="total_biomass"] <- l
+    intDF$ci_lb[intDF$variable=="total_biomass"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="total_biomass"] <- res$ci.ub
+    
     
     ### forest plot
     pdf("output/statistics_biomass_100/total_biomass_response_ratio_random_effect_model.pdf",
@@ -194,7 +204,7 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    confint(res)
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -205,6 +215,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="leaf_N_content"] <- res$pval
     intDF$ns[intDF$variable=="leaf_N_content"] <- ns
     intDF$ne[intDF$variable=="leaf_N_content"] <- l
+    intDF$ci_lb[intDF$variable=="leaf_N_content"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="leaf_N_content"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/leaf_N_content_response_ratio_random_effect_model.pdf",
@@ -239,7 +251,7 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    confint(res)
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -250,6 +262,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="leaf_P_content"] <- res$pval
     intDF$ns[intDF$variable=="leaf_P_content"] <- ns
     intDF$ne[intDF$variable=="leaf_P_content"] <- l
+    intDF$ci_lb[intDF$variable=="leaf_P_content"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="leaf_P_content"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/leaf_P_content_response_ratio_random_effect_model.pdf",
@@ -295,6 +309,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="stem_N_content"] <- res$pval
     intDF$ns[intDF$variable=="stem_N_content"] <- ns
     intDF$ne[intDF$variable=="stem_N_content"] <- l
+    intDF$ci_lb[intDF$variable=="stem_N_content"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="stem_N_content"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/stem_N_content_response_ratio_random_effect_model.pdf",
@@ -335,6 +351,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="stem_P_content"] <- res$pval
     intDF$ns[intDF$variable=="stem_P_content"] <- ns
     intDF$ne[intDF$variable=="stem_P_content"] <- l
+    intDF$ci_lb[intDF$variable=="stem_P_content"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="stem_P_content"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/stem_P_content_response_ratio_random_effect_model.pdf",
@@ -378,6 +396,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="root_N_content"] <- res$pval
     intDF$ns[intDF$variable=="root_N_content"] <- ns
     intDF$ne[intDF$variable=="root_N_content"] <- l
+    intDF$ci_lb[intDF$variable=="root_N_content"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="root_N_content"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/root_N_content_response_ratio_random_effect_model.pdf",
@@ -418,6 +438,9 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="root_P_content"] <- res$pval
     intDF$ns[intDF$variable=="root_P_content"] <- ns
     intDF$ne[intDF$variable=="root_P_content"] <- l
+    intDF$ci_lb[intDF$variable=="root_P_content"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="root_P_content"] <- res$ci.ub
+    
     
     ### forest plot
     pdf("output/statistics_biomass_100/root_P_content_response_ratio_random_effect_model.pdf",
@@ -461,6 +484,9 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="total_N_content"] <- res$pval
     intDF$ns[intDF$variable=="total_N_content"] <- ns
     intDF$ne[intDF$variable=="total_N_content"] <- l
+    intDF$ci_lb[intDF$variable=="total_N_content"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="total_N_content"] <- res$ci.ub
+    
     
     ### forest plot
     pdf("output/statistics_biomass_100/total_N_content_response_ratio_random_effect_model.pdf",
@@ -501,6 +527,8 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="total_P_content"] <- res$pval
     intDF$ns[intDF$variable=="total_P_content"] <- ns
     intDF$ne[intDF$variable=="total_P_content"] <- l
+    intDF$ci_lb[intDF$variable=="total_P_content"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="total_P_content"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/total_P_content_response_ratio_random_effect_model.pdf",

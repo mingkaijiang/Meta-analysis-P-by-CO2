@@ -39,7 +39,7 @@ myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
 
 #subDF100 <- subset(myDF, Trt_eP_by_aP <= 100 & Trt_aCO2 <= 410)
 
-subDF100 <- subset(myDF, Trt_aCO2 <= 410)
+subDF100 <- subset(myDF, Trt_aCO2 < 410)
 
 #### generate species list
 generate_species_list()

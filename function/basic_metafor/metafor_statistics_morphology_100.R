@@ -28,6 +28,8 @@ metafor_statistics_morphology_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="leaf_area"] <- res$pval
     intDF$ns[intDF$variable=="leaf_area"] <- ns
     intDF$ne[intDF$variable=="leaf_area"] <- l
+    intDF$ci_lb[intDF$variable=="leaf_area"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="leaf_area"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_morphology_100/leaf_area_morphology_response_ratio_random_effect_model.pdf",
@@ -72,6 +74,8 @@ metafor_statistics_morphology_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="LMA"] <- res$pval
     intDF$ns[intDF$variable=="LMA"] <- ns
     intDF$ne[intDF$variable=="LMA"] <- l
+    intDF$ci_lb[intDF$variable=="LMA"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="LMA"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_morphology_100/LMA_morphology_response_ratio_random_effect_model.pdf",
@@ -117,6 +121,8 @@ metafor_statistics_morphology_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="SLA"] <- res$pval
     intDF$ns[intDF$variable=="SLA"] <- ns
     intDF$ne[intDF$variable=="SLA"] <- l
+    intDF$ci_lb[intDF$variable=="SLA"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="SLA"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_morphology_100/SLA_morphology_response_ratio_random_effect_model.pdf",
@@ -162,6 +168,8 @@ metafor_statistics_morphology_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="Root_length"] <- res$pval
     intDF$ns[intDF$variable=="Root_length"] <- ns
     intDF$ne[intDF$variable=="Root_length"] <- l
+    intDF$ci_lb[intDF$variable=="Root_length"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="Root_length"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_morphology_100/root_length_morphology_response_ratio_random_effect_model.pdf",

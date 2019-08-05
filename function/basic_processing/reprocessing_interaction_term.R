@@ -44,9 +44,9 @@ reprocessing_interaction_term <- function(inDF) {
         inDF$v_variance[inDF$Variable==i & is.na(inDF$v_variance)] <- mean.variance
     }
     
-    inDF$Vegetation_type <- as.character(inDF$Vegetation_type)
+    #inDF$Vegetation_type <- as.character(inDF$Vegetation_type)
     
-    inDF$Vegetation_type[inDF$Vegetation_type=="Grass Forb Legume"] <- "GFL"
+    #inDF$Vegetation_type[inDF$Vegetation_type=="Grass Forb Legume"] <- "GFL"
     
     outDF <- inDF
     

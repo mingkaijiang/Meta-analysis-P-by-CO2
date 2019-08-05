@@ -30,6 +30,8 @@ metafor_statistics_nutrient_ratio_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="leaf_NP"] <- res$pval
     intDF$ns[intDF$variable=="leaf_NP"] <- ns
     intDF$ne[intDF$variable=="leaf_NP"] <- l
+    intDF$ci_lb[intDF$variable=="leaf_NP"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="leaf_NP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_ratio_100/leaf_NP_response_ratio_random_effect_model.pdf",
@@ -78,6 +80,8 @@ metafor_statistics_nutrient_ratio_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="stem_NP"] <- res$pval
     intDF$ns[intDF$variable=="stem_NP"] <- ns
     intDF$ne[intDF$variable=="stem_NP"] <- l
+    intDF$ci_lb[intDF$variable=="stem_NP"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="stem_NP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_ratio_100/stem_NP_response_ratio_random_effect_model.pdf",
@@ -125,6 +129,8 @@ metafor_statistics_nutrient_ratio_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="root_NP"] <- res$pval
     intDF$ns[intDF$variable=="root_NP"] <- ns
     intDF$ne[intDF$variable=="root_NP"] <- l
+    intDF$ci_lb[intDF$variable=="root_NP"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="root_NP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_ratio_100/root_NP_response_ratio_random_effect_model.pdf",
@@ -172,6 +178,8 @@ metafor_statistics_nutrient_ratio_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="total_NP"] <- res$pval
     intDF$ns[intDF$variable=="total_NP"] <- ns
     intDF$ne[intDF$variable=="total_NP"] <- l
+    intDF$ci_lb[intDF$variable=="total_NP"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="total_NP"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_ratio_100/total_NP_response_ratio_random_effect_model.pdf",

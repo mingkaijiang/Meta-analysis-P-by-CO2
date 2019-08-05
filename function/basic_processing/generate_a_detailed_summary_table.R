@@ -147,4 +147,7 @@ generate_a_detailed_summary_table <- function(reDF100) {
     outDF$aCO2_low[outDF$Category=="Nutrient uptake"] <- min(test$Trt_aCO2)
     outDF$eC_aC[outDF$Category=="Nutrient uptake"] <- mean(test$Trt_eC_by_aC)
     outDF$HP_LP[outDF$Category=="Nutrient uptake"] <- mean(test$Trt_eP_by_aP)
+    
+    
+    write.csv(outDF, "output/basic_summary/detailed_summary_table.csv", row.names=F)
 }

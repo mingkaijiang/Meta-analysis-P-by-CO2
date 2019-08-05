@@ -25,6 +25,8 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="N_uptake"] <- res$pval
     intDF$ns[intDF$variable=="N_uptake"] <- ns
     intDF$ne[intDF$variable=="N_uptake"] <- l
+    intDF$ci_lb[intDF$variable=="N_uptake"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="N_uptake"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_uptake_100/plant_N_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",
@@ -70,6 +72,8 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="P_uptake"] <- res$pval
     intDF$ns[intDF$variable=="P_uptake"] <- ns
     intDF$ne[intDF$variable=="P_uptake"] <- l
+    intDF$ci_lb[intDF$variable=="P_uptake"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="P_uptake"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_nutrient_uptake_100/plant_P_uptake_nutrient_uptake_response_ratio_random_effect_model.pdf",

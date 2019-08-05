@@ -25,7 +25,7 @@ make_basic_summary_stats_plots <- function() {
         xlab(expression(paste(aCO[2], " (ppm)")))
     
     p2 <- ggplot()+
-        geom_histogram(data=test, aes(Trt_eCO2), binwidth=100)+
+        geom_histogram(data=test, aes(Trt_eCO2), binwidth=25)+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -57,7 +57,7 @@ make_basic_summary_stats_plots <- function() {
         xlab(expression(paste(eCO[2], " / ", aCO[2])))
     
     p4 <- ggplot()+
-        geom_histogram(data=test, aes(Trt_eP_by_aP), binwidth=0.1)+
+        geom_histogram(data=test, aes(Trt_eP_by_aP), binwidth=25)+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -120,8 +120,8 @@ make_basic_summary_stats_plots <- function() {
               legend.text.align=0)+
         ylab("Data entry count")+
         scale_x_discrete(name="Vegetation type",
-                         breaks=c( "Grass Forb Legume", "Tree", "Crop"),
-                         labels=c( "Grass & others", "Tree", "Crop"))
+                         breaks=c( "Woody", "Nonwoody"),
+                         labels=c(  "Woody", "Nonwoody"))
     
     catDF <- unique(test[c("Literature", "Category")])
     vegDF <- unique(test[c("Literature", "Vegetation_type")])
@@ -160,8 +160,8 @@ make_basic_summary_stats_plots <- function() {
               legend.text.align=0)+
         ylab("Study count")+
         scale_x_discrete(name="Vegetation type",
-                         breaks=c( "Grass Forb Legume", "Tree", "Crop"),
-                         labels=c( "Grass & others", "Tree", "Crop"))
+                         breaks=c(  "Woody", "Nonwoody"),
+                         labels=c(  "Woody", "Nonwoody"))
     
     
     pdf("output/basic_summary/summary_data_variable.pdf", width=12, height=8)

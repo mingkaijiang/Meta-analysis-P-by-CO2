@@ -25,6 +25,8 @@ metafor_statistics_gas_exchange_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="CO2_assimilation_rate"] <- res$pval
     intDF$ns[intDF$variable=="CO2_assimilation_rate"] <- ns
     intDF$ne[intDF$variable=="CO2_assimilation_rate"] <- l
+    intDF$ci_lb[intDF$variable=="CO2_assimilation_rate"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="CO2_assimilation_rate"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_gas_exchange_100/co2_assimilation_rate_gas_exchange_response_ratio_random_effect_model.pdf",
@@ -66,6 +68,8 @@ metafor_statistics_gas_exchange_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="stomatal_conductance"] <- res$pval
     intDF$ns[intDF$variable=="stomatal_conductance"] <- ns
     intDF$ne[intDF$variable=="stomatal_conductance"] <- l
+    intDF$ci_lb[intDF$variable=="stomatal_conductance"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="stomatal_conductance"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_gas_exchange_100/stomatal_conductance_gas_exchange_response_ratio_random_effect_model.pdf",

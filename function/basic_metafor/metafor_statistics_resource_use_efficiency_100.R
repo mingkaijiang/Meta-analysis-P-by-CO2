@@ -25,6 +25,8 @@ metafor_statistics_resource_use_efficiency_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="WUE"] <- res$pval
     intDF$ns[intDF$variable=="WUE"] <- ns
     intDF$ne[intDF$variable=="WUE"] <- l
+    intDF$ci_lb[intDF$variable=="WUE"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="WUE"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_resource_use_efficiency_100/WUE_resource_use_efficiency_response_ratio_random_effect_model.pdf",
@@ -70,6 +72,8 @@ metafor_statistics_resource_use_efficiency_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="NUE"] <- res$pval
     intDF$ns[intDF$variable=="NUE"] <- ns
     intDF$ne[intDF$variable=="NUE"] <- l
+    intDF$ci_lb[intDF$variable=="NUE"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="NUE"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/NUE_response_ratio_random_effect_model.pdf",
@@ -113,6 +117,8 @@ metafor_statistics_resource_use_efficiency_100 <- function(reDF, intDF) {
     intDF$p_value[intDF$variable=="PUE"] <- res$pval
     intDF$ns[intDF$variable=="PUE"] <- ns
     intDF$ne[intDF$variable=="PUE"] <- l
+    intDF$ci_lb[intDF$variable=="PUE"] <- res$ci.lb
+    intDF$ci_ub[intDF$variable=="PUE"] <- res$ci.ub
     
     ### forest plot
     pdf("output/statistics_biomass_100/PUE_response_ratio_random_effect_model.pdf",
