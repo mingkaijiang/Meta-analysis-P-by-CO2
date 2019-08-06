@@ -159,9 +159,6 @@ reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 ### and perform statistical analysis for the overall effect size and variance
 ### also check for data issues, make plots
 
-#### plot a leaf N vs. leaf P concentration comparison
-plot_leaf_N_P_concentration_comparison()
-
 #### Biomass
 #metafor_statistics_biomass(reDF)
 #
@@ -441,6 +438,8 @@ intDF3$ci_ub_pct <- (exp(intDF3$ci_ub) - 1) * 100
 plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
 
 
+#### plot a leaf N vs. leaf P concentration comparison
+plot_leaf_N_P_concentration_comparison()
 
 
 
