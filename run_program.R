@@ -10,7 +10,7 @@ source("prepare.R")
 
 
 ############## check input files
-myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V1.csv",strip.white=T)
+myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V2.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
 
@@ -436,6 +436,11 @@ intDF3$ci_ub_pct <- (exp(intDF3$ci_ub) - 1) * 100
 
 #### plot woody and nonwoody comparison
 plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
+
+
+#### statistics comparing woody and non-woody plants
+compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
+
 
 
 #### plot a leaf N vs. leaf P concentration comparison
