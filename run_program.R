@@ -435,7 +435,8 @@ intDF3$ci_ub_pct <- (exp(intDF3$ci_ub) - 1) * 100
 
 
 #### plot woody and nonwoody comparison
-plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
+#plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
+plot_woody_nonwoody_comparison_2(intDF2, intDF3, sumDF2, sumDF3)
 
 
 #### statistics comparing woody and non-woody plants
