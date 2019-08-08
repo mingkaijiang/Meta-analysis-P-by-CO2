@@ -155,7 +155,7 @@ plot_woody_nonwoody_comparison_2 <- function(intDF2, intDF3, sumDF2, sumDF3) {
         geom_errorbarh(aes(y=id, xmin=neg, xmax=pos, color=factor(PFT))) + 
         geom_point(aes(y=id, x=interaction, fill=PFT), 
                    size=8, shape=21)+
-        labs(x="LP treatment response (%)", y="")+
+        labs(x=expression("LP effect on " * eCO[2] * " response (%)"), y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=18), 
