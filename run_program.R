@@ -366,8 +366,6 @@ write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv"
 #make_split_interaction_effect_chart_4(sumDF, sumDF2, intDF)
 make_split_interaction_effect_chart_5(sumDF, sumDF2, intDF)
 
-test_between_group_heterogeneity()
-
 
 ##############
 #### subset woody plant DF
@@ -436,11 +434,13 @@ intDF3$ci_ub_pct <- (exp(intDF3$ci_ub) - 1) * 100
 
 #### plot woody and nonwoody comparison
 #plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
-plot_woody_nonwoody_comparison_2(intDF2, intDF3, sumDF2, sumDF3)
+#plot_woody_nonwoody_comparison_2(intDF2, intDF3, sumDF2, sumDF3)
+plot_woody_nonwoody_comparison_3(intDF2, intDF3, sumDF2, sumDF3)
 
 
 #### statistics comparing woody and non-woody plants
-compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
+test_between_group_heterogeneity()
+#compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
 
 
 
