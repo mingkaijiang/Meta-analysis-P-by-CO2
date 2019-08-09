@@ -11,7 +11,8 @@ pacman::p_load(doBy,
                cowplot,
                metafor,
                mgcv,
-               weights)  
+               weights,
+               meta)  
 
 #### Sourcing all R files in the modules subdirectory
 source_basic_scripts <- dir("function/basic_processing", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
@@ -38,5 +39,10 @@ for(z7 in source_per_study_scripts)source(z7)
 
 source_per_study_scripts <- dir("function/by_plant_group", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
 for(z8 in source_per_study_scripts)source(z8)
+
+source_heterogeneity_scripts <- dir("function/between_group_heterogeneity", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
+for(z9 in source_heterogeneity_scripts)source(z9)
+
+
 
 

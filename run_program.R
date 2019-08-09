@@ -366,7 +366,7 @@ write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv"
 #make_split_interaction_effect_chart_4(sumDF, sumDF2, intDF)
 make_split_interaction_effect_chart_5(sumDF, sumDF2, intDF)
 
-
+test_between_group_heterogeneity()
 
 
 ##############
