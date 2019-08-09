@@ -30,11 +30,11 @@ test_between_group_heterogeneity <- function(reDF100) {
         res <- rma(log_interaction, v_variance, 
                    mods = ~factor(Vegetation_type), data = subDF1)
         
-        sumDF$Qm[sumDF$variable == i] <- res$QMp
-        sumDF$Qe[sumDF$variable == i] <- res$QEp
+        sumDF$Qm[sumDF$variable == i] <- res$QM
+        sumDF$Qe[sumDF$variable == i] <- res$QE
         
-        sumDF$Qm_pval[sumDF$variable == i] <- res$pval[1]
-        sumDF$Qe_pval[sumDF$variable == i] <- res$pval[2]
+        sumDF$Qm_pval[sumDF$variable == i] <- res$QMp
+        sumDF$Qe_pval[sumDF$variable == i] <- res$QEp
             
         sumDF$R2[sumDF$variable == i] <- res$R2
         sumDF$tau2[sumDF$variable == i] <- res$tau2
@@ -58,11 +58,11 @@ test_between_group_heterogeneity <- function(reDF100) {
     res <- rma(log_interaction, v_variance, 
                mods = ~factor(Vegetation_type), data = subDF1, control=list(stepadj=0.5))
     
-    sumDF$Qm[sumDF$variable == i] <- res$QMp
-    sumDF$Qe[sumDF$variable == i] <- res$QEp
+    sumDF$Qm[sumDF$variable == i] <- res$QM
+    sumDF$Qe[sumDF$variable == i] <- res$QE
     
-    sumDF$Qm_pval[sumDF$variable == i] <- res$pval[1]
-    sumDF$Qe_pval[sumDF$variable == i] <- res$pval[2]
+    sumDF$Qm_pval[sumDF$variable == i] <- res$QMp
+    sumDF$Qe_pval[sumDF$variable == i] <- res$QEp
     
     sumDF$R2[sumDF$variable == i] <- res$R2
     sumDF$tau2[sumDF$variable == i] <- res$tau2
@@ -96,11 +96,11 @@ test_between_group_heterogeneity <- function(reDF100) {
         res <- rma(log_co2_aP, variance_co2_aP, mods = ~factor(Vegetation_type), 
                    data = subDF1)
         
-        sumDF$Qm[sumDF$variable == i] <- res$QMp
-        sumDF$Qe[sumDF$variable == i] <- res$QEp
+        sumDF$Qm[sumDF$variable == i] <- res$QM
+        sumDF$Qe[sumDF$variable == i] <- res$QE
         
-        sumDF$Qm_pval[sumDF$variable == i] <- res$pval[1]
-        sumDF$Qe_pval[sumDF$variable == i] <- res$pval[2]
+        sumDF$Qm_pval[sumDF$variable == i] <- res$QMp
+        sumDF$Qe_pval[sumDF$variable == i] <- res$QEp
         
         sumDF$R2[sumDF$variable == i] <- res$R2
         sumDF$tau2[sumDF$variable == i] <- res$tau2
@@ -124,11 +124,11 @@ test_between_group_heterogeneity <- function(reDF100) {
     res <- rma(log_co2_aP, variance_co2_aP, 
                mods = ~factor(Vegetation_type), data = subDF1, control=list(stepadj=0.5))
     
-    sumDF$Qm[sumDF$variable == i] <- res$QMp
-    sumDF$Qe[sumDF$variable == i] <- res$QEp
+    sumDF$Qm[sumDF$variable == i] <- res$QM
+    sumDF$Qe[sumDF$variable == i] <- res$QE
     
-    sumDF$Qm_pval[sumDF$variable == i] <- res$pval[1]
-    sumDF$Qe_pval[sumDF$variable == i] <- res$pval[2]
+    sumDF$Qm_pval[sumDF$variable == i] <- res$QMp
+    sumDF$Qe_pval[sumDF$variable == i] <- res$QEp
     
     sumDF$R2[sumDF$variable == i] <- res$R2
     sumDF$tau2[sumDF$variable == i] <- res$tau2
@@ -162,11 +162,11 @@ test_between_group_heterogeneity <- function(reDF100) {
         res <- rma(log_co2_eP, variance_co2_eP, mods = ~factor(Vegetation_type), 
                    data = subDF1)
         
-        sumDF$Qm[sumDF$variable == i] <- res$QMp
-        sumDF$Qe[sumDF$variable == i] <- res$QEp
+        sumDF$Qm[sumDF$variable == i] <- res$QM
+        sumDF$Qe[sumDF$variable == i] <- res$QE
         
-        sumDF$Qm_pval[sumDF$variable == i] <- res$pval[1]
-        sumDF$Qe_pval[sumDF$variable == i] <- res$pval[2]
+        sumDF$Qm_pval[sumDF$variable == i] <- res$QMp
+        sumDF$Qe_pval[sumDF$variable == i] <- res$QEp
         
         sumDF$R2[sumDF$variable == i] <- res$R2
         sumDF$tau2[sumDF$variable == i] <- res$tau2
@@ -190,11 +190,11 @@ test_between_group_heterogeneity <- function(reDF100) {
     res <- rma(log_co2_eP, variance_co2_eP, 
                mods = ~factor(Vegetation_type), data = subDF1, control=list(stepadj=0.5))
     
-    sumDF$Qm[sumDF$variable == i] <- res$QMp
-    sumDF$Qe[sumDF$variable == i] <- res$QEp
+    sumDF$Qm[sumDF$variable == i] <- res$QM
+    sumDF$Qe[sumDF$variable == i] <- res$QE
     
-    sumDF$Qm_pval[sumDF$variable == i] <- res$pval[1]
-    sumDF$Qe_pval[sumDF$variable == i] <- res$pval[2]
+    sumDF$Qm_pval[sumDF$variable == i] <- res$QMp
+    sumDF$Qe_pval[sumDF$variable == i] <- res$QEp
     
     sumDF$R2[sumDF$variable == i] <- res$R2
     sumDF$tau2[sumDF$variable == i] <- res$tau2
