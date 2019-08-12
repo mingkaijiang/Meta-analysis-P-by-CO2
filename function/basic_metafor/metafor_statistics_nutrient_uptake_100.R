@@ -8,6 +8,7 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF, intDF) {
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Plant N uptake")
+    tDF <- subset(tDF, Unit %in%c("mg N mg-1 of nodule", "mg g-1 root", "mg N g-1 root"))
     
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF)
@@ -57,9 +58,10 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF, intDF) {
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Plant P uptake")
+    tDF <- subset(tDF, Unit %in%c("ug m-1 root", "mg g-1 root", "mg P g-1 root"))
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
+    res <- rma(log_interaction, v_variance, data = tDF)
     
     ### confidence interval
     
