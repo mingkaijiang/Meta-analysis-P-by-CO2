@@ -442,6 +442,9 @@ plot_woody_nonwoody_comparison_3(intDF2, intDF3, sumDF2, sumDF3)
 test_between_group_heterogeneity()
 #compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
 
+#### mycorrhizal associations
+test_woody_plants_mycorrhzial_effects(wdDF)
+
 
 
 #### plot a leaf N vs. leaf P concentration comparison
