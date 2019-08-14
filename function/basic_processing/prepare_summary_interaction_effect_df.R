@@ -1,13 +1,13 @@
 prepare_summary_interaction_effect_df <- function() {
     
-    id.list <- seq(1.5, 69.5, by=2)
+    id.list <- seq(1.5, 71.5, by=2)
     sumDF <- data.frame(id.list, NA, NA, NA, NA, NA, NA, NA, NA)
     
     colnames(sumDF) <- c("id", "variable", "interaction", 
                          "ns", "ne", "se", "p_value", "ci_lb", "ci_ub")
 
     
-    sumDF$variable <- c("leaf_biomass", "stem_biomass", "root_biomass", "total_biomass",
+    sumDF$variable <- c("leaf_biomass", "stem_biomass", "aboveground_biomass","root_biomass", "total_biomass", 
                             "leaf_N_content", "stem_N_content", "root_N_content", "total_N_content",
                             "leaf_P_content", "stem_P_content", "root_P_content", "total_P_content",
                             "leaf_N_concentration", "stem_N_concentration", "root_N_concentration", "total_N_concentration",

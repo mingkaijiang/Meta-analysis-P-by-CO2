@@ -1,11 +1,11 @@
 prepare_summary_p_effect_df <- function() {
-    sumDF <- data.frame(c(1:70), NA, NA, NA, NA, NA, NA, NA, NA, NA)
+    sumDF <- data.frame(c(1:72), NA, NA, NA, NA, NA, NA, NA, NA, NA)
     
     colnames(sumDF) <- c("id", "variable", "CO2_treatment", "P_effect",
                          "ns", "ne", "se", "p_value", "ci_lb", "ci_ub")
 
     
-    sumDF$variable <- rep(c("leaf_biomass", "stem_biomass", "root_biomass", "total_biomass",
+    sumDF$variable <- rep(c("leaf_biomass", "stem_biomass", "aboveground_biomass","root_biomass", "total_biomass",
                             "leaf_N_content", "stem_N_content", "root_N_content", "total_N_content",
                             "leaf_P_content", "stem_P_content", "root_P_content", "total_P_content",
                             "leaf_N_concentration", "stem_N_concentration", "root_N_concentration", "total_N_concentration",
@@ -14,7 +14,7 @@ prepare_summary_p_effect_df <- function() {
                             "Root_length", "N_uptake", "P_uptake", "WUE", "NUE", "PUE",
                             "leaf_NP", "stem_NP", "root_NP", "total_NP"),each=2)
     
-    sumDF$CO2_treatment <- rep(c("aCO2", "eCO2"), 35)
+    sumDF$CO2_treatment <- rep(c("aCO2", "eCO2"), 36)
     
     return(sumDF)
     

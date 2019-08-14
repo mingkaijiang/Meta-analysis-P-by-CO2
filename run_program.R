@@ -10,7 +10,7 @@ source("prepare.R")
 
 
 ############## check input files
-myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V2.csv",strip.white=T)
+myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V3.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
 
@@ -364,7 +364,7 @@ write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv"
 #make_split_interaction_effect_chart_2(sumDF, sumDF2, intDF)
 #make_split_interaction_effect_chart_3(sumDF, sumDF2, intDF)
 #make_split_interaction_effect_chart_4(sumDF, sumDF2, intDF)
-make_split_interaction_effect_chart_5(sumDF, sumDF2, intDF)
+make_split_interaction_effect_chart_6(sumDF, sumDF2, intDF)
 
 
 ##############
@@ -439,18 +439,20 @@ plot_woody_nonwoody_comparison_3(intDF2, intDF3, sumDF2, sumDF3)
 
 
 #### statistics comparing woody and non-woody plants
-test_between_group_heterogeneity()
+test_between_group_heterogeneity(reDF100)
 #compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
 
 #### mycorrhizal associations
 test_woody_plants_mycorrhzial_effects(wdDF)
 
 
-
 #### plot a leaf N vs. leaf P concentration comparison
 plot_leaf_N_P_concentration_comparison()
 
 
+
+############## Compare mycorrhizae groups
+test_plant_mycorrhizal_effect(reDF100)
 
 
 

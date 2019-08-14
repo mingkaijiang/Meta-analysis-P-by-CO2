@@ -1,6 +1,6 @@
 ### This script plot bar chart for all significant response ratio means and confidence interval
 
-make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
+make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
     
     ###this script include nutrient ratio
     
@@ -65,14 +65,14 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     
     ### create subset plotting groups
     ## biomass
-    plotDF1 <- subset(intDF, variable %in% c("leaf_biomass", "stem_biomass", "root_biomass",
+    plotDF1 <- subset(intDF, variable %in% c("aboveground_biomass", "root_biomass",
                                              "total_biomass"))
-    plotDF1a <- subset(sumDF2, variable %in% c("leaf_biomass", "stem_biomass", "root_biomass",
+    plotDF1a <- subset(sumDF2, variable %in% c("aboveground_biomass", "root_biomass",
                                                "total_biomass"))
-    plotDF1b <- subset(sumDF, variable %in% c("leaf_biomass", "stem_biomass", "root_biomass",
+    plotDF1b <- subset(sumDF, variable %in% c("aboveground_biomass", "root_biomass",
                                               "total_biomass"))
-    plotDF1$id <- seq(7.5, 1.5, by=-2)
-    plotDF1a$id <- plotDF1b$id <- c(7.2, 7.8, 5.2, 5.8, 3.2, 3.8, 
+    plotDF1$id <- seq(5.5, 1.5, by=-2)
+    plotDF1a$id <- plotDF1b$id <- c(5.2, 5.8, 3.2, 3.8, 
                                     1.2, 1.8)
     
     ## P concentration
@@ -122,17 +122,9 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
                                     1.2, 1.8)
     
     ## gas exchange and WUE combined together
-    plotDF7 <- subset(intDF, Category == "Gas exchange")
-    plotDF7a <- subset(sumDF2, Category == "Gas exchange")
-    plotDF7b <- subset(sumDF, Category == "Gas exchange")
-    
-    plotDF8 <- subset(intDF, variable == "WUE")
-    plotDF8a <- subset(sumDF2, variable == "WUE")
-    plotDF8b <- subset(sumDF, variable == "WUE")
-    
-    plotDF7 <- rbind(plotDF7, plotDF8)
-    plotDF7a <- rbind(plotDF7a, plotDF8a)
-    plotDF7b <- rbind(plotDF7b, plotDF8b)
+    plotDF7 <- subset(intDF, variable %in% c("CO2_assimilation_rate", "stomatal_conductance", "WUE"))
+    plotDF7a <- subset(sumDF2, variable %in% c("CO2_assimilation_rate", "stomatal_conductance", "WUE"))
+    plotDF7b <- subset(sumDF, variable %in% c("CO2_assimilation_rate", "stomatal_conductance", "WUE"))
     
     plotDF7$id <- seq(5.5, 1.5, by=-2)
     plotDF7a$id <- plotDF7b$id <- c(5.2, 5.8, 3.2, 3.8, 
@@ -170,11 +162,9 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
     ### prepare labels
     y.lab1 <- c("total_biomass"="Total",
                 "root_biomass"="Root",
-                "stem_biomass"="Stem",
-                "leaf_biomass"="Leaf")
+                "aboveground_biomass"="ABG")
     
-    y2.lab1 <- c(bquote(n[e]==.(plotDF1$ne[4])),
-                 bquote(n[e]==.(plotDF1$ne[3])),
+    y2.lab1 <- c(bquote(n[e]==.(plotDF1$ne[3])),
                  bquote(n[e]==.(plotDF1$ne[2])),
                  bquote(n[e]==.(plotDF1$ne[1])))
     
@@ -285,7 +275,7 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-100, 50))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                          labels=y.lab1)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("aCO2", "eCO2"),
@@ -321,7 +311,7 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-25, 60))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=y.lab1)+
         scale_color_manual(name=paste("CIs"),
                            limits=c("eP", "aP"),
@@ -357,9 +347,9 @@ make_split_interaction_effect_chart_5 <- function(sumDF, sumDF2, intDF) {
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-50, 25))+
-        scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
-                           labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5,7.5, by=2),
+        scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
+                           labels=c("","",""),
+                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5,5.5, by=2),
                                                labels = y2.lab1))+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),

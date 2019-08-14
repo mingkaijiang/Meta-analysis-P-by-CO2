@@ -2,11 +2,11 @@ make_mean_effect_size_recalculation <- function(inDF) {
     ### Recalculates mean effect size and interaction effect size
     
     ### make numbers numeric
-    inDF$Interaction_additive_aCaP <- as.numeric(as.character(inDF$Interaction_additive_aCaP))
-    inDF$Interaction_multiplicative_aCaP <- as.numeric(as.character(inDF$Interaction_multiplicative_aCaP))
+    #inDF$Interaction_additive_aCaP <- as.numeric(as.character(inDF$Interaction_additive_aCaP))
+    #inDF$Interaction_multiplicative_aCaP <- as.numeric(as.character(inDF$Interaction_multiplicative_aCaP))
     
-    inDF$Interaction_additive_aCeP <- as.numeric(as.character(inDF$Interaction_additive_aCeP))
-    inDF$Interaction_multiplicative_aCeP <- as.numeric(as.character(inDF$Interaction_multiplicative_aCeP))
+    #inDF$Interaction_additive_aCeP <- as.numeric(as.character(inDF$Interaction_additive_aCeP))
+    #inDF$Interaction_multiplicative_aCeP <- as.numeric(as.character(inDF$Interaction_multiplicative_aCeP))
     
     inDF$Sample.Size <- as.numeric(as.character(inDF$Sample.Size))
     
