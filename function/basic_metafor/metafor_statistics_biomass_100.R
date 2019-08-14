@@ -6,10 +6,9 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     }
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable%in%c("Aboveground biomass"))
-    
-    tDF$v_variance <- 1/tDF$Sample.Size
-    
+    tDF <- subset(reDF, Variable=="Aboveground biomass")
+    tDF <- subset(tDF, v_variance >= 0.01)
+
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -150,7 +149,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root biomass")
+    #tDF <- subset(reDF, Variable=="Root biomass")
+    tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    tDF <- subset(tDF, v_variance >= 0.001)
+    tDF <- subset(tDF, v_variance <= 2)
     
     ### random-effect model
     res <- rma(log_interaction, v_variance, data = tDF)
@@ -200,7 +202,7 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
-    tDF <- tDF[tDF$v_variance > 0, ]
+    tDF <- subset(tDF, v_variance >= 0.01)
     res <- rma(log_interaction, v_variance, data = tDF)
 
     ### confidence interval

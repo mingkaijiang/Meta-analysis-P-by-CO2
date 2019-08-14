@@ -41,6 +41,8 @@ myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
 
 subDF100 <- subset(myDF, Trt_aCO2 < 410)
 
+#write.csv(subDF100, "output/data.csv", row.names=F)
+
 #### generate species list
 generate_species_list()
 
@@ -50,105 +52,7 @@ generate_species_list()
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
-make_basic_summary_stats_plots()
-
-############### make overall plots
-#### Make plots - biomass
-#make_biomass_plots(inDF=subDF) 
-#
-#### Make plots - concentration
-#make_concentration_plots(inDF=subDF)
-#
-#### Make plots - nutrient ratio 
-#make_nutrient_ratio_plots(inDF=subDF)
-#
-#### Make plots - morphology
-#make_morphology_plots(inDF=subDF)
-#
-#### Make plots - nutrient uptake
-#make_nutrient_uptake_plots(inDF=subDF)
-#
-#### Make plots - resource use efficiency
-#make_resource_use_efficiency_plots(inDF=subDF)
-#
-#### Make plots - gas exchange
-#make_gas_exchange_plots(inDF=subDF)
-#
-############### Make response ratio plots per study
-#### Make plots - biomass
-#make_biomass_plots_per_study(inDF=subDF) 
-#
-#### Make plots - concentration
-#make_concentration_plots_per_study(inDF=subDF)
-#
-#### Make plots - nutrient ratio 
-#make_nutrient_ratio_plots_per_study(inDF=subDF)
-#
-#### Make plots - morphology
-#make_morphology_plots_per_study(inDF=subDF)
-#
-#### Make plots - nutrient uptake
-#make_nutrient_uptake_plots_per_study(inDF=subDF)
-#
-#### Make plots - resource use efficiency
-#make_resource_use_efficiency_plots_per_study(inDF=subDF)
-#
-#### Make plots - gas exchange
-#make_gas_exchange_plots_per_study(inDF=subDF)
-#
-############### make response ratio plots along concentration gradients
-#### Make plots - biomass
-#make_biomass_plots_along_gradients(inDF=subDF) 
-#
-#### Make plots - concentration
-#make_concentration_plots_along_gradients(inDF=subDF)
-#
-#### Make plots - nutrient ratio 
-#make_nutrient_ratio_plots_along_gradients(inDF=subDF)
-#
-#### Make plots - morphology
-#make_morphology_plots_along_gradients(inDF=subDF)
-#
-#### Make plots - nutrient uptake
-#make_nutrient_uptake_plots_along_gradients(inDF=subDF)
-#
-#### Make plots - resource use efficiency
-#make_resource_use_efficiency_plots_along_gradients(inDF=subDF)
-#
-#### Make plots - gas exchange
-#make_gas_exchange_plots_along_gradients(inDF=subDF)
-
-
-
-############## make overall plots
-#### Make plots - biomass
-#make_biomass_plots_100(inDF=subDF100) 
-#
-#### Make plots - concentration
-#make_concentration_plots_100(inDF=subDF100)
-#
-#### Make plots - morphology
-#make_morphology_plots_100(inDF=subDF100)
-#
-#### Make plots - nutrient uptake
-#make_nutrient_uptake_plots_100(inDF=subDF100)
-#
-#### Make plots - resource use efficiency
-#make_resource_use_efficiency_plots_100(inDF=subDF100)
-#
-#### Make plots - gas exchange
-#make_gas_exchange_plots_100(inDF=subDF100)
-
-
-############## make gradient subplot 10
-#
-##### ep/ap < 10
-#make_subplots_along_gradients(inDF=subDF)
-#
-#### ep/ap < 100
-#make_subplots_along_gradients_100(inDF=subDF100)
-
-
+#make_basic_summary_stats_plots()
 
 
 ############## Statistical analysis - metafor

@@ -8,7 +8,7 @@ metafor_p_statistics_biomass_100_aCO2 <- function(reDF, sumDF2) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable%in%c("Aboveground biomass"))
     
-    tDF$variance_p_aCO2 <- 1/tDF$Sample.Size
+    tDF <- subset(tDF, variance_p_aCO2 >= 0.01)
     
     
     ### random-effect model
@@ -148,8 +148,9 @@ metafor_p_statistics_biomass_100_aCO2 <- function(reDF, sumDF2) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root biomass")
-    
+    #tDF <- subset(reDF, Variable=="Root biomass")
+    tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    tDF <- subset(tDF, variance_p_aCO2 >= 0.01)
     ### random-effect model
     res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
     
@@ -198,7 +199,7 @@ metafor_p_statistics_biomass_100_aCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Total plant biomass")
     
     ### random-effect model
-    tDF <- tDF[tDF$variance_p_aCO2 > 0, ]
+    tDF <- subset(tDF, variance_p_aCO2 >= 0.01)
     res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
     
     ### confidence interval
