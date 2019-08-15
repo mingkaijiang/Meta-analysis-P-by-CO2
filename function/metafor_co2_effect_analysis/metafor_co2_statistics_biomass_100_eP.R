@@ -434,9 +434,6 @@ metafor_co2_statistics_biomass_100_eP <- function(reDF, sumDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    ### use 1/n to get the variance
-    tDF$variance_co2_eP <- 1/tDF$Sample.Size
-    
     ### random-effect model
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     

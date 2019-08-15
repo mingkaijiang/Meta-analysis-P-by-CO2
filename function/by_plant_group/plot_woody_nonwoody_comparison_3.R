@@ -34,7 +34,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
                                             "Root_length"))
     plotDF1$id <- c(3.8, 2.8, 1.8, 0.8, 4.2, 3.2, 2.2, 1.2)
     
-    plotDF2 <- subset(intDF4, variable%in%c("leaf_biomass", 
+    plotDF2 <- subset(intDF4, variable%in%c("aboveground_biomass", 
                                             "belowground_biomass"))
     
     plotDF2$id <- c(1.8, 0.8, 2.2, 1.2)
@@ -54,11 +54,11 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
     plotDF5 <- subset(sumDF4, PFT=="nonwoody" & variable%in%c("CO2_assimilation_rate", "leaf_area", "LMA",
                                                            "Root_length"))
     
-    plotDF6 <- subset(sumDF4, PFT=="woody" & variable%in%c("leaf_biomass", 
-                                                            "belowground_biomass"))
+    plotDF6 <- subset(sumDF4, PFT=="woody" & variable%in%c("aboveground_biomass", 
+                                                           "belowground_biomass"))
     
-    plotDF7 <- subset(sumDF4, PFT=="nonwoody" & variable%in%c("leaf_biomass", 
-                                                            "belowground_biomass"))
+    plotDF7 <- subset(sumDF4, PFT=="nonwoody" & variable%in%c("aboveground_biomass", 
+                                                              "belowground_biomass"))
     
     plotDF8 <- subset(sumDF4, PFT=="woody" & variable%in%c("leaf_N_concentration", "leaf_P_concentration", 
                                                            "root_N_concentration", "root_P_concentration"))
@@ -68,8 +68,8 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
     
     plotDF4$id <- plotDF5$id <- plotDF8$id <- plotDF9$id <- c(3.9, 4.1, 2.9, 3.1, 1.9, 2.1, 0.9, 1.1)
     
-    plotDF6$id <- plotDF7$id <- c(2.9, 3.1, 1.9, 2.1)
-    
+    plotDF6$id <- plotDF7$id <- c(1.9, 2.1, 0.9, 1.1)
+
     ### plot effect of LP on eCO2 response
     p1a <- ggplot(plotDF1)+ 
         geom_vline(xintercept = 0.0)+
@@ -132,7 +132,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
                                                colour ="black"))+
         scale_x_continuous(limits=c(-75, 55))+
         scale_y_continuous(breaks=c(1:2),
-                           labels=c("Root", "Leaf"))+
+                           labels=c("BG", "AB"))+
         scale_color_manual(name=paste("Vegetation group"),
                            limits=c("woody", "nonwoody"),
                            values=c("black", "grey"),
@@ -297,8 +297,8 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-50, 100))+
-        scale_y_continuous(breaks=c(2:3),
-                           labels=c("Root", "     Leaf"))+
+        scale_y_continuous(breaks=c(1:2),
+                           labels=c("BG", "AB"))+
         scale_color_manual(name=paste("P treatment"),
                            limits=c("eP", "aP"),
                            values=c("grey", "black"),
@@ -336,8 +336,8 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
         scale_x_continuous(limits=c(-50, 100))+
-        scale_y_continuous(breaks=c(2:3),
-                           labels=c("Root", "Leaf"))+
+        scale_y_continuous(breaks=c(1:2),
+                           labels=c("BG", "AB"))+
         scale_color_manual(name=paste("P treatment"),
                            limits=c("eP", "aP"),
                            values=c("grey", "black"),

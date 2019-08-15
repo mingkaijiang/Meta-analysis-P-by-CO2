@@ -11,11 +11,8 @@ metafor_statistics_nutrient_ratio_100 <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf NP ratio")
     
-    ### use 1/n to get the variance
-    tDF$v_variance <- 1/tDF$Sample.Size
-    
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

@@ -432,8 +432,6 @@ metafor_p_statistics_biomass_100_aCO2 <- function(reDF, sumDF2) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    ### use 1/n to get the variance
-    tDF$variance_p_aCO2 <- 1/tDF$Sample.Size
     
     ### random-effect model
     res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF, control=list(stepadj=0.05))
@@ -565,8 +563,6 @@ metafor_p_statistics_biomass_100_aCO2 <- function(reDF, sumDF2) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    tDF <- tDF[tDF$variance_p_aCO2 > 0, ]
-    
     res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)#, control=list(stepadj=0.5))
     
     sumDF2$P_effect[sumDF2$variable=="total_P_content"&sumDF2$CO2_treatment=="aCO2"] <- res$b

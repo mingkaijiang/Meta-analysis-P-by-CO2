@@ -56,8 +56,6 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Leaf P concentration")
     
     ### random-effect model
-    tDF <- tDF[tDF$variance_p_eCO2 > 0, ]
-    
     res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
@@ -103,8 +101,6 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Root P concentration")
     
     ### random-effect model
-    tDF <- tDF[tDF$variance_p_aCO2 > 0, ]
-    
     res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### confidence interval
@@ -239,9 +235,6 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    ### use 1/n to get the variance
-    tDF$variance_p_eCO2 <- 1/tDF$Sample.Size
-    
     ### random-effect model
     res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF, control=list(stepadj=0.05))
     
@@ -325,10 +318,7 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
-    
-    ### use 1/n to get the variance
-    tDF$variance_p_eCO2 <- 1/tDF$Sample.Size
-    
+
     ### random-effect model
     res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     

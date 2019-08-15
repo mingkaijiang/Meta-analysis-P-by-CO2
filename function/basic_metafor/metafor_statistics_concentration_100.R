@@ -58,7 +58,6 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf P concentration")
     
     ### random-effect model
-    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
     
     ### confidence interval
@@ -104,7 +103,6 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Root P concentration")
     
     ### random-effect model
-    tDF <- tDF[tDF$v_variance > 0, ]
     res <- rma(log_interaction, v_variance, data = tDF)
 
     ### confidence interval
