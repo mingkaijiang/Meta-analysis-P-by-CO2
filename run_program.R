@@ -10,7 +10,7 @@ source("prepare.R")
 
 
 ############## check input files
-myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V3.csv",strip.white=T)
+myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V4_HP_control.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
 

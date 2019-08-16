@@ -8,56 +8,43 @@ test_plant_mycorrhizal_effect <- function(reDF100) {
     }
     
     
-    ### prepare subset
-    bDF <- subset(inDF, Category == "Biomass")
-    lDF <- subset(bDF, Variable == "Leaf biomass")
-    rDF <- subset(bDF, Variable == "Root biomass")
-    tDF <- subset(bDF, Variable == "Total plant biomass")
-    lpDF <- subset(inDF, Variable == "Leaf P concentration")
-    lnDF <- subset(inDF, Variable == "Leaf N concentration")
-    aDF <- subset(inDF, Variable == "CO2 assimilation rate")
+    #### ag biomass
+    subDF <- subset(inDF, Variable == "Aboveground biomass")
+    subDF <- subset(subDF, v_variance >= 0.01)
     
-    
-    ### variance
-    lpDF$v_variance <- 1/lpDF$Sample.Size
-    lpDF$variance_co2_aP <- 1/lpDF$Sample.Size
-    lpDF$variance_co2_eP <- 1/lpDF$Sample.Size
-    
-    
-    #### leaf biomass
-    lDF <- lDF[order(lDF$Vegetation_type, lDF$Mycorrhizae_2), ]
+    subDF <- subDF[order(subDF$Vegetation_type, subDF$Mycorrhizae_2), ]
     
     #lDF <- subset(lDF, Vegetation_type == "Woody")
     res1 <- rma(log_interaction, v_variance, 
-               mods = ~factor(Mycorrhizae_2), data = lDF)
+                mods = ~factor(Mycorrhizae_2), data = subDF)
     
     res2 <- rma(log_interaction, v_variance, 
-               mods = ~factor(Vegetation_type), data = lDF)
+                mods = ~factor(Vegetation_type), data = subDF)
     
     print(res1)
     print(res2)
     
     res.aP <- rma(log_co2_aP, variance_co2_aP, mods = ~factor(Mycorrhizae_2), 
-                  data = lDF)
+                  data = subDF)
     print(res.aP)
     
     res.eP <- rma(log_co2_eP, variance_co2_eP, mods = ~factor(Mycorrhizae_2), 
-                  data = lDF)
+                  data = subDF)
     print(res.eP)
     
-    l <- length(lDF$Literature)
+    l <- length(subDF$Literature)
     
     
-    pdf("output/mycorrhizae_effect/leaf_biomass_response_ratio_categories_vegetation.pdf",
-        height=12, width=9)
-    forest(res1, slab = lDF$Literature,
+    pdf("output/mycorrhizae_effect/aboveground_biomass_response_ratio_categories_vegetation.pdf",
+        height=16, width=9)
+    forest(res1, slab = subDF$Literature,
            xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
            at = c(-1, 0, 1, 2), #atransf = exp,
-           ilab = cbind(as.character(lDF$Vegetation_type),
-                        as.character(lDF$Mycorrhizae_2), 
-                        as.character(lDF$Species),
-                        as.character(lDF$Experiment_duration)), 
+           ilab = cbind(as.character(subDF$Vegetation_type),
+                        as.character(subDF$Mycorrhizae_2), 
+                        as.character(subDF$Species),
+                        as.character(subDF$Experiment_duration)), 
            ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
     text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
                                           "Mycorrhizae",
@@ -70,86 +57,56 @@ test_plant_mycorrhizal_effect <- function(reDF100) {
     dev.off()
     
     
+    #### Belowground biomass
+    subDF <- subset(inDF, Variable %in%c("Belowground biomass", "Root biomass"))
+    subDF <- subset(subDF, v_variance >= 0.01)
+    subDF <- subset(subDF, v_variance <= 2)
     
+    subDF <- subDF[order(subDF$Vegetation_type, subDF$Mycorrhizae_2), ]
     
+    res1 <- rma(log_interaction, v_variance, 
+                mods = ~factor(Mycorrhizae_2), data = subDF)
     
+    res2 <- rma(log_interaction, v_variance, 
+                mods = ~factor(Vegetation_type), data = subDF)
     
+    print(res1)
+    print(res2)
     
-    
-    
-    
-    ### root biomass
-    res <- rma(log_interaction, v_variance, 
-               mods = ~factor(Mycorrhizae_2), data = rDF)
-    
-    res <- rma(log_interaction, v_variance, 
-               mods = ~factor(Vegetation_type), data = rDF)
-    
-    print(res)
-    
-    res.aP <- rma(log_co2_aP, variance_co2_aP, mods = ~factor(Mycorrhizae_3), 
-                  data = rDF)
+    res.aP <- rma(log_co2_aP, variance_co2_aP, mods = ~factor(Mycorrhizae_2), 
+                  data = subDF)
     print(res.aP)
     
-    res.eP <- rma(log_co2_eP, variance_co2_eP, mods = ~factor(Mycorrhizae_3), 
-                  data = rDF)
+    res.eP <- rma(log_co2_eP, variance_co2_eP, mods = ~factor(Mycorrhizae_2), 
+                  data = subDF)
     print(res.eP)
     
-    ### leaf P concentration
-    res <- rma(log_interaction, v_variance, 
-               mods = ~factor(Mycorrhizae_3), data = lpDF)
-    
-    print(res)
-
-    
-    res.aP <- rma(log_co2_aP, variance_co2_aP, mods = ~factor(Mycorrhizae_3), 
-                  data = lpDF)
-    print(res.aP)
-    
-    res.eP <- rma(log_co2_eP, variance_co2_eP, mods = ~factor(Mycorrhizae_3), 
-                  data = lpDF)
-    print(res.eP)
+    l <- length(subDF$Literature)
     
     
-    ### leaf N concentration
-    
-    res <- rma(log_interaction, v_variance, 
-               mods = ~factor(Mycorrhizae_3), data = lnDF)
-    
-    print(res)
-    
-    res.aP <- rma(log_co2_aP, variance_co2_aP, mods = ~factor(Mycorrhizae_3), 
-                  data = lnDF)
-    print(res.aP)
-    
-    res.eP <- rma(log_co2_eP, variance_co2_eP, mods = ~factor(Mycorrhizae_3), 
-                  data = lnDF)
-    print(res.eP)
-    
-    ### photosynthesis
-    res <- rma(log_interaction, v_variance, 
-               mods = ~factor(Mycorrhizae_2), data = aDF)
-    
-    print(res)
-    
-    res.aP <- rma(log_co2_aP, variance_co2_aP, mods = ~factor(Mycorrhizae_3), 
-                  data = aDF)
-    print(res.aP)
-    
-    res.eP <- rma(log_co2_eP, variance_co2_eP, mods = ~factor(Mycorrhizae_3), 
-                  data = aDF)
-    print(res.eP)
+    pdf("output/mycorrhizae_effect/belowground_biomass_response_ratio_categories_vegetation.pdf",
+        height=16, width=9)
+    forest(res1, slab = subDF$Literature,
+           xlim = c(-12, 4), 
+           ylim = c(-3.5, l+3.5),
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(subDF$Vegetation_type),
+                        as.character(subDF$Mycorrhizae_2), 
+                        as.character(subDF$Species),
+                        as.character(subDF$Experiment_duration)), 
+           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
+    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
+                                          "Mycorrhizae",
+                                          "Species", "Experiment", "Range"),
+         cex=0.7)
+    text(c(-8, -6.5, -4.5, -3), l+2,
+         c("type","", "", "duration"), cex=0.7)
+    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    dev.off()
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     
     
     ### plotting - leaf P concentration and photosynthesis

@@ -1283,7 +1283,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-100, 650))+
+        scale_x_continuous(limits=c(-100, 900))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab4)+
         scale_color_manual(name=paste("CIs"),
