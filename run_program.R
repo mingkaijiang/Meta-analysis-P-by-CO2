@@ -11,8 +11,10 @@ source("prepare.R")
 
 ############## check input files
 myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V4_HP_control.csv",strip.white=T)
+#myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V5_low_vs_high_P.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
+
 
 ### recalculate all the mean effect size
 myDF <- make_mean_effect_size_recalculation(inDF=myDF)
@@ -41,8 +43,6 @@ myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
 
 subDF100 <- subset(myDF, Trt_aCO2 < 410)
 
-#write.csv(subDF100, "output/data.csv", row.names=F)
-
 #### generate species list
 generate_species_list()
 
@@ -59,6 +59,8 @@ generate_species_list()
 ### reprogressing the dataset to calculate individual means and variance for the interaction term
 #reDF <- reprocessing_interaction_term(inDF=subDF)
 reDF100 <- reprocessing_interaction_term(inDF=subDF100)
+reDF100$random_factor <- as.numeric(reDF100$Literature)
+
 ### split the dataset into individual response variable
 ### and perform statistical analysis for the overall effect size and variance
 ### also check for data issues, make plots

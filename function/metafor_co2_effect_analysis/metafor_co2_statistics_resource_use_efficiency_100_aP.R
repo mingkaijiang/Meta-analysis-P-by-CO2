@@ -10,7 +10,10 @@ metafor_co2_statistics_resource_use_efficiency_100_aP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="WUE")
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -66,7 +69,10 @@ metafor_co2_statistics_resource_use_efficiency_100_aP <- function(reDF, sumDF) {
     tDF$variance_co2_aP <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     sumDF$CO2_effect[sumDF$variable=="NUE"&sumDF$P_treatment=="aP"] <- res$b
     sumDF$se[sumDF$variable=="NUE"&sumDF$P_treatment=="aP"] <- res$se
@@ -111,7 +117,10 @@ metafor_co2_statistics_resource_use_efficiency_100_aP <- function(reDF, sumDF) {
     tDF$variance_co2_aP <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     sumDF$CO2_effect[sumDF$variable=="PUE"&sumDF$P_treatment=="aP"] <- res$b
     sumDF$se[sumDF$variable=="PUE"&sumDF$P_treatment=="aP"] <- res$se

@@ -13,7 +13,10 @@ metafor_co2_statistics_nutrient_ratio_100_eP <- function(reDF, sumDF) {
     tDF$variance_co2_eP <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    #res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_eP, variance_co2_eP, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -66,6 +69,9 @@ metafor_co2_statistics_nutrient_ratio_100_eP <- function(reDF, sumDF) {
     ### random-effect model
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    #res <- rma.mv(log_co2_eP, variance_co2_eP, random = ~1 | random_factor, data = tDF)
+    
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
     confint(res)
@@ -115,6 +121,9 @@ metafor_co2_statistics_nutrient_ratio_100_eP <- function(reDF, sumDF) {
     ### random-effect model
     res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    #res <- rma.mv(log_co2_eP, variance_co2_eP, random = ~1 | random_factor, data = tDF)
+    
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
     confint(res)
@@ -162,7 +171,10 @@ metafor_co2_statistics_nutrient_ratio_100_eP <- function(reDF, sumDF) {
     tDF$variance_co2_eP <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    #res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_eP, variance_co2_eP, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

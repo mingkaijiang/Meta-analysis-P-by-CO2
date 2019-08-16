@@ -10,7 +10,10 @@ metafor_p_statistics_gas_exchange_100_eCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="CO2 assimilation rate")
     
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -58,7 +61,10 @@ metafor_p_statistics_gas_exchange_100_eCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Stomatal conductance")
     
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     ### length of the data frame
     l <- length(tDF$Literature)

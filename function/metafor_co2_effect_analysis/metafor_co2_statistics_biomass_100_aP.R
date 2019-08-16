@@ -11,7 +11,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF <- subset(tDF, variance_co2_aP >= 0.01)
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -57,7 +60,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Leaf biomass")
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -104,7 +110,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Stem biomass")
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     
@@ -151,7 +160,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF <- subset(tDF, variance_co2_aP >= 0.01)
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -199,7 +211,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF <- subset(tDF, variance_co2_aP >= 0.01)
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -246,9 +261,12 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Leaf N content")
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF, digits=2, control=list(maxiter=1000,
-                                                                         stepadj=0.1))
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF, digits=2, control=list(maxiter=1000,
+    #                                                                     stepadj=0.1))
 
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
     #confint(res)
@@ -294,7 +312,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF <- subset(reDF, Variable=="Leaf P content")
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)#, control=list(stepadj=0.5))
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -348,7 +369,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF$variance_co2_aP <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     sumDF$CO2_effect[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- res$b
     sumDF$se[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- res$se
@@ -391,7 +415,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)#, control=list(stepadj=0.05))
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     sumDF$CO2_effect[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- res$b
     sumDF$se[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- res$se
@@ -433,7 +460,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     sumDF$CO2_effect[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- res$b
     sumDF$se[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- res$se
@@ -475,7 +505,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF, control=list(stepadj=0.5))
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF, control=list(stepadj=0.5))
+   
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     sumDF$CO2_effect[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- res$b
     sumDF$se[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- res$se
@@ -521,7 +554,10 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     tDF$variance_co2_aP <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     sumDF$CO2_effect[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- res$b
     sumDF$se[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- res$se
@@ -565,7 +601,11 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     ### random-effect model
     tDF <- tDF[tDF$variance_co2_aP > 0, ]
     
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)#, control=list(stepadj=0.5))
+    ### random-effect model
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
     sumDF$CO2_effect[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- res$b
     sumDF$se[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- res$se

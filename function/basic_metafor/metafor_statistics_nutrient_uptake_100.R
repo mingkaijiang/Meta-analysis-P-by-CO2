@@ -11,7 +11,11 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF, intDF) {
     tDF <- subset(tDF, Unit %in%c("mg N mg-1 of nodule", "mg g-1 root", "mg N g-1 root"))
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -61,7 +65,11 @@ metafor_statistics_nutrient_uptake_100 <- function(reDF, intDF) {
     tDF <- subset(tDF, Unit %in%c("ug m-1 root", "mg g-1 root", "mg P g-1 root"))
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     ### confidence interval
     

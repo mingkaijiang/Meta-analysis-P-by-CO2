@@ -41,6 +41,8 @@ make_biomass_plots_along_gradients <- function(inDF) {
               legend.text.align=0)
 
     
+    
+    
     ### plot  - elevated CO2 effect at aP and eP
     p2 <- ggplot() +  
         geom_point(data=subDF1, 

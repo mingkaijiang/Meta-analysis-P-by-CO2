@@ -9,7 +9,10 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf N concentration")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -58,7 +61,11 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf P concentration")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+ 
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     ### confidence interval
     
@@ -154,7 +161,11 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
 
-    res <- rma(log_interaction, v_variance, data = tDF)
+    ### random-effect model
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     intDF$interaction[intDF$variable=="stem_N_concentration"] <- res$b
     intDF$se[intDF$variable=="stem_N_concentration"] <- res$se
@@ -196,7 +207,12 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    res <- rma(log_interaction, v_variance, data = tDF)
+    ### random-effect model
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     intDF$interaction[intDF$variable=="stem_P_concentration"] <- res$b
     intDF$se[intDF$variable=="stem_P_concentration"] <- res$se
@@ -242,7 +258,11 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     tDF$v_variance <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     intDF$interaction[intDF$variable=="root_N_concentration"] <- res$b
     intDF$se[intDF$variable=="root_N_concentration"] <- res$se
@@ -328,7 +348,11 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
     tDF$v_variance <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     intDF$interaction[intDF$variable=="total_P_concentration"] <- res$b
     intDF$se[intDF$variable=="total_P_concentration"] <- res$se

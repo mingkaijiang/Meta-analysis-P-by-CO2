@@ -13,7 +13,11 @@ metafor_p_statistics_morphology_100_aCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Leaf area")
     
     ### random-effect model
-    res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
+    # res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_aCO2, variance_p_aCO2, random = ~1 | random_factor, data = tDF)
+    
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -61,7 +65,11 @@ metafor_p_statistics_morphology_100_aCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="LMA")
     
     ### random-effect model
-    res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
+    # res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_aCO2, variance_p_aCO2, random = ~1 | random_factor, data = tDF)
+    
     
     ### confidence interval
     
@@ -106,7 +114,10 @@ metafor_p_statistics_morphology_100_aCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="SLA")
     
     ### random-effect model
-    res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
+    # res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_aCO2, variance_p_aCO2, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -153,7 +164,10 @@ metafor_p_statistics_morphology_100_aCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Total root length")
     
     ### random-effect model
-    res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
+    # res <- rma(log_P_aCO2, variance_p_aCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_aCO2, variance_p_aCO2, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

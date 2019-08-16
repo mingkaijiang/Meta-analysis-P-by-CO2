@@ -13,7 +13,11 @@ metafor_statistics_morphology_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf area")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -61,7 +65,11 @@ metafor_statistics_morphology_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="LMA")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
+    #res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     ### confidence interval
     
@@ -106,7 +114,11 @@ metafor_statistics_morphology_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="SLA")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -153,7 +165,11 @@ metafor_statistics_morphology_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Total root length")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

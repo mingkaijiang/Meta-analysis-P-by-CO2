@@ -9,7 +9,10 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Leaf N concentration")
     
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -56,7 +59,10 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Leaf P concentration")
     
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     
@@ -101,7 +107,10 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     tDF <- subset(reDF, Variable=="Root P concentration")
     
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -151,7 +160,11 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
 
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    ### random-effect model
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     sumDF2$P_effect[sumDF2$variable=="stem_N_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$b
     sumDF2$se[sumDF2$variable=="stem_N_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$se
@@ -193,7 +206,11 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
     
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    ### random-effect model
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     sumDF2$P_effect[sumDF2$variable=="stem_P_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$b
     sumDF2$se[sumDF2$variable=="stem_P_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$se
@@ -236,7 +253,10 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF, control=list(stepadj=0.05))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     sumDF2$P_effect[sumDF2$variable=="root_N_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$b
     sumDF2$se[sumDF2$variable=="root_N_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$se
@@ -278,7 +298,11 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
 
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    ### random-effect model
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
     
     sumDF2$P_effect[sumDF2$variable=="total_N_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$b
     sumDF2$se[sumDF2$variable=="total_N_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$se
@@ -320,7 +344,11 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     ns <- length(unique(tDF$Literature))
 
     ### random-effect model
-    res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
+    
     
     sumDF2$P_effect[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$b
     sumDF2$se[sumDF2$variable=="total_P_concentration"&sumDF2$CO2_treatment=="eCO2"] <- res$se

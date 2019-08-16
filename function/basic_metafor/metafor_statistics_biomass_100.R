@@ -10,11 +10,17 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF <- subset(tDF, v_variance >= 0.01)
 
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
+    #print(res)
+    
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    confint(res)
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -57,8 +63,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf biomass")
     
-    ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -105,8 +113,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem biomass")
     
-    ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     ### confidence interval
     
@@ -154,8 +164,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF <- subset(tDF, v_variance >= 0.001)
     tDF <- subset(tDF, v_variance <= 2)
     
-    ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -200,11 +212,13 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant biomass")
-    
-    ### random-effect model
     tDF <- subset(tDF, v_variance >= 0.01)
-    res <- rma(log_interaction, v_variance, data = tDF)
-
+    
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
     #confint(res)
@@ -251,9 +265,12 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf N content")
     
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, digits=5, 
-               control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, digits=5, 
+    #           control=list(stepadj=0.05))
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -300,8 +317,13 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf P content")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
 
+    # res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
     confint(res)
@@ -346,7 +368,7 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem N content")
-    
+
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
@@ -355,7 +377,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF$v_variance <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     intDF$interaction[intDF$variable=="stem_N_content"] <- res$b
     intDF$se[intDF$variable=="stem_N_content"] <- res$se
@@ -397,7 +422,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     intDF$interaction[intDF$variable=="stem_P_content"] <- res$b
     intDF$se[intDF$variable=="stem_P_content"] <- res$se
@@ -442,7 +470,11 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF$v_variance <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     intDF$interaction[intDF$variable=="root_N_content"] <- res$b
     intDF$se[intDF$variable=="root_N_content"] <- res$se
@@ -484,7 +516,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     intDF$interaction[intDF$variable=="root_P_content"] <- res$b
     intDF$se[intDF$variable=="root_P_content"] <- res$se
@@ -530,7 +565,11 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF$v_variance <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     intDF$interaction[intDF$variable=="total_N_content"] <- res$b
     intDF$se[intDF$variable=="total_N_content"] <- res$se
@@ -573,7 +612,11 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     ns <- length(unique(tDF$Literature))
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
+
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    
     
     intDF$interaction[intDF$variable=="total_P_content"] <- res$b
     intDF$se[intDF$variable=="total_P_content"] <- res$se
