@@ -10,8 +10,7 @@ source("prepare.R")
 
 
 ############## check input files
-myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V4_HP_control.csv",strip.white=T)
-#myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V5_low_vs_high_P.csv",strip.white=T)
+myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V6_HP_control.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
 
@@ -61,32 +60,8 @@ generate_species_list()
 reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 reDF100$random_factor <- as.numeric(reDF100$Literature)
 
-### split the dataset into individual response variable
-### and perform statistical analysis for the overall effect size and variance
-### also check for data issues, make plots
-
-#### Biomass
-#metafor_statistics_biomass(reDF)
-#
-#### concentration
-#metafor_statistics_concentration(reDF)
-#
-#### morphology
-#metafor_statistics_morphology(reDF)
-#
-#### nutrient uptake
-#metafor_statistics_nutrient_uptake(reDF)
-#
-#### resource use efficiency
-#metafor_statistics_resource_use_efficiency(reDF)
-#
-#### gas exchange
-#metafor_statistics_gas_exchange(reDF)
-
-
 ##### a detailed summary table 
 generate_a_detailed_summary_table(reDF100)
-
 
 
 ##############

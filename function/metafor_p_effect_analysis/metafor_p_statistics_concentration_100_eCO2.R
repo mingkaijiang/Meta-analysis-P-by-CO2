@@ -110,7 +110,8 @@ metafor_p_statistics_concentration_100_eCO2 <- function(reDF, sumDF2) {
     # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF)
+    res <- rma.mv(log_P_eCO2, variance_p_eCO2, random = ~1 | random_factor, data = tDF,
+                  control=list(optimizer="optim", optmethod="Nelder-Mead"))
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

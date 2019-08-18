@@ -16,7 +16,7 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     res <- rma.mv(log_interaction, v_variance, 
                   random = ~1 | random_factor, data = tDF)
     
-    print(res)
+    #print(res)
     
     
     ### confidence interval
@@ -38,7 +38,7 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     
     ### forest plot
     pdf("output/statistics_biomass_100/aboveground_biomass_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
+        height=16, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-12, 4), 
            ylim = c(-3.5, l+3.5),
@@ -165,13 +165,12 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF <- subset(tDF, v_variance >= 0.001)
     tDF <- subset(tDF, v_variance <= 2)
     
-    dim(tDF)
     # res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
     res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
 
-    print(res)
+    #print(res)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

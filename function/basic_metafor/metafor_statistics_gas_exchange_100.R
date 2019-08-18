@@ -15,7 +15,7 @@ metafor_statistics_gas_exchange_100 <- function(reDF, intDF) {
     ### multivariable linear (mixed-effects) model with study as a random variable
     res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
-    print(res)
+    #print(res)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
