@@ -35,7 +35,8 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
     plotDF1$id <- c(3.8, 2.8, 1.8, 0.8, 4.2, 3.2, 2.2, 1.2)
     
     plotDF2 <- subset(intDF4, variable%in%c("aboveground_biomass", 
-                                            "belowground_biomass"))
+                                            "belowground_biomass",
+                                            "total_biomass"))
     
     plotDF2$id <- c(1.8, 0.8, 2.2, 1.2)
     
@@ -91,7 +92,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 55))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("RL", "LMA", "LA", "A"))+
         scale_color_manual(name=paste("Vegetation group"),
@@ -219,7 +220,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 100))+
+        scale_x_continuous(limits=c(-50, 150))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("RL", "     LMA", "LA", "A"))+
         scale_color_manual(name=paste("P treatment"),
@@ -257,7 +258,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 100))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("RL", "LMA", "LA", "A"))+
         scale_color_manual(name=paste("P treatment"),
@@ -296,7 +297,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 100))+
+        scale_x_continuous(limits=c(-50, 150))+
         scale_y_continuous(breaks=c(1:2),
                            labels=c("BG", "AB"))+
         scale_color_manual(name=paste("P treatment"),
@@ -335,7 +336,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 100))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(1:2),
                            labels=c("BG", "AB"))+
         scale_color_manual(name=paste("P treatment"),
@@ -374,7 +375,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 100))+
+        scale_x_continuous(limits=c(-50, 150))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("Root P", "Leaf P", "Root N", "Leaf N"))+
         scale_color_manual(name=paste("P treatment"),
@@ -415,7 +416,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 100))+
+        scale_x_continuous(limits=c(-60, 60))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("Root P", "Leaf P", "Root N", "Leaf N"))+
         scale_color_manual(name=paste("P treatment"),

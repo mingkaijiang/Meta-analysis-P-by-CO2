@@ -136,7 +136,9 @@ metafor_co2_statistics_nonwoody_plants_100_aP <- function(reDF, sumDF) {
     tDF <- subset(tDF, variance_co2_aP <= 2)
     
     ### random-effect model
-    res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
+    
+    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
