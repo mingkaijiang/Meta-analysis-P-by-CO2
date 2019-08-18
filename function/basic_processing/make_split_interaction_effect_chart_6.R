@@ -310,7 +310,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-25, 60))+
+        scale_x_continuous(limits=c(-25, 65))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=y.lab1)+
         scale_color_manual(name=paste("CIs"),
@@ -423,7 +423,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 25))+
+        scale_x_continuous(limits=c(-50, 50))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab2)+
         scale_color_manual(name=paste("CIs"),
@@ -529,7 +529,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 25))+
+        scale_x_continuous(limits=c(-50, 50))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab3)+
         scale_color_manual(name=paste("CIs"),
@@ -845,7 +845,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-100, 25))+
+        scale_x_continuous(limits=c(-100, 30))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=y.lab8)+
         scale_color_manual(name=paste("CIs"),
@@ -881,7 +881,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-30, 25))+
+        scale_x_continuous(limits=c(-35, 25))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=y.lab8)+
         scale_color_manual(name=paste("CIs"),
@@ -998,7 +998,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 120))+
+        scale_x_continuous(limits=c(-75, 125))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab5)+
         scale_color_manual(name=paste("CIs"),
@@ -1104,7 +1104,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 120))+
+        scale_x_continuous(limits=c(-75, 125))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab6)+
         scale_color_manual(name=paste("CIs"),
@@ -1211,7 +1211,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 120))+
+        scale_x_continuous(limits=c(-75, 125))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=y.lab9)+
         scale_color_manual(name=paste("CIs"),
@@ -1319,7 +1319,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 120))+
+        scale_x_continuous(limits=c(-75, 125))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab4)+
         scale_color_manual(name=paste("CIs"),

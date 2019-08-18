@@ -5,7 +5,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf biomass")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -27,8 +30,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Stem biomass")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
     
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     ### confidence interval
     
     ### length of the data frame
@@ -46,8 +51,11 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root biomass")
     
-    ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #    ### random-effect model
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -70,7 +78,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(tDF, v_variance >= 0.01)
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
 
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -94,7 +105,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -119,7 +133,11 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(tDF, v_variance >= 0.001)
     tDF <- subset(tDF, v_variance <= 2)
     
-    res <- rma(log_interaction, v_variance, data = tDF)
+    ### random-effect model
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -142,9 +160,13 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf N content")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, digits=5, 
-               control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, digits=5, 
+    #           control=list(stepadj=0.05))
 
+
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
     #confint(res)
@@ -165,8 +187,11 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf P content")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
 
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
     #confint(res)
@@ -186,8 +211,11 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf N concentration")
     
-    ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #    ### random-effect model
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -211,7 +239,11 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     ### random-effect model
     tDF <- tDF[tDF$v_variance > 0, ]
     
-    res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
+    #res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
+    
+
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     
@@ -233,7 +265,12 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     
     ### random-effect model
     tDF <- tDF[tDF$v_variance > 0, ]
-    res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### random-effect model
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -263,7 +300,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF$v_variance <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     intDF$interaction[intDF$variable=="root_N_concentration"] <- res$b
     intDF$se[intDF$variable=="root_N_concentration"] <- res$se
@@ -277,7 +317,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="CO2 assimilation rate")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -303,7 +346,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Leaf area")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
@@ -326,7 +372,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="LMA")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
+    #res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     
@@ -346,7 +395,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Total root length")
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    ### multivariable linear (mixed-effects) model with study as a random variable
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### confidence interval
     ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2

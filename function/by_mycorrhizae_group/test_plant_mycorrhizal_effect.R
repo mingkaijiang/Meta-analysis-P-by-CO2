@@ -9,16 +9,18 @@ test_plant_mycorrhizal_effect <- function(reDF100) {
     
     
     #### ag biomass
-    subDF <- subset(inDF, Variable == "Aboveground biomass")
+    #subDF <- subset(inDF, Variable == "Aboveground biomass")
+    subDF <- subset(inDF, Variable == "Total plant biomass")
+    
     subDF <- subset(subDF, v_variance >= 0.01)
     
     subDF <- subDF[order(subDF$Vegetation_type, subDF$Mycorrhizae_2), ]
     
     #lDF <- subset(lDF, Vegetation_type == "Woody")
-    res1 <- rma(log_interaction, v_variance, 
+    res1 <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor,
                 mods = ~factor(Mycorrhizae_2), data = subDF)
     
-    res2 <- rma(log_interaction, v_variance, 
+    res2 <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor,
                 mods = ~factor(Vegetation_type), data = subDF)
     
     print(res1)
@@ -35,7 +37,7 @@ test_plant_mycorrhizal_effect <- function(reDF100) {
     l <- length(subDF$Literature)
     
     
-    pdf("output/mycorrhizae_effect/aboveground_biomass_response_ratio_categories_vegetation.pdf",
+    pdf("output/mycorrhizae_effect/total_biomass_response_ratio_categories_vegetation.pdf",
         height=16, width=9)
     forest(res1, slab = subDF$Literature,
            xlim = c(-12, 4), 
