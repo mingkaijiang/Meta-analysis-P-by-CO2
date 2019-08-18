@@ -9,6 +9,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     tDF <- subset(reDF, Variable=="Aboveground biomass")
     tDF <- subset(tDF, v_variance >= 0.01)
     
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
+    
     ### random-effect model
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -40,29 +44,37 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/aboveground_biomass_response_ratio_random_effect_model.pdf",
         height=16, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
            at = c(-1, 0, 1, 2), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                          "Species",
+                                          "Mycorrhizal",
                                           expression(paste(eCO[2], "/", aCO[2])),
                                           "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf biomass")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -90,29 +102,37 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/leaf_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
            at = c(-1, 0, 1, 2), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem biomass")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -137,24 +157,28 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/stem_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
 
@@ -163,7 +187,11 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     #tDF <- subset(reDF, Variable=="Root biomass")
     tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
     tDF <- subset(tDF, v_variance >= 0.001)
-    tDF <- subset(tDF, v_variance <= 2)
+    #tDF <- subset(tDF, v_variance <= 2)
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -192,30 +220,38 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/root_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant biomass")
     tDF <- subset(tDF, v_variance >= 0.01)
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -243,30 +279,38 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/total_biomass_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf N content")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     ### multivariable linear (mixed-effects) model with study as a random variable
     res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
@@ -295,29 +339,37 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/leaf_N_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf P content")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
@@ -347,24 +399,28 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/leaf_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
 
@@ -372,6 +428,10 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem N content")
 
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
+    
     ### length of the data frame
     l <- length(tDF$Literature)
     ns <- length(unique(tDF$Literature))
@@ -397,28 +457,36 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/stem_N_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem P content")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -442,28 +510,36 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/stem_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root N content")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -491,28 +567,36 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/root_N_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root P content")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -537,28 +621,36 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/root_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant N content")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -587,28 +679,37 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/total_N_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant P content")
+    
+    tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
+                     tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
+                     tDF$Trt_eP_by_aP), ]
+    
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -633,24 +734,28 @@ metafor_statistics_biomass_100 <- function(reDF, intDF) {
     pdf("output/statistics_biomass_100/total_P_content_response_ratio_random_effect_model.pdf",
         height=12, width=9)
     forest(res, slab = tDF$Literature,
-           xlim = c(-12, 6), 
+           xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
+           at = c(-1, 0, 1, 2), #atransf = exp,
+           ilab = cbind(as.character(tDF$Vegetation_type),
+                        as.character(tDF$Species),
+                        as.character(tDF$Mycorrhizae_2), 
                         round(tDF$Trt_eC_by_aC,1), 
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-9, -7, -5.5, -4), cex = 0.6)
-    text(c(-9, -7, -5.5, -4, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
+           ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+                                                   "Species",
+                                                   "Mycorrhizal",
+                                                   expression(paste(eCO[2], "/", aCO[2])),
+                                                   "ePaP", "Experiment", "Range"),
          cex=0.7)
-    text(c(-9, -7, -5.5, -4), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+         c("type","", "association", "", "", "duration"), cex=0.7)
+    text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
+    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
 
     return(intDF)
