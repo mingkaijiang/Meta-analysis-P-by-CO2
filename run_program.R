@@ -164,7 +164,7 @@ reDF100 <- reprocessing_co2_effect_term(inDF=reDF100)
 
 ### prepare a storage dataframe for all summary information
 ### useful for making later summary plot
-sumDF <- prepare_summary_co2_effect_df()
+sumDF <- prepare_summary_co2_effect_df_advanced()
 
 
 ######## CO2 effect under eP

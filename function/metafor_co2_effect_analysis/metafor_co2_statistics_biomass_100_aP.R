@@ -14,47 +14,17 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                   var.name="aboveground_biomass",
+                                                                   trt="aP") 
     
-    sumDF$CO2_effect[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="aboveground_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
     
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/aboveground_biomass_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 6), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.082085, 0.3678794, 1, 2.718282, 12.18249)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf biomass")
@@ -63,48 +33,15 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    sumDF$CO2_effect[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="leaf_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
-    
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/leaf_biomass_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 6), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.082085, 0.3678794, 1, 2.718282, 12.18249)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                       expression(paste(eCO[2], "/", aCO[2])),
-                                       "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
-    
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="leaf_biomass",
+                                                                     trt="aP") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem biomass")
@@ -113,45 +50,15 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    ### confidence interval
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    sumDF$CO2_effect[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="stem_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
-    
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/stem_biomass_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="stem_biomass",
+                                                                     trt="aP") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -163,48 +70,15 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    sumDF$CO2_effect[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="root_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
-    
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/root_biomass_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
-    
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="root_biomass",
+                                                                     trt="aP") 
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant biomass")
@@ -214,47 +88,15 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    sumDF$CO2_effect[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="total_biomass"&sumDF$P_treatment=="aP"] <- res$ci.ub
-    
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/total_biomass_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="total_biomass",
+                                                                     trt="aP") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -265,47 +107,15 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #                                                                     stepadj=0.1))
 
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    sumDF$CO2_effect[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="leaf_N_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
-    
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/leaf_N_content_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="leaf_N_content",
+                                                                     trt="aP") 
     
 
     ####################### subset the dataframe for the right variable ##############################
@@ -315,56 +125,19 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
 
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    sumDF$CO2_effect[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="leaf_P_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
-    
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/leaf_P_content_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
-    
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="leaf_P_content",
+                                                                     trt="aP") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem N content")
-    
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
+
     ### use 1/n to get the variance
     tDF$variance_co2_aP <- 1/tDF$Sample.Size
     
@@ -372,183 +145,70 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    sumDF$CO2_effect[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="stem_N_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/stem_N_content_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="stem_N_content",
+                                                                     trt="aP") 
     
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem P content")
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
     ### random-effect model
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    sumDF$CO2_effect[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="stem_P_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/stem_P_content_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="stem_P_content",
+                                                                     trt="aP") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root N content")
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
     ### random-effect model
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    sumDF$CO2_effect[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="root_N_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/root_N_content_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="root_N_content",
+                                                                     trt="aP") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root P content")
-    
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
     
     ### random-effect model
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF, control=list(stepadj=0.5))
    
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    sumDF$CO2_effect[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="root_P_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/root_P_content_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="root_P_content",
+                                                                     trt="aP") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant N content")
-    
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
 
     ### use 1/n to get the variance
     tDF$variance_co2_aP <- 1/tDF$Sample.Size
@@ -557,46 +217,18 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    sumDF$CO2_effect[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="total_N_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/total_N_content_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 4), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-8, -6.5, -4.5, -3), cex = 0.6)
-    text(c(-8, -6.5, -4.5, -3, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-8, -6.5, -4.5, -3), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="total_N_content",
+                                                                     trt="aP") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant P content")
-    
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
     
     ### random-effect model
     tDF <- tDF[tDF$variance_co2_aP > 0, ]
@@ -605,39 +237,15 @@ metafor_co2_statistics_biomass_100_aP <- function(reDF, sumDF) {
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor, data = tDF)
     
-    sumDF$CO2_effect[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- res$b
-    sumDF$se[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- res$se
-    sumDF$p_value[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- res$pval
-    sumDF$ns[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- ns
-    sumDF$ne[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- l
-    sumDF$ci_lb[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- res$ci.lb
-    sumDF$ci_ub[sumDF$variable=="total_P_content"&sumDF$P_treatment=="aP"] <- res$ci.ub
+    res <- rma.mv(log_co2_aP, variance_co2_aP, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### forest plot
-    pdf("output/statistics_co2_biomass_100_aP/total_P_content_response_ratio_random_effect_model.pdf",
-        height=12, width=9)
-    forest(res, slab = tDF$Literature,
-           xlim = c(-12, 6), 
-           ylim = c(-3.5, l+3.5),
-           at = log(c(0.1353353, 0.3678794, 1, 2.718282, 7.389056)), #atransf = exp,
-           ilab = cbind(tDF$Vegetation_type,
-                        round(tDF$Trt_eC_by_aC,1), 
-                        round(tDF$Trt_eP_by_aP,1),
-                        as.character(tDF$Experiment_duration)), 
-           ilab.xpos = c(-9, -7, -5.5, -4), cex = 0.6)
-    text(c(-9, -7, -5.5, -4, 0), l+3, c("Vegetation", 
-                                          expression(paste(eCO[2], "/", aCO[2])),
-                                          "ePaP", "Experiment", "Range"),
-         cex=0.7)
-    text(c(-9, -7, -5.5, -4), l+2,
-         c("type","", "", "duration"), cex=0.7)
-    text(-12, l+3, "Author & Year", pos = 4, cex=0.7)
-    text(6, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-11.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-11.5, -2.0, paste0("ns = ", ns), cex = 0.6)
-    dev.off()
+    ### assign values and make forest plot
+    sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 
+                                                                     var.name="total_P_content",
+                                                                     trt="aP") 
 
     return(sumDF)
     

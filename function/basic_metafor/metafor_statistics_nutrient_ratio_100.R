@@ -41,13 +41,17 @@ metafor_statistics_nutrient_ratio_100 <- function(reDF, intDF) {
     tDF$v_variance <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
+    
     
     ### multivariable linear (mixed-effects) model with study as a random variable
     #res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_basic(tDF, intDF, res, var.name="stem_NP") 
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_NP") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root NP ratio")
@@ -60,13 +64,16 @@ metafor_statistics_nutrient_ratio_100 <- function(reDF, intDF) {
     tDF$v_variance <- 1/tDF$Sample.Size
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
     #res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_basic(tDF, intDF, res, var.name="root_NP") 
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_NP") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total NP ratio")

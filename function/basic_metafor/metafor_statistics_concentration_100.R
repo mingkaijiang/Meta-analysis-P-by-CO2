@@ -55,10 +55,13 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
                      tDF$Trt_eP_by_aP), ]
     
     ### random-effect model
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_basic(tDF, intDF, res, var.name="root_P_concentration") 
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_P_concentration") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -142,10 +145,14 @@ metafor_statistics_concentration_100 <- function(reDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
 
-    res <- rma(log_interaction, v_variance, data = tDF)
+    #res <- rma(log_interaction, v_variance, data = tDF)
+    
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
+    
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_basic(tDF, intDF, res, var.name="total_N_concentration") 
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_N_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant P concentration")
