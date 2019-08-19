@@ -1,13 +1,13 @@
-plot_woody_nonwoody_comparison_3 <- function(intDF2, intDF3, sumDF2, sumDF3) {
+plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd) {
     
     ### assign PFT
-    intDF2$PFT <- "woody"
-    intDF3$PFT <- "nonwoody"
-    intDF4 <- rbind(intDF2, intDF3)
+    intDF.wd$PFT <- "woody"
+    intDF.nwd$PFT <- "nonwoody"
+    intDF4 <- rbind(intDF.wd, intDF.nwd)
     
-    sumDF2$PFT <- "woody"
-    sumDF3$PFT <- "nonwoody"
-    sumDF4 <- rbind(sumDF2, sumDF3)
+    sumDF.wd$PFT <- "woody"
+    sumDF.nwd$PFT <- "nonwoody"
+    sumDF4 <- rbind(sumDF.wd, sumDF.nwd)
     
     
     intDF4$pos <- intDF4$ci_ub_pct

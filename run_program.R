@@ -251,62 +251,62 @@ make_split_interaction_effect_chart_6(sumDF, sumDF2, intDF)
 wdDF <- subset(reDF100, Vegetation_type=="Woody")
 
 #### Interaction effect for woody plants
-intDF2 <- prepare_summary_interaction_effect_woody_df()
+intDF.wd <- prepare_summary_interaction_effect_woody_df_advanced()
 
 #### metafor statistics
-intDF2 <- metafor_statistics_woody_plants_100(wdDF, intDF2)
+intDF.wd <- metafor_statistics_woody_plants_100(wdDF, intDF.wd)
 
 #### CO2 effect under aP and eP for woody plants
-sumDF2 <- prepare_summary_co2_effect_woody_df()
+sumDF.wd <- prepare_summary_co2_effect_woody_df()
 
 #### CO2 effect under eP
-sumDF2 <- metafor_co2_statistics_woody_plants_100_eP(wdDF, sumDF2)
+sumDF.wd <- metafor_co2_statistics_woody_plants_100_eP(wdDF, sumDF.wd)
 
 #### CO2 effect under aP
-sumDF2 <- metafor_co2_statistics_woody_plants_100_aP(wdDF, sumDF2)
+sumDF.wd <- metafor_co2_statistics_woody_plants_100_aP(wdDF, sumDF.wd)
 
 
 ### calculate percent response
-sumDF2$CO2_effect_pct <- (exp(sumDF2$CO2_effect) - 1) * 100
-sumDF2$se_pct <- (exp(sumDF2$se) - 1) * 100
-sumDF2$ci_lb_pct <- (exp(sumDF2$ci_lb) - 1) * 100
-sumDF2$ci_ub_pct <- (exp(sumDF2$ci_ub) - 1) * 100
+sumDF.wd$CO2_effect_pct <- (exp(sumDF.wd$CO2_effect) - 1) * 100
+sumDF.wd$se_pct <- (exp(sumDF.wd$se) - 1) * 100
+sumDF.wd$ci_lb_pct <- (exp(sumDF.wd$ci_lb) - 1) * 100
+sumDF.wd$ci_ub_pct <- (exp(sumDF.wd$ci_ub) - 1) * 100
 
-intDF2$int_pct <- (exp(intDF2$interaction) - 1) * 100
-intDF2$se_pct <- (exp(intDF2$se) - 1) * 100
-intDF2$ci_lb_pct <- (exp(intDF2$ci_lb) - 1) * 100
-intDF2$ci_ub_pct <- (exp(intDF2$ci_ub) - 1) * 100
+intDF.wd$int_pct <- (exp(intDF.wd$interaction) - 1) * 100
+intDF.wd$se_pct <- (exp(intDF.wd$se) - 1) * 100
+intDF.wd$ci_lb_pct <- (exp(intDF.wd$ci_lb) - 1) * 100
+intDF.wd$ci_ub_pct <- (exp(intDF.wd$ci_ub) - 1) * 100
 
 ##############
 #### subset woody plant DF
 nwdDF <- subset(reDF100, Vegetation_type=="Nonwoody")
 
 #### Interaction effect for nonwoody plants
-intDF3 <- prepare_summary_interaction_effect_woody_df()
+intDF.nwd <- prepare_summary_interaction_effect_woody_df()
 
 #### metafor statistics
-intDF3 <- metafor_statistics_nonwoody_plants_100(nwdDF, intDF3)
+intDF.nwd <- metafor_statistics_nonwoody_plants_100(nwdDF, intDF.nwd)
 
 #### CO2 effect under aP and eP for nonwoody plants
-sumDF3 <- prepare_summary_co2_effect_nonwoody_df()
+sumDF.nwd <- prepare_summary_co2_effect_nonwoody_df()
 
 #### CO2 effect under eP
-sumDF3 <- metafor_co2_statistics_nonwoody_plants_100_eP(nwdDF, sumDF3)
+sumDF.nwd <- metafor_co2_statistics_nonwoody_plants_100_eP(nwdDF, sumDF.nwd)
 
 #### CO2 effect under aP
-sumDF3 <- metafor_co2_statistics_nonwoody_plants_100_aP(nwdDF, sumDF3)
+sumDF.nwd <- metafor_co2_statistics_nonwoody_plants_100_aP(nwdDF, sumDF.nwd)
 
 
 ### calculate percent response
-sumDF3$CO2_effect_pct <- (exp(sumDF3$CO2_effect) - 1) * 100
-sumDF3$se_pct <- (exp(sumDF3$se) - 1) * 100
-sumDF3$ci_lb_pct <- (exp(sumDF3$ci_lb) - 1) * 100
-sumDF3$ci_ub_pct <- (exp(sumDF3$ci_ub) - 1) * 100
+sumDF.nwd$CO2_effect_pct <- (exp(sumDF.nwd$CO2_effect) - 1) * 100
+sumDF.nwd$se_pct <- (exp(sumDF.nwd$se) - 1) * 100
+sumDF.nwd$ci_lb_pct <- (exp(sumDF.nwd$ci_lb) - 1) * 100
+sumDF.nwd$ci_ub_pct <- (exp(sumDF.nwd$ci_ub) - 1) * 100
 
-intDF3$int_pct <- (exp(intDF3$interaction) - 1) * 100
-intDF3$se_pct <- (exp(intDF3$se) - 1) * 100
-intDF3$ci_lb_pct <- (exp(intDF3$ci_lb) - 1) * 100
-intDF3$ci_ub_pct <- (exp(intDF3$ci_ub) - 1) * 100
+intDF.nwd$int_pct <- (exp(intDF.nwd$interaction) - 1) * 100
+intDF.nwd$se_pct <- (exp(intDF.nwd$se) - 1) * 100
+intDF.nwd$ci_lb_pct <- (exp(intDF.nwd$ci_lb) - 1) * 100
+intDF.nwd$ci_ub_pct <- (exp(intDF.nwd$ci_ub) - 1) * 100
 
 
 
@@ -314,7 +314,7 @@ intDF3$ci_ub_pct <- (exp(intDF3$ci_ub) - 1) * 100
 #### plot woody and nonwoody comparison
 #plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
 #plot_woody_nonwoody_comparison_2(intDF2, intDF3, sumDF2, sumDF3)
-plot_woody_nonwoody_comparison_3(intDF2, intDF3, sumDF2, sumDF3)
+plot_woody_nonwoody_comparison_3(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 
 #### statistics comparing woody and non-woody plants

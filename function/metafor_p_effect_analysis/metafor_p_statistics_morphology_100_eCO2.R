@@ -78,7 +78,7 @@ metafor_p_statistics_morphology_100_eCO2 <- function(reDF, sumDF2) {
     
     ### assign values and make forest plot
     sumDF2 <- assign_P_effect_model_stats_and_forest_plot_advanced(tDF, sumDF2, res, 
-                                                                   var.name="root_length",
+                                                                   var.name="Root_length",
                                                                    trt="eCO2") 
     
     return(sumDF2)
