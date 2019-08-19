@@ -1,13 +1,8 @@
 metafor_statistics_advanced <- function(reDF, intDF) {
     
     ### create directory
-    if(!dir.exists("output/statistics_advanced")) {
-        dir.create("output/statistics_advanced", showWarnings = FALSE)
-    }
-    
-    
-    if(!dir.exists("output/interaction_effect")) {
-        dir.create("output/interaction_effect", showWarnings = FALSE)
+    if(!dir.exists("output/statistics_interaction")) {
+        dir.create("output/statistics_interaction", showWarnings = FALSE)
     }
     
     
