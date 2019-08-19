@@ -172,7 +172,7 @@ plot_leaf_N_P_concentration_comparison <- function() {
     
     #plot(p2)
     
-    pdf("output/metafor_summary_plot/Leaf_N_P_concentration.pdf", width=8, height=12)
+    pdf("output/metafor_summary_plot/Figure_S3_Leaf_N_P_concentration.pdf", width=8, height=12)
     plot_grid(p1, p2,
               #rel_widths=c(0.5, 1, 1, 0.9),
               rel_heights=c(1,1.4),

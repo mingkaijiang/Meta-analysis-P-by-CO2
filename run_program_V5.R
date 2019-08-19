@@ -10,7 +10,7 @@ source("prepare.R")
 
 
 ############## check input files
-myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V6_HP_control.csv",strip.white=T)
+myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V5_low_vs_high_P.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
 
@@ -37,7 +37,7 @@ myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
 subDF100 <- subset(myDF, Trt_aCO2 < 410)
 
 #### generate species list
-#generate_species_list()
+generate_species_list()
 
 ############## Basic statistics that summarize 
 ### number of studies
@@ -45,7 +45,7 @@ subDF100 <- subset(myDF, Trt_aCO2 < 410)
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
-#make_basic_summary_stats_plots()
+make_basic_summary_stats_plots()
 
 
 ############## Statistical analysis - metafor
@@ -53,9 +53,6 @@ subDF100 <- subset(myDF, Trt_aCO2 < 410)
 #reDF <- reprocessing_interaction_term(inDF=subDF)
 reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 reDF100$random_factor <- as.numeric(reDF100$Literature)
-reDF100$Trt_LP_HP <- reDF100$Trt_aP/reDF100$Trt_eP
-#reDF100$Trt_aP_norm <- 1- (reDF100$Trt_aP/reDF100$Trt_eP)
-
 
 ##### a detailed summary table 
 generate_a_detailed_summary_table(reDF100)
@@ -64,8 +61,7 @@ generate_a_detailed_summary_table(reDF100)
 ##############
 ######## Interaction effect
 
-#intDF <- prepare_summary_interaction_effect_df()
-intDF <- prepare_summary_interaction_effect_df_advanced()
+intDF <- prepare_summary_interaction_effect_df()
 
 
 ### Biomass
@@ -103,7 +99,7 @@ reDF100 <- reprocessing_p_effect_term(inDF=reDF100)
 
 ### prepare a storage dataframe for all summary information
 ### useful for making later summary plot
-sumDF2 <- prepare_summary_p_effect_df_advanced()
+sumDF2 <- prepare_summary_p_effect_df()
 
 ####### P effect under aCO2 
 ### Biomass
@@ -125,7 +121,7 @@ sumDF2 <- metafor_p_statistics_resource_use_efficiency_100_aCO2(reDF100, sumDF2)
 sumDF2 <- metafor_p_statistics_gas_exchange_100_aCO2(reDF100, sumDF2)
 
 ### nutrient ratio
-sumDF2 <- metafor_p_statistics_nutrient_ratio_100_aCO2(reDF100, sumDF2)
+#sumDF2 <- metafor_p_statistics_nutrient_ratio_100_aCO2_V5(reDF100, sumDF2)
 
 
 
@@ -149,7 +145,7 @@ sumDF2 <- metafor_p_statistics_resource_use_efficiency_100_eCO2(reDF100, sumDF2)
 sumDF2 <- metafor_p_statistics_gas_exchange_100_eCO2(reDF100, sumDF2)
 
 ### nutrient ratio
-sumDF2 <- metafor_p_statistics_nutrient_ratio_100_eCO2(reDF100, sumDF2)
+#sumDF2 <- metafor_p_statistics_nutrient_ratio_100_eCO2(reDF100, sumDF2)
 
 
 ### calculate percent response

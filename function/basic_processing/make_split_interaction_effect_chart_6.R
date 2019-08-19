@@ -581,7 +581,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                           labels=c("Positive", "Negative", "Neutral"))+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/metafor_summary_plot/Figure3_concentration_responses.pdf", width=14, height=10)
+    pdf("output/metafor_summary_plot/Figure4_concentration_responses.pdf", width=14, height=10)
     plot_grid(p2a, p2b, p2c,
               p3a, p3b, p3c,
               rel_heights=c(1.0, 1.4),
@@ -817,7 +817,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/metafor_summary_plot/Figure4_morphology_responses.pdf", width=16, height=6)
+    pdf("output/metafor_summary_plot/Figure3_morphology_responses.pdf", width=16, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -1371,7 +1371,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         ggtitle("l")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/metafor_summary_plot/FigureS3_other_responses.pdf", width=16, height=16)
+    pdf("output/metafor_summary_plot/Figure_S4.pdf", width=16, height=16)
     plot_grid(p1a, p1b, p1c,
               p2a, p2b, p2c,
               p3a, p3b, p3c,
