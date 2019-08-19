@@ -97,7 +97,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-60, 60))+
+        scale_x_continuous(limits=c(-80, 80))+
         scale_y_continuous(breaks=c(1:3),
                            labels=c("RL", "LA", "A"))+
         scale_color_manual(name=paste("Vegetation group"),
@@ -136,7 +136,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 55))+
+        scale_x_continuous(limits=c(-80, 80))+
         scale_y_continuous(breaks=c(1:3),
                            labels=c("Total", "BG", "AB"))+
         scale_color_manual(name=paste("Vegetation group"),
@@ -151,7 +151,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
         ggtitle("b")+
         guides(fill = guide_legend(title.position = "top"))
     
-    plot(p1b)
+    #plot(p1b)
     
  
     
@@ -176,7 +176,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 55))+
+        scale_x_continuous(limits=c(-80, 80))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("Root P", "Leaf P", "Root N", "Leaf N"))+
         scale_color_manual(name=paste("Vegetation group"),

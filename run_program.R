@@ -239,11 +239,7 @@ write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv"
 
 
 #### this is the plot script used for main text
-#make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
-#make_split_interaction_effect_chart_2(sumDF, sumDF2, intDF)
-#make_split_interaction_effect_chart_3(sumDF, sumDF2, intDF)
-#make_split_interaction_effect_chart_4(sumDF, sumDF2, intDF)
-make_split_interaction_effect_chart_6(sumDF, sumDF2, intDF)
+#make_split_interaction_effect_chart_6(sumDF, sumDF2, intDF)
 
 
 ##############

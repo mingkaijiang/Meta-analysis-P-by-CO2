@@ -8,23 +8,15 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_biomass") 
     
-    intDF$interaction[intDF$variable=="leaf_biomass"] <- res$b
-    intDF$se[intDF$variable=="leaf_biomass"] <- res$se
-    intDF$p_value[intDF$variable=="leaf_biomass"] <- res$pval
-    intDF$ns[intDF$variable=="leaf_biomass"] <- ns
-    intDF$ne[intDF$variable=="leaf_biomass"] <- l
-    intDF$ci_lb[intDF$variable=="leaf_biomass"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="leaf_biomass"] <- res$ci.ub
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem biomass")
@@ -33,20 +25,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
-    ### confidence interval
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    intDF$interaction[intDF$variable=="stem_biomass"] <- res$b
-    intDF$se[intDF$variable=="stem_biomass"] <- res$se
-    intDF$p_value[intDF$variable=="stem_biomass"] <- res$pval
-    intDF$ns[intDF$variable=="stem_biomass"] <- ns
-    intDF$ne[intDF$variable=="stem_biomass"] <- l
-    intDF$ci_lb[intDF$variable=="stem_biomass"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="stem_biomass"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root biomass")
@@ -55,23 +41,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
 
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="root_biomass"] <- res$b
-    intDF$se[intDF$variable=="root_biomass"] <- res$se
-    intDF$p_value[intDF$variable=="root_biomass"] <- res$pval
-    intDF$ns[intDF$variable=="root_biomass"] <- ns
-    intDF$ne[intDF$variable=="root_biomass"] <- l
-    intDF$ci_lb[intDF$variable=="root_biomass"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="root_biomass"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant biomass")
@@ -81,23 +58,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
 
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="total_biomass"] <- res$b
-    intDF$se[intDF$variable=="total_biomass"] <- res$se
-    intDF$p_value[intDF$variable=="total_biomass"] <- res$pval
-    intDF$ns[intDF$variable=="total_biomass"] <- ns
-    intDF$ne[intDF$variable=="total_biomass"] <- l
-    intDF$ci_lb[intDF$variable=="total_biomass"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="total_biomass"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Aboveground biomass")
@@ -108,23 +76,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="aboveground_biomass"] <- res$b
-    intDF$se[intDF$variable=="aboveground_biomass"] <- res$se
-    intDF$p_value[intDF$variable=="aboveground_biomass"] <- res$pval
-    intDF$ns[intDF$variable=="aboveground_biomass"] <- ns
-    intDF$ne[intDF$variable=="aboveground_biomass"] <- l
-    intDF$ci_lb[intDF$variable=="aboveground_biomass"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="aboveground_biomass"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="aboveground_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
@@ -137,23 +96,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="belowground_biomass"] <- res$b
-    intDF$se[intDF$variable=="belowground_biomass"] <- res$se
-    intDF$p_value[intDF$variable=="belowground_biomass"] <- res$pval
-    intDF$ns[intDF$variable=="belowground_biomass"] <- ns
-    intDF$ne[intDF$variable=="belowground_biomass"] <- l
-    intDF$ci_lb[intDF$variable=="belowground_biomass"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="belowground_biomass"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="belowground_biomass") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -165,23 +115,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
 
 
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="leaf_N_content"] <- res$b
-    intDF$se[intDF$variable=="leaf_N_content"] <- res$se
-    intDF$p_value[intDF$variable=="leaf_N_content"] <- res$pval
-    intDF$ns[intDF$variable=="leaf_N_content"] <- ns
-    intDF$ne[intDF$variable=="leaf_N_content"] <- l
-    intDF$ci_lb[intDF$variable=="leaf_N_content"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="leaf_N_content"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_N_content") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf P content")
@@ -190,23 +131,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
 
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    #confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="leaf_P_content"] <- res$b
-    intDF$se[intDF$variable=="leaf_P_content"] <- res$se
-    intDF$p_value[intDF$variable=="leaf_P_content"] <- res$pval
-    intDF$ns[intDF$variable=="leaf_P_content"] <- ns
-    intDF$ne[intDF$variable=="leaf_P_content"] <- l
-    intDF$ci_lb[intDF$variable=="leaf_P_content"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="leaf_P_content"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_P_content") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf N concentration")
@@ -215,23 +147,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="leaf_N_concentration"] <- res$b
-    intDF$se[intDF$variable=="leaf_N_concentration"] <- res$se
-    intDF$p_value[intDF$variable=="leaf_N_concentration"] <- res$pval
-    intDF$ns[intDF$variable=="leaf_N_concentration"] <- ns
-    intDF$ne[intDF$variable=="leaf_N_concentration"] <- l
-    intDF$ci_lb[intDF$variable=="leaf_N_concentration"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="leaf_N_concentration"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_N_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf P concentration")
@@ -243,21 +166,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     
 
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="leaf_P_concentration"] <- res$b
-    intDF$se[intDF$variable=="leaf_P_concentration"] <- res$se
-    intDF$p_value[intDF$variable=="leaf_P_concentration"] <- res$pval
-    intDF$ns[intDF$variable=="leaf_P_concentration"] <- ns
-    intDF$ne[intDF$variable=="leaf_P_concentration"] <- l
-    intDF$ci_lb[intDF$variable=="leaf_P_concentration"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="leaf_P_concentration"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_P_concentration") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -270,31 +186,18 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="root_P_concentration"] <- res$b
-    intDF$se[intDF$variable=="root_P_concentration"] <- res$se
-    intDF$p_value[intDF$variable=="root_P_concentration"] <- res$pval
-    intDF$ns[intDF$variable=="root_P_concentration"] <- ns
-    intDF$ne[intDF$variable=="root_P_concentration"] <- l
-    intDF$ci_lb[intDF$variable=="root_P_concentration"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="root_P_concentration"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_P_concentration") 
     
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root N concentration")
-    
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
     
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
@@ -303,15 +206,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
 
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    intDF$interaction[intDF$variable=="root_N_concentration"] <- res$b
-    intDF$se[intDF$variable=="root_N_concentration"] <- res$se
-    intDF$p_value[intDF$variable=="root_N_concentration"] <- res$pval
-    intDF$ns[intDF$variable=="root_N_concentration"] <- ns
-    intDF$ne[intDF$variable=="root_N_concentration"] <- l
-    intDF$ci_lb[intDF$variable=="root_N_concentration"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="root_N_concentration"] <- res$ci.ub
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
+    
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_N_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="CO2 assimilation rate")
@@ -320,23 +222,15 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF,
+                  control=list(optimizer="optim", optmethod="Nelder-Mead"))
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="CO2_assimilation_rate"] <- res$b
-    intDF$se[intDF$variable=="CO2_assimilation_rate"] <- res$se
-    intDF$p_value[intDF$variable=="CO2_assimilation_rate"] <- res$pval
-    intDF$ns[intDF$variable=="CO2_assimilation_rate"] <- ns
-    intDF$ne[intDF$variable=="CO2_assimilation_rate"] <- l
-    intDF$ci_lb[intDF$variable=="CO2_assimilation_rate"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="CO2_assimilation_rate"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="CO2_assimilation_rate") 
     
     ### change LAI to leaf area and combine it with Total leaf area
     reDF[reDF$Variable=="LAI","Variable"] <- "Leaf area"
@@ -349,24 +243,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="leaf_area"] <- res$b
-    intDF$se[intDF$variable=="leaf_area"] <- res$se
-    intDF$p_value[intDF$variable=="leaf_area"] <- res$pval
-    intDF$ns[intDF$variable=="leaf_area"] <- ns
-    intDF$ne[intDF$variable=="leaf_area"] <- l
-    intDF$ci_lb[intDF$variable=="leaf_area"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="leaf_area"] <- res$ci.ub
-    
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_area") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="LMA")
@@ -375,21 +259,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="LMA"] <- res$b
-    intDF$se[intDF$variable=="LMA"] <- res$se
-    intDF$p_value[intDF$variable=="LMA"] <- res$pval
-    intDF$ns[intDF$variable=="LMA"] <- ns
-    intDF$ne[intDF$variable=="LMA"] <- l
-    intDF$ci_lb[intDF$variable=="LMA"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="LMA"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="LMA") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total root length")
@@ -398,23 +275,14 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
-    ### confidence interval
-    ### The amount of heterogeneity in the true log relative risks is estimated to be tau^2
-    confint(res)
+    ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
+    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+                  random = ~1 | random_factor, data = tDF)
     
-    ### length of the data frame
-    l <- length(tDF$Literature)
-    ns <- length(unique(tDF$Literature))
-    
-    intDF$interaction[intDF$variable=="Root_length"] <- res$b
-    intDF$se[intDF$variable=="Root_length"] <- res$se
-    intDF$p_value[intDF$variable=="Root_length"] <- res$pval
-    intDF$ns[intDF$variable=="Root_length"] <- ns
-    intDF$ne[intDF$variable=="Root_length"] <- l
-    intDF$ci_lb[intDF$variable=="Root_length"] <- res$ci.lb
-    intDF$ci_ub[intDF$variable=="Root_length"] <- res$ci.ub
+    ### assign values and make forest plot
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="Root_length") 
     
     return(intDF)
 
