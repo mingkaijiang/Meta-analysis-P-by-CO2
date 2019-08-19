@@ -388,7 +388,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-100, 75))+
+        scale_x_continuous(limits=c(-100, 85))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab2)+
         scale_color_manual(name=paste("CIs"),
@@ -458,7 +458,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-40, 40))+
+        scale_x_continuous(limits=c(-40, 60))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=c("","","",""),
                            sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
@@ -493,7 +493,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-100, 75))+
+        scale_x_continuous(limits=c(-100, 85))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab3)+
         scale_color_manual(name=paste("CIs"),
@@ -565,7 +565,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-40, 40))+
+        scale_x_continuous(limits=c(-40, 60))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=c("","","",""),
                            sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
@@ -647,7 +647,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 150))+
+        scale_x_continuous(limits=c(-50, 200))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=y.lab7)+
         scale_color_manual(name=paste("CIs"),
@@ -683,7 +683,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 80))+
+        scale_x_continuous(limits=c(-50, 100))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=c("","",""),
                            sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 5.5, by=2),
@@ -881,7 +881,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-35, 25))+
+        scale_x_continuous(limits=c(-40, 20))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=y.lab8)+
         scale_color_manual(name=paste("CIs"),
@@ -917,7 +917,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-25, 25))+
+        scale_x_continuous(limits=c(-30, 30))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=c("",""),
                            sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 3.5, by=2),
