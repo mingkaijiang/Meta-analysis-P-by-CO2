@@ -15,7 +15,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_biomass") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="leaf_biomass") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -32,7 +32,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_biomass") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="stem_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Root biomass")
@@ -48,7 +48,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_biomass") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="root_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant biomass")
@@ -65,7 +65,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_biomass") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="total_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Aboveground biomass")
@@ -83,7 +83,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="aboveground_biomass") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="aboveground_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
@@ -103,7 +103,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="belowground_biomass") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="belowground_biomass") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -122,7 +122,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_N_content") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="leaf_N_content") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf P content")
@@ -138,7 +138,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_P_content") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="leaf_P_content") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf N concentration")
@@ -154,7 +154,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_N_concentration") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="leaf_N_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf P concentration")
@@ -173,7 +173,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_P_concentration") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="leaf_P_concentration") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -193,7 +193,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_P_concentration") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="root_P_concentration") 
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -213,7 +213,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_N_concentration") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="root_N_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="CO2 assimilation rate")
@@ -230,7 +230,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   control=list(optimizer="optim", optmethod="Nelder-Mead"))
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="CO2_assimilation_rate") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="CO2_assimilation_rate") 
     
     ### change LAI to leaf area and combine it with Total leaf area
     reDF[reDF$Variable=="LAI","Variable"] <- "Leaf area"
@@ -250,7 +250,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_area") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="leaf_area") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="LMA")
@@ -266,7 +266,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="LMA") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="LMA") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total root length")
@@ -282,7 +282,7 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="Root_length") 
+    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="Root_length") 
     
     return(intDF)
 

@@ -1,5 +1,7 @@
 metafor_statistics_advanced <- function(reDF, intDF) {
     
+    reDF <- reDF100
+    
     ### create directory
     if(!dir.exists("output/statistics_interaction")) {
         dir.create("output/statistics_interaction", showWarnings = FALSE)

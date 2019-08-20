@@ -67,28 +67,8 @@ generate_a_detailed_summary_table(reDF100)
 #intDF <- prepare_summary_interaction_effect_df()
 intDF <- prepare_summary_interaction_effect_df_advanced()
 
+intDF <- metafor_statistics_advanced(reDF100, intDF)
 
-### Biomass
-intDF <- metafor_statistics_biomass_100(reDF100, intDF)
-
-### concentration
-intDF <- metafor_statistics_concentration_100(reDF100, intDF)
-
-### morphology
-intDF <- metafor_statistics_morphology_100(reDF100, intDF)
-
-### nutrient uptake
-intDF <- metafor_statistics_nutrient_uptake_100(reDF100, intDF)
-
-### resource use efficiency
-intDF <- metafor_statistics_resource_use_efficiency_100(reDF100, intDF)
-
-### gas exchange
-intDF <- metafor_statistics_gas_exchange_100(reDF100, intDF)
-
-
-### nutrient ratio
-intDF <- metafor_statistics_nutrient_ratio_100(reDF100, intDF)
 
 ### calculate percent response
 intDF$int_pct <- (exp(intDF$interaction) - 1) * 100
@@ -106,51 +86,11 @@ reDF100 <- reprocessing_p_effect_term(inDF=reDF100)
 sumDF2 <- prepare_summary_p_effect_df_advanced()
 
 ####### P effect under aCO2 
-### Biomass
-sumDF2 <- metafor_p_statistics_biomass_100_aCO2(reDF100, sumDF2)
-
-### concentration
-sumDF2 <- metafor_p_statistics_concentration_100_aCO2(reDF100, sumDF2)
-
-### morphology
-sumDF2 <- metafor_p_statistics_morphology_100_aCO2(reDF100, sumDF2)
-
-### nutrient uptake
-sumDF2 <- metafor_p_statistics_nutrient_uptake_100_aCO2(reDF100, sumDF2)
-
-### resource use efficiency
-sumDF2 <- metafor_p_statistics_resource_use_efficiency_100_aCO2(reDF100, sumDF2)
-
-### gas exchange
-sumDF2 <- metafor_p_statistics_gas_exchange_100_aCO2(reDF100, sumDF2)
-
-### nutrient ratio
-sumDF2 <- metafor_p_statistics_nutrient_ratio_100_aCO2(reDF100, sumDF2)
-
+sumDF2 <- metafor_p_statistics_aCO2_advanced(reDF100, sumDF2)
 
 
 ####### P effect under eCO2 
-### Biomass
-sumDF2 <- metafor_p_statistics_biomass_100_eCO2(reDF100, sumDF2)
-
-### concentration
-sumDF2 <- metafor_p_statistics_concentration_100_eCO2(reDF100, sumDF2)
-
-### morphology
-sumDF2 <- metafor_p_statistics_morphology_100_eCO2(reDF100, sumDF2)
-
-### nutrient uptake
-sumDF2 <- metafor_p_statistics_nutrient_uptake_100_eCO2(reDF100, sumDF2)
-
-### resource use efficiency
-sumDF2 <- metafor_p_statistics_resource_use_efficiency_100_eCO2(reDF100, sumDF2)
-
-### gas exchange
-sumDF2 <- metafor_p_statistics_gas_exchange_100_eCO2(reDF100, sumDF2)
-
-### nutrient ratio
-sumDF2 <- metafor_p_statistics_nutrient_ratio_100_eCO2(reDF100, sumDF2)
-
+sumDF2 <- metafor_p_statistics_eCO2_advanced(reDF100, sumDF2)
 
 ### calculate percent response
 sumDF2$P_effect_pct <- (exp(sumDF2$P_effect) - 1) * 100
@@ -168,50 +108,12 @@ sumDF <- prepare_summary_co2_effect_df_advanced()
 
 
 ######## CO2 effect under eP
-### Biomass
-sumDF <- metafor_co2_statistics_biomass_100_eP(reDF100, sumDF)
-
-### concentration
-sumDF <- metafor_co2_statistics_concentration_100_eP(reDF100, sumDF)
-
-### morphology
-sumDF <- metafor_co2_statistics_morphology_100_eP(reDF100, sumDF)
-
-### nutrient uptake
-sumDF <- metafor_co2_statistics_nutrient_uptake_100_eP(reDF100, sumDF)
-
-### resource use efficiency
-sumDF <- metafor_co2_statistics_resource_use_efficiency_100_eP(reDF100, sumDF)
-
-### gas exchange
-sumDF <- metafor_co2_statistics_gas_exchange_100_eP(reDF100, sumDF)
-
-### nutrient ratio
-sumDF <- metafor_co2_statistics_nutrient_ratio_100_eP(reDF100, sumDF)
-
+sumDF <- metafor_co2_statistics_eP_advanced(reDF100, sumDF)
 
 
 ######## CO2 effect under aP
-### Biomass
-sumDF <- metafor_co2_statistics_biomass_100_aP(reDF100, sumDF)
+sumDF <- metafor_co2_statistics_aP_advanced(reDF100, sumDF)
 
-### concentration
-sumDF <- metafor_co2_statistics_concentration_100_aP(reDF100, sumDF)
-
-### morphology
-sumDF <- metafor_co2_statistics_morphology_100_aP(reDF100, sumDF)
-
-### nutrient uptake
-sumDF <- metafor_co2_statistics_nutrient_uptake_100_aP(reDF100, sumDF)
-
-### resource use efficiency
-sumDF <- metafor_co2_statistics_resource_use_efficiency_100_aP(reDF100, sumDF)
-
-### gas exchange
-sumDF <- metafor_co2_statistics_gas_exchange_100_aP(reDF100, sumDF)
-
-### nutrient ratio
-sumDF <- metafor_co2_statistics_nutrient_ratio_100_aP(reDF100, sumDF)
 
 ### calculate percent response
 sumDF$CO2_effect_pct <- (exp(sumDF$CO2_effect) - 1) * 100
@@ -223,23 +125,9 @@ write.csv(sumDF, "output/metafor_summary_plot/co2_effect_all.csv", row.names=F)
 write.csv(sumDF2, "output/metafor_summary_plot/p_effect_all.csv", row.names=F)
 write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv", row.names=F)
 
-############## plot all significant responses
-#plot_significant_response_ratio_100(sumDF)
-
-
-
-############## make eCO2 at low P and high P plot
-#make_eCO2_effect_at_lowP_highP_chart(sumDF)
-
-############## make lP effect at aCO2 and eCO2
-#make_lP_effect_at_aCO2_eCO2_chart(sumDF2)
-
-############## make interaction effect 
-#make_interaction_effect_chart(sumDF, sumDF2, intDF)
-
 
 #### this is the plot script used for main text
-#make_split_interaction_effect_chart_6(sumDF, sumDF2, intDF)
+make_split_interaction_effect_chart_6(sumDF, sumDF2, intDF)
 
 
 ##############

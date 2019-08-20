@@ -12,8 +12,6 @@ assign_model_stats_and_forest_plot_basic <- function(tDF, intDF, res, var.name) 
     intDF$ci_lb[intDF$variable==var.name] <- res$ci.lb
     intDF$ci_ub[intDF$variable==var.name] <- res$ci.ub
     
-    return(intDF)
-    
     ### forest plot
     pdf(paste0("output/statistics_interaction/", var.name, ".pdf"),
         height=12, width=9)
@@ -41,6 +39,9 @@ assign_model_stats_and_forest_plot_basic <- function(tDF, intDF, res, var.name) 
     text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
     text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
     dev.off()
+    
+    
+    return(intDF)
     
     
 }
