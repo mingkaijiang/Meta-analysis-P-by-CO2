@@ -67,7 +67,9 @@ generate_a_detailed_summary_table(reDF100)
 #intDF <- prepare_summary_interaction_effect_df()
 intDF <- prepare_summary_interaction_effect_df_advanced()
 
-intDF <- metafor_statistics_advanced(reDF100, intDF)
+#intDF <- metafor_statistics_advanced(reDF100, intDF)
+
+intDF <- metafor_statistics_basic(reDF100, intDF)
 
 
 ### calculate percent response
@@ -75,6 +77,7 @@ intDF$int_pct <- (exp(intDF$interaction) - 1) * 100
 intDF$se_pct <- (exp(intDF$se) - 1) * 100
 intDF$ci_lb_pct <- (exp(intDF$ci_lb) - 1) * 100
 intDF$ci_ub_pct <- (exp(intDF$ci_ub) - 1) * 100
+write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv", row.names=F)
 
 
 ##############
@@ -86,11 +89,13 @@ reDF100 <- reprocessing_p_effect_term(inDF=reDF100)
 sumDF2 <- prepare_summary_p_effect_df_advanced()
 
 ####### P effect under aCO2 
-sumDF2 <- metafor_p_statistics_aCO2_advanced(reDF100, sumDF2)
+#sumDF2 <- metafor_p_statistics_aCO2_advanced(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_aCO2_basic(reDF100, sumDF2)
 
 
 ####### P effect under eCO2 
-sumDF2 <- metafor_p_statistics_eCO2_advanced(reDF100, sumDF2)
+#sumDF2 <- metafor_p_statistics_eCO2_advanced(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_eCO2_basic(reDF100, sumDF2)
 
 ### calculate percent response
 sumDF2$P_effect_pct <- (exp(sumDF2$P_effect) - 1) * 100
@@ -108,11 +113,13 @@ sumDF <- prepare_summary_co2_effect_df_advanced()
 
 
 ######## CO2 effect under eP
-sumDF <- metafor_co2_statistics_eP_advanced(reDF100, sumDF)
+#sumDF <- metafor_co2_statistics_eP_advanced(reDF100, sumDF)
+sumDF <- metafor_co2_statistics_eP_basic(reDF100, sumDF)
 
 
 ######## CO2 effect under aP
-sumDF <- metafor_co2_statistics_aP_advanced(reDF100, sumDF)
+#sumDF <- metafor_co2_statistics_aP_advanced(reDF100, sumDF)
+sumDF <- metafor_co2_statistics_aP_basic(reDF100, sumDF)
 
 
 ### calculate percent response
@@ -123,7 +130,6 @@ sumDF$ci_ub_pct <- (exp(sumDF$ci_ub) - 1) * 100
 
 write.csv(sumDF, "output/metafor_summary_plot/co2_effect_all.csv", row.names=F)
 write.csv(sumDF2, "output/metafor_summary_plot/p_effect_all.csv", row.names=F)
-write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv", row.names=F)
 
 
 #### this is the plot script used for main text
