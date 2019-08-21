@@ -55,6 +55,7 @@ reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 reDF100$random_factor <- as.numeric(reDF100$Literature)
 reDF100$Trt_LP_HP <- reDF100$Trt_aP/reDF100$Trt_eP
 #reDF100$Trt_aP_norm <- 1- (reDF100$Trt_aP/reDF100$Trt_eP)
+reDF100$Trt_LP_HP <- log(1- (reDF100$Trt_aP/reDF100$Trt_eP))
 
 
 ##### a detailed summary table 
