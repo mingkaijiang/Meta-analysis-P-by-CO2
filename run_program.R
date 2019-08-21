@@ -67,9 +67,8 @@ generate_a_detailed_summary_table(reDF100)
 #intDF <- prepare_summary_interaction_effect_df()
 intDF <- prepare_summary_interaction_effect_df_advanced()
 
-#intDF <- metafor_statistics_advanced(reDF100, intDF)
-
-intDF <- metafor_statistics_basic(reDF100, intDF)
+intDF <- metafor_statistics_advanced(reDF100, intDF)
+#intDF <- metafor_statistics_basic(reDF100, intDF)
 
 
 ### calculate percent response
