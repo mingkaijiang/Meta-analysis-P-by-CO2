@@ -9,28 +9,29 @@ assign_model_stats_and_forest_plot_advanced <- function(tDF, intDF, res, var.nam
     
     
     ### predicted
-    #predDF <- predict(res, newmods = c(0, 
-    #                                   0.01, #HP/LP = 100
-    #                                   0.02, #HP/LP = 50
-    #                                   0.05, #HP/LP = 20
-    #                                   0.1,  #HP/LP = 10
-    #                                   0.25, #HP/LP = 4
-    #                                   0.5), #HP/LP = 2
-    #                  addx=T) 
-    
-    predDF <- predict(res, newmods = c(log(1-0), 
-                                       log(1-0.01), #HP/LP = 100
-                                       log(1-0.02), #HP/LP = 50
-                                       log(1-0.05), #HP/LP = 20
-                                       log(1-0.1),  #HP/LP = 10
-                                       log(1-0.25), #HP/LP = 4
-                                       log(1-0.5)), #HP/LP = 2
+    predDF <- predict(res, newmods = c(0, 
+                                       0.01, #HP/LP = 100
+                                       0.02, #HP/LP = 50
+                                       0.05, #HP/LP = 20
+                                       0.1,  #HP/LP = 10
+                                       0.2,  #HP/LP = 5,
+                                       0.25, #HP/LP = 4
+                                       0.5), #HP/LP = 2
                       addx=T) 
     
-    intDF$interaction[intDF$variable==var.name] <- predDF$pred[4]
-    intDF$se[intDF$variable==var.name] <- predDF$se[4]
-    intDF$ci_lb[intDF$variable==var.name] <- predDF$ci.lb[4]
-    intDF$ci_ub[intDF$variable==var.name] <- predDF$ci.ub[4]
+    #predDF <- predict(res, newmods = c(log(1-0), 
+    #                                   log(1-0.01), #HP/LP = 100
+    #                                   log(1-0.02), #HP/LP = 50
+    #                                   log(1-0.05), #HP/LP = 20
+    #                                   log(1-0.1),  #HP/LP = 10
+    #                                   log(1-0.25), #HP/LP = 4
+    #                                   log(1-0.5)), #HP/LP = 2
+    #                  addx=T) 
+    
+    intDF$interaction[intDF$variable==var.name] <- predDF$pred[6]
+    intDF$se[intDF$variable==var.name] <- predDF$se[6]
+    intDF$ci_lb[intDF$variable==var.name] <- predDF$ci.lb[6]
+    intDF$ci_ub[intDF$variable==var.name] <- predDF$ci.ub[6]
     
     
     #intDF$interaction[intDF$variable==var.name] <- res$b[1]
@@ -44,34 +45,41 @@ assign_model_stats_and_forest_plot_advanced <- function(tDF, intDF, res, var.nam
     intDF$mod_ci_lb[intDF$variable==var.name] <- res$ci.lb[2]
     intDF$mod_ci_ub[intDF$variable==var.name] <- res$ci.ub[2]
     
-    intDF$effect_size_0[intDF$variable==var.name] <- predDF$pred[1]
-    intDF$ci_lb_0[intDF$variable==var.name] <- predDF$ci.lb[1]
-    intDF$ci_ub_0[intDF$variable==var.name] <- predDF$ci.ub[1]
+    #intDF$effect_size_0[intDF$variable==var.name] <- predDF$pred[1]
+    #intDF$ci_lb_0[intDF$variable==var.name] <- predDF$ci.lb[1]
+    #intDF$ci_ub_0[intDF$variable==var.name] <- predDF$ci.ub[1]
+    #
+    #intDF$effect_size_0.01[intDF$variable==var.name] <- predDF$pred[2]
+    #intDF$ci_lb_0.01[intDF$variable==var.name] <- predDF$ci.lb[2]
+    #intDF$ci_ub_0.01[intDF$variable==var.name] <- predDF$ci.ub[2]
+    #
+    #intDF$effect_size_0.02[intDF$variable==var.name] <- predDF$pred[3]
+    #intDF$ci_lb_0.02[intDF$variable==var.name] <- predDF$ci.lb[3]
+    #intDF$ci_ub_0.02[intDF$variable==var.name] <- predDF$ci.ub[3]
+    #
+    #intDF$effect_size_0.05[intDF$variable==var.name] <- predDF$pred[4]
+    #intDF$ci_lb_0.05[intDF$variable==var.name] <- predDF$ci.lb[4]
+    #intDF$ci_ub_0.05[intDF$variable==var.name] <- predDF$ci.ub[4]
+    #
+    #intDF$effect_size_0.1[intDF$variable==var.name] <- predDF$pred[5]
+    #intDF$ci_lb_0.1[intDF$variable==var.name] <- predDF$ci.lb[5]
+    #intDF$ci_ub_0.1[intDF$variable==var.name] <- predDF$ci.ub[5]
+    #
+    #intDF$effect_size_0.2[intDF$variable==var.name] <- predDF$pred[6]
+    #intDF$ci_lb_0.2[intDF$variable==var.name] <- predDF$ci.lb[6]
+    #intDF$ci_ub_0.2[intDF$variable==var.name] <- predDF$ci.ub[6]
+    #
+    #intDF$effect_size_0.25[intDF$variable==var.name] <- predDF$pred[7]
+    #intDF$ci_lb_0.25[intDF$variable==var.name] <- predDF$ci.lb[7]
+    #intDF$ci_ub_0.25[intDF$variable==var.name] <- predDF$ci.ub[7]
+    #
+    #intDF$effect_size_0.5[intDF$variable==var.name] <- predDF$pred[8]
+    #intDF$ci_lb_0.5[intDF$variable==var.name] <- predDF$ci.lb[8]
+    #intDF$ci_ub_0.5[intDF$variable==var.name] <- predDF$ci.ub[8]
     
-    intDF$effect_size_0.01[intDF$variable==var.name] <- predDF$pred[2]
-    intDF$ci_lb_0.01[intDF$variable==var.name] <- predDF$ci.lb[2]
-    intDF$ci_ub_0.01[intDF$variable==var.name] <- predDF$ci.ub[2]
     
-    intDF$effect_size_0.02[intDF$variable==var.name] <- predDF$pred[3]
-    intDF$ci_lb_0.02[intDF$variable==var.name] <- predDF$ci.lb[3]
-    intDF$ci_ub_0.02[intDF$variable==var.name] <- predDF$ci.ub[3]
+    predDF2 <- predict(res, newmods = c(0.2)) 
     
-    intDF$effect_size_0.05[intDF$variable==var.name] <- predDF$pred[4]
-    intDF$ci_lb_0.05[intDF$variable==var.name] <- predDF$ci.lb[4]
-    intDF$ci_ub_0.05[intDF$variable==var.name] <- predDF$ci.ub[4]
-    
-    intDF$effect_size_0.1[intDF$variable==var.name] <- predDF$pred[5]
-    intDF$ci_lb_0.1[intDF$variable==var.name] <- predDF$ci.lb[5]
-    intDF$ci_ub_0.1[intDF$variable==var.name] <- predDF$ci.ub[5]
-    
-    intDF$effect_size_0.25[intDF$variable==var.name] <- predDF$pred[6]
-    intDF$ci_lb_0.25[intDF$variable==var.name] <- predDF$ci.lb[6]
-    intDF$ci_ub_0.25[intDF$variable==var.name] <- predDF$ci.ub[6]
-    
-    intDF$effect_size_0.5[intDF$variable==var.name] <- predDF$pred[7]
-    intDF$ci_lb_0.5[intDF$variable==var.name] <- predDF$ci.lb[7]
-    intDF$ci_ub_0.5[intDF$variable==var.name] <- predDF$ci.ub[7]
-
     ### forest plot
     pdf(paste0("output/statistics_interaction/", var.name, ".pdf"),
         height=12, width=9)
@@ -86,6 +94,8 @@ assign_model_stats_and_forest_plot_advanced <- function(tDF, intDF, res, var.nam
                         round(tDF$Trt_eP_by_aP,1),
                         as.character(tDF$Experiment_duration)), 
            ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    addpoly(predDF2$pred, sei = predDF2$se, 
+            mlab = c("HP/LP = 4"), cex=0.6)
     text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
                                                    "Species",
                                                    "Mycorrhizal",
@@ -96,8 +106,8 @@ assign_model_stats_and_forest_plot_advanced <- function(tDF, intDF, res, var.nam
          c("type","", "association", "", "", "duration"), cex=0.7)
     text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
     text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
-    text(-13.5, -3.0, paste0("ne = ", l), cex = 0.6)
-    text(-13.5, -2.0, paste0("ns = ", ns), cex = 0.6)
+    text(-13.5, -3.5, paste0("ne = ", l), cex = 0.6)
+    text(-13.5, -2.5, paste0("ns = ", ns), cex = 0.6)
     dev.off()
     
     

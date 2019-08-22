@@ -14,14 +14,15 @@ assign_model_stats_advanced <- function(tDF, intDF, res, var.name) {
                                        0.02, #HP/LP = 50
                                        0.05, #HP/LP = 20
                                        0.1,  #HP/LP = 10
+                                       0.2,
                                        0.25, #HP/LP = 4
                                        0.5), #HP/LP = 2
                       addx=T) 
 
-    intDF$interaction[intDF$variable==var.name] <- predDF$pred[4]
-    intDF$se[intDF$variable==var.name] <- predDF$se[4]
-    intDF$ci_lb[intDF$variable==var.name] <- predDF$ci.lb[4]
-    intDF$ci_ub[intDF$variable==var.name] <- predDF$ci.ub[4]
+    intDF$interaction[intDF$variable==var.name] <- predDF$pred[6]
+    intDF$se[intDF$variable==var.name] <- predDF$se[6]
+    intDF$ci_lb[intDF$variable==var.name] <- predDF$ci.lb[6]
+    intDF$ci_ub[intDF$variable==var.name] <- predDF$ci.ub[6]
     
     
     #intDF$interaction[intDF$variable==var.name] <- res$b[1]

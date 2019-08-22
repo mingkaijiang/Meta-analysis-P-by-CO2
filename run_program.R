@@ -18,9 +18,6 @@ myDF <- as.data.frame(myDF)
 ### recalculate all the mean effect size
 myDF <- make_mean_effect_size_recalculation(inDF=myDF)
 
-### remove P treatment of zero low P addition
-#myDF <- subset(myDF, Trt_aP > 0.0)
-
 ### make consistent standard error confidence intervals
 myDF <- make_consistent_confidence_interval(inDF=myDF, return.option="all_se")
 
@@ -30,14 +27,11 @@ myDF$Trt_eC_by_aC <- myDF$Trt_eCO2/myDF$Trt_aCO2
 ### check P treatment
 myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
 
-### check P reduction ratio
-#myDF$Trt_P_reduction <- (myDF$Trt_eP - myDF$Trt_aP) / myDF$Trt_eP
-
 ############## Exclude some extremely high P addition experiment
 subDF100 <- subset(myDF, Trt_aCO2 < 410)
 
 #### generate species list
-#generate_species_list()
+generate_species_list()
 
 ############## Basic statistics that summarize 
 ### number of studies
@@ -45,18 +39,14 @@ subDF100 <- subset(myDF, Trt_aCO2 < 410)
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
-#make_basic_summary_stats_plots()
+make_basic_summary_stats_plots()
 
 
 ############## Statistical analysis - metafor
 ### reprogressing the dataset to calculate individual means and variance for the interaction term
-#reDF <- reprocessing_interaction_term(inDF=subDF)
 reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 reDF100$random_factor <- as.numeric(reDF100$Literature)
 reDF100$Trt_LP_HP <- reDF100$Trt_aP/reDF100$Trt_eP
-#reDF100$Trt_aP_norm <- 1- (reDF100$Trt_aP/reDF100$Trt_eP)
-reDF100$Trt_LP_HP <- log(1- (reDF100$Trt_aP/reDF100$Trt_eP))
-
 
 ##### a detailed summary table 
 generate_a_detailed_summary_table(reDF100)
@@ -89,13 +79,13 @@ reDF100 <- reprocessing_p_effect_term(inDF=reDF100)
 sumDF2 <- prepare_summary_p_effect_df_advanced()
 
 ####### P effect under aCO2 
-#sumDF2 <- metafor_p_statistics_aCO2_advanced(reDF100, sumDF2)
-sumDF2 <- metafor_p_statistics_aCO2_basic(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_aCO2_advanced(reDF100, sumDF2)
+#sumDF2 <- metafor_p_statistics_aCO2_basic(reDF100, sumDF2)
 
 
 ####### P effect under eCO2 
-#sumDF2 <- metafor_p_statistics_eCO2_advanced(reDF100, sumDF2)
-sumDF2 <- metafor_p_statistics_eCO2_basic(reDF100, sumDF2)
+sumDF2 <- metafor_p_statistics_eCO2_advanced(reDF100, sumDF2)
+#sumDF2 <- metafor_p_statistics_eCO2_basic(reDF100, sumDF2)
 
 ### calculate percent response
 sumDF2$P_effect_pct <- (exp(sumDF2$P_effect) - 1) * 100

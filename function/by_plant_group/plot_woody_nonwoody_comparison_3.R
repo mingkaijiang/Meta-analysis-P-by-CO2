@@ -226,7 +226,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 150))+
+        scale_x_continuous(limits=c(-65, 150))+
         scale_y_continuous(breaks=c(1:3),
                            labels=c("      RL", "LA", "A"))+
         scale_color_manual(name=paste("P treatment"),
@@ -264,7 +264,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-60, 60))+
+        scale_x_continuous(limits=c(-65, 60))+
         scale_y_continuous(breaks=c(1:3),
                            labels=c("RL", "LA", "A"))+
         scale_color_manual(name=paste("P treatment"),
@@ -303,7 +303,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 150))+
+        scale_x_continuous(limits=c(-65, 150))+
         scale_y_continuous(breaks=c(1:3),
                            labels=c("   Total", "BG", "AB"))+
         scale_color_manual(name=paste("P treatment"),
@@ -342,7 +342,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-60, 60))+
+        scale_x_continuous(limits=c(-65, 60))+
         scale_y_continuous(breaks=c(1:3),
                            labels=c("Total", "BG", "AB"))+
         scale_color_manual(name=paste("P treatment"),
@@ -381,7 +381,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 150))+
+        scale_x_continuous(limits=c(-65, 150))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("Root P", "Leaf P", "Root N", "Leaf N"))+
         scale_color_manual(name=paste("P treatment"),
@@ -422,7 +422,7 @@ plot_woody_nonwoody_comparison_3 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-60, 60))+
+        scale_x_continuous(limits=c(-65, 60))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("Root P", "Leaf P", "Root N", "Leaf N"))+
         scale_color_manual(name=paste("P treatment"),

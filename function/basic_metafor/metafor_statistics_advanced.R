@@ -1,6 +1,6 @@
 metafor_statistics_advanced <- function(reDF, intDF) {
     
-    reDF <- reDF100
+    #reDF <- reDF100
     
     ### create directory
     if(!dir.exists("output/statistics_interaction")) {
@@ -19,15 +19,6 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
                   random = ~1 | random_factor, data = tDF)
-    
-    #predict(res, newmods = c(0, 
-    #                      0.01, #HP/LP = 100
-    #                      0.02, #HP/LP = 50
-    #                      0.05, #HP/LP = 20
-    #                      0.1,  #HP/LP = 10
-    #                      0.25, #HP/LP = 4
-    #                      0.5), #HP/LP = 2
-    #        addx=T) 
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="aboveground_biomass") 
