@@ -61,7 +61,7 @@ metafor_p_statistics_eCO2_basic <- function(reDF, sumDF2) {
     
     ####################### subset the dataframe for the right variable ##############################
     #tDF <- subset(reDF, Variable=="Root biomass")
-    tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    tDF <- subset(reDF, Variable%in%c("Root biomass"))#, "Belowground biomass"))
     tDF <- subset(tDF, variance_p_eCO2 >= 0.01)
     
     ### random-effect model

@@ -91,9 +91,9 @@ metafor_statistics_woody_plants_100 <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
-    tDF <- subset(tDF, v_variance >= 0.001)
-    tDF <- subset(tDF, v_variance <= 2)
+    tDF <- subset(reDF, Variable%in%c("Root biomass"))#, "Belowground biomass"))
+    tDF <- subset(tDF, v_variance >= 0.01)
+    #tDF <- subset(tDF, v_variance <= 2)
     
     
     ### random-effect model

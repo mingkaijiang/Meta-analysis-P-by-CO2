@@ -97,11 +97,11 @@ metafor_co2_statistics_woody_plants_100_eP <- function(reDF, sumDF) {
                                                                     trt="eP") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable%in%c("Root biomass",  
-                                      "Belowground biomass"))
-    tDF <- subset(tDF, variance_co2_eP >= 0.001)
+    tDF <- subset(reDF, Variable%in%c("Root biomass"))#,  
+                                      #"Belowground biomass"))
+    tDF <- subset(tDF, variance_co2_eP >= 0.01)
     
-    tDF <- subset(tDF, variance_co2_eP <= 2)
+    #tDF <- subset(tDF, variance_co2_eP <= 2)
     
     ### random-effect model
     #res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
