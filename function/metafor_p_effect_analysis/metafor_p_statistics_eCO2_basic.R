@@ -631,7 +631,7 @@ metafor_p_statistics_eCO2_basic <- function(reDF, sumDF2) {
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Plant P uptake")
-    tDF <- subset(tDF, Unit %in%c("ug m-1 root", "mg g-1 root", "mg P g-1 root"))
+    tDF <- subset(tDF, Unit %in%c("ug P root-1", "mg P g-1 root", "ug P mg root-1"))
     
     ### random-effect model
     # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
