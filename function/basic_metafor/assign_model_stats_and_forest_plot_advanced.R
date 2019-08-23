@@ -95,7 +95,7 @@ assign_model_stats_and_forest_plot_advanced <- function(tDF, intDF, res, var.nam
                         as.character(tDF$Experiment_duration)), 
            ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
     addpoly(predDF2$pred, sei = predDF2$se, 
-            mlab = c("HP/LP = 4"), cex=0.6)
+            mlab = c("HP/LP = 5"), cex=0.6)
     text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
                                                    "Species",
                                                    "Mycorrhizal",

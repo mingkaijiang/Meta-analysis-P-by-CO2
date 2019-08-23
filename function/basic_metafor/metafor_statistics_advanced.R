@@ -157,7 +157,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stem N content")
-
+    
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]

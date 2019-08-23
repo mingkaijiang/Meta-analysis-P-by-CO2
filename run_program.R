@@ -39,7 +39,7 @@ generate_species_list()
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
-make_basic_summary_stats_plots()
+#make_basic_summary_stats_plots()
 
 
 ############## Statistical analysis - metafor
@@ -47,6 +47,9 @@ make_basic_summary_stats_plots()
 reDF100 <- reprocessing_interaction_term(inDF=subDF100)
 reDF100$random_factor <- as.numeric(reDF100$Literature)
 reDF100$Trt_LP_HP <- reDF100$Trt_aP/reDF100$Trt_eP
+
+mean(reDF100$Trt_LP_HP)
+median(reDF100$Trt_LP_HP)
 
 ##### a detailed summary table 
 generate_a_detailed_summary_table(reDF100)
@@ -122,6 +125,10 @@ write.csv(sumDF, "output/metafor_summary_plot/co2_effect_all.csv", row.names=F)
 write.csv(sumDF2, "output/metafor_summary_plot/p_effect_all.csv", row.names=F)
 
 
+
+
+
+
 #### this is the plot script used for main text
 make_split_interaction_effect_chart_6(sumDF, sumDF2, intDF)
 
@@ -195,6 +202,9 @@ intDF.nwd$ci_ub_pct <- (exp(intDF.nwd$ci_ub) - 1) * 100
 #plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
 #plot_woody_nonwoody_comparison_2(intDF2, intDF3, sumDF2, sumDF3)
 plot_woody_nonwoody_comparison_3(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
+
+
+
 
 
 #### statistics comparing woody and non-woody plants

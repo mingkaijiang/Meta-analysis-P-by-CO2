@@ -315,8 +315,9 @@ metafor_co2_statistics_nonwoody_plants_100_aP <- function(reDF, sumDF) {
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total root length")
-    
-    ### random-effect model
+    tDF <- subset(tDF, variance_co2_aP >= 0.0001)
+
+        ### random-effect model
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable

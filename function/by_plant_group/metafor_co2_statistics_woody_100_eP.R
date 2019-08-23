@@ -165,11 +165,11 @@ metafor_co2_statistics_woody_plants_100_eP <- function(reDF, sumDF) {
     #res <- rma(log_co2_eP, variance_co2_eP, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    #res <- rma.mv(log_co2_eP, variance_co2_eP, random = ~ 1 | random_factor, data = tDF)
+    res <- rma.mv(log_co2_eP, variance_co2_eP, random = ~ 1 | random_factor, data = tDF)
     
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
-    res <- rma.mv(log_co2_eP, variance_co2_eP, mods = ~Trt_LP_HP, 
-                  random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_co2_eP, variance_co2_eP, mods = ~Trt_LP_HP, 
+    #              random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
     sumDF <- assign_CO2_effect_model_stats_and_forest_plot_advanced(tDF, sumDF, res, 

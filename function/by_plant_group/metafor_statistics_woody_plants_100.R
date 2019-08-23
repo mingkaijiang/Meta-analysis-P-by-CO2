@@ -151,14 +151,14 @@ metafor_statistics_woody_plants_100 <- function(reDF, intDF) {
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
-    #res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
+    res <- rma.mv(log_interaction, v_variance, random = ~ 1 | random_factor, data = tDF)
     
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
-    res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
-                  random = ~1 | random_factor, data = tDF)
+    #res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
+    #              random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="leaf_N_concentration") 
+    intDF <- assign_model_stats_basic(tDF, intDF, res, var.name="leaf_N_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf P concentration")

@@ -3,7 +3,7 @@ metafor_co2_statistics_aP_basic <- function(reDF, sumDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable%in%c("Aboveground biomass"))
     
-    tDF <- subset(tDF, variance_co2_aP >= 0.01)
+    tDF <- subset(tDF, variance_co2_aP >= 0.001)
     
     ### random-effect model
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
@@ -485,6 +485,7 @@ metafor_co2_statistics_aP_basic <- function(reDF, sumDF) {
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total root length")
+    tDF <- tDF[tDF$variance_co2_aP > 0.0001, ]
     
     ### random-effect model
     #res <- rma(log_co2_aP, variance_co2_aP, data = tDF)
