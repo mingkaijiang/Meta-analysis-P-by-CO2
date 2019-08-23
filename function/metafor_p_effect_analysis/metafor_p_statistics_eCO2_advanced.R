@@ -612,6 +612,7 @@ metafor_p_statistics_eCO2_advanced <- function(reDF, sumDF2) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Plant N uptake")
     tDF <- subset(tDF, Unit %in%c("mg N mg-1 of nodule", "mg g-1 root", "mg N g-1 root"))
+    tDF$variance_p_eCO2 <- 1/tDF$Sample.Size
     
     ### random-effect model
     # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)
@@ -632,6 +633,7 @@ metafor_p_statistics_eCO2_advanced <- function(reDF, sumDF2) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Plant P uptake")
     tDF <- subset(tDF, Unit %in%c("ug P root-1", "mg P g-1 root", "ug P mg root-1"))
+    tDF$variance_p_eCO2 <- 1/tDF$Sample.Size
     
     ### random-effect model
     # res <- rma(log_P_eCO2, variance_p_eCO2, data = tDF)

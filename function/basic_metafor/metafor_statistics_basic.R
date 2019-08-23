@@ -646,6 +646,7 @@ metafor_statistics_basic <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Plant N uptake")
     tDF <- subset(tDF, Unit %in%c("mg N mg-1 of nodule", "mg g-1 root", "mg N g-1 root"))
+    tDF$v_variance <- 1/tDF$Sample.Size
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -669,6 +670,7 @@ metafor_statistics_basic <- function(reDF, intDF) {
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Plant P uptake")
     tDF <- subset(tDF, Unit %in%c("ug P root-1", "mg P g-1 root", "ug P mg root-1"))
+    tDF$v_variance <- 1/tDF$Sample.Size
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
