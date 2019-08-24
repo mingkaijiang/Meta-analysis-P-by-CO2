@@ -201,7 +201,7 @@ intDF.nwd$ci_ub_pct <- (exp(intDF.nwd$ci_ub) - 1) * 100
 #### plot woody and nonwoody comparison
 #plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
 #plot_woody_nonwoody_comparison_2(intDF2, intDF3, sumDF2, sumDF3)
-plot_woody_nonwoody_comparison_3(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
+plot_woody_nonwoody_comparison_4(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 
 

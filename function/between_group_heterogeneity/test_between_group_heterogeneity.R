@@ -32,8 +32,7 @@ test_between_group_heterogeneity <- function(reDF100) {
         
         
         res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
-                      mods = ~factor(Vegetation_type), data = subDF1)
-        
+                      mods = ~factor(Vegetation_type)+Trt_LP_HP, data = subDF1)
         
         sumDF$Qm[sumDF$variable == i] <- res$QM
         sumDF$Qe[sumDF$variable == i] <- res$QE
@@ -57,10 +56,12 @@ test_between_group_heterogeneity <- function(reDF100) {
     }
     
     ### root and belowground biomass
-    subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    #subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    subDF1 <- subset(inDF, Variable=="Root biomass")
+    
     subDF1 <- subset(subDF1, v_variance >= 0.01)
     res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
-               mods = ~factor(Vegetation_type), data = subDF1)
+               mods = ~factor(Vegetation_type)+Trt_LP_HP, data = subDF1)
     
     sumDF$Qm[sumDF$variable == "Belowground biomass"] <- res$QM
     sumDF$Qe[sumDF$variable == "Belowground biomass"] <- res$QE
@@ -104,7 +105,7 @@ test_between_group_heterogeneity <- function(reDF100) {
         subDF1 <- subset(subDF1, variance_co2_aP >= 0.01)
         
         res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
-                      mods = ~factor(Vegetation_type), 
+                      mods = ~factor(Vegetation_type)+Trt_LP_HP, 
                    data = subDF1)
         
         sumDF$Qm[sumDF$variable == i] <- res$QM
@@ -129,11 +130,13 @@ test_between_group_heterogeneity <- function(reDF100) {
     }
     
     ### root biomass
-    subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    #subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    subDF1 <- subset(inDF, Variable=="Root biomass")
+    
     subDF1 <- subset(subDF1, variance_co2_aP >= 0.01)
     
     res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
-                  mods = ~factor(Vegetation_type), 
+                  mods = ~factor(Vegetation_type)+Trt_LP_HP, 
                   data = subDF1)
     
     sumDF$Qm[sumDF$variable == "Belowground biomass"] <- res$QM
@@ -161,7 +164,7 @@ test_between_group_heterogeneity <- function(reDF100) {
     i <- "LMA"
     subDF1 <- subset(inDF, Variable == i)
     res <- rma(log_co2_eP, variance_co2_aP, 
-               mods = ~factor(Vegetation_type), data = subDF1)
+               mods = ~factor(Vegetation_type)+Trt_LP_HP, data = subDF1)
     
     sumDF$Qm[sumDF$variable == i] <- res$QM
     sumDF$Qe[sumDF$variable == i] <- res$QE
@@ -206,7 +209,7 @@ test_between_group_heterogeneity <- function(reDF100) {
         subDF1 <- subset(subDF1, variance_co2_eP >= 0.01)
         
         res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
-                      mods = ~factor(Vegetation_type), 
+                      mods = ~factor(Vegetation_type)+Trt_LP_HP, 
                       data = subDF1)
         
         sumDF$Qm[sumDF$variable == i] <- res$QM
@@ -234,7 +237,7 @@ test_between_group_heterogeneity <- function(reDF100) {
     i <- "Leaf area"
     subDF1 <- subset(inDF, Variable == i)
     res <- rma(log_co2_eP, variance_co2_eP, 
-               mods = ~factor(Vegetation_type), data = subDF1)
+               mods = ~factor(Vegetation_type)+Trt_LP_HP, data = subDF1)
     
     sumDF$Qm[sumDF$variable == i] <- res$QM
     sumDF$Qe[sumDF$variable == i] <- res$QE
@@ -256,11 +259,13 @@ test_between_group_heterogeneity <- function(reDF100) {
     
     
     ### root biomass
-    subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    #subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    subDF1 <- subset(inDF, Variable=="Root biomass")
+    
     subDF1 <- subset(subDF1, variance_co2_eP >= 0.01)
     
     res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
-                  mods = ~factor(Vegetation_type), 
+                  mods = ~factor(Vegetation_type)+Trt_LP_HP, 
                   data = subDF1)
     
     sumDF$Qm[sumDF$variable == "Belowground biomass"] <- res$QM
