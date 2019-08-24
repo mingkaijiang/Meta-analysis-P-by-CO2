@@ -373,7 +373,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
                   random = ~1 | random_factor, data = tDF)
-    
+
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_N_concentration") 
     
