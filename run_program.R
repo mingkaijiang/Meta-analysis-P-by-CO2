@@ -209,6 +209,8 @@ plot_woody_nonwoody_comparison_4(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 #### statistics comparing woody and non-woody plants
 test_between_group_heterogeneity(reDF100)
+test_between_group_heterogeneity_mycorrhizae(reDF100)
+
 #compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
 
 #### mycorrhizal associations
@@ -222,7 +224,7 @@ plot_leaf_N_P_concentration_comparison()
 
 ############## Compare mycorrhizae groups
 test_plant_mycorrhizal_effect(reDF100)
-
+test_between_group_heterogeneity_mycorrhizae(reDF100)
 
 
 #### make predictions
