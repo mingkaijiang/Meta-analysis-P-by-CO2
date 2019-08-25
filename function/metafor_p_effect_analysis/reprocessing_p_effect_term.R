@@ -9,6 +9,9 @@ reprocessing_p_effect_term <- function(inDF) {
     ### I used the mean sd of the same variable as a proxy. 
     
 
+    inDF$P_aCO2 <- inDF$aCaP_mean/inDF$aCeP_mean
+    inDF$P_eCO2 <- inDF$eCaP_mean/inDF$eCeP_mean
+    
     ####### P effect, limitation (i.e. eP is control)
     inDF$log_P_aCO2 <- log(inDF$aCaP_mean/inDF$aCeP_mean)
     inDF$log_P_eCO2 <- log(inDF$eCaP_mean/inDF$eCeP_mean)
@@ -33,17 +36,23 @@ reprocessing_p_effect_term <- function(inDF) {
         mean.variance.aCO2 <- mean(test1$variance_p_aCO2, na.rm=T)
         mean.variance.eCO2 <- mean(test1$variance_p_eCO2, na.rm=T)
         
+        mean.aCO2.mean <- mean(test1$P_aCO2, na.rm=T)
+        mean.eCO2.mean <- mean(test1$P_eCO2, na.rm=T)
+        
+        variance.aCO2.perct <- mean.variance.aCO2 / mean.aCO2.mean
+        variance.eCO2.perct <- mean.variance.eCO2 / mean.eCO2.mean
+        
         ### assign the mean variance to missing data
-        inDF$variance_p_aCO2[inDF$Variable==i] <- ifelse(is.na(inDF$variance_p_aCO2[inDF$Variable==i]), mean.variance.aCO2, 
+        inDF$variance_p_aCO2[inDF$Variable==i] <- ifelse(is.na(inDF$variance_p_aCO2[inDF$Variable==i]), variance.aCO2.perct * inDF$P_aCO2[inDF$Variable==i], 
                                                     inDF$variance_p_aCO2[inDF$Variable==i])
         
-        inDF$variance_p_aCO2[inDF$Variable==i & is.na(inDF$variance_p_aCO2)] <- mean.variance.aCO2
+        inDF$variance_p_aCO2[inDF$Variable==i & is.na(inDF$variance_p_aCO2)] <- inDF$P_aCO2[inDF$Variable==i & is.na(inDF$variance_p_aCO2)] * variance.aCO2.perct
         
         ### assign the mean variance to missing data
-        inDF$variance_p_eCO2[inDF$Variable==i] <- ifelse(is.na(inDF$variance_p_eCO2[inDF$Variable==i]), mean.variance.eCO2, 
+        inDF$variance_p_eCO2[inDF$Variable==i] <- ifelse(is.na(inDF$variance_p_eCO2[inDF$Variable==i]), variance.eCO2.perct * inDF$P_eCO2[inDF$Variable==i], 
                                                          inDF$variance_p_eCO2[inDF$Variable==i])
         
-        inDF$variance_p_eCO2[inDF$Variable==i & is.na(inDF$variance_p_eCO2)] <- mean.variance.eCO2
+        inDF$variance_p_eCO2[inDF$Variable==i & is.na(inDF$variance_p_eCO2)] <- inDF$P_eCO2[inDF$Variable==i & is.na(inDF$variance_p_eCO2)] * variance.eCO2.perct
     }
     
     outDF <- inDF

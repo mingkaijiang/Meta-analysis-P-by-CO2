@@ -10,7 +10,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Aboveground biomass")
-    tDF <- subset(tDF, v_variance >= 0.01)
+    tDF <- subset(tDF, v_variance >= 0.001)
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -67,8 +67,10 @@ metafor_statistics_advanced <- function(reDF, intDF) {
 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root biomass")
-    tDF <- subset(tDF, v_variance >= 0.01)
+    #tDF <- subset(reDF, Variable=="Root biomass")
+    tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    
+    tDF <- subset(tDF, v_variance >= 0.001)
     #tDF <- subset(tDF, v_variance <= 2)
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
@@ -93,7 +95,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Total plant biomass")
-    tDF <- subset(tDF, v_variance >= 0.01)
+    tDF <- subset(tDF, v_variance >= 0.001)
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,

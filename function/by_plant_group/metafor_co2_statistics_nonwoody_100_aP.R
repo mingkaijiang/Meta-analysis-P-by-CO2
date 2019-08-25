@@ -97,9 +97,9 @@ metafor_co2_statistics_nonwoody_plants_100_aP <- function(reDF, sumDF) {
                                                                     trt="aP") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable%in%c("Root biomass"))#,  
-                                      #"Belowground biomass"))
-    tDF <- subset(tDF, variance_co2_aP >= 0.01)
+    tDF <- subset(reDF, Variable%in%c("Root biomass",  
+                                      "Belowground biomass"))
+    tDF <- subset(tDF, variance_co2_aP >= 0.001)
     #tDF <- subset(tDF, variance_co2_aP <= 2)
     
     ### random-effect model

@@ -62,9 +62,9 @@ metafor_statistics_basic <- function(reDF, intDF) {
 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root biomass")
-    #tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
-    tDF <- subset(tDF, v_variance >= 0.01)
+    #tDF <- subset(reDF, Variable=="Root biomass")
+    tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    tDF <- subset(tDF, v_variance >= 0.001)
     #tDF <- subset(tDF, v_variance <= 2)
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,

@@ -36,17 +36,16 @@ reprocessing_interaction_term <- function(inDF) {
         ### calcualte mean variance for the subset
         test1 <- subset(inDF, Variable == i)
         mean.variance <- mean(test1$v_variance, na.rm=T)
+        mean.mean <- mean(test1$interaction, na.rm=T)
+        variance.perct <- mean.variance / mean.mean
         
         ### assign the mean variance to missing data
-        inDF$v_variance[inDF$Variable==i] <- ifelse(is.na(inDF$v_variance[inDF$Variable==i]), mean.variance, 
+        inDF$v_variance[inDF$Variable==i] <- ifelse(is.na(inDF$v_variance[inDF$Variable==i]), variance.perct * inDF$interaction[inDF$Variable==i], 
                                                     inDF$v_variance[inDF$Variable==i])
         
-        inDF$v_variance[inDF$Variable==i & is.na(inDF$v_variance)] <- mean.variance
+        inDF$v_variance[inDF$Variable==i & is.na(inDF$v_variance)] <- inDF$interaction[inDF$Variable==i & is.na(inDF$v_variance)] * variance.perct
     }
     
-    #inDF$Vegetation_type <- as.character(inDF$Vegetation_type)
-    
-    #inDF$Vegetation_type[inDF$Vegetation_type=="Grass Forb Legume"] <- "GFL"
     
     outDF <- inDF
     

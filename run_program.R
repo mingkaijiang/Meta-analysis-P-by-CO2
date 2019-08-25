@@ -45,7 +45,7 @@ generate_species_list()
 ############## Statistical analysis - metafor
 ### reprogressing the dataset to calculate individual means and variance for the interaction term
 reDF100 <- reprocessing_interaction_term(inDF=subDF100)
-reDF100$random_factor <- as.numeric(reDF100$Literature)
+reDF100$random_factor <- as.factor(reDF100$Literature)
 reDF100$Trt_LP_HP <- reDF100$Trt_aP/reDF100$Trt_eP
 
 mean(reDF100$Trt_LP_HP)
@@ -124,7 +124,7 @@ sumDF$ci_ub_pct <- (exp(sumDF$ci_ub) - 1) * 100
 write.csv(sumDF, "output/metafor_summary_plot/co2_effect_all.csv", row.names=F)
 write.csv(sumDF2, "output/metafor_summary_plot/p_effect_all.csv", row.names=F)
 
-
+write.csv(reDF100, "output/metafor_summary_plot/reprocessed_input_data.csv", row.names=F)
 
 
 

@@ -87,10 +87,10 @@ metafor_statistics_nonwoody_plants_100 <- function(reDF, intDF) {
     intDF <- assign_model_stats_advanced(tDF, intDF, res, var.name="aboveground_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable%in%c("Root biomass"))#, "Belowground biomass"))
+    tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
     
     ### random-effect model
-    tDF <- subset(tDF, v_variance >= 0.01)
+    tDF <- subset(tDF, v_variance >= 0.001)
     #tDF <- subset(tDF, v_variance <= 2)
     
     ### random-effect model

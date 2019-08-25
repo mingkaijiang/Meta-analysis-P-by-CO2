@@ -16,28 +16,20 @@ make_consistent_confidence_interval <- function(inDF, return.option="all_se") {
     
     ### Convert SD to SE
     myDF3$aCaP_pos <- myDF3$aCaP_mean + (myDF3$aCaP_pos - myDF3$aCaP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
-    myDF3$aCaP_pos <- myDF3$aCaP_mean + (myDF3$aCaP_pos - myDF3$aCaP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
-    myDF3$aCaP_neg <- myDF3$aCaP_mean - (myDF3$aCaP_mean - myDF3$aCaP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     myDF3$aCaP_neg <- myDF3$aCaP_mean - (myDF3$aCaP_mean - myDF3$aCaP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
     myDF3$aCeP_pos <- myDF3$aCeP_mean + (myDF3$aCeP_pos - myDF3$aCeP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
-    myDF3$aCeP_pos <- myDF3$aCeP_mean + (myDF3$aCeP_pos - myDF3$aCeP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
     myDF3$aCeP_neg <- myDF3$aCeP_mean - (myDF3$aCeP_mean - myDF3$aCeP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
-    myDF3$aCeP_neg <- myDF3$aCeP_mean - (myDF3$aCeP_mean - myDF3$aCeP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
-    myDF3$eCaP_pos <- myDF3$eCaP_mean + (as.numeric(myDF3$eCaP_pos) - myDF3$eCaP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     myDF3$eCaP_pos <- myDF3$eCaP_mean + (myDF3$eCaP_pos - myDF3$eCaP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
     myDF3$eCaP_neg <- myDF3$eCeP_mean - (myDF3$eCaP_mean - myDF3$eCaP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
-    myDF3$eCaP_neg <- myDF3$eCeP_mean - (myDF3$eCaP_mean - myDF3$eCaP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
     
     myDF3$eCeP_pos <- myDF3$eCeP_mean + (myDF3$eCeP_pos - myDF3$eCeP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
-    myDF3$eCeP_pos <- myDF3$eCeP_mean + (myDF3$eCeP_pos - myDF3$eCeP_mean) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
-    myDF3$eCeP_neg <- myDF3$eCeP_mean - (myDF3$eCeP_mean - myDF3$eCeP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     myDF3$eCeP_neg <- myDF3$eCeP_mean - (myDF3$eCeP_mean - myDF3$eCeP_neg) / sqrt(as.numeric(as.character(myDF3$Sample.Size)))
     
     myDF3$Confidence.interval.type <- "SE"
