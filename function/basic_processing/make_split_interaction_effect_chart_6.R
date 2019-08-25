@@ -161,7 +161,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
     
     ### prepare labels
     y.lab1 <- c("total_biomass"="Total",
-                "root_biomass"="Root",
+                "root_biomass"="BG",
                 "aboveground_biomass"="AG")
     
     y2.lab1 <- c(bquote(n[e]==.(plotDF1$ne[3])),

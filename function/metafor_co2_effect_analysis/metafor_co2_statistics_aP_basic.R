@@ -122,6 +122,38 @@ metafor_co2_statistics_aP_basic <- function(reDF, sumDF) {
                                                                      var.name="total_biomass",
                                                                      trt="aP") 
     
+    #print(res)
+    #
+    #l <- length(tDF$Literature)
+    #ns <- length(unique(tDF$Literature))
+    #
+    #### forest plot
+    #pdf(paste0("output/statistics_interaction/biomass_total_test_aCO2.pdf"),
+    #    height=16, width=9)
+    #forest(res, slab = tDF$Literature,
+    #       xlim = c(-14, 4), 
+    #       ylim = c(-3.5, l+3.5),
+    #       at = c(-1, 0, 1, 2), #atransf = exp,
+    #       ilab = cbind(as.character(tDF$Vegetation_type),
+    #                    as.character(tDF$Species),
+    #                    as.character(tDF$Mycorrhizae_2), 
+    #                    round(tDF$Trt_eC_by_aC,1), 
+    #                    round(tDF$Trt_eP_by_aP,1),
+    #                    as.character(tDF$Experiment_duration)), 
+    #       ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    #text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+    #                                               "Species",
+    #                                               "Mycorrhizal",
+    #                                               expression(paste(eCO[2], "/", aCO[2])),
+    #                                               "ePaP", "Experiment", "Range"),
+    #     cex=0.7)
+    #text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+    #     c("type","", "association", "", "", "duration"), cex=0.7)
+    #text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
+    #text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    #text(-13.5, -3.5, paste0("ne = ", l), cex = 0.6)
+    #text(-13.5, -2.5, paste0("ns = ", ns), cex = 0.6)
+    #dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Leaf N content")
@@ -436,6 +468,38 @@ metafor_co2_statistics_aP_basic <- function(reDF, sumDF) {
                                                                     var.name="CO2_assimilation_rate",
                                                                     trt="aP") 
     
+    #print(res)
+    #
+    #l <- length(tDF$Literature)
+    #ns <- length(unique(tDF$Literature))
+    #
+    #### forest plot
+    #pdf(paste0("output/statistics_interaction/photo_test_aCO2.pdf"),
+    #    height=16, width=9)
+    #forest(res, slab = tDF$Literature,
+    #       xlim = c(-14, 4), 
+    #       ylim = c(-3.5, l+3.5),
+    #       at = c(-1, 0, 1, 2), #atransf = exp,
+    #       ilab = cbind(as.character(tDF$Vegetation_type),
+    #                    as.character(tDF$Species),
+    #                    as.character(tDF$Mycorrhizae_2), 
+    #                    round(tDF$Trt_eC_by_aC,1), 
+    #                    round(tDF$Trt_eP_by_aP,1),
+    #                    as.character(tDF$Experiment_duration)), 
+    #       ilab.xpos = c(-10, -8, -6.5, -5, -4, -2.5), cex = 0.6)
+    #text(c(-10, -8, -6.5, -5, -4, -2.5, 0), l+3, c("Vegetation", 
+    #                                               "Species",
+    #                                               "Mycorrhizal",
+    #                                               expression(paste(eCO[2], "/", aCO[2])),
+    #                                               "ePaP", "Experiment", "Range"),
+    #     cex=0.7)
+    #text(c(-10, -8, -6.5, -5, -4, -2.5), l+2,
+    #     c("type","", "association", "", "", "duration"), cex=0.7)
+    #text(-14, l+3, "Author & Year", pos = 4, cex=0.7)
+    #text(4, l+3, "Relative Response [95% CI]", pos = 2, cex = 0.7)
+    #text(-13.5, -3.5, paste0("ne = ", l), cex = 0.6)
+    #text(-13.5, -2.5, paste0("ns = ", ns), cex = 0.6)
+    #dev.off()
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(reDF, Variable=="Stomatal conductance")
