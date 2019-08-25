@@ -82,7 +82,7 @@ assign_model_stats_and_forest_plot_advanced <- function(tDF, intDF, res, var.nam
     
     ### forest plot
     pdf(paste0("output/statistics_interaction/", var.name, ".pdf"),
-        height=12, width=9)
+        height=16, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-14, 4), 
            ylim = c(-3.5, l+3.5),
