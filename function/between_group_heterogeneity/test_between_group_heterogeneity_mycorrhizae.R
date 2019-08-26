@@ -5,11 +5,11 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     
     inDF$Mycorrhizae_2 <- as.factor(inDF$Mycorrhizae_2)
     
-    var.list <- c("Aboveground biomass", "Belowground biomass", 
+    var.list <- c("CO2 assimilation rate", "Leaf area", "Total root length",
+                  "Aboveground biomass", "Belowground biomass", 
                   "Total plant biomass",
                   "Leaf N concentration", "Root N concentration", 
-                  "Leaf P concentration", "Root P concentration", 
-                  "CO2 assimilation rate", "Leaf area", "LMA", "Total root length")
+                  "Leaf P concentration", "Root P concentration")
     
     ### generate a output dataframe
     sumDF <- data.frame(var.list, NA, NA, NA, #NA, NA, NA, NA,
@@ -34,7 +34,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
         
         
         res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
-                      mods = ~factor(Mycorrhizae_2)+Trt_LP_HP, data = subDF1)
+                      mods = ~factor(Mycorrhizae_2), data = subDF1)
         
         sumDF$Qm[sumDF$variable == i] <- res$QM
         sumDF$Qe[sumDF$variable == i] <- res$QE
@@ -63,7 +63,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     
     subDF1 <- subset(subDF1, v_variance >= 0.001)
     res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
-               mods = ~factor(Mycorrhizae_2)+Trt_LP_HP, data = subDF1)
+               mods = ~factor(Mycorrhizae_2), data = subDF1)
     
     sumDF$Qm[sumDF$variable == "Belowground biomass"] <- res$QM
     sumDF$Qe[sumDF$variable == "Belowground biomass"] <- res$QE
@@ -102,10 +102,10 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     
     for (i in var.list2) {
         subDF1 <- subset(inDF, Variable == i)
-        subDF1 <- subset(subDF1, variance_co2_aP >= 0.01)
+        subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
         
         res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
-                      mods = ~factor(Mycorrhizae_2)+Trt_LP_HP, 
+                      mods = ~factor(Mycorrhizae_2), 
                    data = subDF1)
         
         sumDF$Qm[sumDF$variable == i] <- res$QM
@@ -136,7 +136,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
-                  mods = ~factor(Vegetation_type)+Trt_LP_HP, 
+                  mods = ~factor(Vegetation_type), 
                   data = subDF1)
     
     sumDF$Qm[sumDF$variable == "Belowground biomass"] <- res$QM
@@ -184,7 +184,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
         subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
         
         res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
-                      mods = ~factor(Mycorrhizae_2)+Trt_LP_HP, 
+                      mods = ~factor(Mycorrhizae_2), 
                       data = subDF1)
         
         sumDF$Qm[sumDF$variable == i] <- res$QM
@@ -212,7 +212,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     i <- "Leaf area"
     subDF1 <- subset(inDF, Variable == i)
     res <- rma(log_co2_eP, variance_co2_eP, 
-               mods = ~factor(Vegetation_type)+Trt_LP_HP, data = subDF1)
+               mods = ~factor(Vegetation_type), data = subDF1)
     
     sumDF$Qm[sumDF$variable == i] <- res$QM
     sumDF$Qe[sumDF$variable == i] <- res$QE
@@ -240,7 +240,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
-                  mods = ~factor(Mycorrhizae_2)+Trt_LP_HP, 
+                  mods = ~factor(Mycorrhizae_2), 
                   data = subDF1)
     
     sumDF$Qm[sumDF$variable == "Belowground biomass"] <- res$QM
