@@ -683,7 +683,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 50))+
+        scale_x_continuous(limits=c(-50, 100))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=c("","",""),
                            sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 5.5, by=2),

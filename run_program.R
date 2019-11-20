@@ -39,7 +39,7 @@ generate_species_list()
 ### vegetation type
 ### CO2 and P treatment
 ### etc.
-#make_basic_summary_stats_plots()
+make_basic_summary_stats_plots()
 
 
 ############## Statistical analysis - metafor
