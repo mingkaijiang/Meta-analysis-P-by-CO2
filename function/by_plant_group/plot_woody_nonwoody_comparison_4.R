@@ -135,7 +135,7 @@ plot_woody_nonwoody_comparison_4 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
                                                colour ="black"))+
         scale_x_continuous(limits=c(-80, 80))+
         scale_y_continuous(breaks=c(2:3),
-                           labels=c("    BG", "AB"))+
+                           labels=c("    BG", "AG"))+
         scale_color_manual(name=paste("Vegetation group"),
                            limits=c("woody", "nonwoody"),
                            values=c("black", "grey"),
@@ -302,7 +302,7 @@ plot_woody_nonwoody_comparison_4 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
                                                colour ="black"))+
         scale_x_continuous(limits=c(-65, 150))+
         scale_y_continuous(breaks=c(2:3),
-                           labels=c("      BG", "AB"))+
+                           labels=c("      BG", "AG"))+
         scale_color_manual(name=paste("P treatment"),
                            limits=c("eP", "aP"),
                            values=c("grey", "black"),
@@ -341,7 +341,7 @@ plot_woody_nonwoody_comparison_4 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
                                                colour ="black"))+
         scale_x_continuous(limits=c(-65, 60))+
         scale_y_continuous(breaks=c(2:3),
-                           labels=c("BG", "AB"))+
+                           labels=c("BG", "AG"))+
         scale_color_manual(name=paste("P treatment"),
                            limits=c("eP", "aP"),
                            values=c("grey", "black"),
