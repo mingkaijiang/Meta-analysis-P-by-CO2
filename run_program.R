@@ -10,7 +10,7 @@ source("prepare.R")
 
 
 ############## check input files
-myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V6_HP_control.csv",strip.white=T)
+myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V7_HP_control.csv",strip.white=T)
 
 myDF <- as.data.frame(myDF)
 
@@ -54,6 +54,10 @@ median(reDF100$Trt_LP_HP)
 ##### a detailed summary table 
 generate_a_detailed_summary_table(reDF100)
 
+### process mycorrhizae types
+reDF100$Mycorrhizae_2 <- reDF100$Mycorrhizae
+reDF100$Mycorrhizae_2[reDF100$Mycorrhizae_2%in%c("ECM", "ECM-AM")] <- "ECM"
+reDF100$Mycorrhizae_2[reDF100$Mycorrhizae_2%in%c("NM-AM")] <- "AM"
 
 ##############
 ######## Interaction effect
@@ -209,12 +213,11 @@ plot_woody_nonwoody_comparison_4(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 #### statistics comparing woody and non-woody plants
 test_between_group_heterogeneity(reDF100)
+
+reDF100 <- reDF100[reDF100$Mycorrhizae_2 %in%c("ECM", "AM"),]
 test_between_group_heterogeneity_mycorrhizae(reDF100)
 
 #compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
-
-#### mycorrhizal associations
-test_woody_plants_mycorrhzial_effects(wdDF)
 
 
 #### plot a leaf N vs. leaf P concentration comparison
@@ -222,25 +225,4 @@ plot_leaf_N_P_concentration_comparison()
 
 
 
-############## Compare mycorrhizae groups
-test_plant_mycorrhizal_effect(reDF100)
-test_between_group_heterogeneity_mycorrhizae(reDF100)
-
-
-#### make predictions
-#metafor_statistics_gam_model(reDF100, intDF)
-#metafor_statistics_mixed_effect_model(reDF100, intDF)
-
-
-
-############## scenario illustration
-scenario_illustration_plot()
-
-scenario_illustration_plot_high_P()
-
-scenario_illustration_simplified_plot_high_P()
-
-
-### To do plan
-### gradient example using leaf biomass
-### mixed model prediction, split data variables, with gradient of P addition
+#### The end

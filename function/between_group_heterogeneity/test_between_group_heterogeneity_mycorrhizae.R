@@ -17,7 +17,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     
     colnames(sumDF) <- c("variable", "Qm", "Qm_pval", 
                          "Qe", "Qe_pval", #"R2", "tau2", "tau2_se", "I2", 
-                         "estimate", "se", "zval", "ci.lb", "ci.ub", "mycor_ne", "other_ne")
+                         "estimate", "se", "zval", "ci.lb", "ci.ub", "ecm_ne", "am_ne")
     
     
     
@@ -51,8 +51,8 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
         sumDF$zval[sumDF$variable == i] <- res$zval[2]
         sumDF$ci.lb[sumDF$variable == i] <- res$ci.lb[2]
         sumDF$ci.ub[sumDF$variable == i] <- res$ci.ub[2]
-        sumDF$mycor_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
-        sumDF$other_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="Other"])
+        sumDF$ecm_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
+        sumDF$am_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
         
         
     }
@@ -80,8 +80,8 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     sumDF$zval[sumDF$variable == "Belowground biomass"] <- res$zval[2]
     sumDF$ci.lb[sumDF$variable == "Belowground biomass"] <- res$ci.lb[2]
     sumDF$ci.ub[sumDF$variable == "Belowground biomass"] <- res$ci.ub[2]
-    sumDF$mycor_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
-    sumDF$other_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="Other"])
+    sumDF$ecm_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
+    sumDF$am_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
     write.csv(sumDF, "output/metafor_summary_plot/statistics_lp_effect_on_CO2_response_mycorrhizae.csv", row.names=F)
@@ -92,7 +92,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     
     colnames(sumDF) <- c("variable", "Qm", "Qm_pval", 
                          "Qe", "Qe_pval", #"R2", "tau2", "tau2_se", "I2", 
-                         "estimate", "se", "zval", "ci.lb", "ci.ub", "mycor_ne", "other_ne")
+                         "estimate", "se", "zval", "ci.lb", "ci.ub", "ecm_ne", "am_ne")
     
     var.list2 <- c("Aboveground biomass", 
                    "Total plant biomass", 
@@ -123,8 +123,8 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
         sumDF$zval[sumDF$variable == i] <- res$zval[2]
         sumDF$ci.lb[sumDF$variable == i] <- res$ci.lb[2]
         sumDF$ci.ub[sumDF$variable == i] <- res$ci.ub[2]
-        sumDF$mycor_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
-        sumDF$other_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="Other"])
+        sumDF$ecm_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
+        sumDF$am_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
         
         
     }
@@ -154,8 +154,8 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     sumDF$zval[sumDF$variable == "Belowground biomass"] <- res$zval[2]
     sumDF$ci.lb[sumDF$variable == "Belowground biomass"] <- res$ci.lb[2]
     sumDF$ci.ub[sumDF$variable == "Belowground biomass"] <- res$ci.ub[2]
-    sumDF$mycor_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
-    sumDF$other_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="Other"])
+    sumDF$ecm_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
+    sumDF$am_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
     
@@ -170,7 +170,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     
     colnames(sumDF) <- c("variable", "Qm", "Qm_pval", 
                          "Qe", "Qe_pval", #"R2", "tau2", "tau2_se", "I2", 
-                         "estimate", "se", "zval", "ci.lb", "ci.ub", "mycor_ne", "other_ne")
+                         "estimate", "se", "zval", "ci.lb", "ci.ub", "ecm_ne", "am_ne")
     
     var.list3 <- c("Aboveground biomass", 
                    "Total plant biomass", 
@@ -202,8 +202,8 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
         sumDF$zval[sumDF$variable == i] <- res$zval[2]
         sumDF$ci.lb[sumDF$variable == i] <- res$ci.lb[2]
         sumDF$ci.ub[sumDF$variable == i] <- res$ci.ub[2]
-        sumDF$mycor_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
-        sumDF$other_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="Other"])
+        sumDF$ecm_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
+        sumDF$am_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
         
         
     }
@@ -229,8 +229,8 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     sumDF$zval[sumDF$variable == i] <- res$zval[2]
     sumDF$ci.lb[sumDF$variable == i] <- res$ci.lb[2]
     sumDF$ci.ub[sumDF$variable == i] <- res$ci.ub[2]
-    sumDF$mycor_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
-    sumDF$other_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="Other"])
+    sumDF$ecm_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
+    sumDF$am_ne[sumDF$variable == i] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
     ### root biomass
@@ -254,8 +254,8 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     sumDF$zval[sumDF$variable == "Belowground biomass"] <- res$zval[2]
     sumDF$ci.lb[sumDF$variable == "Belowground biomass"] <- res$ci.lb[2]
     sumDF$ci.ub[sumDF$variable == "Belowground biomass"] <- res$ci.ub[2]
-    sumDF$mycor_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
-    sumDF$other_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="Other"])
+    sumDF$ecm_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="ECM"])
+    sumDF$am_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
     write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_HP_mycorrhizae.csv", row.names=F)
