@@ -40,8 +40,12 @@ make_basic_summary_stats_plots <- function() {
         ylab("Data entry count")+
         xlab(expression(paste(eCO[2], " (ppm)")))
     
+    med <- median(test$Trt_eC_by_aC, na.rm=T)
+    mea <- mean(test$Trt_eC_by_aC, na.rm=T)
+    
     p3 <- ggplot()+
         geom_histogram(data=test, aes(Trt_eC_by_aC), binwidth=0.1)+
+        geom_vline(xintercept=med)+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -56,8 +60,14 @@ make_basic_summary_stats_plots <- function() {
         ylab("Data entry count")+
         xlab(expression(paste(eCO[2], " / ", aCO[2])))
     
+    test$LP_HP <- test$Trt_aP / test$Trt_eP
+    
+    med <- median(test$LP_HP, na.rm=T)
+    mea <- mean(test$LP_HP, na.rm=T)
+    
     p4 <- ggplot()+
-        geom_histogram(data=test, aes(Trt_eP_by_aP), binwidth=25)+
+        geom_histogram(data=test, aes(LP_HP), binwidth=0.02)+
+        geom_vline(xintercept=med)+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -70,9 +80,8 @@ make_basic_summary_stats_plots <- function() {
               legend.position="bottom",
               legend.text.align=0)+
         ylab("Data entry count")+
-        xlab("HP / LP")
+        xlab("LP / HP")
     
-
     ### summary histgram of treatments
     pdf("output/basic_summary/summary_basic_treatment.pdf", width=8, height=8)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")

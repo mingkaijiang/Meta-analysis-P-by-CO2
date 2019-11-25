@@ -164,8 +164,11 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                 "root_biomass"="BG",
                 "aboveground_biomass"="AG")
     
-    y2.lab1 <- c(bquote(n[e]==.(plotDF1$ne[3])),
+    y2.lab1 <- c(bquote(n[s]==.(plotDF1$ns[3])),
+                 bquote(n[e]==.(plotDF1$ne[3])),
+                 bquote(n[s]==.(plotDF1$ns[2])),
                  bquote(n[e]==.(plotDF1$ne[2])),
+                 bquote(n[s]==.(plotDF1$ns[1])),
                  bquote(n[e]==.(plotDF1$ne[1])))
     
     y.lab2 <- c("total_P_concentration"="Total",
@@ -173,9 +176,13 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                 "stem_P_concentration"="Stem",
                 "leaf_P_concentration"="Leaf")
     
-    y2.lab2 <- c(bquote(n[e]==.(plotDF2$ne[4])),
+    y2.lab2 <- c(bquote(n[s]==.(plotDF2$ns[4])),
+                 bquote(n[e]==.(plotDF2$ne[4])),
+                 bquote(n[s]==.(plotDF2$ns[3])),
                  bquote(n[e]==.(plotDF2$ne[3])),
+                 bquote(n[s]==.(plotDF2$ns[2])),
                  bquote(n[e]==.(plotDF2$ne[2])),
+                 bquote(n[s]==.(plotDF2$ns[1])),
                  bquote(n[e]==.(plotDF2$ne[1])))
     
     y.lab3 <- c("total_N_concentration"="Total",
@@ -183,9 +190,13 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                 "stem_N_concentration"="Stem",
                 "leaf_N_concentration"="Leaf")
     
-    y2.lab3 <- c(bquote(n[e]==.(plotDF3$ne[4])),
+    y2.lab3 <- c(bquote(n[s]==.(plotDF3$ns[4])),
+                 bquote(n[e]==.(plotDF3$ne[4])),
+                 bquote(n[s]==.(plotDF3$ns[3])),
                  bquote(n[e]==.(plotDF3$ne[3])),
+                 bquote(n[s]==.(plotDF3$ns[2])),
                  bquote(n[e]==.(plotDF3$ne[2])),
+                 bquote(n[s]==.(plotDF3$ns[1])),
                  bquote(n[e]==.(plotDF3$ne[1])))
     
     y.lab4 <- c("total_NP"="Total",
@@ -193,9 +204,13 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                 "stem_NP"="Stem",
                 "leaf_NP"="Leaf")
     
-    y2.lab4 <- c(bquote(n[e]==.(plotDF4$ne[4])),
+    y2.lab4 <- c(bquote(n[s]==.(plotDF4$ns[4])),
+                 bquote(n[e]==.(plotDF4$ne[4])),
+                 bquote(n[s]==.(plotDF4$ns[3])),
                  bquote(n[e]==.(plotDF4$ne[3])),
+                 bquote(n[s]==.(plotDF4$ns[2])),
                  bquote(n[e]==.(plotDF4$ne[2])),
+                 bquote(n[s]==.(plotDF4$ns[1])),
                  bquote(n[e]==.(plotDF4$ne[1])))
     
     y.lab5 <- c("total_P_content"="Total",
@@ -203,9 +218,13 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                 "stem_P_content"="Stem",
                 "leaf_P_content"="Leaf")
     
-    y2.lab5 <- c(bquote(n[e]==.(plotDF5$ne[4])),
+    y2.lab5 <- c(bquote(n[s]==.(plotDF5$ns[4])),
+                 bquote(n[e]==.(plotDF5$ne[4])),
+                 bquote(n[s]==.(plotDF5$ns[3])),
                  bquote(n[e]==.(plotDF5$ne[3])),
+                 bquote(n[s]==.(plotDF5$ns[2])),
                  bquote(n[e]==.(plotDF5$ne[2])),
+                 bquote(n[s]==.(plotDF5$ns[1])),
                  bquote(n[e]==.(plotDF5$ne[1])))
     
     y.lab6 <- c("total_N_content"="Total",
@@ -213,9 +232,13 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                 "stem_N_content"="Stem",
                 "leaf_N_content"="Leaf")
     
-    y2.lab6 <- c(bquote(n[e]==.(plotDF6$ne[4])),
+    y2.lab6 <- c(bquote(n[s]==.(plotDF6$ns[4])),
+                 bquote(n[e]==.(plotDF6$ne[4])),
+                 bquote(n[s]==.(plotDF6$ns[3])),
                  bquote(n[e]==.(plotDF6$ne[3])),
+                 bquote(n[s]==.(plotDF6$ns[2])),
                  bquote(n[e]==.(plotDF6$ne[2])),
+                 bquote(n[s]==.(plotDF6$ns[1])),
                  bquote(n[e]==.(plotDF6$ne[1])))
     
     
@@ -223,22 +246,29 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                 "stomatal_conductance"=expression(g[s]),
                 "CO2_assimilation_rate"="A")
     
-    y2.lab7 <- c(bquote(n[e]==.(plotDF7$ne[3])),
+    y2.lab7 <- c(bquote(n[s]==.(plotDF7$ns[3])),
+                 bquote(n[e]==.(plotDF7$ne[3])),
+                 bquote(n[s]==.(plotDF7$ns[2])),
                  bquote(n[e]==.(plotDF7$ne[2])),
+                 bquote(n[s]==.(plotDF7$ns[1])),
                  bquote(n[e]==.(plotDF7$ne[1])))
     
     
     y.lab8 <- c("P_uptake"=expression(P[upt]),
                 "N_uptake"=expression(N[upt]))
     
-    y2.lab8 <- c(bquote(n[e]==.(plotDF8$ne[2])),
+    y2.lab8 <- c(bquote(n[s]==.(plotDF8$ns[2])),
+                 bquote(n[e]==.(plotDF8$ne[2])),
+                 bquote(n[s]==.(plotDF8$ns[1])),
                  bquote(n[e]==.(plotDF8$ne[1])))
     
     
     y.lab9 <- c("PUE"="PUE",
                 "NUE"="NUE")
     
-    y2.lab9 <- c(bquote(n[e]==.(plotDF9$ne[2])),
+    y2.lab9 <- c(bquote(n[s]==.(plotDF9$ns[2])),
+                 bquote(n[e]==.(plotDF9$ne[2])),
+                 bquote(n[s]==.(plotDF9$ns[1])),
                  bquote(n[e]==.(plotDF9$ne[1])))
     
     
@@ -247,8 +277,11 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
                  "leaf_area"="LA")
                 
     
-    y2.lab10 <- c(bquote(n[e]==.(plotDF10$ne[3])),
+    y2.lab10 <- c(bquote(n[s]==.(plotDF10$ns[3])),
+                  bquote(n[e]==.(plotDF10$ne[3])),
+                  bquote(n[s]==.(plotDF10$ns[2])),
                   bquote(n[e]==.(plotDF10$ne[2])),
+                  bquote(n[s]==.(plotDF10$ns[1])),
                   bquote(n[e]==.(plotDF10$ne[1])))
     
 
@@ -349,7 +382,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-50, 25))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=c("","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5,5.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7),
                                                labels = y2.lab1))+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
@@ -361,7 +394,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    
+
     pdf("output/metafor_summary_plot/Figure2_biomass_responses.pdf", width=14, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
@@ -461,7 +494,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-40, 60))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7, 7.3, 7.7),
                                                labels = y2.lab2))+
         scale_shape_manual(name=expression(paste("LP x ", eCO[2])),
                            values=c(22, 23, 24),
@@ -568,7 +601,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-40, 60))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7, 7.3, 7.7),
                                                labels = y2.lab3))+
         scale_shape_manual(name=expression(paste("LP x ", eCO[2])),
                            breaks=c("pos", "neg", "neutral"),
@@ -686,7 +719,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-50, 100))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=c("","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 5.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7),
                                                labels = y2.lab7))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -803,7 +836,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-30, 30))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=c("","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 5.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7),
                                                labels = y2.lab10))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -920,7 +953,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-30, 40))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=c("",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 3.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7),
                                                labels = y2.lab8))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -1035,7 +1068,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-100, 110))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7, 7.3, 7.7),
                                                labels = y2.lab5))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -1141,7 +1174,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-100, 110))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7, 7.3, 7.7),
                                                labels = y2.lab6))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -1249,7 +1282,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-100, 110))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=c("",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 3.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7),
                                                labels = y2.lab9))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
@@ -1357,7 +1390,7 @@ make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
         scale_x_continuous(limits=c(-100, 110))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=c("","","",""),
-                           sec.axis = sec_axis(~., name = "", breaks=seq(1.5, 7.5, by=2),
+                           sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7, 7.3, 7.7),
                                                labels = y2.lab4))+
         scale_color_manual(name=paste("CIs"),
                            limits=c("pos", "neg", "neutral"),
