@@ -217,6 +217,10 @@ test_between_group_heterogeneity(reDF100)
 reDF100 <- reDF100[reDF100$Mycorrhizae_2 %in%c("ECM", "AM"),]
 test_between_group_heterogeneity_mycorrhizae(reDF100)
 
+test_between_group_heterogeneity_mycorrhizae_woody_nonwoody(reDF100)
+
+
+
 #compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
 
 
