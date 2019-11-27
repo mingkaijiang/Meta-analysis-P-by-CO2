@@ -111,7 +111,7 @@ make_basic_summary_stats_plots <- function() {
         ylab("Data entry count")+
         scale_x_discrete(name="Category",
                          breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
-                                   "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency", "Other"))
+                                   "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency"))
     
     #### summary of vegetation types
     p2 <- ggplot()+
@@ -151,7 +151,7 @@ make_basic_summary_stats_plots <- function() {
         ylab("Study count")+
         scale_x_discrete(name="Category",
                          breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
-                                   "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency", "Other"))
+                                   "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency"))
     
     #### summary of vegetation types
     p4 <- ggplot()+
