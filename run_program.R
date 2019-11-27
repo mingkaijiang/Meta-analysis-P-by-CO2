@@ -214,9 +214,12 @@ plot_woody_nonwoody_comparison_4(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 #### statistics comparing woody and non-woody plants
 test_between_group_heterogeneity(reDF100)
 
+
+#### statistics comparing ECM and AM plants
 reDF100 <- reDF100[reDF100$Mycorrhizae_2 %in%c("ECM", "AM"),]
 test_between_group_heterogeneity_mycorrhizae(reDF100)
 
+#### statistics comparing woody vs nonwoody of AM plants
 test_between_group_heterogeneity_mycorrhizae_woody_nonwoody(reDF100)
 
 
