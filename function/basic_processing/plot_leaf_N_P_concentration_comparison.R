@@ -68,15 +68,15 @@ plot_leaf_N_P_concentration_comparison <- function() {
         annotate(geom="text", x=7.5, y=0.32, label="1:20 line",
                  color="black", size=10)+
         geom_point(data=inDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, color = as.factor(Vegetation_type)), 
-                   size=6, shape=21)+
+                   size=6, shape=21, alpha=0.2)+
         geom_point(data=inDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, fill = as.factor(Vegetation_type)), 
-                   size=6, shape=21, color="black")+
+                   size=6, shape=21, color="black", alpha=0.2)+
         geom_line(data=inDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, group=as.factor(Group)),
-                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"))+
+                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"), alpha=0.2)+
         geom_point(data=aggDF, mapping=aes(x=Leaf_N_eP.mean, y=Leaf_P_eP.mean), 
                    size = 5, shape=22, color="black", fill="grey")+
         geom_line(data=aggDF, mapping=aes(x=Leaf_N_eP.mean, y=Leaf_P_eP.mean), size=2,
-                  arrow = arrow(length=unit(0.50,"cm"), ends="first", type = "closed"))+
+                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"))+
         geom_segment(aes(x=aggDF$Leaf_N_eP.mean[aggDF$CO2_trt=="aC"], xend = aggDF$Leaf_N_eP.mean[aggDF$CO2_trt=="aC"],
                          y=leafp.eP.aC.pos, yend=leafp.eP.aC.neg), lwd=1)+
         geom_segment(aes(x=aggDF$Leaf_N_eP.mean[aggDF$CO2_trt=="eC"], xend = aggDF$Leaf_N_eP.mean[aggDF$CO2_trt=="eC"],
@@ -124,15 +124,15 @@ plot_leaf_N_P_concentration_comparison <- function() {
         annotate(geom="text", x=7.0, y=0.35, label="1:20 line",
                  color="black", size=10)+
         geom_point(data=inDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, color = as.factor(Vegetation_type)), 
-                   size=6, shape=21)+
+                   size=6, shape=21, alpha=0.2)+
         geom_point(data=inDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, fill = as.factor(Vegetation_type)), 
-                   size=6, shape=21, color="black")+
+                   size=6, shape=21, color="black", alpha=0.2)+
         geom_line(data=inDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, group=as.factor(Group)),
-                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"))+
+                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"), alpha=0.2)+
         geom_point(data=aggDF, mapping=aes(x=Leaf_N_aP.mean, y=Leaf_P_aP.mean), 
                    size = 5, shape=22, color="black", fill="grey")+
         geom_line(data=aggDF, mapping=aes(x=Leaf_N_aP.mean, y=Leaf_P_aP.mean), size=2,
-                  arrow = arrow(length=unit(0.50,"cm"), ends="first", type = "closed"))+
+                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"))+
         geom_segment(aes(x=aggDF$Leaf_N_aP.mean[aggDF$CO2_trt=="aC"], xend = aggDF$Leaf_N_aP.mean[aggDF$CO2_trt=="aC"],
                          y=leafp.aP.aC.pos, yend=leafp.aP.aC.neg), lwd=1)+
         geom_segment(aes(x=aggDF$Leaf_N_aP.mean[aggDF$CO2_trt=="eC"], xend = aggDF$Leaf_N_aP.mean[aggDF$CO2_trt=="eC"],
@@ -172,7 +172,7 @@ plot_leaf_N_P_concentration_comparison <- function() {
     
     #plot(p2)
     
-    pdf("output/metafor_summary_plot/Figure_S3_Leaf_N_P_concentration.pdf", width=8, height=12)
+    pdf("output/metafor_summary_plot/Figure_S3_Leaf_N_P_concentration.pdf", width=10, height=12)
     plot_grid(p1, p2,
               #rel_widths=c(0.5, 1, 1, 0.9),
               rel_heights=c(1,1.4),
