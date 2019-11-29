@@ -134,7 +134,7 @@ write.csv(reDF100, "output/metafor_summary_plot/reprocessed_input_data.csv", row
 
 
 #### this is the plot script used for main text
-make_split_interaction_effect_chart_6(sumDF, sumDF2, intDF)
+make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
 
 
 ##############

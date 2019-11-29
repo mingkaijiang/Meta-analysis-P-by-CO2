@@ -1,6 +1,6 @@
 ### This script plot bar chart for all significant response ratio means and confidence interval
 
-make_split_interaction_effect_chart_6 <- function(sumDF, sumDF2, intDF) {
+make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
     
     ###this script include nutrient ratio
     
