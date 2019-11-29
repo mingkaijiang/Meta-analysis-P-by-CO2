@@ -277,7 +277,8 @@ make_split_interaction_effect_chart_color <- function(sumDF, sumDF2, intDF) {
     ### color pallete
     require(RColorBrewer)
     col.list <- brewer.pal(n=8, name="Set2")
-
+    col.list2 <- brewer.pal(n=9, name="Set1")
+    
     
     ### plotting
     p1a <- ggplot(plotDF1a)+ 
@@ -379,7 +380,7 @@ make_split_interaction_effect_chart_color <- function(sumDF, sumDF2, intDF) {
                                                labels = y2.lab1))+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
-                          values=c("black", "grey", "white"),
+                          values=c(col.list2[3],col.list2[1], col.list2[9]),
                           labels=c("Positive", "Negative", "Neutral"))+
         scale_shape_manual(name=expression(paste("LP x ", eCO[2])),
                           values=c("pos"=22, "neg"=23, "neutral"=24),
@@ -494,7 +495,7 @@ make_split_interaction_effect_chart_color <- function(sumDF, sumDF2, intDF) {
                            labels=c("Positive", "Negative", "Neutral"))+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
-                          values=c("black", "grey", "white"),
+                          values=c(col.list2[3],col.list2[1], col.list2[9]),
                           labels=c("Positive", "Negative", "Neutral"))+
         ggtitle("c")
     
@@ -603,7 +604,7 @@ make_split_interaction_effect_chart_color <- function(sumDF, sumDF2, intDF) {
         ggtitle("f")+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
-                          values=c("black", "grey", "white"),
+                          values=c(col.list2[3],col.list2[1], col.list2[9]),
                           labels=c("Positive", "Negative", "Neutral"))+
         guides(fill = guide_legend(title.position = "top"))
     
@@ -721,7 +722,7 @@ make_split_interaction_effect_chart_color <- function(sumDF, sumDF2, intDF) {
                            guide = FALSE)+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
-                          values=c("black", "grey", "white"),
+                          values=c(col.list2[3],col.list2[1], col.list2[9]),
                           labels=c("Positive", "Negative", "Neutral"))+
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
@@ -838,7 +839,7 @@ make_split_interaction_effect_chart_color <- function(sumDF, sumDF2, intDF) {
                            guide = FALSE)+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
-                          values=c("black", "grey", "white"),
+                          values=c(col.list2[3],col.list2[1], col.list2[9]),
                           labels=c("Positive", "Negative", "Neutral"))+
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
@@ -955,7 +956,7 @@ make_split_interaction_effect_chart_color <- function(sumDF, sumDF2, intDF) {
                            guide = FALSE)+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
-                          values=c("black", "grey", "white"),
+                          values=c(col.list2[3],col.list2[1], col.list2[9]),
                           labels=c("Positive", "Negative", "Neutral"))+
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
