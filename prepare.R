@@ -3,6 +3,11 @@ if(!dir.exists("output")) {
     dir.create("output", showWarnings = FALSE)
 }
 
+
+if(!dir.exists("output/step1")) {
+    dir.create("output/step1", showWarnings = FALSE)
+}
+
 #### Install packages
 if(!require(pacman))install.packages("pacman")
 pacman::p_load(doBy, 
@@ -43,6 +48,7 @@ for(z8 in source_per_study_scripts)source(z8)
 source_heterogeneity_scripts <- dir("function/between_group_heterogeneity", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
 for(z9 in source_heterogeneity_scripts)source(z9)
 
-
+source_step1 <- dir("function/step1", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
+for(z1 in source_step1)source(z1)
 
 

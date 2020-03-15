@@ -1,15 +1,9 @@
-make_basic_summary_stats_plots <- function() {
-    ### This function processes the dataframe with some basic summaries
-    if(!dir.exists("output/basic_summary")) {
-        dir.create("output/basic_summary", showWarnings = FALSE)
-    }
-    
-    test <- subDF100
-    
+make_basic_summary_stats_plots <- function(inDF) {
+
     #### Summary of treatment
     
     p1 <- ggplot()+
-        geom_histogram(data=test, aes(Trt_aCO2), binwidth=25)+
+        geom_histogram(data=inDF, aes(Trt_aCO2), binwidth=25)+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -25,7 +19,7 @@ make_basic_summary_stats_plots <- function() {
         xlab(expression(paste(aCO[2], " (ppm)")))
     
     p2 <- ggplot()+
-        geom_histogram(data=test, aes(Trt_eCO2), binwidth=25)+
+        geom_histogram(data=inDF, aes(Trt_eCO2), binwidth=25)+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=14), 
@@ -40,11 +34,11 @@ make_basic_summary_stats_plots <- function() {
         ylab("Data entry count")+
         xlab(expression(paste(eCO[2], " (ppm)")))
     
-    med <- median(test$Trt_eC_by_aC, na.rm=T)
-    mea <- mean(test$Trt_eC_by_aC, na.rm=T)
+    med <- median(inDF$Trt_eC_by_aC, na.rm=T)
+    mea <- mean(inDF$Trt_eC_by_aC, na.rm=T)
     
     p3 <- ggplot()+
-        geom_histogram(data=test, aes(Trt_eC_by_aC), binwidth=0.1)+
+        geom_histogram(data=inDF, aes(Trt_eC_by_aC), binwidth=0.1)+
         geom_vline(xintercept=med)+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
@@ -60,13 +54,13 @@ make_basic_summary_stats_plots <- function() {
         ylab("Data entry count")+
         xlab(expression(paste(eCO[2], " / ", aCO[2])))
     
-    test$LP_HP <- test$Trt_aP / test$Trt_eP
+    inDF$LP_HP <- inDF$Trt_aP / inDF$Trt_eP
     
-    med <- median(test$LP_HP, na.rm=T)
-    mea <- mean(test$LP_HP, na.rm=T)
+    med <- median(inDF$LP_HP, na.rm=T)
+    mea <- mean(inDF$LP_HP, na.rm=T)
     
     p4 <- ggplot()+
-        geom_histogram(data=test, aes(LP_HP), binwidth=0.02)+
+        geom_histogram(data=inDF, aes(LP_HP), binwidth=0.02)+
         geom_vline(xintercept=med)+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
@@ -83,7 +77,7 @@ make_basic_summary_stats_plots <- function() {
         xlab("LP / HP")
     
     ### summary histgram of treatments
-    pdf("output/basic_summary/summary_basic_treatment.pdf", width=8, height=8)
+    pdf("output/step1/summary_basic_treatment.pdf", width=8, height=8)
     grid.labs <- c("(a)", "(b)", "(c)", "(d)")
     
     plot_grid(p1, p2, p3, p4,
@@ -96,7 +90,7 @@ make_basic_summary_stats_plots <- function() {
     
     #### summary of variables
     p1 <- ggplot()+
-        geom_bar(data=test, aes(Category),stat="count")+
+        geom_bar(data=inDF, aes(Category),stat="count")+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -115,7 +109,7 @@ make_basic_summary_stats_plots <- function() {
     
     #### summary of vegetation types
     p2 <- ggplot()+
-        geom_bar(data=test, aes(Vegetation_type),stat="count")+
+        geom_bar(data=inDF, aes(Vegetation_type),stat="count")+
         theme_linedraw() +
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
@@ -132,8 +126,8 @@ make_basic_summary_stats_plots <- function() {
                          breaks=c( "Woody", "Nonwoody"),
                          labels=c(  "Woody", "Nonwoody"))
     
-    catDF <- unique(test[c("Literature", "Category")])
-    vegDF <- unique(test[c("Literature", "Vegetation_type")])
+    catDF <- unique(inDF[c("Literature", "Category")])
+    vegDF <- unique(inDF[c("Literature", "Vegetation_type")])
     
     p3 <- ggplot()+
         geom_bar(data=catDF, aes(Category),stat="count")+
@@ -173,7 +167,7 @@ make_basic_summary_stats_plots <- function() {
                          labels=c(  "Woody", "Nonwoody"))
     
     
-    pdf("output/basic_summary/summary_data_variable.pdf", width=12, height=8)
+    pdf("output/step1/summary_data_variable.pdf", width=12, height=8)
     plot_grid(p1, p2, p3, p4,
               labels="", ncol=2, align="v", axis = "l",
               rel_heights = c(0.8, 0.8, 1.6, 1.6))
@@ -182,7 +176,7 @@ make_basic_summary_stats_plots <- function() {
               gp=gpar(fontsize=16, col="black", fontface="bold"))
     dev.off()
     
-    catDF <- unique(test[c("Literature", "Category", "Vegetation_type")])
+    catDF <- unique(inDF[c("Literature", "Category", "Vegetation_type")])
     
     p1 <- ggplot()+
         geom_bar(data=catDF, aes(Category, fill=Vegetation_type),stat="count")+
@@ -204,7 +198,7 @@ make_basic_summary_stats_plots <- function() {
         scale_fill_discrete(name="Vegetation type")+
         theme(legend.justification=c(0,1), legend.position=c(0.65,0.9))
         
-    pdf("output/basic_summary/data_summary_study_count_vegetation_category.pdf")
+    pdf("output/step1/data_summary_study_count_vegetation_category.pdf")
     plot(p1)
     dev.off()
     

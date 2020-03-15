@@ -1,45 +1,46 @@
-##### Script to process raw data on P by CO2 literature 
+#################################################################################
+##### Meta-analysis of P x CO2 interaction
 ##### Author: Mingkai Jiang
+##### Code structure
+##### 0. Prepare
+##### 1. Clean data
+##### 2. 
 
-#### clear wk space
+
+
+#################################################################################
+###### Step 0: prepare the necessary code and packages
+### clear wk space
 rm(list=ls(all=TRUE))
 
-################################# Master script ################################# 
-############## source
+### source
 source("prepare.R")
 
 
-############## check input files
+#################################################################################
+###### Step 1: read in input file and prepare it
+### read input files
 myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V7_HP_control.csv",strip.white=T)
-
-myDF <- as.data.frame(myDF)
 
 
 ### recalculate all the mean effect size
-myDF <- make_mean_effect_size_recalculation(inDF=myDF)
-
 ### make consistent standard error confidence intervals
-myDF <- make_consistent_confidence_interval(inDF=myDF, return.option="all_se")
+### check ratio of CO2 and P treatment
+### exclude data not needed
+myDF <- make_step1_basic_processing(inDF=myDF)
 
-### check ratio of CO2 treatment
-myDF$Trt_eC_by_aC <- myDF$Trt_eCO2/myDF$Trt_aCO2
+### generate species list
+### come back point: to make count statistics!!!
+generate_species_list(inDF=myDF)
 
-### check P treatment
-myDF$Trt_eP_by_aP <- myDF$Trt_eP / myDF$Trt_aP
-
-############## Exclude some extremely high P addition experiment
-subDF100 <- subset(myDF, Trt_aCO2 < 410)
-
-#### generate species list
-generate_species_list()
-
-############## Basic statistics that summarize 
+### Basic statistics that summarize 
 ### number of studies
 ### number of data entries
 ### vegetation type
 ### CO2 and P treatment
-### etc.
-make_basic_summary_stats_plots()
+### need to go into function and plot
+### come back point: to make nicer plots!!!!
+make_basic_summary_stats_plots(inDF=myDF)
 
 
 ############## Statistical analysis - metafor
