@@ -1,9 +1,7 @@
-test_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(reDF100) {
+test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(subDF) {
     
     ### 
-    #inDF <- reDF100[reDF100$Mycorrhizae=="AM",]
-    
-    inDF <- reDF100[reDF100$Mycorrhizae_2=="AM",]
+    inDF <- subDF[subDF$Mycorrhizae_2=="AM",]
 
     var.list <- c("Aboveground biomass", "Belowground biomass", 
                   "Total plant biomass", "Plant biomass")
@@ -94,7 +92,7 @@ test_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(reDF100)
     sumDF$wd_ne[sumDF$variable == "Plant biomass"] <- length(subDF1$Literature[subDF1$Vegetation_type=="Woody"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_lp_effect_on_CO2_response_am.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_lp_effect_on_CO2_response_am.csv", row.names=F)
     
     ####### CO2 effect under LP treatment
     sumDF <- data.frame(var.list, NA, NA, NA, 
@@ -179,7 +177,7 @@ test_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(reDF100)
     sumDF$wd_ne[sumDF$variable == "Plant biomass"] <- length(subDF1$Literature[subDF1$Vegetation_type=="Woody"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_LP_am.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_CO2_effect_under_LP_am.csv", row.names=F)
     
     
     
@@ -273,13 +271,13 @@ test_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(reDF100)
     sumDF$wd_ne[sumDF$variable == "Plant biomass"] <- length(subDF1$Literature[subDF1$Vegetation_type=="Woody"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_HP_am.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_CO2_effect_under_HP_am.csv", row.names=F)
     
     
     
     
     ### 
-    inDF <- reDF100[reDF100$Vegetation_type=="Woody",]
+    inDF <- subDF[subDF$Vegetation_type=="Woody",]
 
     var.list <- c("Aboveground biomass", "Belowground biomass", 
                   "Total plant biomass", "Plant biomass")
@@ -369,7 +367,7 @@ test_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(reDF100)
     sumDF$am_ne[sumDF$variable == "Plant biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_lp_effect_on_CO2_response_woody.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_lp_effect_on_CO2_response_woody.csv", row.names=F)
     
     ####### CO2 effect under LP treatment
     sumDF <- data.frame(var.list, NA, NA, NA, 
@@ -455,7 +453,7 @@ test_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(reDF100)
     sumDF$am_ne[sumDF$variable == "Plant biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_LP_woody.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_CO2_effect_under_LP_woody.csv", row.names=F)
     
     
     
@@ -549,6 +547,6 @@ test_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(reDF100)
     sumDF$am_ne[sumDF$variable == "Plant biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_HP_woody.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_CO2_effect_under_HP_woody.csv", row.names=F)
     
 }

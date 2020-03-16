@@ -1,4 +1,4 @@
-plot_woody_nonwoody_comparison_4 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd) {
+make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd) {
     
     ### assign PFT
     intDF.wd$PFT <- "woody"
@@ -21,8 +21,8 @@ plot_woody_nonwoody_comparison_4 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
     sumDF4$CO2_effect <- sumDF4$CO2_effect_pct
     
     
-    write.csv(sumDF4, "output/metafor_summary_plot/co2_effect_woody_nonwoody.csv", row.names=F)
-    write.csv(intDF4, "output/metafor_summary_plot/lp_effect_on_co2_response_woody_nonwoody.csv", row.names=F)
+    write.csv(sumDF4, "output/step3/co2_effect_woody_nonwoody.csv", row.names=F)
+    write.csv(intDF4, "output/step3/lp_effect_on_co2_response_woody_nonwoody.csv", row.names=F)
     
     ### arrange plot order
     intDF4$id <- c(1.8, 0, 0, 4.8, 2.8, 3.8, 0, 0, 5.8, 7.8, 6.8, 8.8, 0.8, 9.8, 0, 10.8, 11.8,
@@ -191,7 +191,7 @@ plot_woody_nonwoody_comparison_4 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
     
     #plot(p1c)
     
-    pdf("output/metafor_summary_plot/Figure7_woody_nonwoody_comparison_LP_effect_on_eCO2_response.pdf", 
+    pdf("output/step3/Figure7_woody_nonwoody_comparison_LP_effect_on_eCO2_response.pdf", 
         width=8, height=12)
     plot_grid(p1a, p1b, p1c,
               #rel_widths=c(0.5, 1, 1, 0.9),
@@ -436,7 +436,7 @@ plot_woody_nonwoody_comparison_4 <- function(intDF.wd, intDF.nwd, sumDF.wd, sumD
     
     #plot(p2f)
     
-    pdf("output/metafor_summary_plot/Figure6_woody_nonwoody_comparison_eCO2_effect.pdf", 
+    pdf("output/step3/Figure6_woody_nonwoody_comparison_eCO2_effect.pdf", 
         width=10, height=14)
     plot_grid(p2a, p2b, 
               p2c, p2d,

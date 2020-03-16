@@ -1,8 +1,7 @@
-test_between_group_heterogeneity <- function(reDF100) {
+test_step3_between_group_heterogeneity <- function(inDF) {
     
     ### 
-    inDF <- reDF100
-    
+
     var.list <- c("CO2 assimilation rate", "Leaf area", "Total root length",
                   "Aboveground biomass", "Belowground biomass", 
                   "Total plant biomass",
@@ -82,7 +81,7 @@ test_between_group_heterogeneity <- function(reDF100) {
     sumDF$nonwoody_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Vegetation_type=="Nonwoody"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_lp_effect_on_CO2_response_woody_nonwoody.csv", row.names=F)
+    write.csv(sumDF, "output/step3/statistics_lp_effect_on_CO2_response_woody_nonwoody.csv", row.names=F)
     
     
     ####### CO2 effect under LP treatment
@@ -160,7 +159,7 @@ test_between_group_heterogeneity <- function(reDF100) {
     
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_LP_woody_nonwoody.csv", row.names=F)
+    write.csv(sumDF, "output/step3/statistics_CO2_effect_under_LP_woody_nonwoody.csv", row.names=F)
     
     
     
@@ -258,7 +257,7 @@ test_between_group_heterogeneity <- function(reDF100) {
     sumDF$nonwoody_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Vegetation_type=="Nonwoody"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_HP_woody_nonwoody.csv", row.names=F)
+    write.csv(sumDF, "output/step3/statistics_CO2_effect_under_HP_woody_nonwoody.csv", row.names=F)
     
     
 }

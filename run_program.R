@@ -113,7 +113,7 @@ write.csv(sumDF, "output/step2/co2_effect_all.csv", row.names=F)
 
 ### make summary plots of the interaction and individual responses 
 ### main text figure
-### go into function to plot
+### go into function to plot!!!
 make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
 
 
@@ -168,28 +168,22 @@ intDF.nwd$se_pct <- (exp(intDF.nwd$se) - 1) * 100
 intDF.nwd$ci_lb_pct <- (exp(intDF.nwd$ci_lb) - 1) * 100
 intDF.nwd$ci_ub_pct <- (exp(intDF.nwd$ci_ub) - 1) * 100
 
+### statistics comparing woody and non-woody plants
+test_step3_between_group_heterogeneity(inDF=myDF)
+
+### plot woody and nonwoody comparison
+### go into function to plot!!!
+make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 
-
-#### plot woody and nonwoody comparison
-#plot_woody_nonwoody_comparison(intDF2, intDF3, sumDF2, sumDF3)
-#plot_woody_nonwoody_comparison_2(intDF2, intDF3, sumDF2, sumDF3)
-plot_woody_nonwoody_comparison_4(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
-
-
-
-
-
-#### statistics comparing woody and non-woody plants
-test_between_group_heterogeneity(reDF100)
-
-
+#################################################################################
+##### Step 4. Mycorrhizal comparison
 #### statistics comparing ECM and AM plants
-reDF100 <- reDF100[reDF100$Mycorrhizae_2 %in%c("ECM", "AM"),]
-test_between_group_heterogeneity_mycorrhizae(reDF100)
+mycoDF <- myDF[myDF$Mycorrhizae_2 %in%c("ECM", "AM"),]
+test_step4_between_group_heterogeneity_mycorrhizae(inDF=mycoDF)
 
 #### statistics comparing woody vs nonwoody of AM plants
-test_between_group_heterogeneity_mycorrhizae_woody_nonwoody(reDF100)
+test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody(subDF=mycoDF)
 
 
 

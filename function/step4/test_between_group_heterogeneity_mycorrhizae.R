@@ -1,8 +1,6 @@
-test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
+test_step4_between_group_heterogeneity_mycorrhizae <- function(inDF) {
     
     ### 
-    inDF <- reDF100
-    
     inDF$Mycorrhizae_2 <- as.factor(inDF$Mycorrhizae_2)
     
     var.list <- c("CO2 assimilation rate", "Leaf area", "Total root length",
@@ -84,7 +82,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     sumDF$am_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_lp_effect_on_CO2_response_mycorrhizae.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_lp_effect_on_CO2_response_mycorrhizae.csv", row.names=F)
     
     ####### CO2 effect under LP treatment
     sumDF <- data.frame(var.list, NA, NA, NA, #NA, NA, NA, NA,
@@ -160,7 +158,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_LP_mycorrhizae.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_CO2_effect_under_LP_mycorrhizae.csv", row.names=F)
     
     
     
@@ -258,7 +256,7 @@ test_between_group_heterogeneity_mycorrhizae <- function(reDF100) {
     sumDF$am_ne[sumDF$variable == "Belowground biomass"] <- length(subDF1$Literature[subDF1$Mycorrhizae_2=="AM"])
     
     
-    write.csv(sumDF, "output/metafor_summary_plot/statistics_CO2_effect_under_HP_mycorrhizae.csv", row.names=F)
+    write.csv(sumDF, "output/step4/statistics_CO2_effect_under_HP_mycorrhizae.csv", row.names=F)
     
     
 }
