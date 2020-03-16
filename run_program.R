@@ -3,8 +3,12 @@
 ##### Author: Mingkai Jiang
 ##### Code structure
 ##### 0. Prepare
-##### 1. Clean data
-##### 2. 
+##### 1. Clean data and make basic summary tables and plots
+##### 2. make metafor plots and tables based on all data
+##### 3. make metafor plots and tables comparing woody and nonwoody responses
+##### 4. check mycorrhizal effect
+
+##### 5. 
 
 
 
@@ -187,6 +191,24 @@ test_step4_between_group_heterogeneity_mycorrhizae(inDF=mycoDF)
 
 #### statistics comparing woody vs nonwoody of AM plants
 test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody(subDF=mycoDF)
+
+
+#################################################################################
+##### Step 5. Quality check of the meta-analysis,interaction effect only
+
+### Funnel plots
+
+
+### asymetry test of point distribution
+
+### leave-one-one meta-analysis of outliers
+
+### time meta-regression
+
+### time, removing repeated data entries
+
+### accumulative meta-analysis
+
 
 
 
