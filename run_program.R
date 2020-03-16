@@ -29,9 +29,18 @@ myDF <- read.csv("data/P_by_CO2_data_cleaned_no_eq_V7_HP_control.csv",strip.whit
 ### exclude data not needed
 myDF <- make_step1_basic_processing(inDF=myDF)
 
+### reprogressing the dataset to calculate individual means and variance for the interaction term
+### re-categorize mycorrhizal type information
+### print LP/HP ratios
+myDF <- make_step1_reprocessing_interaction_term(inDF=myDF)
+
 ### generate species list
 ### come back point: to make count statistics!!!
 generate_species_list(inDF=myDF)
+
+##### a detailed summary table 
+generate_a_detailed_summary_table(inDF=myDF)
+
 
 ### Basic statistics that summarize 
 ### number of studies
@@ -44,22 +53,6 @@ make_basic_summary_stats_plots(inDF=myDF)
 
 
 ############## Statistical analysis - metafor
-### reprogressing the dataset to calculate individual means and variance for the interaction term
-reDF100 <- reprocessing_interaction_term(inDF=subDF100)
-reDF100$random_factor <- as.factor(reDF100$Literature)
-reDF100$Trt_LP_HP <- reDF100$Trt_aP/reDF100$Trt_eP
-
-mean(reDF100$Trt_LP_HP)
-median(reDF100$Trt_LP_HP)
-
-##### a detailed summary table 
-generate_a_detailed_summary_table(reDF100)
-
-### process mycorrhizae types
-reDF100$Mycorrhizae_2 <- reDF100$Mycorrhizae
-reDF100$Mycorrhizae_2[reDF100$Mycorrhizae_2%in%c("ECM", "ECM-AM")] <- "ECM"
-reDF100$Mycorrhizae_2[reDF100$Mycorrhizae_2%in%c("NM-AM")] <- "AM"
-
 ##############
 ######## Interaction effect
 

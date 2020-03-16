@@ -1,4 +1,4 @@
-reprocessing_interaction_term <- function(inDF) {
+make_step1_reprocessing_interaction_term <- function(inDF) {
     ### This script reprocesses the data
     ### based on example given by Baig et al. 2015 GCB
     ### to recalculate the interaction response ratio (r), 
@@ -46,8 +46,22 @@ reprocessing_interaction_term <- function(inDF) {
         inDF$v_variance[inDF$Variable==i & is.na(inDF$v_variance)] <- inDF$interaction[inDF$Variable==i & is.na(inDF$v_variance)] * variance.perct
     }
     
-    
+    ### outDF
     outDF <- inDF
+    
+    ### factors
+    outDF$random_factor <- as.factor(outDF$Literature)
+    outDF$Trt_LP_HP <- outDF$Trt_aP/outDF$Trt_eP
+    
+    print(paste0("Trt LP/HP mean = ", round(mean(outDF$Trt_LP_HP), 2)))
+    
+    print(paste0("Trt LP/HP median = ", median(outDF$Trt_LP_HP)))
+    
+    ### mycorrhizal type
+    ### process mycorrhizae types
+    outDF$Mycorrhizae_2 <- outDF$Mycorrhizae
+    outDF$Mycorrhizae_2[outDF$Mycorrhizae_2%in%c("ECM", "ECM-AM")] <- "ECM"
+    outDF$Mycorrhizae_2[outDF$Mycorrhizae_2%in%c("NM-AM")] <- "AM"
     
     
     return(outDF)
