@@ -34,6 +34,13 @@ myDF <- make_step1_basic_processing(inDF=myDF)
 ### print LP/HP ratios
 myDF <- make_step1_reprocessing_interaction_term(inDF=myDF)
 
+####### P effect under aCO2 and eCO2
+myDF <- make_step1_reprocessing_p_effect_term(inDF=myDF)
+
+######## CO2 effect under aP and eP
+myDF <- make_step1_reprocessing_co2_effect_term(inDF=myDF)
+
+
 ### generate species list
 ### come back point: to make count statistics!!!
 generate_species_list(inDF=myDF)
@@ -52,14 +59,14 @@ generate_a_detailed_summary_table(inDF=myDF)
 make_basic_summary_stats_plots(inDF=myDF)
 
 
-############## Statistical analysis - metafor
-##############
-######## Interaction effect
+#################################################################################
+##### Step 2. make metafor plots and tables
 
+######## Interaction effect
 #intDF <- prepare_summary_interaction_effect_df()
 intDF <- prepare_summary_interaction_effect_df_advanced()
 
-intDF <- metafor_statistics_advanced(reDF100, intDF)
+intDF <- make_step2_metafor_statistics_advanced(inDF=myDF, intDF=intDF)
 #intDF <- metafor_statistics_basic(reDF100, intDF)
 
 
@@ -72,8 +79,7 @@ write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv"
 
 
 ##############
-####### P effect under aCO2 and eCO2
-reDF100 <- reprocessing_p_effect_term(inDF=reDF100)
+
 
 ### prepare a storage dataframe for all summary information
 ### useful for making later summary plot
@@ -95,8 +101,6 @@ sumDF2$ci_lb_pct <- (exp(sumDF2$ci_lb) - 1) * 100
 sumDF2$ci_ub_pct <- (exp(sumDF2$ci_ub) - 1) * 100
 
 ##############
-######## CO2 effect under aP and eP
-reDF100 <- reprocessing_co2_effect_term(inDF=reDF100)
 
 ### prepare a storage dataframe for all summary information
 ### useful for making later summary plot

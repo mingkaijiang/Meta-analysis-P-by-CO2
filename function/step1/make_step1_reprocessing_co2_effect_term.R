@@ -1,4 +1,4 @@
-reprocessing_co2_effect_term <- function(inDF) {
+make_step1_reprocessing_co2_effect_term <- function(inDF) {
     ### This script reprocesses the data
     ### based on example given by Baig et al. 2015 GCB
     ### to recalculate the co2 effect response ratio (r), 

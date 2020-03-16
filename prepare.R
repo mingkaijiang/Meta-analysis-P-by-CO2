@@ -8,6 +8,12 @@ if(!dir.exists("output/step1")) {
     dir.create("output/step1", showWarnings = FALSE)
 }
 
+### create directory
+if(!dir.exists("output/step2")) {
+    dir.create("output/step2", showWarnings = FALSE)
+}
+
+
 #### Install packages
 if(!require(pacman))install.packages("pacman")
 pacman::p_load(doBy, 
@@ -51,4 +57,5 @@ for(z9 in source_heterogeneity_scripts)source(z9)
 source_step1 <- dir("function/step1", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
 for(z1 in source_step1)source(z1)
 
-
+source_step2 <- dir("function/step2", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
+for(z2 in source_step2)source(z2)

@@ -1,8 +1,8 @@
-metafor_statistics_advanced <- function(reDF, intDF) {
+make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
   
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Aboveground biomass")
+    tDF <- subset(inDF, Variable=="Aboveground biomass")
     tDF <- subset(tDF, v_variance >= 0.001)
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
@@ -18,7 +18,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Leaf biomass")
+    tDF <- subset(inDF, Variable=="Leaf biomass")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -39,7 +39,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Stem biomass")
+    tDF <- subset(inDF, Variable=="Stem biomass")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -60,8 +60,8 @@ metafor_statistics_advanced <- function(reDF, intDF) {
 
     
     ####################### subset the dataframe for the right variable ##############################
-    #tDF <- subset(reDF, Variable=="Root biomass")
-    tDF <- subset(reDF, Variable%in%c("Root biomass", "Belowground biomass"))
+    #tDF <- subset(inDF, Variable=="Root biomass")
+    tDF <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
     
     tDF <- subset(tDF, v_variance >= 0.001)
     #tDF <- subset(tDF, v_variance <= 2)
@@ -87,7 +87,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
 
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total plant biomass")
+    tDF <- subset(inDF, Variable=="Total plant biomass")
     tDF <- subset(tDF, v_variance >= 0.001)
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
@@ -107,7 +107,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_biomass") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Leaf N content")
+    tDF <- subset(inDF, Variable=="Leaf N content")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -130,7 +130,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
 
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Leaf P content")
+    tDF <- subset(inDF, Variable=="Leaf P content")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -153,7 +153,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Stem N content")
+    tDF <- subset(inDF, Variable=="Stem N content")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -178,7 +178,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Stem P content")
+    tDF <- subset(inDF, Variable=="Stem P content")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -199,7 +199,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root N content")
+    tDF <- subset(inDF, Variable=="Root N content")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -223,7 +223,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root P content")
+    tDF <- subset(inDF, Variable=="Root P content")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -245,7 +245,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total plant N content")
+    tDF <- subset(inDF, Variable=="Total plant N content")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -270,7 +270,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total plant P content")
+    tDF <- subset(inDF, Variable=="Total plant P content")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -290,7 +290,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_P_content") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Leaf N concentration")
+    tDF <- subset(inDF, Variable=="Leaf N concentration")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -311,7 +311,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Leaf P concentration")
+    tDF <- subset(inDF, Variable=="Leaf P concentration")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -332,7 +332,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_P_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root P concentration")
+    tDF <- subset(inDF, Variable=="Root P concentration")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -349,7 +349,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Stem N concentration")
+    tDF <- subset(inDF, Variable=="Stem N concentration")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -374,7 +374,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Stem P concentration")
+    tDF <- subset(inDF, Variable=="Stem P concentration")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -399,7 +399,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_P_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root N concentration")
+    tDF <- subset(inDF, Variable=="Root N concentration")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -423,7 +423,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_N_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total plant N concentration")
+    tDF <- subset(inDF, Variable=="Total plant N concentration")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -439,7 +439,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_N_concentration") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total plant P concentration")
+    tDF <- subset(inDF, Variable=="Total plant P concentration")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -463,7 +463,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="CO2 assimilation rate")
+    tDF <- subset(inDF, Variable=="CO2 assimilation rate")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -486,7 +486,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Stomatal conductance")
+    tDF <- subset(inDF, Variable=="Stomatal conductance")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -507,11 +507,11 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stomatal_conductance") 
     
     ### change LAI to leaf area and combine it with Total leaf area
-    reDF[reDF$Variable=="LAI","Variable"] <- "Leaf area"
-    reDF$Variable[reDF$Variable=="Total leaf area"] <- "Leaf area"
+    inDF[inDF$Variable=="LAI","Variable"] <- "Leaf area"
+    inDF$Variable[inDF$Variable=="Total leaf area"] <- "Leaf area"
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Leaf area")
+    tDF <- subset(inDF, Variable=="Leaf area")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -534,7 +534,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="LMA")
+    tDF <- subset(inDF, Variable=="LMA")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -555,7 +555,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="LMA") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="SLA")
+    tDF <- subset(inDF, Variable=="SLA")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -577,7 +577,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total root length")
+    tDF <- subset(inDF, Variable=="Total root length")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -598,7 +598,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Leaf NP ratio")
+    tDF <- subset(inDF, Variable=="Leaf NP ratio")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -620,7 +620,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Stem NP ratio")
+    tDF <- subset(inDF, Variable=="Stem NP ratio")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -643,7 +643,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_NP") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Root NP ratio")
+    tDF <- subset(inDF, Variable=="Root NP ratio")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -665,7 +665,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_NP") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Total NP ratio")
+    tDF <- subset(inDF, Variable=="Total NP ratio")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -689,7 +689,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Plant N uptake")
+    tDF <- subset(inDF, Variable=="Plant N uptake")
     tDF <- subset(tDF, Unit %in%c("mg N mg-1 of nodule", "mg g-1 root", "mg N g-1 root"))
     tDF$v_variance <- 1/tDF$Sample.Size
     
@@ -713,7 +713,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="Plant P uptake")
+    tDF <- subset(inDF, Variable=="Plant P uptake")
     tDF <- subset(tDF, Unit %in%c("ug P root-1", "mg P g-1 root", "ug P mg root-1"))
     tDF$v_variance <- 1/tDF$Sample.Size
     
@@ -737,7 +737,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="WUE")
+    tDF <- subset(inDF, Variable=="WUE")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -758,7 +758,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="NUE")
+    tDF <- subset(inDF, Variable=="NUE")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
@@ -781,7 +781,7 @@ metafor_statistics_advanced <- function(reDF, intDF) {
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="NUE") 
     
     ####################### subset the dataframe for the right variable ##############################
-    tDF <- subset(reDF, Variable=="PUE")
+    tDF <- subset(inDF, Variable=="PUE")
     
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
