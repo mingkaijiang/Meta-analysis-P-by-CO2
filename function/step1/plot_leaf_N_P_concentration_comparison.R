@@ -1,15 +1,15 @@
-plot_leaf_N_P_concentration_comparison <- function() {
+plot_leaf_N_P_concentration_comparison <- function(inDF) {
     
     ### pass in data
-    inDF <- reDF100[reDF100$Variable%in%c("Leaf N concentration", "Leaf P concentration"),]
+    #out <- inDF[inDF$Variable%in%c("Leaf N concentration", "Leaf P concentration"),]
     
-    write.csv(inDF, "output/metafor_summary_plot/leaf_N_P_concentration.csv", row.names=F)
+    #write.csv(out, "output/step1/leaf_N_P_concentration.csv", row.names=F)
     
     
     
     
     ### read in post-processing dataset
-    inDF <- read.csv("output/metafor_summary_plot/leaf_N_P_concentration_input.csv")
+    plotDF <- read.csv("output/step1/leaf_N_P_concentration_input.csv")
     
     
     ### prepare 1: 16 and 1:20 line
@@ -20,8 +20,8 @@ plot_leaf_N_P_concentration_comparison <- function() {
     
     
     ### aggregated arrow
-    aggDF <- summaryBy(Leaf_N_aP+Leaf_N_eP+Leaf_P_aP+Leaf_P_eP~CO2_trt, data=inDF, FUN=c(mean, sd), keep.names=T)
-    n <- length(inDF$Study[inDF$CO2_trt=="aC"])
+    aggDF <- summaryBy(Leaf_N_aP+Leaf_N_eP+Leaf_P_aP+Leaf_P_eP~CO2_trt, data=plotDF, FUN=c(mean, sd), keep.names=T)
+    n <- length(plotDF$Study[plotDF$CO2_trt=="aC"])
     
     aggDF$Leaf_N_aP.se <- aggDF$Leaf_N_aP.sd / sqrt(n)
     aggDF$Leaf_N_eP.se <- aggDF$Leaf_N_eP.sd / sqrt(n)
@@ -67,11 +67,11 @@ plot_leaf_N_P_concentration_comparison <- function() {
                  color="black", size=10)+
         annotate(geom="text", x=7.5, y=0.32, label="1:20 line",
                  color="black", size=10)+
-        geom_point(data=inDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, color = as.factor(Vegetation_type)), 
+        geom_point(data=plotDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, color = as.factor(Vegetation_type)), 
                    size=6, shape=21, alpha=0.2)+
-        geom_point(data=inDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, fill = as.factor(Vegetation_type)), 
+        geom_point(data=plotDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, fill = as.factor(Vegetation_type)), 
                    size=6, shape=21, color="black", alpha=0.2)+
-        geom_line(data=inDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, group=as.factor(Group)),
+        geom_line(data=plotDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, group=as.factor(Group)),
                   arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"), alpha=0.2)+
         geom_point(data=aggDF, mapping=aes(x=Leaf_N_eP.mean, y=Leaf_P_eP.mean), 
                    size = 5, shape=22, color="black", fill="grey")+
@@ -123,11 +123,11 @@ plot_leaf_N_P_concentration_comparison <- function() {
                  color="black", size=10)+
         annotate(geom="text", x=7.0, y=0.35, label="1:20 line",
                  color="black", size=10)+
-        geom_point(data=inDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, color = as.factor(Vegetation_type)), 
+        geom_point(data=plotDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, color = as.factor(Vegetation_type)), 
                    size=6, shape=21, alpha=0.2)+
-        geom_point(data=inDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, fill = as.factor(Vegetation_type)), 
+        geom_point(data=plotDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, fill = as.factor(Vegetation_type)), 
                    size=6, shape=21, color="black", alpha=0.2)+
-        geom_line(data=inDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, group=as.factor(Group)),
+        geom_line(data=plotDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, group=as.factor(Group)),
                   arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"), alpha=0.2)+
         geom_point(data=aggDF, mapping=aes(x=Leaf_N_aP.mean, y=Leaf_P_aP.mean), 
                    size = 5, shape=22, color="black", fill="grey")+
@@ -172,7 +172,7 @@ plot_leaf_N_P_concentration_comparison <- function() {
     
     #plot(p2)
     
-    pdf("output/metafor_summary_plot/Figure_S3_Leaf_N_P_concentration.pdf", width=10, height=12)
+    pdf("output/step1/Figure_S3_Leaf_N_P_concentration.pdf", width=10, height=12)
     plot_grid(p1, p2,
               #rel_widths=c(0.5, 1, 1, 0.9),
               rel_heights=c(1,1.4),

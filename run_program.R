@@ -60,6 +60,9 @@ generate_a_detailed_summary_table(inDF=myDF)
 ### come back point: to make nicer plots!!!!
 #make_basic_summary_stats_plots(inDF=myDF)
 
+#### plot a leaf N vs. leaf P concentration comparison
+plot_leaf_N_P_concentration_comparison(inDF=myDF)
+
 
 #################################################################################
 ##### Step 2. make metafor plots and tables
@@ -114,7 +117,7 @@ write.csv(sumDF, "output/step2/co2_effect_all.csv", row.names=F)
 ### make summary plots of the interaction and individual responses 
 ### main text figure
 ### go into function to plot!!!
-make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
+#make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
 
 
 
@@ -187,12 +190,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody(subDF=mycoDF)
 
 
 
-#compute_statistics_for_woody_and_nonwoody_comparison(wdDF, nwdDF)
 
-
-#### plot a leaf N vs. leaf P concentration comparison
-plot_leaf_N_P_concentration_comparison()
-
-
-
+#################################################################################
 #### The end
+#################################################################################
