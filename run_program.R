@@ -40,6 +40,8 @@ myDF <- make_step1_reprocessing_p_effect_term(inDF=myDF)
 ######## CO2 effect under aP and eP
 myDF <- make_step1_reprocessing_co2_effect_term(inDF=myDF)
 
+### save reprcessed data
+write.csv(myDF, "output/step2/input_data_reprocessed.csv", row.names=F)
 
 ### generate species list
 ### come back point: to make count statistics!!!
@@ -62,71 +64,52 @@ make_basic_summary_stats_plots(inDF=myDF)
 #################################################################################
 ##### Step 2. make metafor plots and tables
 
-######## Interaction effect
-#intDF <- prepare_summary_interaction_effect_df()
+### prepare summary data frames
 intDF <- prepare_summary_interaction_effect_df_advanced()
+sumDF2 <- prepare_summary_p_effect_df_advanced()
+sumDF <- prepare_summary_co2_effect_df_advanced()
 
+
+### Interaction effect
 intDF <- make_step2_metafor_statistics_advanced(inDF=myDF, intDF=intDF)
-#intDF <- metafor_statistics_basic(reDF100, intDF)
-
 
 ### calculate percent response
 intDF$int_pct <- (exp(intDF$interaction) - 1) * 100
 intDF$se_pct <- (exp(intDF$se) - 1) * 100
 intDF$ci_lb_pct <- (exp(intDF$ci_lb) - 1) * 100
 intDF$ci_ub_pct <- (exp(intDF$ci_ub) - 1) * 100
-write.csv(intDF, "output/metafor_summary_plot/lp_effect_on_co2_response_all.csv", row.names=F)
+write.csv(intDF, "output/step2/interaction_responses_all.csv", row.names=F)
 
 
-##############
 
+### P effect under aCO2 
+sumDF2 <- make_step2_metafor_p_statistics_aCO2_advanced(inDF=myDF, sumDF2=sumDF2)
 
-### prepare a storage dataframe for all summary information
-### useful for making later summary plot
-sumDF2 <- prepare_summary_p_effect_df_advanced()
-
-####### P effect under aCO2 
-sumDF2 <- metafor_p_statistics_aCO2_advanced(reDF100, sumDF2)
-#sumDF2 <- metafor_p_statistics_aCO2_basic(reDF100, sumDF2)
-
-
-####### P effect under eCO2 
-sumDF2 <- metafor_p_statistics_eCO2_advanced(reDF100, sumDF2)
-#sumDF2 <- metafor_p_statistics_eCO2_basic(reDF100, sumDF2)
+### P effect under eCO2 
+sumDF2 <- make_step2_metafor_p_statistics_eCO2_advanced(inDF=myDF, sumDF2=sumDF2)
 
 ### calculate percent response
 sumDF2$P_effect_pct <- (exp(sumDF2$P_effect) - 1) * 100
 sumDF2$se_pct <- (exp(sumDF2$se) - 1) * 100
 sumDF2$ci_lb_pct <- (exp(sumDF2$ci_lb) - 1) * 100
 sumDF2$ci_ub_pct <- (exp(sumDF2$ci_ub) - 1) * 100
-
-##############
-
-### prepare a storage dataframe for all summary information
-### useful for making later summary plot
-sumDF <- prepare_summary_co2_effect_df_advanced()
+write.csv(sumDF2, "output/step2/p_effect_all.csv", row.names=F)
 
 
-######## CO2 effect under eP
-#sumDF <- metafor_co2_statistics_eP_advanced(reDF100, sumDF)
-sumDF <- metafor_co2_statistics_eP_basic(reDF100, sumDF)
 
+### CO2 effect under eP
+sumDF <- make_step2_metafor_co2_statistics_eP_basic(inDF=myDF, sumDF=sumDF)
 
-######## CO2 effect under aP
-#sumDF <- metafor_co2_statistics_aP_advanced(reDF100, sumDF)
-sumDF <- metafor_co2_statistics_aP_basic(reDF100, sumDF)
-
+### CO2 effect under aP
+sumDF <- make_step2_metafor_co2_statistics_aP_basic(inDF=myDF, sumDF=sumDF)
 
 ### calculate percent response
 sumDF$CO2_effect_pct <- (exp(sumDF$CO2_effect) - 1) * 100
 sumDF$se_pct <- (exp(sumDF$se) - 1) * 100
 sumDF$ci_lb_pct <- (exp(sumDF$ci_lb) - 1) * 100
 sumDF$ci_ub_pct <- (exp(sumDF$ci_ub) - 1) * 100
+write.csv(sumDF, "output/step2/co2_effect_all.csv", row.names=F)
 
-write.csv(sumDF, "output/metafor_summary_plot/co2_effect_all.csv", row.names=F)
-write.csv(sumDF2, "output/metafor_summary_plot/p_effect_all.csv", row.names=F)
-
-write.csv(reDF100, "output/metafor_summary_plot/reprocessed_input_data.csv", row.names=F)
 
 
 
