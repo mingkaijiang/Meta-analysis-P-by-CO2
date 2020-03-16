@@ -1,14 +1,8 @@
 ### This script plot bar chart for all significant response ratio means and confidence interval
 
-make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
+make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
     
     ###this script include nutrient ratio
-    
-    ### This function processes the dataframe with some basic summaries
-    if(!dir.exists("output/metafor_summary_plot")) {
-        dir.create("output/metafor_summary_plot", showWarnings = FALSE)
-    }
-    
     ### prepare df
     sumDF$Category <- c(rep("Biomass", 26), rep("Concentration", 16), rep("Gas exchange", 4),
                          rep("Morphology", 8), rep("Nutrient uptake", 4), 
@@ -395,7 +389,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         guides(fill = guide_legend(title.position = "top"))
     
 
-    pdf("output/metafor_summary_plot/Figure2_biomass_responses.pdf", width=14, height=6)
+    pdf("output/step2/Figure2_biomass_responses.pdf", width=14, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -614,7 +608,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
                           labels=c("Positive", "Negative", "Neutral"))+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/metafor_summary_plot/Figure4_concentration_responses.pdf", width=14, height=10)
+    pdf("output/step2/Figure4_concentration_responses.pdf", width=14, height=10)
     plot_grid(p2a, p2b, p2c,
               p3a, p3b, p3c,
               rel_heights=c(1.0, 1.4),
@@ -733,7 +727,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/metafor_summary_plot/Figure1_gas_exchange_responses.pdf", width=16, height=6)
+    pdf("output/step2/Figure1_gas_exchange_responses.pdf", width=16, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -850,7 +844,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/metafor_summary_plot/Figure3_morphology_responses.pdf", width=16, height=6)
+    pdf("output/step2/Figure3_morphology_responses.pdf", width=16, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -967,7 +961,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/metafor_summary_plot/Figure5_nutrient_uptake_responses.pdf", width=16, height=6)
+    pdf("output/step2/Figure5_nutrient_uptake_responses.pdf", width=16, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -1404,7 +1398,7 @@ make_split_interaction_effect_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("l")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/metafor_summary_plot/Figure_S4.pdf", width=16, height=16)
+    pdf("output/step2/Figure_S4.pdf", width=16, height=16)
     plot_grid(p1a, p1b, p1c,
               p2a, p2b, p2c,
               p3a, p3b, p3c,

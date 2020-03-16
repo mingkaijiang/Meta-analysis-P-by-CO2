@@ -81,7 +81,7 @@ assign_model_stats_and_forest_plot_advanced <- function(tDF, intDF, res, var.nam
     predDF2 <- predict(res, newmods = c(0.2)) 
     
     ### forest plot
-    pdf(paste0("output/step2/interaction_", var.name, ".pdf"),
+    pdf(paste0("output/step2/supplementary/interaction_", var.name, ".pdf"),
         height=16, width=9)
     forest(res, slab = tDF$Literature,
            xlim = c(-14, 4), 

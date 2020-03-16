@@ -1,4 +1,4 @@
-prepare_summary_co2_effect_nonwoody_df <- function() {
+prepare_step3_summary_co2_effect_woody_df <- function() {
     sumDF <- data.frame(c(1:34), NA, NA, NA, NA, NA, NA, NA, NA, NA)
     
     colnames(sumDF) <- c("id", "variable", "P_treatment", "CO2_effect",

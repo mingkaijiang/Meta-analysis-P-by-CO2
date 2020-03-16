@@ -13,6 +13,10 @@ if(!dir.exists("output/step2")) {
     dir.create("output/step2", showWarnings = FALSE)
 }
 
+### create directory
+if(!dir.exists("output/step2/supplementary")) {
+    dir.create("output/step2/supplementary", showWarnings = FALSE)
+}
 
 #### Install packages
 if(!require(pacman))install.packages("pacman")
@@ -59,3 +63,6 @@ for(z1 in source_step1)source(z1)
 
 source_step2 <- dir("function/step2", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
 for(z2 in source_step2)source(z2)
+
+source_step3 <- dir("function/step3", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
+for(z3 in source_step3)source(z3)

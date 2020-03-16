@@ -111,31 +111,34 @@ sumDF$ci_ub_pct <- (exp(sumDF$ci_ub) - 1) * 100
 write.csv(sumDF, "output/step2/co2_effect_all.csv", row.names=F)
 
 
+### make summary plots of the interaction and individual responses 
+### main text figure
+### go into function to plot
+make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
 
 
 
-#### this is the plot script used for main text
-make_split_interaction_effect_chart(sumDF, sumDF2, intDF)
+#################################################################################
+##### Step 3. check woody and non-woody comparison
+### subset woody and nonwoody plant DF
+wdDF <- subset(myDF, Vegetation_type=="Woody")
+nwdDF <- subset(myDF, Vegetation_type=="Nonwoody")
 
+### prepare storage dfs
+## Interaction effect for woody plants
+intDF.wd <- prepare_step3_summary_interaction_effect_woody_df_advanced()
 
-##############
-#### subset woody plant DF
-wdDF <- subset(reDF100, Vegetation_type=="Woody")
+## CO2 effect under aP and eP for woody plants
+sumDF.wd <- prepare_step3_summary_co2_effect_woody_df()
 
-#### Interaction effect for woody plants
-intDF.wd <- prepare_summary_interaction_effect_woody_df_advanced()
+## metafor interaction 
+intDF.wd <- make_step3_metafor_statistics_woody_plants(inDF=wdDF, intDF=intDF.wd)
 
-#### metafor statistics
-intDF.wd <- metafor_statistics_woody_plants_100(wdDF, intDF.wd)
+#### metafor CO2 effect under eP
+sumDF.wd <- make_step3_metafor_co2_statistics_woody_plants_eP(inDF=wdDF, sumDF=sumDF.wd)
 
-#### CO2 effect under aP and eP for woody plants
-sumDF.wd <- prepare_summary_co2_effect_woody_df()
-
-#### CO2 effect under eP
-sumDF.wd <- metafor_co2_statistics_woody_plants_100_eP(wdDF, sumDF.wd)
-
-#### CO2 effect under aP
-sumDF.wd <- metafor_co2_statistics_woody_plants_100_aP(wdDF, sumDF.wd)
+#### metafor CO2 effect under aP
+sumDF.wd <- make_step3_metafor_co2_statistics_woody_plants_aP(inDF=wdDF, sumDF=sumDF=sumDF.wd)
 
 
 ### calculate percent response
@@ -151,7 +154,6 @@ intDF.wd$ci_ub_pct <- (exp(intDF.wd$ci_ub) - 1) * 100
 
 ##############
 #### subset woody plant DF
-nwdDF <- subset(reDF100, Vegetation_type=="Nonwoody")
 
 #### Interaction effect for nonwoody plants
 intDF.nwd <- prepare_summary_interaction_effect_woody_df()
