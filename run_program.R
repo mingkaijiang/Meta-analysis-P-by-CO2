@@ -58,7 +58,7 @@ generate_a_detailed_summary_table(inDF=myDF)
 ### CO2 and P treatment
 ### need to go into function and plot
 ### come back point: to make nicer plots!!!!
-make_basic_summary_stats_plots(inDF=myDF)
+#make_basic_summary_stats_plots(inDF=myDF)
 
 
 #################################################################################
@@ -125,23 +125,28 @@ wdDF <- subset(myDF, Vegetation_type=="Woody")
 nwdDF <- subset(myDF, Vegetation_type=="Nonwoody")
 
 ### prepare storage dfs
-## Interaction effect for woody plants
+## Interaction effect for woody and non-woody plants
 intDF.wd <- prepare_step3_summary_interaction_effect_woody_df_advanced()
+intDF.nwd <- prepare_step3_summary_interaction_effect_nonwoody_df()
 
 ## CO2 effect under aP and eP for woody plants
 sumDF.wd <- prepare_step3_summary_co2_effect_woody_df()
+sumDF.nwd <- prepare_step3_summary_co2_effect_nonwoody_df()
 
 ## metafor interaction 
 intDF.wd <- make_step3_metafor_statistics_woody_plants(inDF=wdDF, intDF=intDF.wd)
+intDF.nwd <- make_step3_metafor_statistics_nonwoody_plants(inDF=nwdDF, intDF=intDF.nwd)
 
-#### metafor CO2 effect under eP
+
+### metafor CO2 effect under eP
 sumDF.wd <- make_step3_metafor_co2_statistics_woody_plants_eP(inDF=wdDF, sumDF=sumDF.wd)
+sumDF.nwd <- make_step3_metafor_co2_statistics_nonwoody_plants_eP(inDF=nwdDF, sumDF=sumDF.nwd)
 
-#### metafor CO2 effect under aP
-sumDF.wd <- make_step3_metafor_co2_statistics_woody_plants_aP(inDF=wdDF, sumDF=sumDF=sumDF.wd)
+### metafor CO2 effect under aP
+sumDF.wd <- make_step3_metafor_co2_statistics_woody_plants_aP(inDF=wdDF, sumDF=sumDF.wd)
+sumDF.nwd <- make_step3_metafor_co2_statistics_nonwoody_plants_aP(inDF=nwdDF, sumDF=sumDF.nwd)
 
-
-### calculate percent response
+### calculate percent response - woody
 sumDF.wd$CO2_effect_pct <- (exp(sumDF.wd$CO2_effect) - 1) * 100
 sumDF.wd$se_pct <- (exp(sumDF.wd$se) - 1) * 100
 sumDF.wd$ci_lb_pct <- (exp(sumDF.wd$ci_lb) - 1) * 100
@@ -152,26 +157,7 @@ intDF.wd$se_pct <- (exp(intDF.wd$se) - 1) * 100
 intDF.wd$ci_lb_pct <- (exp(intDF.wd$ci_lb) - 1) * 100
 intDF.wd$ci_ub_pct <- (exp(intDF.wd$ci_ub) - 1) * 100
 
-##############
-#### subset woody plant DF
-
-#### Interaction effect for nonwoody plants
-intDF.nwd <- prepare_summary_interaction_effect_woody_df()
-
-#### metafor statistics
-intDF.nwd <- metafor_statistics_nonwoody_plants_100(nwdDF, intDF.nwd)
-
-#### CO2 effect under aP and eP for nonwoody plants
-sumDF.nwd <- prepare_summary_co2_effect_nonwoody_df()
-
-#### CO2 effect under eP
-sumDF.nwd <- metafor_co2_statistics_nonwoody_plants_100_eP(nwdDF, sumDF.nwd)
-
-#### CO2 effect under aP
-sumDF.nwd <- metafor_co2_statistics_nonwoody_plants_100_aP(nwdDF, sumDF.nwd)
-
-
-### calculate percent response
+### calculate percent response - nonwoody
 sumDF.nwd$CO2_effect_pct <- (exp(sumDF.nwd$CO2_effect) - 1) * 100
 sumDF.nwd$se_pct <- (exp(sumDF.nwd$se) - 1) * 100
 sumDF.nwd$ci_lb_pct <- (exp(sumDF.nwd$ci_lb) - 1) * 100
