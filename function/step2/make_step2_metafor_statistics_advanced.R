@@ -20,8 +20,13 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="aboveground_biomass")
     
-    #res2 <- rma.uni(log_interaction, v_variance, data=tDF)
-    #test <- leave1out(res2)
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="aboveground_biomass")
+    
+    
     #test2 <- permutest(res2)
 
     ####################### subset the dataframe for the right variable ##############################
@@ -46,6 +51,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="leaf_biomass")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_biomass")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Stem biomass")
@@ -68,6 +78,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="stem_biomass")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_biomass")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -100,6 +115,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="root_biomass")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_biomass")
+    
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total plant biomass")
@@ -123,6 +143,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="total_biomass")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_biomass")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -148,6 +173,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="leaf_N_content")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF,digits=5, control=list(stepadj=0.5))
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_N_content")
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf P content")
@@ -173,6 +203,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="leaf_P_content")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_P_content")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -201,6 +236,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="stem_N_content")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_N_content")
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Stem P content")
     
@@ -223,6 +263,12 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="stem_P_content")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_P_content")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root N content")
@@ -250,6 +296,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="root_N_content")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_N_content")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root P content")
@@ -274,6 +325,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="root_P_content")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_P_content")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -302,6 +358,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="total_N_content")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_N_content")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total plant P content")
@@ -326,6 +387,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="total_P_content")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_P_content")
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf N concentration")
     
@@ -348,6 +414,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="leaf_N_concentration")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_N_concentration")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -374,6 +445,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="leaf_P_concentration")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_P_concentration")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root P concentration")
@@ -393,6 +469,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="root_P_concentration")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_P_concentration")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -421,6 +502,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="stem_N_concentration")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_N_concentration")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -451,6 +537,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="stem_P_concentration")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_P_concentration")
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root N concentration")
     
@@ -478,6 +569,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="root_N_concentration")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_N_concentration")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total plant N concentration")
@@ -497,6 +593,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="total_N_concentration")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_N_concentration")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -525,6 +626,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="total_P_concentration")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_P_concentration")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="CO2 assimilation rate")
@@ -549,6 +655,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="CO2_assimilation_rate")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="CO2_assimilation_rate")
     
     
     
@@ -575,6 +686,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="stomatal_conductance")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stomatal_conductance")
     
     
     ### change LAI to leaf area and combine it with Total leaf area
@@ -607,6 +723,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="leaf_area")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_area")
+    
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -634,6 +755,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="LMA")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="LMA")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="SLA")
@@ -659,6 +785,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="SLA")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="SLA")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total root length")
@@ -682,6 +813,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="Root_length")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="Root_length")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -707,6 +843,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="leaf_NP")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF, digits=5, control=list(stepadj=0.5))
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_NP")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -735,6 +876,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="stem_NP")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_NP")
+    
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -762,6 +908,13 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="root_NP")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_NP")
+    
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total NP ratio")
     
@@ -788,6 +941,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="total_NP")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_NP")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Plant N uptake")
@@ -813,6 +971,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="N_uptake")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="N_uptake")
     
     
     
@@ -841,6 +1004,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="P_uptake")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="P_uptake")
+    
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -865,6 +1033,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="WUE")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF,digits=5, control=list(stepadj=0.5))
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="WUE")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -893,6 +1066,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="NUE")
     
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="NUE")
+    
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -920,6 +1098,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### funnel plot of the multivariate model
     make_step2_interaction_funnel_plot(res, var.name="PUE")
+    
+    ### leave one out analysis, based on simple model
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    looDF <- leave1out(res2)
+    make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="PUE")
     
     
     return(intDF)
