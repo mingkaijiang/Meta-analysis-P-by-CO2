@@ -9,6 +9,7 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
                   random = ~1 | random_factor, data = tDF)
@@ -16,7 +17,13 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="aboveground_biomass") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="aboveground_biomass")
     
+    #res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    #test <- leave1out(res2)
+    #test2 <- permutest(res2)
+
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf biomass")
     
@@ -36,6 +43,8 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_biomass") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="leaf_biomass")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -57,7 +66,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_biomass") 
     
-
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="stem_biomass")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     #tDF <- subset(inDF, Variable=="Root biomass")
@@ -85,6 +96,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_biomass") 
     
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="root_biomass")
+    
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total plant biomass")
@@ -105,6 +120,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_biomass") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="total_biomass")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf N content")
@@ -127,7 +146,8 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_N_content") 
     
-    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="leaf_N_content")
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf P content")
@@ -150,6 +170,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_P_content") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="leaf_P_content")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -175,7 +198,8 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_N_content") 
     
-    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="stem_N_content")
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Stem P content")
@@ -197,6 +221,8 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_P_content") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="stem_P_content")
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root N content")
@@ -221,6 +247,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_N_content") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="root_N_content")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root P content")
@@ -242,6 +271,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_P_content") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="root_P_content")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -267,6 +299,8 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_N_content") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="total_N_content")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -289,6 +323,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_P_content") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="total_P_content")
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf N concentration")
     
@@ -307,7 +344,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                   random = ~1 | random_factor, data = tDF)
     
     ### assign values and make forest plot
-    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_N_concentration") 
+    intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_N_concentration")
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="leaf_N_concentration")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -331,6 +371,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_P_concentration") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="leaf_P_concentration")
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root P concentration")
     
@@ -346,6 +390,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_P_concentration") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="root_P_concentration")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -371,6 +418,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
 
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_N_concentration") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="stem_N_concentration")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -398,6 +448,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_P_concentration") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="stem_P_concentration")
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root N concentration")
     
@@ -422,6 +475,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_N_concentration") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="root_N_concentration")
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total plant N concentration")
     
@@ -437,6 +494,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_N_concentration") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="total_N_concentration")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total plant P concentration")
@@ -461,6 +522,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_P_concentration") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="total_P_concentration")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="CO2 assimilation rate")
@@ -482,6 +546,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="CO2_assimilation_rate") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="CO2_assimilation_rate")
     
     
     
@@ -506,9 +573,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stomatal_conductance") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="stomatal_conductance")
+    
+    
     ### change LAI to leaf area and combine it with Total leaf area
     inDF[inDF$Variable=="LAI","Variable"] <- "Leaf area"
     inDF$Variable[inDF$Variable=="Total leaf area"] <- "Leaf area"
+    
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf area")
@@ -530,6 +603,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_area") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="leaf_area")
     
     
     
@@ -554,6 +630,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="LMA") 
     
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="LMA")
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="SLA")
     
@@ -574,6 +655,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="SLA") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="SLA")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -596,6 +680,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="Root_length") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="Root_length")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf NP ratio")
@@ -617,6 +704,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="leaf_NP") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="leaf_NP")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -642,6 +732,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="stem_NP") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="stem_NP")
+    
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root NP ratio")
     
@@ -663,6 +758,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_NP") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="root_NP")
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total NP ratio")
@@ -687,6 +785,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="total_NP") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="total_NP")
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Plant N uptake")
@@ -709,6 +810,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="N_uptake") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="N_uptake")
     
     
     
@@ -734,6 +838,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="P_uptake") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="P_uptake")
+    
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -755,6 +862,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="WUE") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="WUE")
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -780,6 +890,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="NUE") 
     
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="NUE")
+    
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="PUE")
     
@@ -802,6 +917,9 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="PUE") 
+    
+    ### funnel plot of the multivariate model
+    make_step2_interaction_funnel_plot(res, var.name="PUE")
     
     
     return(intDF)
