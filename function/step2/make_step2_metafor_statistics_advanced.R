@@ -26,6 +26,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="aboveground_biomass")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="aboveground_biomass"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="aboveground_biomass"] <- pub_bias_test$pval
     
     #test2 <- permutest(res2)
 
@@ -56,6 +60,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_biomass")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="leaf_biomass"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="leaf_biomass"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Stem biomass")
@@ -84,6 +93,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_biomass")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="stem_biomass"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="stem_biomass"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     #tDF <- subset(inDF, Variable=="Root biomass")
@@ -105,9 +119,6 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
                   random = ~1 | random_factor, data = tDF)
     
-    
-    #print(res)
-    
     ### assign values and make forest plot
     intDF <- assign_model_stats_and_forest_plot_advanced(tDF, intDF, res, var.name="root_biomass") 
     
@@ -119,6 +130,12 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_biomass")
+    
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="root_biomass"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="root_biomass"] <- pub_bias_test$pval
     
 
     ####################### subset the dataframe for the right variable ##############################
@@ -149,6 +166,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_biomass")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="total_biomass"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="total_biomass"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf N content")
@@ -178,6 +200,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF,digits=5, control=list(stepadj=0.5))
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_N_content")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="leaf_N_content"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="leaf_N_content"] <- pub_bias_test$pval
 
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf P content")
@@ -208,6 +235,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_P_content")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="leaf_P_content"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="leaf_p_content"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -241,6 +273,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_N_content")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="stem_N_content"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="stem_N_content"] <- pub_bias_test$pval
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Stem P content")
     
@@ -268,6 +305,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_P_content")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="stem_P_content"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="stem_P_content"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -301,6 +343,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_N_content")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="root_N_content"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="root_N_content"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root P content")
@@ -330,6 +377,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_P_content")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="root_P_content"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="root_P_content"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -363,6 +415,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_N_content")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="total_N_content"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="total_N_content"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total plant P content")
@@ -392,6 +449,12 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_P_content")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="total_P_content"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="total_P_content"] <- pub_bias_test$pval
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf N concentration")
     
@@ -419,6 +482,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_N_concentration")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="leaf_N_concentration"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="leaf_N_concentration"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -451,6 +519,12 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_P_concentration")
     
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="leaf_P_concentration"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="leaf_P_concentration"] <- pub_bias_test$pval
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root P concentration")
     
@@ -474,6 +548,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_P_concentration")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="root_P_concentration"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="root_P_concentration"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -507,6 +586,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_N_concentration")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="stem_N_concentration"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="stem_N_concentration"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -542,6 +626,12 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_P_concentration")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="stem_P_concentration"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="stem_P_concentration"] <- pub_bias_test$pval
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Root N concentration")
     
@@ -574,6 +664,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_N_concentration")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="root_N_concentration"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="root_N_concentration"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total plant N concentration")
@@ -598,6 +693,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_N_concentration")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="total_N_concentration"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="total_N_concentration"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -631,6 +731,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_P_concentration")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="total_P_concentration"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="total_P_concentration"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="CO2 assimilation rate")
@@ -660,6 +765,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="CO2_assimilation_rate")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="CO2_assimilation_rate"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="CO2_assimilation_rate"] <- pub_bias_test$pval
     
     
     
@@ -691,6 +801,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stomatal_conductance")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="stomatal_conductance"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="stomatal_conductance"] <- pub_bias_test$pval
     
     
     ### change LAI to leaf area and combine it with Total leaf area
@@ -728,6 +843,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_area")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="leaf_area"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="leaf_area"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -760,6 +879,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="LMA")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="LMA"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="LMA"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="SLA")
@@ -790,6 +914,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="SLA")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="SLA"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="SLA"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Total root length")
@@ -818,6 +947,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="Root_length")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="Root_length"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="Root_length"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -848,6 +982,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF, digits=5, control=list(stepadj=0.5))
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_NP")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="leaf_NP"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="leaf_NP"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -881,6 +1020,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="stem_NP")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="stem_NP"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="stem_NP"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -913,6 +1056,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="root_NP")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="root_NP"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="root_NP"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -946,6 +1093,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="total_NP")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="total_NP"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="total_NP"] <- pub_bias_test$pval
+    
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Plant N uptake")
@@ -977,6 +1129,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="N_uptake")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="N_uptake"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="N_uptake"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -1009,6 +1165,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="P_uptake")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="P_uptake"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="P_uptake"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -1039,6 +1199,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="WUE")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="WUE"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="WUE"] <- pub_bias_test$pval
     
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="NUE")
@@ -1071,6 +1235,10 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="NUE")
     
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="NUE"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="NUE"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -1103,6 +1271,11 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     res2 <- rma.uni(log_interaction, v_variance, data=tDF)
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="PUE")
+    
+    ### test for funnel plot assymetry to show possible publication bias, based on simple model
+    pub_bias_test <- regtest(res2)
+    intDF$z_score[intDF$variable=="PUE"] <- pub_bias_test$zval
+    intDF$z_score_p_value[intDF$variable=="PUE"] <- pub_bias_test$pval
     
     
     return(intDF)
