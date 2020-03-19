@@ -9,6 +9,14 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
@@ -32,7 +40,8 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     intDF$z_score_p_value[intDF$variable=="aboveground_biomass"] <- pub_bias_test$pval
     
     #test2 <- permutest(res2)
-
+    
+    
     ####################### subset the dataframe for the right variable ##############################
     tDF <- subset(inDF, Variable=="Leaf biomass")
     
@@ -40,10 +49,14 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
-    # res <- rma(log_interaction, v_variance, data = tDF)
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
     
-    ### multivariable linear (mixed-effects) model with study as a random variable
-    #res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
@@ -73,10 +86,14 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
-    # res <- rma(log_interaction, v_variance, data = tDF)
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
     
-    ### multivariable linear (mixed-effects) model with study as a random variable
-    #res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
@@ -109,6 +126,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -146,6 +172,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     # res <- rma(log_interaction, v_variance, data = tDF)
     
     ### multivariable linear (mixed-effects) model with study as a random variable
@@ -178,6 +213,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### multivariable linear (mixed-effects) model with study as a random variable
     #res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
@@ -213,14 +257,16 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
-    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
-
-    # res <- rma(log_interaction, v_variance, data = tDF)
-    
-    ### multivariable linear (mixed-effects) model with study as a random variable
-    #res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
-    
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
                   random = ~1 | random_factor, data = tDF)
@@ -239,7 +285,7 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### test for funnel plot assymetry to show possible publication bias, based on simple model
     pub_bias_test <- regtest(res2)
     intDF$z_score[intDF$variable=="leaf_P_content"] <- pub_bias_test$zval
-    intDF$z_score_p_value[intDF$variable=="leaf_p_content"] <- pub_bias_test$pval
+    intDF$z_score_p_value[intDF$variable=="leaf_P_content"] <- pub_bias_test$pval
     
     
     ####################### subset the dataframe for the right variable ##############################
@@ -251,6 +297,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
@@ -285,11 +340,14 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
-    ### random-effect model
-    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
     
-    ### multivariable linear (mixed-effects) model with study as a random variable
-    #res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
@@ -321,6 +379,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
@@ -355,6 +422,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
@@ -394,6 +470,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
     
@@ -427,6 +512,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.5))
@@ -462,6 +556,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Rang
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -496,6 +599,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
     
@@ -514,7 +626,7 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     make_step2_interaction_funnel_plot(res, var.name="leaf_P_concentration")
     
     ### leave one out analysis, based on simple model
-    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF,digits=5, control=list(stepadj=0.5))
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_P_concentration")
     
@@ -531,6 +643,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF)
@@ -561,6 +682,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -599,6 +729,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### length of the data frame
     l <- length(tDF$Literature)
@@ -639,6 +778,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
     
@@ -677,6 +825,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     #res <- rma(log_interaction, v_variance, data = tDF)
     
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
@@ -706,6 +863,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
@@ -744,6 +910,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -780,13 +955,16 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
-    #res <- rma(log_interaction, v_variance, data = tDF)
-    #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05)) 
-    
-    ### multivariable linear (mixed-effects) model with study as a random variable
-    #res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor, data = tDF)
-    
     ### multivariate linear (mixed-effects) model with study as a random variable, and LP/HP ratio as moderator
     res <- rma.mv(log_interaction, v_variance, mods = ~Trt_LP_HP, 
                   random = ~1 | random_factor, data = tDF)
@@ -820,6 +998,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### random-effect model
     # res <- rma(log_interaction, v_variance, data = tDF)
@@ -856,6 +1043,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF,control=list(stepadj=0.5))
     
@@ -875,7 +1071,7 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     make_step2_interaction_funnel_plot(res, var.name="LMA")
     
     ### leave one out analysis, based on simple model
-    res2 <- rma.uni(log_interaction, v_variance, data=tDF)
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF,digits=5, control=list(stepadj=0.5))
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="LMA")
     
@@ -891,6 +1087,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### random-effect model
     # res <- rma(log_interaction, v_variance, data = tDF)
@@ -927,6 +1132,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -961,6 +1175,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF, control=list(stepadj=0.05))
     
@@ -979,7 +1202,7 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     make_step2_interaction_funnel_plot(res, var.name="leaf_NP")
     
     ### leave one out analysis, based on simple model
-    res2 <- rma.uni(log_interaction, v_variance, data=tDF, digits=5, control=list(stepadj=0.5))
+    res2 <- rma.uni(log_interaction, v_variance, data=tDF, digits=5,method="EB", control=list(stepadj=0.5,threshold=1e-8))
     looDF <- leave1out(res2)
     make_step2_interaction_leave_one_out_plot(res, res2, looDF, var.name="leaf_NP")
     
@@ -995,6 +1218,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
@@ -1033,6 +1265,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
     
@@ -1068,6 +1309,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
@@ -1108,6 +1358,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     #res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -1144,6 +1403,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -1178,6 +1446,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
     
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
+    
     ### random-effect model
     # res <- rma(log_interaction, v_variance, data = tDF)
     
@@ -1210,6 +1487,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size
@@ -1247,6 +1533,15 @@ make_step2_metafor_statistics_advanced <- function(inDF, intDF) {
     tDF <- tDF[order(tDF$Vegetation_type, tDF$Mycorrhizae_2,
                      tDF$Species, tDF$Literature, tDF$Trt_eC_by_aC,
                      tDF$Trt_eP_by_aP), ]
+    
+    ### find outliters and remove from the data
+    Q <- quantile(tDF$log_interaction, probs=c(.25, .75), na.rm = FALSE)
+    iqr <- IQR(tDF$log_interaction)
+    
+    up <-  Q[2]+1.5*iqr # Upper Range  
+    low<- Q[1]-1.5*iqr # Lower Range
+    
+    #tDF <- tDF[tDF$log_interaction <= up & tDF$log_interaction >= low, ]
     
     ### use 1/n to get the variance
     tDF$v_variance <- 1/tDF$Sample.Size

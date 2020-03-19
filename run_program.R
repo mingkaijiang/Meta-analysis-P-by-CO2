@@ -78,6 +78,7 @@ sumDF <- prepare_summary_co2_effect_df_advanced()
 
 
 ### Interaction effect
+### and some data quality checks
 intDF <- make_step2_metafor_statistics_advanced(inDF=myDF, intDF=intDF)
 
 ### calculate percent response
@@ -180,7 +181,7 @@ test_step3_between_group_heterogeneity(inDF=myDF)
 
 ### plot woody and nonwoody comparison
 ### go into function to plot!!!
-make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
+#make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 
 #################################################################################
