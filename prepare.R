@@ -23,6 +23,15 @@ if(!dir.exists("output/step4")) {
     dir.create("output/step4", showWarnings = FALSE)
 }
 
+if(!dir.exists("output/step5")) {
+    dir.create("output/step5", showWarnings = FALSE)
+}
+
+if(!dir.exists("output/step5/supplementary")) {
+    dir.create("output/step5/supplementary", showWarnings = FALSE)
+}
+
+
 #### Install packages
 if(!require(pacman))install.packages("pacman")
 pacman::p_load(doBy, 
@@ -74,3 +83,9 @@ for(z3 in source_step3)source(z3)
 
 source_step4 <- dir("function/step4", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
 for(z4 in source_step4)source(z4)
+
+source_step5 <- dir("function/step5", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
+for(z5 in source_step5)source(z5)
+
+
+

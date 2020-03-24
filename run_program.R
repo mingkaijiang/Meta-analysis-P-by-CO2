@@ -7,8 +7,7 @@
 ##### 2. make metafor plots and tables based on all data
 ##### 3. make metafor plots and tables comparing woody and nonwoody responses
 ##### 4. check mycorrhizal effect
-
-##### 5. 
+##### 5. remove duplicated data entries (time) and re-analyze interaction effect
 
 
 
@@ -195,22 +194,57 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody(subDF=mycoDF)
 
 
 #################################################################################
-##### Step 5. Quality check of the meta-analysis,interaction effect only
+##### Step 5. use a simplified dataset to evaluate the results
+#####         remove duplicated data entry but only keep the last time point
+#####
 
-### Funnel plots
+#### Simplifying the original data
+spfDF <- reduce_duplicated_time_data_entries(inDF=myDF)
+
+#### re-analyze interaction effect
+intDF <- make_step5_metafor_statistics_advanced(inDF=spfDF, intDF=intDF)
+
+### calculate percent response
+intDF$int_pct <- (exp(intDF$interaction) - 1) * 100
+intDF$se_pct <- (exp(intDF$se) - 1) * 100
+intDF$ci_lb_pct <- (exp(intDF$ci_lb) - 1) * 100
+intDF$ci_ub_pct <- (exp(intDF$ci_ub) - 1) * 100
+write.csv(intDF, "output/step5/interaction_responses_simplified.csv", row.names=F)
 
 
-### asymetry test of point distribution
 
-### leave-one-one meta-analysis of outliers
+### P effect under aCO2 
+sumDF2 <- make_step5_metafor_p_statistics_aCO2_advanced(inDF=spfDF, sumDF2=sumDF2)
 
-### time meta-regression
+### P effect under eCO2 
+sumDF2 <- make_step2_metafor_p_statistics_eCO2_advanced(inDF=spfDF, sumDF2=sumDF2)
 
-### time, removing repeated data entries
+### calculate percent response
+sumDF2$P_effect_pct <- (exp(sumDF2$P_effect) - 1) * 100
+sumDF2$se_pct <- (exp(sumDF2$se) - 1) * 100
+sumDF2$ci_lb_pct <- (exp(sumDF2$ci_lb) - 1) * 100
+sumDF2$ci_ub_pct <- (exp(sumDF2$ci_ub) - 1) * 100
+write.csv(sumDF2, "output/step5/p_effect_simplified.csv", row.names=F)
 
-### accumulative meta-analysis
 
 
+### CO2 effect under eP
+sumDF <- make_step5_metafor_co2_statistics_eP_basic(inDF=spfDF, sumDF=sumDF)
+
+### CO2 effect under aP
+sumDF <- make_step5_metafor_co2_statistics_aP_basic(inDF=spfDF, sumDF=sumDF)
+
+### calculate percent response
+sumDF$CO2_effect_pct <- (exp(sumDF$CO2_effect) - 1) * 100
+sumDF$se_pct <- (exp(sumDF$se) - 1) * 100
+sumDF$ci_lb_pct <- (exp(sumDF$ci_lb) - 1) * 100
+sumDF$ci_ub_pct <- (exp(sumDF$ci_ub) - 1) * 100
+write.csv(sumDF, "output/step5/co2_effect_simplified.csv", row.names=F)
+
+
+### make summary plots of the interaction and individual responses 
+### go into function to plot!!!
+make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
 
 
 
