@@ -64,7 +64,7 @@ generate_a_detailed_summary_table(inDF=myDF)
 #make_basic_summary_stats_plots(inDF=myDF)
 
 #### plot a leaf N vs. leaf P concentration comparison
-#plot_leaf_N_P_concentration_comparison(inDF=myDF)
+plot_leaf_N_P_concentration_comparison(inDF=myDF)
 
 
 #################################################################################
@@ -180,7 +180,7 @@ test_step3_between_group_heterogeneity(inDF=myDF)
 
 ### plot woody and nonwoody comparison
 ### go into function to plot!!!
-make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
+#make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 
 #################################################################################

@@ -265,8 +265,8 @@ plot_leaf_N_P_concentration_comparison <- function(inDF) {
         ggdraw() +
         draw_plot(p1, x = 0.0, y = 0.54, width = 1.0, height =0.45) +
         draw_plot(p2, x = 0.0, y = 0.0, width = 1.0, height =0.58)+ 
-        draw_plot(p3, x = 0.52, y = .34, width = .4, height = .2)+
-        draw_plot(p4, x = 0.52, y = .75, width = .4, height = .2)
+        draw_plot(p3, x = 0.52, y = .75, width = .4, height = .2)+
+        draw_plot(p4, x = 0.52, y = .34, width = .4, height = .2)
         
 
     
