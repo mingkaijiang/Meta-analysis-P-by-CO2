@@ -82,8 +82,8 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         labs(x="", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=18), 
-              axis.text.x = element_text(size=16),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=20),
               axis.title.y=element_text(size=20),
               legend.text=element_text(size=16),
@@ -121,8 +121,8 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         labs(x="", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=18), 
-              axis.text.x = element_text(size=16),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
               axis.text.y=element_text(size=20),
               axis.title.y=element_text(size=20),
               legend.text=element_text(size=16),
@@ -191,11 +191,11 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
     
     #plot(p1c)
     
-    pdf("output/step3/Figure7_woody_nonwoody_comparison_LP_effect_on_eCO2_response.pdf", 
-        width=8, height=12)
+    pdf("output/step3/Figure_8_woody_nonwoody_comparison_LP_effect_on_eCO2_response.pdf", 
+        width=10, height=10)
     plot_grid(p1a, p1b, p1c,
               #rel_widths=c(0.5, 1, 1, 0.9),
-              rel_heights=c(0.8,0.6,1.0),
+              rel_heights=c(0.4,0.3,1.0),
               labels=c(""), ncol=1, align="v", axis = "l")    
     dev.off()
     
@@ -207,19 +207,19 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=neg, xmax=pos, color=factor(P_treatment))) + 
         geom_point(data=plotDF4, mapping=aes(y=id, x=CO2_effect, fill=P_treatment), 
-                   size=6, shape=21, color="black")+
+                   size=4, shape=21, color="black")+
         labs(y="", x="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
               axis.text.x = element_blank(),
-              axis.text.y=element_text(size=20),
-              axis.title.y=element_text(size=20),
-              legend.text=element_text(size=16),
-              legend.title=element_text(size=18),
+              axis.text.y=element_text(size=18),
+              axis.title.y=element_text(size=18),
+              legend.text=element_text(size=14),
+              legend.title=element_text(size=16),
               panel.grid.major=element_blank(),
               legend.position = "none",
-              plot.title = element_text(size = 18, face = "bold"),
+              plot.title = element_text(size = 16, face = "bold"),
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -245,7 +245,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=neg, xmax=pos, color=factor(P_treatment))) + 
         geom_point(data=plotDF5, mapping=aes(y=id, x=CO2_effect, fill=P_treatment), 
-                   size=6, shape=21, color="black")+
+                   size=4, shape=21, color="black")+
         labs(y="", x="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
@@ -253,11 +253,11 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
               axis.text.x = element_blank(),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
-              legend.text=element_text(size=16),
-              legend.title=element_text(size=18),
+              legend.text=element_text(size=14),
+              legend.title=element_text(size=16),
               panel.grid.major=element_blank(),
               legend.position = "none",
-              plot.title = element_text(size = 18, face = "bold"),
+              plot.title = element_text(size = 16, face = "bold"),
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -284,19 +284,19 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=neg, xmax=pos, color=factor(P_treatment))) + 
         geom_point(data=plotDF6, mapping=aes(y=id, x=CO2_effect, fill=P_treatment), 
-                   size=6, shape=21, color="black")+
+                   size=4, shape=21, color="black")+
         labs(y="", x="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
               axis.text.x = element_blank(),
-              axis.text.y=element_text(size=20),
-              axis.title.y=element_text(size=20),
-              legend.text=element_text(size=16),
-              legend.title=element_text(size=18),
+              axis.text.y=element_text(size=18),
+              axis.title.y=element_text(size=18),
+              legend.text=element_text(size=14),
+              legend.title=element_text(size=16),
               panel.grid.major=element_blank(),
               legend.position = "none",
-              plot.title = element_text(size = 18, face = "bold"),
+              plot.title = element_text(size = 16, face = "bold"),
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -323,7 +323,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=neg, xmax=pos, color=factor(P_treatment))) + 
         geom_point(data=plotDF7, mapping=aes(y=id, x=CO2_effect, fill=P_treatment), 
-                   size=6, shape=21, color="black")+
+                   size=4, shape=21, color="black")+
         labs(y="", x="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
@@ -331,11 +331,11 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
               axis.text.x = element_blank(),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
-              legend.text=element_text(size=16),
-              legend.title=element_text(size=18),
+              legend.text=element_text(size=14),
+              legend.title=element_text(size=16),
               panel.grid.major=element_blank(),
               legend.position = "none",
-              plot.title = element_text(size = 18, face = "bold"),
+              plot.title = element_text(size = 16, face = "bold"),
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -362,19 +362,19 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=neg, xmax=pos, color=factor(P_treatment))) + 
         geom_point(data=plotDF8, mapping=aes(y=id, x=CO2_effect, fill=P_treatment), 
-                   size=6, shape=21, color="black")+
+                   size=4, shape=21, color="black")+
         labs(y="", x=expression("Woody " * eCO[2] * " response (%)"))+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=18), 
-              axis.text.x = element_text(size=16),
-              axis.text.y=element_text(size=20),
-              axis.title.y=element_text(size=20),
-              legend.text=element_text(size=16),
-              legend.title=element_text(size=18),
+              axis.title.x = element_text(size=16), 
+              axis.text.x = element_text(size=14),
+              axis.text.y=element_text(size=18),
+              axis.title.y=element_text(size=18),
+              legend.text=element_text(size=14),
+              legend.title=element_text(size=16),
               panel.grid.major=element_blank(),
               legend.position = "bottom",
-              plot.title = element_text(size = 18, face = "bold"),
+              plot.title = element_text(size = 16, face = "bold"),
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -403,19 +403,19 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=neg, xmax=pos, color=factor(P_treatment))) + 
         geom_point(data=plotDF9, mapping=aes(y=id, x=CO2_effect, fill=P_treatment), 
-                   size=6, shape=21, color="black")+
+                   size=4, shape=21, color="black")+
         labs(y="", x=expression("Non-woody " * eCO[2] * " response (%)"))+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
-              axis.title.x = element_text(size=18), 
-              axis.text.x = element_text(size=16),
+              axis.title.x = element_text(size=16), 
+              axis.text.x = element_text(size=14),
               axis.text.y=element_blank(),
               axis.title.y=element_blank(),
-              legend.text=element_text(size=16),
-              legend.title=element_text(size=18),
+              legend.text=element_text(size=14),
+              legend.title=element_text(size=16),
               panel.grid.major=element_blank(),
               legend.position = "bottom",
-              plot.title = element_text(size = 18, face = "bold"),
+              plot.title = element_text(size = 16, face = "bold"),
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
@@ -436,13 +436,13 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
     
     #plot(p2f)
     
-    pdf("output/step3/Figure6_woody_nonwoody_comparison_eCO2_effect.pdf", 
-        width=10, height=14)
+    pdf("output/step3/Figure_9_woody_nonwoody_comparison_eCO2_effect.pdf", 
+        width=8, height=8)
     plot_grid(p2a, p2b, 
               p2c, p2d,
               p2e, p2f,
               rel_widths=c(1,0.8),
-              rel_heights=c(0.8,0.6,1.0),
+              rel_heights=c(0.4,0.3,0.8),
               labels=c(""), ncol=2, align="h", axis = "l")    
     dev.off()
     
