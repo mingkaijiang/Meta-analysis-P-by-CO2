@@ -61,7 +61,7 @@ generate_a_detailed_summary_table(inDF=myDF)
 ### CO2 and P treatment
 ### need to go into function and plot
 ### come back point: to make nicer plots!!!!
-#make_basic_summary_stats_plots(inDF=myDF)
+make_basic_summary_stats_plots(inDF=myDF)
 
 #### plot a leaf N vs. leaf P concentration comparison
 plot_leaf_N_P_concentration_comparison(inDF=myDF)
@@ -227,7 +227,6 @@ sumDF2$ci_ub_pct <- (exp(sumDF2$ci_ub) - 1) * 100
 write.csv(sumDF2, "output/step5/p_effect_simplified.csv", row.names=F)
 
 
-
 ### CO2 effect under eP
 sumDF <- make_step5_metafor_co2_statistics_eP_basic(inDF=spfDF, sumDF=sumDF)
 
@@ -244,7 +243,11 @@ write.csv(sumDF, "output/step5/co2_effect_simplified.csv", row.names=F)
 
 ### make summary plots of the interaction and individual responses 
 ### go into function to plot!!!
-make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
+make_step5_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
+
+
+
+
 
 
 

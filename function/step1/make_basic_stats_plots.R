@@ -1,5 +1,9 @@
 make_basic_summary_stats_plots <- function(inDF) {
+    
+    inDF <- inDF[inDF$Mycorrhizae_2 %in%c("ECM", "AM"),]
 
+    grid.labs <- c("(a)", "(b)", "(c)", "(d)")
+    
     #### Summary of treatment
     
     p1 <- ggplot()+
@@ -77,9 +81,7 @@ make_basic_summary_stats_plots <- function(inDF) {
         xlab("LP / HP")
     
     ### summary histgram of treatments
-    pdf("output/step1/summary_basic_treatment.pdf", width=8, height=8)
-    grid.labs <- c("(a)", "(b)", "(c)", "(d)")
-    
+    pdf("output/step1/Figure_S2.pdf", width=8, height=8)
     plot_grid(p1, p2, p3, p4,
               labels="", ncol=2, align="v", axis = "l")
     grid.text(grid.labs,x = c(0.12, 0.62, 0.12, 0.62),
@@ -102,8 +104,8 @@ make_basic_summary_stats_plots <- function(inDF) {
               panel.grid.major=element_blank(),
               legend.position="bottom",
               legend.text.align=0)+
-        ylab("Data entry count")+
-        scale_x_discrete(name="Category",
+        ylab("Number of data entry")+
+        scale_x_discrete(name="Response category",
                          breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
                                    "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency"))
     
@@ -121,7 +123,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               panel.grid.major=element_blank(),
               legend.position="bottom",
               legend.text.align=0)+
-        ylab("Data entry count")+
+        ylab("Number of data entry")+
         scale_x_discrete(name="Vegetation type",
                          breaks=c( "Woody", "Nonwoody"),
                          labels=c(  "Woody", "Nonwoody"))
@@ -142,7 +144,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               panel.grid.major=element_blank(),
               legend.position="bottom",
               legend.text.align=0)+
-        ylab("Study count")+
+        ylab("Number of study")+
         scale_x_discrete(name="Category",
                          breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
                                    "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency"))
@@ -161,7 +163,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               panel.grid.major=element_blank(),
               legend.position="bottom",
               legend.text.align=0)+
-        ylab("Study count")+
+        ylab("Number of study")+
         scale_x_discrete(name="Vegetation type",
                          breaks=c(  "Woody", "Nonwoody"),
                          labels=c(  "Woody", "Nonwoody"))
@@ -175,6 +177,10 @@ make_basic_summary_stats_plots <- function(inDF) {
               y = c(0.95, 0.95, 0.46, 0.46),
               gp=gpar(fontsize=16, col="black", fontface="bold"))
     dev.off()
+    
+    
+    
+    
     
     catDF <- unique(inDF[c("Literature", "Category", "Vegetation_type")])
     
@@ -200,6 +206,55 @@ make_basic_summary_stats_plots <- function(inDF) {
         
     pdf("output/step1/data_summary_study_count_vegetation_category.pdf")
     plot(p1)
+    dev.off()
+    
+    
+    
+    #### summary of variables
+    p1 <- ggplot()+
+        geom_bar(data=inDF, aes(Category),stat="count")+
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12, angle=90, hjust=1),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.position="bottom",
+              legend.text.align=0)+
+        ylab("Number of data entry")+
+        scale_x_discrete(name="",
+                         breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
+                                   "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency"))
+    
+    #### summary of vegetation types
+    p2 <- ggplot()+
+        geom_bar(data=inDF, aes(Vegetation_type, fill=Mycorrhizae_2),stat="count")+
+        theme_linedraw() +
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=14), 
+              axis.text.x = element_text(size=12, angle=90, hjust=1),
+              axis.text.y=element_text(size=12),
+              axis.title.y=element_text(size=14),
+              legend.text=element_text(size=12),
+              legend.title=element_text(size=14),
+              panel.grid.major=element_blank(),
+              legend.position="bottom",
+              legend.text.align=0)+
+        ylab("Number of data entry")+
+        scale_x_discrete(name="",
+                         breaks=c( "Woody", "Nonwoody"),
+                         labels=c(  "Woody", "Nonwoody"))+
+        scale_fill_manual(name="Mycorrhizal type",
+                          values=c("black", "lightgrey"),
+                          labels=c("AM", "ECM"))
+    
+    pdf("output/step1/Figure_1.pdf", width=12, height=6)
+    plot_grid(p1, p2,
+              labels="auto", ncol=2, align="v", axis = "l",
+              rel_widths = c(1, 0.5))
     dev.off()
     
 }
