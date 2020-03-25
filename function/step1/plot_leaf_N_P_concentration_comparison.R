@@ -63,9 +63,9 @@ plot_leaf_N_P_concentration_comparison <- function(inDF) {
     p1 <- ggplot()+ 
         geom_line(data=ablines, aes(x=x, y=y1), lty=2)+
         geom_line(data=ablines, aes(x=x, y=y2), lty=3)+
-        annotate(geom="text", x=7, y=0.46, label="1:16 line",
+        annotate(geom="text", x=7, y=0.46, label="1:16",
                  color="black", size=10)+
-        annotate(geom="text", x=7.5, y=0.32, label="1:20 line",
+        annotate(geom="text", x=7.5, y=0.32, label="1:20",
                  color="black", size=10)+
         geom_point(data=plotDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, color = as.factor(Vegetation_type)), 
                    size=6, shape=21, alpha=0.9)+
@@ -100,7 +100,7 @@ plot_leaf_N_P_concentration_comparison <- function(inDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_y_continuous(limits=c(0, 0.8))+
+        scale_y_continuous(limits=c(0, 1.5))+
         scale_x_continuous(limits=c(0, 8))+
         ggtitle("a")+
         scale_color_manual(name=paste("Vegetation type"),
@@ -119,9 +119,9 @@ plot_leaf_N_P_concentration_comparison <- function(inDF) {
     p2 <- ggplot()+ 
         geom_line(data=ablines, aes(x=x, y=y1), lty=2)+
         geom_line(data=ablines, aes(x=x, y=y2), lty=3)+
-        annotate(geom="text", x=7.5, y=0.45, label="1:16 line",
+        annotate(geom="text", x=7.5, y=0.45, label="1:16",
                  color="black", size=10)+
-        annotate(geom="text", x=7.0, y=0.35, label="1:20 line",
+        annotate(geom="text", x=7.0, y=0.35, label="1:20",
                  color="black", size=10)+
         geom_point(data=plotDF, mapping=aes(x=Leaf_N_aP, y=Leaf_P_aP, color = as.factor(Vegetation_type)), 
                    size=6, shape=21, alpha=0.9)+
@@ -156,8 +156,8 @@ plot_leaf_N_P_concentration_comparison <- function(inDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_y_continuous(limits=c(0, 0.6))+
-        scale_x_continuous(limits=c(0,8))+
+        scale_y_continuous(limits=c(0, 1.5))+
+        scale_x_continuous(limits=c(0, 8))+
         scale_color_manual(name=paste("Vegetation type"),
                            limits=c("Woody", "Nonwoody"),
                            values=c("darkgreen", "orange"),
@@ -172,11 +172,110 @@ plot_leaf_N_P_concentration_comparison <- function(inDF) {
     
     #plot(p2)
     
-    pdf("output/step1/Figure_2.pdf", width=10, height=12)
-    plot_grid(p1, p2,
-              #rel_widths=c(0.5, 1, 1, 0.9),
-              rel_heights=c(1,1.4),
-              labels=c(""), ncol=1, align="v", axis = "l")    
-    dev.off()
+    ### inset 
+    p3 <- ggplot()+ 
+        geom_line(data=ablines, aes(x=x, y=y1), lty=2)+
+        geom_line(data=ablines, aes(x=x, y=y2), lty=3)+
+        annotate(geom="text", x=7, y=0.46, label="1:16",
+                 color="black", size=10)+
+        annotate(geom="text", x=7.5, y=0.32, label="1:20",
+                 color="black", size=10)+
+        #geom_point(data=plotDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, color = as.factor(Vegetation_type)), 
+        #           size=6, shape=21, alpha=0.9)+
+        #geom_point(data=plotDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, fill = as.factor(Vegetation_type)), 
+        #           size=6, shape=21, color="black", alpha=0.9)+
+        #geom_line(data=plotDF, mapping=aes(x=Leaf_N_eP, y=Leaf_P_eP, group=as.factor(Group)),
+        #          arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"), alpha=0.9)+
+        geom_point(data=aggDF, mapping=aes(x=Leaf_N_eP.mean, y=Leaf_P_eP.mean), 
+                   size = 5, shape=22, color="black", fill="grey")+
+        geom_line(data=aggDF, mapping=aes(x=Leaf_N_eP.mean, y=Leaf_P_eP.mean), size=2,
+                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"))+
+        geom_segment(aes(x=aggDF$Leaf_N_eP.mean[aggDF$CO2_trt=="aC"], xend = aggDF$Leaf_N_eP.mean[aggDF$CO2_trt=="aC"],
+                         y=leafp.eP.aC.pos, yend=leafp.eP.aC.neg), lwd=0.5)+
+        geom_segment(aes(x=aggDF$Leaf_N_eP.mean[aggDF$CO2_trt=="eC"], xend = aggDF$Leaf_N_eP.mean[aggDF$CO2_trt=="eC"],
+                         y=leafp.eP.eC.pos, yend=leafp.eP.eC.neg), lwd=0.5)+
+        geom_segment(aes(x=leafn.eP.aC.pos, xend = leafn.eP.aC.neg,
+                         y=aggDF$Leaf_P_eP.mean[aggDF$CO2_trt=="aC"], yend=aggDF$Leaf_P_eP.mean[aggDF$CO2_trt=="aC"]), lwd=0.5)+
+        geom_segment(aes(x=leafn.eP.eC.pos, xend = leafn.eP.eC.neg,
+                         y=aggDF$Leaf_P_eP.mean[aggDF$CO2_trt=="eC"], yend=aggDF$Leaf_P_eP.mean[aggDF$CO2_trt=="eC"]), lwd=0.5)+
+        #labs(y="Leaf P conc. (%)", x="Leaf N conc. (%)")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_text(size=8),
+              axis.text.y=element_text(size=8),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=16),
+              legend.title=element_text(size=18),
+              panel.grid.major=element_blank(),
+              legend.position = "none",
+              plot.title = element_text(size = 18, face = "bold"),
+              legend.background = element_rect(fill="white",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_y_continuous(limits=c(0.25, 0.35))+
+        scale_x_continuous(limits=c(2, 3.5))#+
+        #ggtitle("c")
+    
+    
+    
+    p4 <- ggplot()+ 
+        #geom_line(data=ablines, aes(x=x, y=y1), lty=2)+
+        geom_line(data=ablines, aes(x=x, y=y2), lty=3)+
+        #annotate(geom="text", x=7.5, y=0.45, label="1:16",
+        #         color="black", size=10)+
+        annotate(geom="text", x=7.0, y=0.35, label="1:20",
+                 color="black", size=10)+
+        geom_point(data=aggDF, mapping=aes(x=Leaf_N_aP.mean, y=Leaf_P_aP.mean), 
+                   size = 5, shape=22, color="black", fill="grey")+
+        geom_line(data=aggDF, mapping=aes(x=Leaf_N_aP.mean, y=Leaf_P_aP.mean), size=2,
+                  arrow = arrow(length=unit(0.30,"cm"), ends="first", type = "closed"))+
+        geom_segment(aes(x=aggDF$Leaf_N_aP.mean[aggDF$CO2_trt=="aC"], xend = aggDF$Leaf_N_aP.mean[aggDF$CO2_trt=="aC"],
+                         y=leafp.aP.aC.pos, yend=leafp.aP.aC.neg), lwd=0.5)+
+        geom_segment(aes(x=aggDF$Leaf_N_aP.mean[aggDF$CO2_trt=="eC"], xend = aggDF$Leaf_N_aP.mean[aggDF$CO2_trt=="eC"],
+                         y=leafp.aP.eC.pos, yend=leafp.aP.eC.neg), lwd=0.5)+
+        geom_segment(aes(x=leafn.aP.aC.pos, xend = leafn.aP.aC.neg,
+                         y=aggDF$Leaf_P_aP.mean[aggDF$CO2_trt=="aC"], yend=aggDF$Leaf_P_aP.mean[aggDF$CO2_trt=="aC"]), lwd=0.5)+
+        geom_segment(aes(x=leafn.aP.eC.pos, xend = leafn.aP.eC.neg,
+                         y=aggDF$Leaf_P_aP.mean[aggDF$CO2_trt=="eC"], yend=aggDF$Leaf_P_aP.mean[aggDF$CO2_trt=="eC"]), lwd=0.5)+
+        #labs(y="Leaf P conc. (%)", x="Leaf N conc. (%)")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_text(size=8),
+              axis.text.y=element_text(size=8),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=16),
+              legend.title=element_text(size=18),
+              panel.grid.major=element_blank(),
+              legend.position = "bottom",
+              plot.title = element_text(size = 18, face = "bold"),
+              legend.background = element_rect(fill="white",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_y_continuous(limits=c(0.125, 0.175))+
+        scale_x_continuous(limits=c(2.5, 3.5))#+       
+        #ggtitle("d")
+    
+    
+    #plot(p4)
+    
+    
+    plot.with.inset <-
+        ggdraw() +
+        draw_plot(p1, x = 0.0, y = 0.54, width = 1.0, height =0.45) +
+        draw_plot(p2, x = 0.0, y = 0.0, width = 1.0, height =0.58)+ 
+        draw_plot(p3, x = 0.52, y = .34, width = .4, height = .2)+
+        draw_plot(p4, x = 0.52, y = .75, width = .4, height = .2)
+        
+
+    
+    ggsave(filename = "output/step1/Figure_2.pdf", 
+           plot = plot.with.inset,
+           width = 125, 
+           height = 250,
+           units = "mm",
+           dpi = 300)
+    
     
 }
