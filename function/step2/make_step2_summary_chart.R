@@ -389,7 +389,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         guides(fill = guide_legend(title.position = "top"))
     
 
-    pdf("output/step2/Figure_4_biomass_responses.pdf", width=14, height=6)
+    pdf("output/step5/SFigure_4_biomass_responses.pdf", width=14, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -450,7 +450,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="grey",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-60, 25))+
+        scale_x_continuous(limits=c(-60, 40))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab2)+
         scale_color_manual(name=paste("CIs"),
@@ -556,7 +556,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-60, 25))+
+        scale_x_continuous(limits=c(-60, 40))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab3)+
         scale_color_manual(name=paste("CIs"),
@@ -608,7 +608,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           labels=c("Positive", "Negative", "Neutral"))+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/step2/Figure_6_concentration_responses.pdf", width=14, height=10)
+    pdf("output/step5/SFigure_6_concentration_responses.pdf", width=14, height=10)
     plot_grid(p2a, p2b, p2c,
               p3a, p3b, p3c,
               rel_heights=c(1.0, 1.4),
@@ -638,7 +638,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-60, 60))+
+        scale_x_continuous(limits=c(-65, 60))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=y.lab7)+
         scale_color_manual(name=paste("CIs"),
@@ -710,7 +710,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-50, 100))+
+        scale_x_continuous(limits=c(-50, 105))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5),
                            labels=c("","",""),
                            sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7, 5.3, 5.7),
@@ -727,7 +727,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/step2/Figure_3_gas_exchange_responses.pdf", width=16, height=6)
+    pdf("output/step5/SFigure_3_gas_exchange_responses.pdf", width=16, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -844,7 +844,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/step2/Figure_5_morphology_responses.pdf", width=16, height=6)
+    pdf("output/step5/SFigure_5_morphology_responses.pdf", width=16, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -908,7 +908,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-40, 40))+
+        scale_x_continuous(limits=c(-40, 46))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=y.lab8)+
         scale_color_manual(name=paste("CIs"),
@@ -944,7 +944,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-30, 40))+
+        scale_x_continuous(limits=c(-30, 55))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=c("",""),
                            sec.axis = sec_axis(~., name = "", breaks=c(1.3, 1.7, 3.3, 3.7),
@@ -961,7 +961,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/step2/Figure_7_nutrient_uptake_responses.pdf", width=16, height=6)
+    pdf("output/step5/SFigure_7_nutrient_uptake_responses.pdf", width=16, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
@@ -1025,7 +1025,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 125))+
+        scale_x_continuous(limits=c(-75, 160))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab5)+
         scale_color_manual(name=paste("CIs"),
@@ -1131,7 +1131,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 125))+
+        scale_x_continuous(limits=c(-75, 160))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab6)+
         scale_color_manual(name=paste("CIs"),
@@ -1238,7 +1238,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 125))+
+        scale_x_continuous(limits=c(-75, 160))+
         scale_y_continuous(breaks=c(1.5, 3.5),
                            labels=y.lab9)+
         scale_color_manual(name=paste("CIs"),
@@ -1346,7 +1346,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-75, 125))+
+        scale_x_continuous(limits=c(-75, 160))+
         scale_y_continuous(breaks=c(1.5, 3.5, 5.5, 7.5),
                            labels=y.lab4)+
         scale_color_manual(name=paste("CIs"),
@@ -1398,7 +1398,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("l")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/step2/Figure_S9.pdf", width=16, height=16)
+    pdf("output/step5/SFigure_S9.pdf", width=16, height=16)
     plot_grid(p1a, p1b, p1c,
               p2a, p2b, p2c,
               p3a, p3b, p3c,
