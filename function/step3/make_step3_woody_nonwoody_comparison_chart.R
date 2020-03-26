@@ -261,7 +261,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-65, 60))+
+        scale_x_continuous(limits=c(-65, 65))+
         scale_y_continuous(breaks=c(1:3),
                            labels=c("RL", "LA", "A"))+
         scale_color_manual(name=paste("P treatment"),
@@ -339,7 +339,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-65, 60))+
+        scale_x_continuous(limits=c(-65, 65))+
         scale_y_continuous(breaks=c(2:3),
                            labels=c("BG", "AG"))+
         scale_color_manual(name=paste("P treatment"),
@@ -419,7 +419,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-65, 60))+
+        scale_x_continuous(limits=c(-65, 65))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("Root P", "Leaf P", "Root N", "Leaf N"))+
         scale_color_manual(name=paste("P treatment"),

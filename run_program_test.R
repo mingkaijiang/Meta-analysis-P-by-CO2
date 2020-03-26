@@ -79,19 +79,19 @@ sumDF <- prepare_summary_co2_effect_df_advanced()
 
 
 #### re-analyze interaction effect
-intDF <- make_step5_metafor_statistics_advanced(inDF=myDF, intDF=intDF)
+intDF <- make_step2_metafor_statistics_advanced(inDF=myDF, intDF=intDF)
 
 ### calculate percent response
 intDF$int_pct <- (exp(intDF$interaction) - 1) * 100
 intDF$se_pct <- (exp(intDF$se) - 1) * 100
 intDF$ci_lb_pct <- (exp(intDF$ci_lb) - 1) * 100
 intDF$ci_ub_pct <- (exp(intDF$ci_ub) - 1) * 100
-write.csv(intDF, "output/step5/interaction_responses_simplified.csv", row.names=F)
+write.csv(intDF, "output/step2/interaction_responses_simplified.csv", row.names=F)
 
 
 
 ### P effect under aCO2 
-sumDF2 <- make_step5_metafor_p_statistics_aCO2_advanced(inDF=myDF, sumDF2=sumDF2)
+sumDF2 <- make_step2_metafor_p_statistics_aCO2_advanced(inDF=myDF, sumDF2=sumDF2)
 
 ### P effect under eCO2 
 sumDF2 <- make_step2_metafor_p_statistics_eCO2_advanced(inDF=myDF, sumDF2=sumDF2)
@@ -101,26 +101,26 @@ sumDF2$P_effect_pct <- (exp(sumDF2$P_effect) - 1) * 100
 sumDF2$se_pct <- (exp(sumDF2$se) - 1) * 100
 sumDF2$ci_lb_pct <- (exp(sumDF2$ci_lb) - 1) * 100
 sumDF2$ci_ub_pct <- (exp(sumDF2$ci_ub) - 1) * 100
-write.csv(sumDF2, "output/step5/p_effect_simplified.csv", row.names=F)
+write.csv(sumDF2, "output/step2/p_effect_simplified.csv", row.names=F)
 
 
 ### CO2 effect under eP
-sumDF <- make_step5_metafor_co2_statistics_eP_basic(inDF=myDF, sumDF=sumDF)
+sumDF <- make_step2_metafor_co2_statistics_eP_basic(inDF=myDF, sumDF=sumDF)
 
 ### CO2 effect under aP
-sumDF <- make_step5_metafor_co2_statistics_aP_basic(inDF=myDF, sumDF=sumDF)
+sumDF <- make_step2_metafor_co2_statistics_aP_basic(inDF=myDF, sumDF=sumDF)
 
 ### calculate percent response
 sumDF$CO2_effect_pct <- (exp(sumDF$CO2_effect) - 1) * 100
 sumDF$se_pct <- (exp(sumDF$se) - 1) * 100
 sumDF$ci_lb_pct <- (exp(sumDF$ci_lb) - 1) * 100
 sumDF$ci_ub_pct <- (exp(sumDF$ci_ub) - 1) * 100
-write.csv(sumDF, "output/step5/co2_effect_simplified.csv", row.names=F)
+write.csv(sumDF, "output/step2/co2_effect_simplified.csv", row.names=F)
 
 
 ### make summary plots of the interaction and individual responses 
 ### go into function to plot!!!
-#make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
+make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
 
 
 
