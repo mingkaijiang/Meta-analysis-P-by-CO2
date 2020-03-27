@@ -68,6 +68,9 @@ generate_a_detailed_summary_table(inDF=myDF)
 #### plot a leaf N vs. leaf P concentration comparison
 plot_leaf_N_P_concentration_comparison(inDF=myDF)
 
+### plot author cluster plot
+plot_author_clusters()
+
 
 #################################################################################
 ##### Step 2. make metafor plots and tables

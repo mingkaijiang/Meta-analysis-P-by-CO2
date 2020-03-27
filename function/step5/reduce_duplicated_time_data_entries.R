@@ -31,7 +31,7 @@ reduce_duplicated_time_data_entries <- function(inDF) {
         }
     }
     
-    write.csv(outDF, "output/step5/P_by_CO2_data_V8_simplified.csv")
+    write.csv(outDF, "output/step2/P_by_CO2_data_V8_simplified.csv")
     
     return(outDF)
 }
