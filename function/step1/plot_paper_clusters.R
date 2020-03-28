@@ -88,7 +88,7 @@ plot_paper_clusters <- function() {
     
     pdf("output/step1/Figure_1d.pdf")
     plot(net, vertex.size=10, 
-         edge.arrow.size=.4,vertex.label.cex=1,
+         edge.arrow.size=.5,vertex.label.cex=1,
          layout=layout_in_circle,  
          edge.curved=.3,vertex.color="grey")
     dev.off()
