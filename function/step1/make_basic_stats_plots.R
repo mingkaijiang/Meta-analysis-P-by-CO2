@@ -251,6 +251,8 @@ make_basic_summary_stats_plots <- function(inDF) {
                           values=c("black", "lightgrey"),
                           labels=c("AM", "ECM"))
     
+    
+    
     pdf("output/step1/Figure_1.pdf", width=12, height=6)
     plot_grid(p1, p2,
               labels="auto", ncol=2, align="v", axis = "l",

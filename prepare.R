@@ -41,7 +41,10 @@ pacman::p_load(doBy,
                metafor,
                mgcv,
                weights,
-               meta)  
+               meta,
+               igraph,
+               tidyverse,
+               network)  
 
 #### Sourcing all R files in the modules subdirectory
 #source_basic_scripts <- dir("function/basic_processing", pattern="[.]R$", recursive = TRUE, full.names = TRUE)

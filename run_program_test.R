@@ -63,13 +63,13 @@ generate_a_detailed_summary_table(inDF=myDF)
 ### CO2 and P treatment
 ### need to go into function and plot
 ### come back point: to make nicer plots!!!!
-#make_basic_summary_stats_plots(inDF=myDF)
+make_basic_summary_stats_plots(inDF=myDF)
 
 #### plot a leaf N vs. leaf P concentration comparison
-plot_leaf_N_P_concentration_comparison(inDF=myDF)
+#plot_leaf_N_P_concentration_comparison(inDF=myDF)
 
 ### plot author cluster plot
-plot_author_clusters()
+plot_paper_clusters()
 
 
 #################################################################################
