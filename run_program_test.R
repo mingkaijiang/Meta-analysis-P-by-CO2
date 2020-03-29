@@ -123,7 +123,7 @@ write.csv(sumDF, "output/step2/co2_effect_simplified.csv", row.names=F)
 
 ### make summary plots of the interaction and individual responses 
 ### go into function to plot!!!
-make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
+#make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
 
 
 
@@ -182,7 +182,7 @@ test_step3_between_group_heterogeneity(inDF=myDF)
 
 ### plot woody and nonwoody comparison
 ### go into function to plot!!!
-make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
+#make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 
 #################################################################################

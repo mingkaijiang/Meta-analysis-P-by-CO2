@@ -22,7 +22,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
         
     for (i in var.list1) {
         subDF1 <- subset(inDF, Variable == i)
-        subDF1 <- subset(subDF1, v_variance >= 0.001)
+        #subDF1 <- subset(subDF1, v_variance >= 0.001)
         
         
         res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
@@ -47,7 +47,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     ### root and belowground biomass
     subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, v_variance >= 0.001)
+    #subDF1 <- subset(subDF1, v_variance >= 0.001)
     
     res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
                mods = ~factor(Vegetation_type), data = subDF1)
@@ -72,7 +72,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     subDF1 <- subset(inDF, Variable%in%c("Aboveground biomass", 
                                          "Total plant biomass",
                                          "Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, v_variance >= 0.001)
+    #subDF1 <- subset(subDF1, v_variance >= 0.001)
     
     res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
                   mods = ~factor(Vegetation_type), data = subDF1)
@@ -107,7 +107,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     for (i in var.list2) {
         subDF1 <- subset(inDF, Variable == i)
-        subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
+        #subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
         
         res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
                       mods = ~factor(Vegetation_type), 
@@ -132,7 +132,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     ### root biomass
     subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
+    #subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
                   mods = ~factor(Vegetation_type), 
@@ -156,7 +156,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     ### all biomass
     subDF1 <- subset(inDF, Variable%in%c("Aboveground biomass", "Total plant biomass",
                                          "Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
+    #subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
                   mods = ~factor(Vegetation_type), 
@@ -195,7 +195,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     for (i in var.list3) {
         subDF1 <- subset(inDF, Variable == i)
-        subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
+        #subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
         
         res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
                       mods = ~factor(Vegetation_type), 
@@ -225,7 +225,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
 
     ### root biomass
     subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
+    #subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
                   mods = ~factor(Vegetation_type), 
@@ -250,7 +250,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     subDF1 <- subset(inDF, Variable%in%c("Aboveground biomass", 
                                          "Total plant biomass",
                                          "Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
+    #subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
                   mods = ~factor(Vegetation_type), 
@@ -298,7 +298,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     for (i in var.list1) {
         subDF1 <- subset(inDF, Variable == i)
-        subDF1 <- subset(subDF1, v_variance >= 0.001)
+        #subDF1 <- subset(subDF1, v_variance >= 0.001)
         
         
         res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
@@ -323,7 +323,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     ### root and belowground biomass
     subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, v_variance >= 0.001)
+    #subDF1 <- subset(subDF1, v_variance >= 0.001)
     
     res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
                   mods = ~factor(Mycorrhizae_2), data = subDF1)
@@ -347,7 +347,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     subDF1 <- subset(inDF, Variable%in%c("Aboveground biomass", 
                                          "Total plant biomass",
                                          "Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, v_variance >= 0.001)
+    #subDF1 <- subset(subDF1, v_variance >= 0.001)
     
     res <- rma.mv(log_interaction, v_variance, random = ~1 | random_factor,
                   mods = ~factor(Mycorrhizae_2), data = subDF1)
@@ -382,7 +382,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     for (i in var.list2) {
         subDF1 <- subset(inDF, Variable == i)
-        subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
+        #subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
         
         res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
                       mods = ~factor(Mycorrhizae_2), 
@@ -407,7 +407,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     ### root biomass
     subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
+    #subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
                   mods = ~factor(Mycorrhizae_2), 
@@ -432,7 +432,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     subDF1 <- subset(inDF, Variable%in%c("Aboveground biomass", 
                                          "Total plant biomass",
                                          "Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
+    #subDF1 <- subset(subDF1, variance_co2_aP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_aP, random = ~1 | random_factor,
                   mods = ~factor(Mycorrhizae_2), 
@@ -471,7 +471,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     for (i in var.list3) {
         subDF1 <- subset(inDF, Variable == i)
-        subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
+        #subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
         
         res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
                       mods = ~factor(Mycorrhizae_2), 
@@ -501,7 +501,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     
     ### root biomass
     subDF1 <- subset(inDF, Variable%in%c("Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
+    #subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
                   mods = ~factor(Mycorrhizae_2), 
@@ -526,7 +526,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody <- function(su
     subDF1 <- subset(inDF, Variable%in%c("Aboveground biomass", 
                                          "Total plant biomass",
                                          "Root biomass", "Belowground biomass"))
-    subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
+    #subDF1 <- subset(subDF1, variance_co2_eP >= 0.001)
     
     res <- rma.mv(log_co2_aP, variance_co2_eP, random = ~1 | random_factor,
                   mods = ~factor(Mycorrhizae_2), 
