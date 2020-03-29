@@ -158,113 +158,181 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                 "root_biomass"="BG",
                 "aboveground_biomass"="AG")
     
-    y2.lab1 <- c(bquote(n[s]==.(plotDF1$ns[3])),
-                 bquote(n[e]==.(plotDF1$ne[3])),
-                 bquote(n[s]==.(plotDF1$ns[2])),
-                 bquote(n[e]==.(plotDF1$ne[2])),
-                 bquote(n[s]==.(plotDF1$ns[1])),
-                 bquote(n[e]==.(plotDF1$ne[1])))
+    #y2.lab1 <- c(bquote(n[s]==.(plotDF1$ns[3])),
+    #             bquote(n[e]==.(plotDF1$ne[3])),
+    #             bquote(n[s]==.(plotDF1$ns[2])),
+    #             bquote(n[e]==.(plotDF1$ne[2])),
+    #             bquote(n[s]==.(plotDF1$ns[1])),
+    #             bquote(n[e]==.(plotDF1$ne[1])))
     
+    y2.lab1 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF1$ns[3])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF1$ne[3])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF1$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF1$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF1$ns[1])),
+                 expression(paste(n[e], "=150", sep="")))
     
     y.lab2 <- c("total_P_concentration"="Total",
                 "root_P_concentration"="Root",
                 "stem_P_concentration"="Stem",
                 "leaf_P_concentration"="Leaf")
     
-    y2.lab2 <- c(bquote(n[s]==.(plotDF2$ns[4])),
-                 bquote(n[e]==.(plotDF2$ne[4])),
-                 bquote(n[s]==.(plotDF2$ns[3])),
-                 bquote(n[e]==.(plotDF2$ne[3])),
-                 bquote(n[s]==.(plotDF2$ns[2])),
-                 bquote(n[e]==.(plotDF2$ne[2])),
-                 bquote(n[s]==.(plotDF2$ns[1])),
-                 bquote(n[e]==.(plotDF2$ne[1])))
+    #y2.lab2 <- c(bquote(n[s]==.(plotDF2$ns[4])),
+    #             bquote(n[e]==.(plotDF2$ne[4])),
+    #             bquote(n[s]==.(plotDF2$ns[3])),
+    #             bquote(n[e]==.(plotDF2$ne[3])),
+    #             bquote(n[s]==.(plotDF2$ns[2])),
+    #             bquote(n[e]==.(plotDF2$ne[2])),
+    #             bquote(n[s]==.(plotDF2$ns[1])),
+    #             bquote(n[e]==.(plotDF2$ne[1])))
+    
+    y2.lab2 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF2$ns[4])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF2$ne[4])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF2$ns[3])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF2$ne[3])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF2$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF2$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF2$ns[1])),
+                 expression(paste(n[e], "=83", sep="")))
     
     y.lab3 <- c("total_N_concentration"="Total",
                 "root_N_concentration"="Root",
                 "stem_N_concentration"="Stem",
                 "leaf_N_concentration"="Leaf")
     
-    y2.lab3 <- c(bquote(n[s]==.(plotDF3$ns[4])),
-                 bquote(n[e]==.(plotDF3$ne[4])),
-                 bquote(n[s]==.(plotDF3$ns[3])),
-                 bquote(n[e]==.(plotDF3$ne[3])),
-                 bquote(n[s]==.(plotDF3$ns[2])),
-                 bquote(n[e]==.(plotDF3$ne[2])),
-                 bquote(n[s]==.(plotDF3$ns[1])),
-                 bquote(n[e]==.(plotDF3$ne[1])))
+    #y2.lab3 <- c(bquote(n[s]==.(plotDF3$ns[4])),
+    #             bquote(n[e]==.(plotDF3$ne[4])),
+    #             bquote(n[s]==.(plotDF3$ns[3])),
+    #             bquote(n[e]==.(plotDF3$ne[3])),
+    #             bquote(n[s]==.(plotDF3$ns[2])),
+    #             bquote(n[e]==.(plotDF3$ne[2])),
+    #             bquote(n[s]==.(plotDF3$ns[1])),
+    #             bquote(n[e]==.(plotDF3$ne[1])))
+    
+    y2.lab3 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF3$ns[4])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF3$ne[4])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF3$ns[3])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF3$ne[3])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF3$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF3$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF3$ns[1])),
+                 expression(paste(n[e], "=40", sep="")))
     
     y.lab4 <- c("total_NP"="Total",
                 "root_NP"="Root",
                 "stem_NP"="Stem",
                 "leaf_NP"="Leaf")
     
-    y2.lab4 <- c(bquote(n[s]==.(plotDF4$ns[4])),
-                 bquote(n[e]==.(plotDF4$ne[4])),
-                 bquote(n[s]==.(plotDF4$ns[3])),
-                 bquote(n[e]==.(plotDF4$ne[3])),
-                 bquote(n[s]==.(plotDF4$ns[2])),
-                 bquote(n[e]==.(plotDF4$ne[2])),
-                 bquote(n[s]==.(plotDF4$ns[1])),
-                 bquote(n[e]==.(plotDF4$ne[1])))
+    #y2.lab4 <- c(bquote(n[s]==.(plotDF4$ns[4])),
+    #             bquote(n[e]==.(plotDF4$ne[4])),
+    #             bquote(n[s]==.(plotDF4$ns[3])),
+    #             bquote(n[e]==.(plotDF4$ne[3])),
+    #             bquote(n[s]==.(plotDF4$ns[2])),
+    #             bquote(n[e]==.(plotDF4$ne[2])),
+    #             bquote(n[s]==.(plotDF4$ns[1])),
+    #             bquote(n[e]==.(plotDF4$ne[1])))
+    
+    y2.lab4 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF4$ns[4])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF4$ne[4])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF4$ns[3])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF4$ne[3])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF4$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF4$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF4$ns[1])),
+                 expression(paste(n[e], "=37", sep="")))
     
     y.lab5 <- c("total_P_content"="Total",
                 "root_P_content"="Root",
                 "stem_P_content"="Stem",
                 "leaf_P_content"="Leaf")
     
-    y2.lab5 <- c(bquote(n[s]==.(plotDF5$ns[4])),
-                 bquote(n[e]==.(plotDF5$ne[4])),
-                 bquote(n[s]==.(plotDF5$ns[3])),
-                 bquote(n[e]==.(plotDF5$ne[3])),
-                 bquote(n[s]==.(plotDF5$ns[2])),
-                 bquote(n[e]==.(plotDF5$ne[2])),
-                 bquote(n[s]==.(plotDF5$ns[1])),
-                 bquote(n[e]==.(plotDF5$ne[1])))
+    #y2.lab5 <- c(bquote(n[s]==.(plotDF5$ns[4])),
+    #             bquote(n[e]==.(plotDF5$ne[4])),
+    #             bquote(n[s]==.(plotDF5$ns[3])),
+    #             bquote(n[e]==.(plotDF5$ne[3])),
+    #             bquote(n[s]==.(plotDF5$ns[2])),
+    #             bquote(n[e]==.(plotDF5$ne[2])),
+    #             bquote(n[s]==.(plotDF5$ns[1])),
+    #             bquote(n[e]==.(plotDF5$ne[1])))
+    
+    y2.lab5 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF5$ns[4])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF5$ne[4])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF5$ns[3])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF5$ne[3])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF5$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF5$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF5$ns[1])),
+                 expression(paste(n[e], "=57", sep="")))
     
     y.lab6 <- c("total_N_content"="Total",
                 "root_N_content"="Root",
                 "stem_N_content"="Stem",
                 "leaf_N_content"="Leaf")
     
-    y2.lab6 <- c(bquote(n[s]==.(plotDF6$ns[4])),
-                 bquote(n[e]==.(plotDF6$ne[4])),
-                 bquote(n[s]==.(plotDF6$ns[3])),
-                 bquote(n[e]==.(plotDF6$ne[3])),
-                 bquote(n[s]==.(plotDF6$ns[2])),
-                 bquote(n[e]==.(plotDF6$ne[2])),
-                 bquote(n[s]==.(plotDF6$ns[1])),
-                 bquote(n[e]==.(plotDF6$ne[1])))
+    #y2.lab6 <- c(bquote(n[s]==.(plotDF6$ns[4])),
+    #             bquote(n[e]==.(plotDF6$ne[4])),
+    #             bquote(n[s]==.(plotDF6$ns[3])),
+    #             bquote(n[e]==.(plotDF6$ne[3])),
+    #             bquote(n[s]==.(plotDF6$ns[2])),
+    #             bquote(n[e]==.(plotDF6$ne[2])),
+    #             bquote(n[s]==.(plotDF6$ns[1])),
+    #             bquote(n[e]==.(plotDF6$ne[1])))
+    
+    y2.lab6 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF6$ns[4])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF6$ne[4])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF6$ns[3])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF6$ne[3])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF6$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF6$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF6$ns[1])),
+                 expression(paste(n[e], "=37", sep="")))
     
     
     y.lab7 <- c("WUE"="iWUE",
                 "stomatal_conductance"=expression(g[s]),
                 "CO2_assimilation_rate"="A")
     
-    y2.lab7 <- c(bquote(n[s]==.(plotDF7$ns[3])),
-                 bquote(n[e]==.(plotDF7$ne[3])),
-                 bquote(n[s]==.(plotDF7$ns[2])),
-                 bquote(n[e]==.(plotDF7$ne[2])),
-                 bquote(n[s]==.(plotDF7$ns[1])),
-                 bquote(n[e]==.(plotDF7$ne[1])))
+    #y2.lab7 <- c(bquote(n[s]==.(plotDF7$ns[3])),
+    #             bquote(n[e]==.(plotDF7$ne[3])),
+    #             bquote(n[s]==.(plotDF7$ns[2])),
+    #             bquote(n[e]==.(plotDF7$ne[2])),
+    #             bquote(n[s]==.(plotDF7$ns[1])),
+    #             bquote(n[e]==.(plotDF7$ne[1])))
     
+    
+    y2.lab7 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF7$ns[3])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF7$ne[3])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF7$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF7$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF7$ns[1])),
+                 expression(paste(n[e], "=59", sep="")))
     
     y.lab8 <- c("P_uptake"=expression(P[upt]),
                 "N_uptake"=expression(N[upt]))
     
-    y2.lab8 <- c(bquote(n[s]==.(plotDF8$ns[2])),
-                 bquote(n[e]==.(plotDF8$ne[2])),
-                 bquote(n[s]==.(plotDF8$ns[1])),
-                 bquote(n[e]==.(plotDF8$ne[1])))
+    #y2.lab8 <- c(bquote(n[s]==.(plotDF8$ns[2])),
+    #             bquote(n[e]==.(plotDF8$ne[2])),
+    #             bquote(n[s]==.(plotDF8$ns[1])),
+    #             bquote(n[e]==.(plotDF8$ne[1])))
+    
+    y2.lab8 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF8$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF8$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF8$ns[1])),
+                 expression(paste(n[e], "=13", sep="")))
     
     
     y.lab9 <- c("PUE"="PUE",
                 "NUE"="NUE")
     
-    y2.lab9 <- c(bquote(n[s]==.(plotDF9$ns[2])),
-                 bquote(n[e]==.(plotDF9$ne[2])),
-                 bquote(n[s]==.(plotDF9$ns[1])),
-                 bquote(n[e]==.(plotDF9$ne[1])))
+    #y2.lab9 <- c(bquote(n[s]==.(plotDF9$ns[2])),
+    #             bquote(n[e]==.(plotDF9$ne[2])),
+    #             bquote(n[s]==.(plotDF9$ns[1])),
+    #             bquote(n[e]==.(plotDF9$ne[1])))
+    
+    y2.lab9 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF9$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF9$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF9$ns[1])),
+                 expression(paste(n[e], "=8", sep="")))
     
     
     y.lab10 <- c("Root_length" = "RL",
@@ -272,12 +340,20 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                  "leaf_area"="LA")
                 
     
-    y2.lab10 <- c(bquote(n[s]==.(plotDF10$ns[3])),
-                  bquote(n[e]==.(plotDF10$ne[3])),
-                  bquote(n[s]==.(plotDF10$ns[2])),
-                  bquote(n[e]==.(plotDF10$ne[2])),
-                  bquote(n[s]==.(plotDF10$ns[1])),
-                  bquote(n[e]==.(plotDF10$ne[1])))
+    #y2.lab10 <- c(bquote(n[s]==.(plotDF10$ns[3])),
+    #              bquote(n[e]==.(plotDF10$ne[3])),
+    #              bquote(n[s]==.(plotDF10$ns[2])),
+    #              bquote(n[e]==.(plotDF10$ne[2])),
+    #              bquote(n[s]==.(plotDF10$ns[1])),
+    #              bquote(n[e]==.(plotDF10$ne[1])))
+    
+    
+    y2.lab10 <- c(substitute(paste(n[s], "=", val, sep=""), list(val=plotDF10$ns[3])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF10$ne[3])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF10$ns[2])),
+                 substitute(paste(n[e], "=", val, sep=""), list(val=plotDF10$ne[2])),
+                 substitute(paste(n[s], "=", val, sep=""), list(val=plotDF10$ns[1])),
+                 expression(paste(n[e], "=26", sep="")))
     
 
     
@@ -389,14 +465,15 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    plot(p1c)
-
+    
     pdf("output/step2/Figure_4_biomass_responses.pdf", width=14, height=6)
     plot_grid(p1a, p1b, p1c,
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
     dev.off()
     
+    
+    #########################
     p2a <- ggplot(plotDF2a)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos, color=CO2_treatment)) + 
@@ -1405,7 +1482,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
               p2a, p2b, p2c,
               p3a, p3b, p3c,
               p4a, p4b, p4c,
-              rel_heights=c(1.0, 1.0, 1.0, 1.5),
+              rel_heights=c(1.0, 1.0, 0.8, 1.5),
               rel_widths=c(1.0, 0.9, 1.0),
               labels=c(""), ncol=3, align="h", axis = "l")
     dev.off()
