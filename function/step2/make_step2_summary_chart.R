@@ -165,6 +165,9 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                  bquote(n[s]==.(plotDF1$ns[1])),
                  bquote(n[e]==.(plotDF1$ne[1])))
     
+    vall <- 30
+    
+    
     y.lab2 <- c("total_P_concentration"="Total",
                 "root_P_concentration"="Root",
                 "stem_P_concentration"="Stem",
@@ -352,7 +355,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("b")+
         guides(fill = guide_legend(title.position = "top"))
     
-
+    
     p1c <- ggplot(plotDF1)+ 
         geom_vline(xintercept = 0.0)+
         geom_errorbarh(aes(y=id, xmin=Neg, xmax=Pos), height=0.5) + 
@@ -388,6 +391,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
+    plot(p1c)
 
     pdf("output/step2/Figure_4_biomass_responses.pdf", width=14, height=6)
     plot_grid(p1a, p1b, p1c,
