@@ -62,14 +62,13 @@ generate_a_detailed_summary_table(inDF=myDF)
 ### vegetation type
 ### CO2 and P treatment
 ### need to go into function and plot
-### come back point: to make nicer plots!!!!
 #make_basic_summary_stats_plots(inDF=myDF)
 
 #### plot a leaf N vs. leaf P concentration comparison
 plot_leaf_N_P_concentration_comparison(inDF=myDF)
 
 ### plot author cluster plot
-#plot_paper_clusters()
+plot_paper_clusters()
 
 
 #################################################################################
@@ -123,7 +122,7 @@ write.csv(sumDF, "output/step2/co2_effect_simplified.csv", row.names=F)
 
 ### make summary plots of the interaction and individual responses 
 ### go into function to plot!!!
-#make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
+make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
 
 
 

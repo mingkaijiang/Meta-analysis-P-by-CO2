@@ -169,14 +169,14 @@ make_basic_summary_stats_plots <- function(inDF) {
                          labels=c(  "Woody", "Nonwoody"))
     
     
-    pdf("output/step1/summary_data_variable.pdf", width=12, height=8)
-    plot_grid(p1, p2, p3, p4,
-              labels="", ncol=2, align="v", axis = "l",
-              rel_heights = c(0.8, 0.8, 1.6, 1.6))
-    grid.text(grid.labs,x = c(0.46, 0.95, 0.46, 0.95),
-              y = c(0.95, 0.95, 0.46, 0.46),
-              gp=gpar(fontsize=16, col="black", fontface="bold"))
-    dev.off()
+    #pdf("output/step1/summary_data_variable.pdf", width=12, height=8)
+    #plot_grid(p1, p2, p3, p4,
+    #          labels="", ncol=2, align="v", axis = "l",
+    #          rel_heights = c(0.8, 0.8, 1.6, 1.6))
+    #grid.text(grid.labs,x = c(0.46, 0.95, 0.46, 0.95),
+    #          y = c(0.95, 0.95, 0.46, 0.46),
+    #          gp=gpar(fontsize=16, col="black", fontface="bold"))
+    #dev.off()
     
     
     
@@ -204,9 +204,9 @@ make_basic_summary_stats_plots <- function(inDF) {
         scale_fill_discrete(name="Vegetation type")+
         theme(legend.justification=c(0,1), legend.position=c(0.65,0.9))
         
-    pdf("output/step1/data_summary_study_count_vegetation_category.pdf")
-    plot(p1)
-    dev.off()
+    #pdf("output/step1/data_summary_study_count_vegetation_category.pdf")
+    #plot(p1)
+    #dev.off()
     
     
     

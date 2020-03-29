@@ -165,8 +165,6 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                  bquote(n[s]==.(plotDF1$ns[1])),
                  bquote(n[e]==.(plotDF1$ne[1])))
     
-    vall <- 30
-    
     
     y.lab2 <- c("total_P_concentration"="Total",
                 "root_P_concentration"="Root",

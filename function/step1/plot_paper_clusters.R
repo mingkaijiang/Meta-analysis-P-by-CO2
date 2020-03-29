@@ -31,7 +31,7 @@ plot_paper_clusters <- function() {
         left_join(nodes, by = c("Pto" = "label")) %>% 
         rename(to = "Pto")
     
-    edges <- select(edges, from, to, weight)
+    edges <- select(edges, from, to)
     
     #routes_network <- network(edges, vertex.attr = nodes, 
     #                          matrix.type = "edgelist", ignore.eval = FALSE)
@@ -68,8 +68,8 @@ plot_paper_clusters <- function() {
                                         "38",
                                         "40",
                                         "42",
-                                        "43",
                                         "44",
+                                        "45",
                                         "15"))
     
     
