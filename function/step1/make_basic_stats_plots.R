@@ -208,7 +208,7 @@ make_basic_summary_stats_plots <- function(inDF) {
     #plot(p1)
     #dev.off()
     
-    
+    #inDF$Category <- as.factor(inDF$Category)
     
     #### summary of variables
     p1 <- ggplot()+
