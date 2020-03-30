@@ -194,7 +194,7 @@ make_step4_mycorrhizal_comparison_chart <- function(inDF) {
                            values=c("black", "grey"),
                            labels=c("AM", "ECM"),
                            guide = FALSE)+
-        scale_fill_manual(name=paste("Mycorrhizae"),
+        scale_fill_manual(name=paste("Mycorrhizae group"),
                           limits=c("AM", "ECM"),
                           values=c("black", "grey"),
                           labels=c("AM", "ECM"))+        
