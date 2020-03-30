@@ -94,7 +94,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-80, 80))+
+        scale_x_continuous(limits=c(-50, 80))+
         scale_y_continuous(breaks=c(1:3),
                            labels=c("RL", "LA", "A"))+
         scale_color_manual(name=paste("Vegetation group"),
@@ -133,7 +133,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-80, 80))+
+        scale_x_continuous(limits=c(-50, 80))+
         scale_y_continuous(breaks=c(2:3),
                            labels=c("    BG", "AG"))+
         scale_color_manual(name=paste("Vegetation group"),
@@ -173,7 +173,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
               legend.background = element_rect(fill="white",
                                                size=0.5, linetype="solid", 
                                                colour ="black"))+
-        scale_x_continuous(limits=c(-80, 80))+
+        scale_x_continuous(limits=c(-50, 80))+
         scale_y_continuous(breaks=c(1:4),
                            labels=c("Root P", "Leaf P", "Root N", "Leaf N"))+
         scale_color_manual(name=paste("Vegetation group"),
@@ -191,13 +191,13 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
     
     #plot(p1c)
     
-    pdf("output/step3/Figure_8_woody_nonwoody_comparison_LP_effect_on_eCO2_response.pdf", 
-        width=10, height=10)
-    plot_grid(p1a, p1b, p1c,
-              #rel_widths=c(0.5, 1, 1, 0.9),
-              rel_heights=c(0.4,0.3,1.0),
-              labels=c(""), ncol=1, align="v", axis = "l")    
-    dev.off()
+    #pdf("output/step3/Figure_S10_woody_nonwoody_comparison_LP_effect_on_eCO2_response.pdf", 
+    #    width=10, height=10)
+    #plot_grid(p1a, p1b, p1c,
+    #          #rel_widths=c(0.5, 1, 1, 0.9),
+    #          rel_heights=c(0.4,0.3,1.0),
+    #          labels=c(""), ncol=1, align="v", axis = "l")    
+    #dev.off()
     
     
     
@@ -434,16 +434,257 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         ggtitle("f")+
         guides(fill = guide_legend(title.position = "top"))
     
-    #plot(p2f)
+    #pdf("output/step3/Figure_S11_woody_nonwoody_comparison_eCO2_effect.pdf", 
+    #    width=8, height=8)
+    #plot_grid(p2a, p2b, 
+    #          p2c, p2d,
+    #          p2e, p2f,
+    #          rel_widths=c(1,0.8),
+    #          rel_heights=c(0.4,0.3,0.8),
+    #          labels=c(""), ncol=2, align="h", axis = "l")    
+    #dev.off()
     
-    pdf("output/step3/Figure_9_woody_nonwoody_comparison_eCO2_effect.pdf", 
-        width=8, height=8)
-    plot_grid(p2a, p2b, 
-              p2c, p2d,
-              p2e, p2f,
-              rel_widths=c(1,0.8),
-              rel_heights=c(0.4,0.3,0.8),
-              labels=c(""), ncol=2, align="h", axis = "l")    
+    
+    
+    ### a different way of plotting main text figure
+    ### just show results that are statistically significant
+    plotDF10 <- subset(intDF4, variable=="aboveground_biomass")
+    plotDF13 <- subset(intDF4, variable=="leaf_N_concentration")
+    
+    plotDF11 <- subset(sumDF4, P_treatment == "eP" & variable=="aboveground_biomass")
+    plotDF12 <- subset(sumDF4, P_treatment == "aP" & variable=="aboveground_biomass")
+    
+    plotDF14 <- subset(sumDF4, P_treatment == "eP" & variable=="leaf_N_concentration")
+    plotDF15 <- subset(sumDF4, P_treatment == "aP" & variable=="leaf_N_concentration")
+    
+    
+    ### plot effect of LP on eCO2 response
+    p1a <- ggplot(plotDF10)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
+        geom_point(aes(y=PFT, x=interaction, fill=PFT), 
+                   size=8, shape=21)+
+        labs(x="", y="AG")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_text(size=16),
+              axis.title.y=element_text(size=20),
+              legend.text=element_text(size=16),
+              legend.title=element_text(size=18),
+              panel.grid.major=element_blank(),
+              plot.title = element_text(size = 18, face = "bold"),
+              legend.position = "none",
+              legend.background = element_rect(fill="white",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-40, 20))+
+        scale_y_discrete(breaks=c("woody", "nonwoody"),
+                           labels=c("WD", "NWD"))+
+        scale_color_manual(name=paste("Vegetation group"),
+                           limits=c("woody", "nonwoody"),
+                           values=c("black", "grey"),
+                           labels=c("Woody", "Nonwoody"),
+                           guide = FALSE)+
+        scale_fill_manual(name=paste("Vegetation group"),
+                          limits=c("woody", "nonwoody"),
+                          values=c("black", "grey"),
+                          labels=c("Woody", "Nonwoody"))+        
+        ggtitle("a")+
+        guides(fill = guide_legend(title.position = "top"))
+    
+    
+    p1d <- ggplot(plotDF13)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
+        geom_point(aes(y=PFT, x=interaction, fill=PFT), 
+                   size=8, shape=21)+
+        labs(x=expression("LP effect on " * eCO[2] * " response (%)"), 
+             y="Leaf N")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=16), 
+              axis.text.x = element_text(size=14),
+              axis.text.y=element_text(size=16),
+              axis.title.y=element_text(size=20),
+              legend.text=element_text(size=16),
+              legend.title=element_text(size=18),
+              panel.grid.major=element_blank(),
+              plot.title = element_text(size = 18, face = "bold"),
+              legend.position = "none",
+              legend.background = element_rect(fill="white",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-40, 20))+
+        scale_y_discrete(breaks=c("woody", "nonwoody"),
+                         labels=c("WD", "NWD"))+
+        scale_color_manual(name=paste("Vegetation group"),
+                           limits=c("woody", "nonwoody"),
+                           values=c("black", "grey"),
+                           labels=c("Woody", "Nonwoody"),
+                           guide = FALSE)+
+        scale_fill_manual(name=paste("Vegetation group"),
+                          limits=c("woody", "nonwoody"),
+                          values=c("black", "grey"),
+                          labels=c("Woody", "Nonwoody"))+        
+        ggtitle("d")+
+        guides(fill = guide_legend(title.position = "top"))
+    
+    
+    p1b <- ggplot(plotDF11)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
+        geom_point(aes(y=PFT, x=CO2_effect, fill=PFT), 
+                   size=8, shape=21)+
+        labs(x="", y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=16),
+              legend.title=element_text(size=18),
+              panel.grid.major=element_blank(),
+              plot.title = element_text(size = 18, face = "bold"),
+              legend.position = "none",
+              legend.background = element_rect(fill="white",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-50, 120))+
+        scale_y_discrete(breaks=c("woody", "nonwoody"),
+                         labels=c("WD", "NWD"))+
+        scale_color_manual(name=paste("Vegetation group"),
+                           limits=c("woody", "nonwoody"),
+                           values=c("black", "grey"),
+                           labels=c("Woody", "Nonwoody"),
+                           guide = FALSE)+
+        scale_fill_manual(name=paste("Vegetation group"),
+                          limits=c("woody", "nonwoody"),
+                          values=c("black", "grey"),
+                          labels=c("Woody", "Nonwoody"))+        
+        ggtitle("b")+
+        guides(fill = guide_legend(title.position = "top"))
+    
+    
+    p1e <- ggplot(plotDF14)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
+        geom_point(aes(y=PFT, x=CO2_effect, fill=PFT), 
+                   size=8, shape=21)+
+        labs(x=expression(eCO[2] * " response under HP (%)"), y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=16), 
+              axis.text.x = element_text(size=14),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=16),
+              legend.title=element_text(size=18),
+              panel.grid.major=element_blank(),
+              plot.title = element_text(size = 18, face = "bold"),
+              legend.position = "none",
+              legend.background = element_rect(fill="white",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-50, 120))+
+        scale_y_discrete(breaks=c("woody", "nonwoody"),
+                         labels=c("WD", "NWD"))+
+        scale_color_manual(name=paste("Vegetation group"),
+                           limits=c("woody", "nonwoody"),
+                           values=c("black", "grey"),
+                           labels=c("Woody", "Nonwoody"),
+                           guide = FALSE)+
+        scale_fill_manual(name=paste("Vegetation group"),
+                          limits=c("woody", "nonwoody"),
+                          values=c("black", "grey"),
+                          labels=c("Woody", "Nonwoody"))+        
+        ggtitle("e")+
+        guides(fill = guide_legend(title.position = "top"))
+    
+    
+    p1c <- ggplot(plotDF12)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
+        geom_point(aes(y=PFT, x=CO2_effect, fill=PFT), 
+                   size=8, shape=21)+
+        labs(x="", y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_blank(), 
+              axis.text.x = element_blank(),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=16),
+              legend.title=element_text(size=18),
+              panel.grid.major=element_blank(),
+              plot.title = element_text(size = 18, face = "bold"),
+              legend.position = "none",
+              legend.background = element_rect(fill="white",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-50, 120))+
+        scale_y_discrete(breaks=c("woody", "nonwoody"),
+                         labels=c("WD", "NWD"))+
+        scale_color_manual(name=paste("Vegetation group"),
+                           limits=c("woody", "nonwoody"),
+                           values=c("black", "grey"),
+                           labels=c("Woody", "Nonwoody"),
+                           guide = FALSE)+
+        scale_fill_manual(name=paste("Vegetation group"),
+                          limits=c("woody", "nonwoody"),
+                          values=c("black", "grey"),
+                          labels=c("Woody", "Nonwoody"))+        
+        ggtitle("c")+
+        guides(fill = guide_legend(title.position = "top"))
+    
+    p1f <- ggplot(plotDF15)+ 
+        geom_vline(xintercept = 0.0)+
+        geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
+        geom_point(aes(y=PFT, x=CO2_effect, fill=PFT), 
+                   size=8, shape=21)+
+        labs(x=expression(eCO[2] * " response under LP (%)"), y="")+
+        theme_linedraw()+
+        theme(panel.grid.minor=element_blank(),
+              axis.title.x = element_text(size=16), 
+              axis.text.x = element_text(size=14),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
+              legend.text=element_text(size=16),
+              legend.title=element_text(size=18),
+              panel.grid.major=element_blank(),
+              plot.title = element_text(size = 18, face = "bold"),
+              legend.position = "none",
+              legend.background = element_rect(fill="white",
+                                               size=0.5, linetype="solid", 
+                                               colour ="black"))+
+        scale_x_continuous(limits=c(-50, 120))+
+        scale_y_discrete(breaks=c("woody", "nonwoody"),
+                         labels=c("WD", "NWD"))+
+        scale_color_manual(name=paste("Vegetation group"),
+                           limits=c("woody", "nonwoody"),
+                           values=c("black", "grey"),
+                           labels=c("Woody", "Nonwoody"),
+                           guide = FALSE)+
+        scale_fill_manual(name=paste("Vegetation group"),
+                          limits=c("woody", "nonwoody"),
+                          values=c("black", "grey"),
+                          labels=c("Woody", "Nonwoody"))+        
+        ggtitle("f")+
+        guides(fill = guide_legend(title.position = "top"))
+    
+    
+
+    pdf("output/step3/Figure_9_woody_nonwoody_comparison.pdf", 
+        width=12, height=6)
+    plot_grid(p1a, p1b, 
+              p1c, p1d,
+              p1e, p1f,
+              rel_widths=c(1.5,1,1),
+              rel_heights=c(1,1.1),
+              labels=c(""), ncol=3, align="h", axis = "l")    
     dev.off()
     
- }
+    
+}
