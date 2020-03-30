@@ -676,7 +676,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
     
     
 
-    pdf("output/step3/Figure_9_woody_nonwoody_comparison.pdf", 
+    pdf("output/step3/Figure_8_woody_nonwoody_comparison.pdf", 
         width=12, height=6)
     plot_grid(p1a, p1b, 
               p1c, p1d,

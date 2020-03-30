@@ -195,7 +195,7 @@ test_step4_between_group_heterogeneity_mycorrhizae_woody_nonwoody(subDF=mycoDF)
 
 ### plot mycorrhizal comparison
 ### go into function to plot!!!
-make_step4_mycorrhizal_comparison_chart(inDF=mycoDF)
+#make_step4_mycorrhizal_comparison_chart(inDF=mycoDF)
 
 #################################################################################
 #### The end

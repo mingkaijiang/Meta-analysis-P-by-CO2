@@ -268,7 +268,7 @@ make_step4_mycorrhizal_comparison_chart <- function(inDF) {
         ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
-    pdf("output/step4/Figure_10_mycorrhizae_comparison.pdf", 
+    pdf("output/step4/Figure_9_mycorrhizae_comparison.pdf", 
         width=12, height=6)
     plot_grid(p1a, p1b, p1c, 
               rel_widths=c(1.05,1,1),
