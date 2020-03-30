@@ -23,14 +23,6 @@ if(!dir.exists("output/step4")) {
     dir.create("output/step4", showWarnings = FALSE)
 }
 
-if(!dir.exists("output/step5")) {
-    dir.create("output/step5", showWarnings = FALSE)
-}
-
-if(!dir.exists("output/step5/supplementary")) {
-    dir.create("output/step5/supplementary", showWarnings = FALSE)
-}
-
 
 #### Install packages
 if(!require(pacman))install.packages("pacman")

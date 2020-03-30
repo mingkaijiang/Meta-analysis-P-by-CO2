@@ -181,7 +181,7 @@ test_step3_between_group_heterogeneity(inDF=myDF)
 
 ### plot woody and nonwoody comparison
 ### go into function to plot!!!
-make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
+#make_step3_woody_nonwoody_comparison_chart(intDF.wd, intDF.nwd, sumDF.wd, sumDF.nwd)
 
 
 #################################################################################
