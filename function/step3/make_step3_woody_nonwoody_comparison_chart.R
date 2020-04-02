@@ -110,8 +110,6 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         guides(fill = guide_legend(title.position = "top"))
     
     
-    #plot(p1a)
-    
     
     p1b <- ggplot(plotDF2)+ 
         geom_vline(xintercept = 0.0)+
@@ -464,13 +462,13 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
         geom_point(aes(y=PFT, x=interaction, fill=PFT), 
                    size=8, shape=21)+
-        labs(x="", y="AG")+
+        labs(x="", y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
               axis.text.x = element_blank(),
-              axis.text.y=element_text(size=16),
-              axis.title.y=element_text(size=20),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
               legend.text=element_text(size=16),
               legend.title=element_text(size=18),
               panel.grid.major=element_blank(),
@@ -491,7 +489,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("a")+
+        ggtitle("c")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -501,13 +499,13 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_point(aes(y=PFT, x=interaction, fill=PFT), 
                    size=8, shape=21)+
         labs(x=expression("LP effect on " * eCO[2] * " response (%)"), 
-             y="Leaf N")+
+             y="")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=16), 
               axis.text.x = element_text(size=14),
-              axis.text.y=element_text(size=16),
-              axis.title.y=element_text(size=20),
+              axis.text.y=element_blank(),
+              axis.title.y=element_blank(),
               legend.text=element_text(size=16),
               legend.title=element_text(size=18),
               panel.grid.major=element_blank(),
@@ -528,7 +526,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("d")+
+        ggtitle("f")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -537,13 +535,13 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
         geom_point(aes(y=PFT, x=CO2_effect, fill=PFT), 
                    size=8, shape=21)+
-        labs(x="", y="")+
+        labs(x="", y="AG")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_blank(), 
               axis.text.x = element_blank(),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
+              axis.text.y=element_text(size=16),
+              axis.title.y=element_text(size=20),
               legend.text=element_text(size=16),
               legend.title=element_text(size=18),
               panel.grid.major=element_blank(),
@@ -564,7 +562,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("b")+
+        ggtitle("a")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -573,13 +571,13 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
         geom_errorbarh(aes(y=PFT, xmin=neg, xmax=pos, color=factor(PFT)), height=0.2) + 
         geom_point(aes(y=PFT, x=CO2_effect, fill=PFT), 
                    size=8, shape=21)+
-        labs(x=expression(eCO[2] * " response under HP (%)"), y="")+
+        labs(x=expression(eCO[2] * " response under HP (%)"), y="Leaf N")+
         theme_linedraw()+
         theme(panel.grid.minor=element_blank(),
               axis.title.x = element_text(size=16), 
               axis.text.x = element_text(size=14),
-              axis.text.y=element_blank(),
-              axis.title.y=element_blank(),
+              axis.text.y=element_text(size=16),
+              axis.title.y=element_text(size=20),
               legend.text=element_text(size=16),
               legend.title=element_text(size=18),
               panel.grid.major=element_blank(),
@@ -600,7 +598,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("e")+
+        ggtitle("d")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -636,8 +634,9 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("c")+
+        ggtitle("b")+
         guides(fill = guide_legend(title.position = "top"))
+    
     
     p1f <- ggplot(plotDF15)+ 
         geom_vline(xintercept = 0.0)+
@@ -671,17 +670,16 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("f")+
+        ggtitle("e")+
         guides(fill = guide_legend(title.position = "top"))
     
     
 
     pdf("output/step3/Figure_8_woody_nonwoody_comparison.pdf", 
         width=12, height=6)
-    plot_grid(p1a, p1b, 
-              p1c, p1d,
-              p1e, p1f,
-              rel_widths=c(1.5,1,1),
+    plot_grid(p1b, p1c, p1a, 
+              p1e, p1f, p1d, 
+              rel_widths=c(1.2,1,1.1),
               rel_heights=c(1,1.1),
               labels=c(""), ncol=3, align="h", axis = "l")    
     dev.off()

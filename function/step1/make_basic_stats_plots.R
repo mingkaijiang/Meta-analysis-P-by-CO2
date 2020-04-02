@@ -104,7 +104,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               panel.grid.major=element_blank(),
               legend.position="bottom",
               legend.text.align=0)+
-        ylab("Number of data entry")+
+        ylab("Number of data entries")+
         scale_x_discrete(name="Response category",
                          breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
                                    "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency"))
@@ -123,7 +123,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               panel.grid.major=element_blank(),
               legend.position="bottom",
               legend.text.align=0)+
-        ylab("Number of data entry")+
+        ylab("Number of data entries")+
         scale_x_discrete(name="Vegetation type",
                          breaks=c( "Woody", "Nonwoody"),
                          labels=c(  "Woody", "Nonwoody"))
@@ -224,7 +224,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               panel.grid.major=element_blank(),
               legend.position="bottom",
               legend.text.align=0)+
-        ylab("Number of data entry")+
+        ylab("Number of data entries")+
         scale_x_discrete(name="",
                          breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
                                    "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency"))
@@ -243,7 +243,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               panel.grid.major=element_blank(),
               legend.position="bottom",
               legend.text.align=0)+
-        ylab("Number of data entry")+
+        ylab("Number of data entries")+
         scale_x_discrete(name="",
                          breaks=c( "Woody", "Nonwoody"),
                          labels=c(  "Woody", "Nonwoody"))+
