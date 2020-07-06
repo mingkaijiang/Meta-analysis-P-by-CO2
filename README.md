@@ -1,6 +1,6 @@
-## Meta-analysis on plant response to phosphorus by CO[sub]2[/sub] interaction
+## Meta-analysis on plant response to phosphorus by CO~2~ interaction
 
-This is the code repository for the meta-analysis on plant response to phosphorus by CO2 interaction.
+This is the code repository for the meta-analysis on plant response to phosphorus by CO~2~ interaction.
 
 ### Code structure:
 
@@ -14,7 +14,7 @@ Open script 'run_program.R', and follow the instructions given in the comments t
 Paper accepted at **Global Change Biology**. 
 
 
-M. Jiang, S. Caldararu, H. Zhang, J. Yang, K.Y. Crous, K. Fleischer, M.G. De Kauwe, D.S. Ellsworth, P. Reich, D.T. Tissue, S. Zaehle, and B.E. Medlyn. Low phosphorus supply constrains plant responses to elevated CO2 – a meta-analysis. **Global Change Biology**.
+M. Jiang, S. Caldararu, H. Zhang, J. Yang, K.Y. Crous, K. Fleischer, M.G. De Kauwe, D.S. Ellsworth, P. Reich, D.T. Tissue, S. Zaehle, and B.E. Medlyn. Low phosphorus supply constrains plant responses to elevated CO~2~ – a meta-analysis. **Global Change Biology**.
 
 
 ### Data availability:
