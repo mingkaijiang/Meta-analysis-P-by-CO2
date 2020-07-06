@@ -225,6 +225,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               legend.position="bottom",
               legend.text.align=0)+
         ylab("Number of data entries")+
+        ggtitle("(a)")+
         scale_x_discrete(name="",
                          breaks=c( "Biomass", "Concentration", "Morphology","Gas Exchange",
                                    "Nutrient Uptake", "Nutrient Ratio", "Resource Use Efficiency"))
@@ -244,6 +245,7 @@ make_basic_summary_stats_plots <- function(inDF) {
               legend.position="bottom",
               legend.text.align=0)+
         ylab("Number of data entries")+
+        ggtitle("(b)")+
         scale_x_discrete(name="",
                          breaks=c( "Woody", "Nonwoody"),
                          labels=c(  "Woody", "Nonwoody"))+
@@ -255,7 +257,7 @@ make_basic_summary_stats_plots <- function(inDF) {
     
     pdf("output/step1/Figure_1.pdf", width=12, height=6)
     plot_grid(p1, p2,
-              labels="auto", ncol=2, align="v", axis = "l",
+              labels=c(""), ncol=2, align="v", axis = "l",
               rel_widths = c(1, 0.5))
     dev.off()
     
