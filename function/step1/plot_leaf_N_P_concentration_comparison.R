@@ -102,7 +102,7 @@ plot_leaf_N_P_concentration_comparison <- function(inDF) {
                                                colour ="black"))+
         scale_y_continuous(limits=c(0, 1.5))+
         scale_x_continuous(limits=c(0, 8))+
-        ggtitle("a")+
+        ggtitle("(a)")+
         scale_color_manual(name=paste("Vegetation type"),
                            limits=c("Woody", "Nonwoody"),
                            values=c("darkgreen", "orange"),
@@ -167,7 +167,7 @@ plot_leaf_N_P_concentration_comparison <- function(inDF) {
                           limits=c("Woody", "Nonwoody"),
                           values=c("darkgreen", "orange"),
                           labels=c("Woody", "Non-woody"))+        
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     #plot(p2)

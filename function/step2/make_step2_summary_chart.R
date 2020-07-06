@@ -390,7 +390,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")+
+        ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -426,7 +426,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -462,7 +462,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
         scale_shape_manual(name=expression(paste("LP x ", eCO[2])),
                           values=c("pos"=22, "neg"=23, "neutral"=24),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")+
+        ggtitle("(c)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -506,7 +506,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")
+        ggtitle("(a)")
     
     
     p2b <- ggplot(plotDF2b)+ 
@@ -541,7 +541,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("b")
+        ggtitle("(b)")
     
 
     p2c <- ggplot(plotDF2)+ 
@@ -576,7 +576,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")
+        ggtitle("(c)")
     
     
     p3a <- ggplot(plotDF3a)+ 
@@ -611,7 +611,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("d")+
+        ggtitle("(d)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -647,7 +647,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("e")+
+        ggtitle("(e)")+
         guides(fill = guide_legend(title.position = "top"))
     
 
@@ -680,7 +680,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                            breaks=c("pos", "neg", "neutral"),
                            values=c(22, 23, 24),
                            labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("f")+
+        ggtitle("(f)")+
         scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
@@ -729,7 +729,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")+
+        ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -765,7 +765,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -803,7 +803,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")+
+        ggtitle("(c)")+
         guides(fill = guide_legend(title.position = "top"))
     
     pdf("output/step2/Figure_3_gas_exchange_responses.pdf", width=16, height=6)
@@ -846,7 +846,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")+
+        ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -882,7 +882,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -920,7 +920,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")+
+        ggtitle("(c)")+
         guides(fill = guide_legend(title.position = "top"))
     
     pdf("output/step2/Figure_5_morphology_responses.pdf", width=16, height=6)
@@ -963,7 +963,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")+
+        ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -999,7 +999,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -1037,7 +1037,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")+
+        ggtitle("(c)")+
         guides(fill = guide_legend(title.position = "top"))
     
     pdf("output/step2/Figure_7_nutrient_uptake_responses.pdf", width=16, height=6)
@@ -1081,7 +1081,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("a")
+        ggtitle("(a)")
     
     
     p1b <- ggplot(plotDF5b)+ 
@@ -1116,7 +1116,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("b")
+        ggtitle("(b)")
     
     p1c <- ggplot(plotDF5)+ 
         geom_vline(xintercept = 0.0)+
@@ -1152,7 +1152,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("c")
+        ggtitle("(c)")
     
     
     p2a <- ggplot(plotDF6a)+ 
@@ -1187,7 +1187,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("d")
+        ggtitle("(d)")
     
     
     p2b <- ggplot(plotDF6b)+ 
@@ -1222,7 +1222,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("e")
+        ggtitle("(e)")
     
     p2c <- ggplot(plotDF6)+ 
         geom_vline(xintercept = 0.0)+
@@ -1258,7 +1258,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("f")
+        ggtitle("(f)")
     
     
     ### plotting
@@ -1294,7 +1294,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("g")
+        ggtitle("(g)")
     
     
     p3b <- ggplot(plotDF9b)+ 
@@ -1329,7 +1329,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("h")
+        ggtitle("(h)")
     
     
     p3c <- ggplot(plotDF9)+ 
@@ -1366,7 +1366,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("i")
+        ggtitle("(i)")
     
     
     p4a <- ggplot(plotDF4a)+ 
@@ -1401,7 +1401,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("aCO2", "eCO2"),
                           values=c("grey", "black"),
                           labels=c(expression(aCO[2]), expression(eCO[2])))+
-        ggtitle("j")+
+        ggtitle("(j)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -1437,7 +1437,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"))+
-        ggtitle("k")+
+        ggtitle("(k)")+
         guides(fill = guide_legend(title.position = "top"))
     
     p4c <- ggplot(plotDF4)+ 
@@ -1474,7 +1474,7 @@ make_step2_summary_chart <- function(sumDF, sumDF2, intDF) {
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
-        ggtitle("l")+
+        ggtitle("(l)")+
         guides(fill = guide_legend(title.position = "top"))
     
     pdf("output/step2/Figure_S9.pdf", width=16, height=16)

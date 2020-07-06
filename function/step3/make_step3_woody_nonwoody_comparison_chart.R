@@ -106,7 +106,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("a")+
+        ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -143,7 +143,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     #plot(p1b)
@@ -183,7 +183,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("c")+
+        ggtitle("(c)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -233,7 +233,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"),)+        
-        ggtitle("a")+
+        ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
     #plot(p2a)
@@ -271,7 +271,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"),)+        
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     #plot(p2b)
@@ -310,7 +310,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"),)+        
-        ggtitle("c")+
+        ggtitle("(c)")+
         guides(fill = guide_legend(title.position = "top"))
     
     #plot(p2c)
@@ -349,7 +349,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"),)+        
-        ggtitle("d")+
+        ggtitle("(d)")+
         guides(fill = guide_legend(title.position = "top"))
     
     #plot(p2d)
@@ -388,7 +388,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"),)+        
-        ggtitle("e")+
+        ggtitle("(e)")+
         guides(fill = guide_legend(title.position = "top"))
     
     #plot(p2e)
@@ -429,7 +429,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
                           labels=c("HP", "LP"),)+        
-        ggtitle("f")+
+        ggtitle("(f)")+
         guides(fill = guide_legend(title.position = "top"))
     
     #pdf("output/step3/Figure_S11_woody_nonwoody_comparison_eCO2_effect.pdf", 
@@ -489,7 +489,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("c")+
+        ggtitle("(c)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -526,7 +526,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("f")+
+        ggtitle("(f)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -562,7 +562,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("a")+
+        ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -598,7 +598,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("d")+
+        ggtitle("(d)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -634,7 +634,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -670,7 +670,7 @@ make_step3_woody_nonwoody_comparison_chart <- function(intDF.wd, intDF.nwd, sumD
                           limits=c("woody", "nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("e")+
+        ggtitle("(e)")+
         guides(fill = guide_legend(title.position = "top"))
     
     

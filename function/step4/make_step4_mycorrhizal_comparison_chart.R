@@ -198,7 +198,7 @@ make_step4_mycorrhizal_comparison_chart <- function(inDF) {
                           limits=c("AM", "ECM"),
                           values=c("black", "grey"),
                           labels=c("AM", "ECM"))+        
-        ggtitle("a")+
+        ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
     p1b <- ggplot(sumDF2)+ 
@@ -231,7 +231,7 @@ make_step4_mycorrhizal_comparison_chart <- function(inDF) {
                           limits=c("Woody", "Nonwoody"),
                           values=c("black", "grey"),
                           labels=c("Woody", "Nonwoody"))+        
-        ggtitle("b")+
+        ggtitle("(b)")+
         guides(fill = guide_legend(title.position = "top"))
     
     
@@ -265,7 +265,7 @@ make_step4_mycorrhizal_comparison_chart <- function(inDF) {
                           limits=c("AM", "ECM"),
                           values=c("black", "grey"),
                           labels=c("AM", "ECM"))+        
-        ggtitle("c")+
+        ggtitle("(c)")+
         guides(fill = guide_legend(title.position = "top"))
     
     pdf("output/step4/Figure_9_mycorrhizae_comparison.pdf", 
