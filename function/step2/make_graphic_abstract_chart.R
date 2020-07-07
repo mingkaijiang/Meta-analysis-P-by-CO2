@@ -237,12 +237,12 @@ make_graphic_abstract_chart <- function(sumDF, sumDF2, intDF) {
         scale_color_manual(name=paste("CIs"),
                            limits=c("eP", "aP"),
                            values=c("grey", "black"),
-                           labels=c("HP", "LP"),
+                           labels=c("High-P", "Low-P"),
                            guide=F)+
         scale_fill_manual(name=paste("P treatment"),
                           limits=c("eP", "aP"),
                           values=c("grey", "black"),
-                          labels=c("HP", "LP"))+
+                          labels=c("High-P", "Low-P"))+
         ggtitle("(a)")+
         guides(fill = guide_legend(title.position = "top"))
     
@@ -273,7 +273,7 @@ make_graphic_abstract_chart <- function(sumDF, sumDF2, intDF) {
                            sec.axis = sec_axis(~., name = "", 
                                                breaks=c(1.2, 1.7, 3.2, 3.7, 5.2, 5.7, 7.2, 7.7, 9.2, 9.7),
                                                labels = y2.lab1))+
-        scale_fill_manual(name=expression(paste("LP x ", eCO[2])),
+        scale_fill_manual(name=expression(paste("Low-P x ", eCO[2])),
                           limits=c("pos", "neg", "neutral"),
                           values=c("black", "grey", "white"),
                           labels=c("Positive", "Negative", "Neutral"))+
