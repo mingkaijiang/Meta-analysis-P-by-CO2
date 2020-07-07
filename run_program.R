@@ -126,6 +126,7 @@ write.csv(sumDF, "output/step2/co2_effect_simplified.csv", row.names=F)
 ### make summary plots of the interaction and individual responses 
 ### go into function to plot!!!
 #make_step2_summary_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
+#make_graphic_abstract_chart(sumDF=sumDF, sumDF2=sumDF2, intDF=intDF)
 
 
 
